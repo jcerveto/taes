@@ -1,0 +1,10 @@
+body,html {
+    margin: 0; /* Asegúrate de que no hay márgenes en el cuerpo del documento */
+    padding: 0; /* Asegúrate de que no hay relleno en el cuerpo del documento */
+    height: 100%;
+
+  }
+
+  #map {
+    height: calc(100vh - 56px); /* Ajusta la altura del mapa para dejar espacio para el encabezado */
+  }
