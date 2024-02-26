@@ -6,6 +6,10 @@ import Error404 from '@/views/Error404Page.vue';
 import ProductPricePage from '@/views/ProductPricesPage.vue';
 import MachinesDistributionPage from '@/views/MachinesDistributionPage.vue';
 import FilterPage from '@/views/FilterPage.vue';
+import SignIn from '@/views/SignInPage.vue';
+import Register from '@/views/RegisterPage.vue';
+import User from '@/views/UserPage.vue';
+
 
 const routes = [
   {
@@ -32,6 +36,26 @@ const routes = [
     path: '/:catchAll(.*)',
     component: Error404,
   },
+  /*{
+    path: '/',
+    redirect: '/signin' // Redirigir a la página de inicio de sesión por defecto
+  },*/
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
+  }
+  
 ];
 
 const router = createRouter({
