@@ -16,7 +16,7 @@ import UserConsults from '@/views/UserConsultsPage.vue';
 import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
-
+import MaquinaFiltro from '@/views/MachinesFilter.vue';
 
 const routes = [
   {
@@ -85,6 +85,11 @@ const routes = [
   {
     path: '/editinfo',
     component: UserEditInfo
+  },
+  {
+    path: '/machines-filter',
+    name: 'machines-filter',
+    component: MaquinaFiltro
   },
   {
     path: '/:catchAll(.*)',
