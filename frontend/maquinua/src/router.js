@@ -9,6 +9,13 @@ import FilterPage from '@/views/FilterPage.vue';
 import SignIn from '@/views/SignInPage.vue';
 import Register from '@/views/RegisterPage.vue';
 import User from '@/views/UserPage.vue';
+import UserFavourites from '@/views/FavouritesPage.vue';
+import UserStatistics from '@/views/UserStatisticsPage.vue';
+import UserReviews from '@/views/UserReviewsPage.vue';
+import UserConsults from '@/views/UserConsultsPage.vue';
+import UserLocations from '@/views/UserLocationsPage.vue';
+import UserData from '@/views/UserDataPage.vue';
+import UserEditInfo from '@/views/UserEditInfoPage.vue';
 
 
 const routes = [
@@ -32,10 +39,6 @@ const routes = [
     path: '/filter',
     component: FilterPage,
   },
-  {
-    path: '/:catchAll(.*)',
-    component: Error404,
-  },
   /*{
     path: '/',
     redirect: '/signin' // Redirigir a la página de inicio de sesión por defecto
@@ -54,6 +57,38 @@ const routes = [
     path: '/user',
     name: 'User',
     component: User
+  },
+  {
+    path: '/favourites',
+    component: UserFavourites
+  },
+  {
+    path: '/userstatistics',
+    component: UserStatistics
+  },
+  {
+    path: '/myreviews',
+    component: UserReviews
+  },
+  {
+    path: '/myconsults',
+    component: UserConsults
+  },
+  {
+    path: '/mylocations',
+    component: UserLocations
+  },
+  {
+    path: '/mydata',
+    component: UserData
+  },
+  {
+    path: '/editinfo',
+    component: UserEditInfo
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: Error404,
   }
   
 ];
