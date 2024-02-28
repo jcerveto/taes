@@ -40,6 +40,12 @@
                 }
             }
 
+            function cumpleCriterios(producto) {
+              return (this.precio >= producto.total || this.precio == 0 || !this.precio) && 
+              (producto[this.idioma].toLowerCase().includes(this.nombre.toLowerCase())) && 
+              (this.tipo === 'todos' || producto.type === this.tipo);
+            }
+
 
             function parseFile(file) {
                 Papa.parse(file, {
@@ -60,7 +66,8 @@
                 toggleIdioma,
                 precio,
                 nombre,
-                tipo
+                tipo,
+                cumpleCriterios
             }
         }
 
@@ -96,9 +103,8 @@
       
       
       <div v-for="producto in csvData" :key="producto" class="contenido">
-        <div v-if="(precio >= producto.total || precio == 0 || !precio) && (producto[idioma].toLowerCase().includes(nombre.toLowerCase())) && 
-            (producto.type == tipo || tipo == 'todos')" class="tarjeta">
-          {{ producto[idioma] }} 
+        <div v-if="cumpleCriterios(producto)" class="tarjeta">
+          {{ producto[idioma] }}
           <div style="">Tipo: {{ producto.type }} </div> 
           <div class="precios">{{ producto.total }}€</div>
         </div>
