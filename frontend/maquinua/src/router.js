@@ -9,6 +9,7 @@ import FilterPage from '@/views/FilterPage.vue';
 import SignIn from '@/views/SignInPage.vue';
 import Register from '@/views/RegisterPage.vue';
 import User from '@/views/UserPage.vue';
+import MaquinaFiltro from '@/views/MachinesFilter.vue';
 
 
 const routes = [
@@ -54,6 +55,11 @@ const routes = [
     path: '/user',
     name: 'User',
     component: User
+  },
+  {
+    path: '/machines-filter',
+    name: 'machines-filter',
+    component: MaquinaFiltro
   }
   
 ];

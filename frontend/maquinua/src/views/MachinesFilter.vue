@@ -1,18 +1,17 @@
 <script>
-    import { onMounted, ref} from 'vue';
-    import Papa from 'papaparse';
+import { onMounted, ref} from 'vue';
+import Papa from 'papaparse';
     export default{
         setup(){
 
-            const csvPath= ref("/prices.csv");
-            const title="Prices";
+            const csvPath= ref("/distribution.csv");
+            const title="Teika's distribution";
             let csvHeaders = ref([]);
             const csvData = ref([]);
             const error = ref(null);
-            const idioma = ref("name_es");
+            
 
-            const precio = ref(null);
-            const nombre = ref("");
+            const facultad = ref("");
             const tipo = ref("todos");
 
 
@@ -29,22 +28,7 @@
                 }
             })
 
-            function toggleIdioma(){
-                if (idioma.value == "name_es"){
-                    idioma.value = "name_ca";
-                    console.log("hola")
-                }
-                else {
-                    idioma.value = "name_es";
-                    console.log("adios")
-                }
-            }
-
-            function cumpleCriterios(producto) {
-              return (this.precio >= producto.total || this.precio == 0 || !this.precio) && 
-              (producto[this.idioma].toLowerCase().includes(this.nombre.toLowerCase())) && 
-              (this.tipo === 'todos' || producto.type === this.tipo);
-            }
+            
 
 
             function parseFile(file) {
@@ -54,18 +38,24 @@
                     complete: (results) => {
                         csvHeaders.value = results.meta.fields;
                         csvData.value = results.data;
-                        //console.log(csvData.value);
+                        console.log(csvData.value);
                     },
                 });
+            }
+
+            function cumpleCriterios(maquina) {
+                return (this.facultad === '' || maquina.building.toLowerCase().includes(this.facultad.toLowerCase())) && 
+                (this.tipo === 'todos' || 
+                (this.tipo === 'hot' && maquina.hot > 0) || 
+                (this.tipo === 'cold' && maquina.cold > 0) || 
+                (this.tipo === 'healthy' && maquina.healthy > 0) || 
+                (this.tipo === 'mixed' && maquina.mixed > 0));
             }
 
 
             return {
                 csvData,
-                idioma,
-                toggleIdioma,
-                precio,
-                nombre,
+                facultad,
                 tipo,
                 cumpleCriterios
             }
@@ -76,17 +66,11 @@
 </script>
 
 <template>
-    <div>
-        
-      <h1>Product Prices <button  @click="toggleIdioma()">es/cat</button></h1>
-      <form class="form-inline">
+    <h1>Machines Distribution</h1>
+    <form class="form-inline">
         <div class="form-group">
-          <label for="nombre">Nombre del producto</label>
-          <input type="text" id="nombre" class="form-control" v-model="nombre">
-        </div>
-        <div class="form-group">
-          <label for="precio">Precio máximo</label>
-          <input type="number" id="precio" class="form-control" v-model="precio">
+          <label for="facultad">Facultad</label>
+          <input type="text" id="facultad" class="form-control" v-model="facultad">
         </div>
         <div class="form-group">
           <label for="tipo">Tipo</label>
@@ -94,25 +78,28 @@
             <option value="todos" selected>Todo</option>
             <option value="hot">Caliente</option>
             <option value="cold">Frío</option>
-            <option value="solid">Sólido</option>
+            <option value="healthy">Saludable</option>
+            <option value="mixed">Mixto</option>
           </select>
         </div>
         
       </form>
-      
-      
-      
-      <div v-for="producto in csvData" :key="producto" class="contenido">
-        <div v-if="cumpleCriterios(producto)" class="tarjeta">
-          {{ producto[idioma] }}
-          <div style="">Tipo: {{ producto.type }} </div> 
-          <div class="precios">{{ producto.total }}€</div>
-        </div>
+    
+    <div v-for="maquina in csvData" :key="maquina" class="contenido">
+        <div v-if="cumpleCriterios(maquina)" class="tarjeta">
+          <div class="titulo"> {{ maquina.building }} </div>
+          <div v-if="maquina.cold > 0"> Frías: {{ maquina.cold }} </div>
+          <div v-if="maquina.healthy > 0"> Saludables:  {{ maquina.healthy }}</div>
+          <div v-if="maquina.hot > 0"> Calientes:  {{ maquina.hot }} </div>
+          <div v-if="maquina.mixed > 0"> Mixtas:  {{ maquina.mixed }}</div> 
+          </div>
+        
       </div>
-    </div>
-  </template>
-  
-  <style scoped>
+</template>
+
+
+
+<style scoped>
   
   .form-inline {  
     display: flex;
@@ -181,9 +168,9 @@
         justify-content: center; /* Añadir para centrar horizontalmente */
     }
 
-    .precios{
+    .titulo{
         font-weight: bold;
-        margin-top: 10px;
+        margin-bottom: 10px;
         font-size: 20px;
     }
   </style>
