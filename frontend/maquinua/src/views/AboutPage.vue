@@ -14,12 +14,16 @@
             <p>Nuestra mision es  facilitar el acceso a las distintos usuarios de la universidad de Alicante el acceso a todo tipo de maquinas expendedoras que cumpla con sus necesidades</p>
         </section>
         </div>
-        <div class="comment-box">
+    <div class="comment-box">
         <h2>Comentarios</h2>
         <!-- Lista de comentarios -->
         <ul>
+            <li v-for="palabra in palabras" :key="palabra">{{ palabra }}</li>
+        </ul>
+        <ul>
+
             <li v-for="(comment, index) in comments" :key="index">
-                {{ comment.text }}
+                {{ comment }}
             </li>
         </ul>
 
@@ -28,67 +32,43 @@
             <textarea v-model="newComment" placeholder="Escribe tu comentario"></textarea>
             <button type="submit">Agregar Comentario</button>
         </form>
-        </div>
+    </div>
         <footer>
             <h3>Contacto</h3>
             <p>644344244</p>
             <p>cgmg3@alu.ua.es</p>
             <router-link to="/">Go to Home</router-link>
         </footer>
-        
+    
    
 </template>
 
 
 <script>
+    import palabrasJSON from './../../palabras.json';
     export default {
         data() {
+            
             return {
                 comments: [], // Array para almacenar los comentarios
-                newComment: '' // Nuevo comentario que se está escribiendo
+                newComment: '', // Nuevo comentario que se está escribiendo
+                palabras: []
             };
         },
         mounted() {
-            this.loadComments(); // Cargar comentarios al cargar el componente
+            this.palabras=palabrasJSON.palabras
         },
         methods: {
-            loadComments() {
-                // Simulamos la carga de comentarios desde un archivo JSON local
-                fetch('/comments.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        this.comments = data.comments;
-                    })
-                    .catch(error => {
-                        console.error('Error al cargar comentarios:', error);
-                    });
-            },
             addComment() {
                 if (this.newComment.trim() !== '') { // Asegúrate de que el comentario no esté vacío
-                    this.comments.push({ text: this.newComment }); // Agrega el nuevo comentario al array
-                    this.saveComments(); // Guarda los comentarios después de agregar uno nuevo
+                    this.comments.push(this.newComment); // Agrega el nuevo comentario al array
                     this.newComment = ''; // Limpia el campo de texto después de agregar el comentario
                 }
-            },
-            saveComments() {
-                // Simulamos la escritura de comentarios en un archivo JSON local
-                const data = {
-                    comments: this.comments
-                };
-                fetch('/save-comments', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                    .catch(error => {
-                        console.error('Error al guardar comentarios:', error);
-                    });
             }
         }
     };
 </script>
+
 
 <style scoped> 
     .about {
@@ -113,6 +93,11 @@
         
         padding: 20px;
         margin: 20px 0;
+    }
+    .palabra {
+        border: 1px solid #000;
+        padding: 10px;
+        margin-bottom: 10px;
     }
 
     textarea {
