@@ -1,17 +1,32 @@
-const { MongoClient, ObjectId } = require('mongodb');
+import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 
-// MongoDB connection string
-const connectionString = 'your_mongodb_connection_string';
-const COLLECTION = "maquinua_main";
+import { User} from "../model/User.js";
 
-// Function to connect to MongoDB
+
+// TODO: Estudiar si falta cerrar las conexiones a la base de datos
+
+const USER = "ruser1";
+const PASSWORD = "rpassw1";
+const HOST = "0.0.0.0";
+const PORT = "27017";
+const DATABASE = "maquinua";
+const COLLECTION_MAIN = "maquinua_main";
+
+const connectionString = `mongodb://localhost:27017/${DATABASE}`;
+
+
+/**
+ * Connects to the database and returns a reference to the database
+ * @returns {Promise<Db>}
+ */
 async function connectToDatabase() {
-  const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(connectionString, {
+    serverApi: ServerApiVersion.v1
+  });
 
   try {
     await client.connect();
-    console.log('Connected to MongoDB');
-    return client.db(); // Return the database object
+    return client.db();
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     throw error;
@@ -19,37 +34,210 @@ async function connectToDatabase() {
 }
 
 
+/**
+ * Creates a user in the database
+ * @param {User} user
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
 export async function createUser(user) {
-  const db = await connectToDatabase();
-  const usersCollection = db.collection(COLLECTION);
-  const result = await usersCollection.insertOne(user);
-   
-  if (result.insertedCount !== 1) {
-    throw new Error("User not created!")
+  let db = null;
+  try {
+    if (user === undefined) {
+      throw new Error("User not created!");
+    }
+
+    const db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const result = await usersCollection.insertOne(user.toJSON());
+
+    //if (result.insertedCount !== 1) {
+    //  throw new Error("User not created! Rows affected: ", result.insertedCount)
+    //}
+  } catch (error) {
+    console.error(error);
+    throw new Error("User not created!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
   }
 }
 
 
-export async function updateUser(userId, updatedUserData) {
-  const db = await connectToDatabase();
-  const usersCollection = db.collection(COLLECTION);
-  const result = await usersCollection.updateOne({ _id: ObjectId(userId) }, { $set: updatedUserData });
-  
+/**
+ * Updates a user in the database
+ * @param {string} email
+ * @param {User} updatedUserData
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateUser(email, updatedUserData) {
+  let db = null;
+  try {
+    if (email === undefined || updatedUserData === undefined) {
+      throw new Error("User not updated! email or updatedUserData is undefined!");
+    }
+
+    db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const result = await usersCollection.updateOne({
+      email: email,
+      type: "user"
+    }, { $set: updatedUserData.toJSON() });
+
+    //if (result.modifiedCount !== 1) {
+    //  throw new Error("User not updated!")
+    //}
+  } catch (error) {
+    console.error(error);
+    throw new Error("User not updated!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
 }
 
 
-export async function deleteUser(userId) {
-  const db = await connectToDatabase();
-  const usersCollection = db.collection(COLLECTION);
-  const result = await usersCollection.deleteOne({ _id: ObjectId(userId) });
-  console.log('User deleted:', result.deletedCount, 'document(s) deleted');
+/**
+ * Deletes a user from the database
+ * @param {string} email
+ * @returns {Promise<void>}
+ * @throws {Error} If the user is not deleted: not found in DB or error deleting
+ */
+export async function deleteUser(email) {
+  let db = null;
+  try {
+    if (email === undefined) {
+      throw new Error("User not deleted!");
+    }
+
+    db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const result = await usersCollection.deleteOne({
+      email: email,
+      type: "user"
+    });
+
+    if (result.deletedCount !== 1) {
+      throw new Error("User not deleted!")
+    }
+  }
+  catch (error) {
+    console.error(error);
+    throw new Error("User not deleted!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
+  }
 }
 
 
-export async function readUser(userId) {
-  const db = await connectToDatabase();
-  const usersCollection = db.collection(COLLECTION);
-  const user = await usersCollection.findOne({ _id: ObjectId(userId) });
-  
-  return user;
+/**
+ * Reads a user from the database
+ * @param {string} email
+ * @returns {Promise<User>}
+ */
+export async function readUser(email) {
+  let db = null;
+  try {
+    if (email === undefined) {
+      throw new Error("User not read!");
+    }
+
+    console.log("READING email: ", email);
+    db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const userObj = await usersCollection.findOne({
+      email: email,
+      type: "user"
+    });
+
+    if (userObj === null) {
+      throw new Error("User not read! User not found in DB");
+    }
+
+
+    const user = new User();
+    user.name = userObj.name;
+    user.email = userObj.email;
+    user.password = userObj.password;
+    user.bornDate = new Date(userObj.bornDate);
+
+    return user;
+  } catch (error) {
+    console.error(error);
+    throw new Error("User not read!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
+}
+
+
+/**
+ * Reads all users from the database
+ * @returns {Promise<[User]>}
+ * @throws {Error} If the users are not read
+ */
+export async function readAllUsers() {
+  let db = null;
+  try {
+    db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const usersObj = await usersCollection.find({
+      type: "user"
+    }).toArray();
+    const typeUsers = usersObj.map((u) => {
+        const iterUser = new User();
+
+        iterUser.name = u.name;
+        iterUser.email = u.email;
+        iterUser.password = u.password;
+        iterUser.bornDate = new Date(u.bornDate);
+
+        return iterUser;
+    });
+
+    return typeUsers;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Users not read!")
+  } finally {
+    //if (db != null()) {
+     //await db.close();
+     //console.log('Disconnected from MongoDB');
+    //}
+  }
+}
+
+
+/**
+ * Deletes all users from the database
+ * @returns {Promise<void>}
+ * @throws {Error} If the users are not deleted
+ */
+export async function deleteAllUsers() {
+  let db = null;
+  try {
+    db = await connectToDatabase();
+    const usersCollection = db.collection(COLLECTION_MAIN);
+    const result = await usersCollection.deleteMany({
+      type: "user"
+    });
+
+  } catch (error) {
+    console.error(error);
+    throw new Error("Users not deleted!")
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
+  }
 }
