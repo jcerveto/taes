@@ -149,7 +149,6 @@ export async function readUser(email) {
       throw new Error("User not read!");
     }
 
-    console.log("READING email: ", email);
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const userObj = await usersCollection.findOne({
