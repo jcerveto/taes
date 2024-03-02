@@ -27,8 +27,7 @@
           <label for="birthdate">Birthdate:</label><br>
           <input type="date" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
 
-          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate</span>
-          <span v-if="!ageValid && birthdateValid && birthdateDirty" style="color: red;">You must be at least 16 years old</span>
+          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate (you must be 16 years)</span>
         </div>
   
         <div><br>
@@ -74,7 +73,6 @@
         birthdateValid: false,
         passwordValid: false,
         repeatPasswordValid: false,
-        ageValid: false,
         usernameDirty: false,
         nameDirty: false,
         surnameDirty: false,
@@ -82,12 +80,11 @@
         birthdateDirty: false,
         passwordDirty: false,
         repeatPasswordDirty: false,
-        minAge: 16, // Edad mínima permitida
       };
     },
     computed: {
       formValid() {
-        return this.usernameValid && this.nameValid && this.surnameValid && this.emailValid && this.birthdateValid && this.passwordValid && this.repeatPasswordValid && this.ageValid;
+        return this.usernameValid && this.nameValid && this.surnameValid && this.emailValid && this.birthdateValid && this.passwordValid && this.repeatPasswordValid;
       },
         maxDate() {
           const today = new Date();
@@ -103,7 +100,7 @@
             dd = '0' + dd;
           }
 
-          return yyyy + '-' + mm + '-' + dd;
+          return (yyyy-'16') + '-' + mm + '-' + dd;
         }
     },
     methods: {
@@ -126,30 +123,8 @@
       validateBirthdate() {
         this.birthdateDirty = true;
         this.birthdateValid = this.selectedDate !== '';
-        if (this.birthdateValid) {
-          this.calculateAge();
-          this.validateAge();
-        }
       },
-      calculateAge() {
-        const birthdate = new Date(this.selectedYear, this.selectedMonth - 1, this.selectedDay); // Adjust month index for accurate calculation
-        const today = new Date();
-
-        // Calculate age considering leap years and ensuring accuracy throughout the year
-        let age = today.getFullYear() - birthdate.getFullYear();
-        if (birthdate.getMonth() > today.getMonth()){
-          if(birthdate.getDay() > today.getDate()){
-            age--;
-          }
-        }
-
-        // Set the age property with the calculated value
-        this.age = age;
-      },
-
-      validateAge() {
-        this.ageValid = this.age >= this.minAge;
-      },
+      
       validatePassword() {
         this.passwordDirty = true;
         this.passwordValid = this.password.length >= 6;
