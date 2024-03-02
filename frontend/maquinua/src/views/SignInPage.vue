@@ -38,7 +38,7 @@
         if (this.email === 'test@example.com' && this.password === 'password') {
           // Inicio de sesión exitoso
           // Aquí redirigirías a la página de dashboard si las credenciales son correctas
-          this.$router.push('/dashboard');
+          this.$router.push('/');
         } else {
           // Mensaje de error en caso de credenciales incorrectas
           alert('Invalid email or password. Please try again.');

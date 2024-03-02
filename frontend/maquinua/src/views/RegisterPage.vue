@@ -5,54 +5,43 @@
         <div>
           <label for="username">Username:</label><br>
           <input type="text" id="username" v-model="username" required>
-          <span v-if="!usernameValid && usernameDirty" style="color: red;">Please enter a valid username</span>
+          <br><span v-if="!usernameValid && usernameDirty" style="color: red;">Please enter a valid username</span>
         </div>
         <div><br>
           <label for="name">Name:</label><br>
           <input type="text" id="name" v-model="name" required>
-          <span v-if="!nameValid && nameDirty" style="color: red;">Please enter your name</span>
+          <br><span v-if="!nameValid && nameDirty" style="color: red;">Please enter a valid name</span>
         </div>
         <div><br>
           <label for="surname">Surname:</label><br>
           <input type="text" id="surname" v-model="surname" required>
-          <span v-if="!surnameValid && surnameDirty" style="color: red;">Please enter your surname</span>
+          <br><span v-if="!surnameValid && surnameDirty" style="color: red;">Please enter a valid surname</span>
         </div>
         <div><br>
           <label for="email">Email:</label><br>
           <input type="email" id="email" v-model="email" required>
-          <span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
+          <br><span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
         </div>
   
         <div><br>
           <label for="birthdate">Birthdate:</label><br>
-          <select v-model="selectedDay" id="day" required>
-            <option value="" disabled>Select Day</option>
-            <option v-for="day in days" :key="day" :value="day">{{ day }}</option>
-          </select>
-          <select v-model="selectedMonth" id="month" required>
-            <option value="" disabled>Select Month</option>
-            <option v-for="(month, index) in months" :key="index" :value="index + 1">{{ month }}</option>
-          </select>
-          <select v-model="selectedYear" id="year" required>
-            <option value="" disabled>Select Year</option>
-            <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
-          </select>
-          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate</span>
-          <span v-if="!ageValid && birthdateValid && birthdateDirty" style="color: red;">You must be at least 16 years old</span>
+          <input type="date" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
+
+          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate (you must be 16 years)</span>
         </div>
   
         <div><br>
           <label for="password">Password:</label><br>
           <input type="password" id="password" v-model="password" required>
-          <span v-if="!passwordValid && passwordDirty" style="color: red;">Please enter a password (min 6 characters)</span>
+          <br><span v-if="!passwordValid && passwordDirty" style="color: red;">Please enter a valid password (min 6 characters)</span>
         </div>
         <div><br>
           <label for="repeatPassword">Repeat Password:</label><br>
           <input type="password" id="repeatPassword" v-model="repeatPassword" required>
-          <span v-if="!repeatPasswordValid && repeatPasswordDirty" style="color: red;">Passwords do not match</span>
+          <br><span v-if="!repeatPasswordValid && repeatPasswordDirty" style="color: red;">Passwords do not match</span>
         </div>
         <div><br>
-          <button type="submit" :disabled="!formValid">Register</button>
+          <button type="submit" >Register</button>
         </div>
       </form><br>
       <br>
@@ -84,7 +73,6 @@
         birthdateValid: false,
         passwordValid: false,
         repeatPasswordValid: false,
-        ageValid: false,
         usernameDirty: false,
         nameDirty: false,
         surnameDirty: false,
@@ -92,13 +80,28 @@
         birthdateDirty: false,
         passwordDirty: false,
         repeatPasswordDirty: false,
-        minAge: 16, // Edad mínima permitida
       };
     },
     computed: {
       formValid() {
-        return this.usernameValid && this.nameValid && this.surnameValid && this.emailValid && this.birthdateValid && this.passwordValid && this.repeatPasswordValid && this.ageValid;
+        return this.usernameValid && this.nameValid && this.surnameValid && this.emailValid && this.birthdateValid && this.passwordValid && this.repeatPasswordValid;
       },
+        maxDate() {
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          let mm = today.getMonth() + 1;
+          let dd = today.getDate();
+
+          if (mm < 10) {
+            mm = '0' + mm;
+          }
+
+          if (dd < 10) {
+            dd = '0' + dd;
+          }
+
+          return (yyyy-'16') + '-' + mm + '-' + dd;
+        }
     },
     methods: {
       validateUsername() {
@@ -119,21 +122,9 @@
       },
       validateBirthdate() {
         this.birthdateDirty = true;
-        this.birthdateValid = this.selectedDay && this.selectedMonth && this.selectedYear;
-        if (this.birthdateValid) {
-          this.calculateAge();
-          this.validateAge();
-        }
+        this.birthdateValid = this.selectedDate !== '';
       },
-      calculateAge() {
-        const birthdate = new Date(`${this.selectedYear}-${this.selectedMonth}-${this.selectedDay}`);
-        const ageDiffMs = Date.now() - birthdate.getTime();
-        const ageDate = new Date(ageDiffMs); 
-        this.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      },
-      validateAge() {
-        this.ageValid = this.age >= this.minAge;
-      },
+      
       validatePassword() {
         this.passwordDirty = true;
         this.passwordValid = this.password.length >= 6;
