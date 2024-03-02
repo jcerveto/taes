@@ -72,6 +72,28 @@ async function main() {
     readAllUsers().then((users) => console.log(users)).catch((error) => console.error(error));
 
 
+    /// ********************************************************************************************************///
+    /// API: Usar la clase User para hacer las operaciones a la base de datos en lugar de las funciones de db.js ///
+    console.log("test class User");
+    const user = new User();
+    user.name = "joan_class";
+    user.email = user.name + "@ua.es";
+    user.password = "0000";
+    user.bornDate = new Date();
+    await user.create();
+    console.log("created: ", user);
+
+    user.name = "JOANenMayus_class";
+    await user.update();
+    console.log("updated: ", user);
+
+    const readUser = await User.read(user.email);
+    console.log("read: ", readUser);
+
+    await user.delete();
+    console.log("deleted: ", user);
+    /// ********************************************************************************************************///
+
 
     console.log("finalfinalfinal");
 }
