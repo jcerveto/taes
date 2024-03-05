@@ -20,10 +20,10 @@ app.get('/', async (req, res) => {
 
 app.get('/users', async (req, res) => {
     try {
-        const users = await db.getAllUsers();
+        const users = await User.readAll();
         // ver formato de respuesta, creo qye es Array<User>. Checkear q es correcto al hacer res.json()
         // COmprobarlo en todos los endpoints (funciones de express)
-        res.json(users);
+        res.json(users.map(user => user.toJSON()));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
