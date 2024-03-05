@@ -1,0 +1,17 @@
+[
+    {
+      "lat": 38.385,
+      "lon": -0.514,
+      "popupContent": "Contenido del Popup 1"
+    },
+    {
+      "lat": 38.386,
+      "lon": -0.515,
+      "popupContent": "Contenido del Popup 2"
+    },
+    {
+      "lat": 38.38542,
+      "lon": -0.514,
+      "popupContent": "Contenido del Popup 1"
+    }
+]
