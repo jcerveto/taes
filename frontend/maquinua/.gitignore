@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-maquinua/data
+data
 
 
 # local env files
