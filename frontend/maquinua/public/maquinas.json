@@ -1,17 +1,9 @@
 [
     {
-      "lat": 38.385,
-      "lon": -0.514,
-      "popupContent": "Contenido del Popup 1"
-    },
-    {
-      "lat": 38.386,
-      "lon": -0.515,
-      "popupContent": "Contenido del Popup 2"
-    },
-    {
-      "lat": 38.38542,
-      "lon": -0.514,
-      "popupContent": "Contenido del Popup 1"
+      "lat": 38.3843,
+      "lon": -0.5103,
+      "popupContent": "Edificio: Aulario 2, planta baja",
+      "edificio": "Aulario 2",
+      "lista_productos": ["Pan de pipas VELARTE","Coco Fruta Fresca BORN", "Mini Tortitas Mediterraneas BICENTURY", "Palitos con pipas SNATT'S", "Choco Chips GULLÓN", "Barrita Chocolate Negro BICENTURY", "Snack choco negro GULLÓN", "Dark Chocolate FITNESS", "Botella agua 50cl NESTLÉ AQUAREL", "Zumo de Naranja DON SIMON" ]
     }
 ]
