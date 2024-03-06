@@ -21,7 +21,7 @@ import MaquinaFiltro from '@/views/MachinesFilter.vue';
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: MachinesDistributionPage,
   },
   {
     path: '/about',
@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/machines',
-    component: MachinesDistributionPage,
+    component: Home,
   },
   {
     path: '/filter',
