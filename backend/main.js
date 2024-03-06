@@ -67,9 +67,11 @@ app.post('/user', async (req, res) => {
         console.log("creating: ", req.body);
 
         const cleanUser = new User();
-        cleanUser._name = req.body.name;
-        cleanUser._email = req.body.email;
-        cleanUser._password = req.body.password;
+        cleanUser.name = req.body.name;
+        // TODO apellidos en la bbdd
+        cleanUser.email = req.body.email;
+        cleanUser.password = req.body.password;
+        cleanUser.bornDate = new Date(req.body.bornDate);
 
         console.log("cleanUser: ", cleanUser);
         
