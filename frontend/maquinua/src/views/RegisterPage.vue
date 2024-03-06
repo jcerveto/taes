@@ -25,7 +25,7 @@
   
         <div><br>
           <label for="birthdate">Birthdate:</label><br>
-          <input type="date" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
+          <input type="date" v-model="birthdate" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
 
           <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate (you must be 16 years)</span>
         </div>
@@ -51,6 +51,8 @@
   </template>
   
   <script>
+  import axios from 'axios';
+
   export default {
     data() {
       return {
@@ -58,9 +60,7 @@
         name: '',
         surname: '',
         email: '',
-        selectedDay: '',
-        selectedMonth: '',
-        selectedYear: '',
+        birthdate: '',
         password: '',
         repeatPassword: '',
         days: Array.from({ length: 31 }, (_, index) => index + 1),
@@ -133,7 +133,7 @@
         this.repeatPasswordDirty = true;
         this.repeatPasswordValid = this.password === this.repeatPassword;
       },
-      register() {
+      async register() {
         this.validateUsername();
         this.validateName();
         this.validateSurname();
@@ -150,12 +150,15 @@
             name: this.name,
             surname: this.surname,
             email: this.email,
-            birthdate: `${this.selectedYear}-${this.selectedMonth}-${this.selectedDay}`,
+            bornDate: this.birthdate,
             password: this.password,
           };
+
+          // Realizar la solicitud POST usando Axios
+          const response = await axios.post('http://localhost:3000/user', userData);
+          //SI el email no esta lo hacemos dentro del post
           
-          // Aquí puedes hacer algo con los datos, como enviarlos a una API
-          console.log('User Data:', userData);
+          console.log(response.data);
           
           this.$router.push('/');
         } else {
