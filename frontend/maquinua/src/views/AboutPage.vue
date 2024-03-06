@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <img src="imagen.logo"
+            <img src="./../assets/LogoMaquinUA.png"
                  width="130" height="130" />
             <h1>MaquinUA</h1>
         </header>
@@ -46,6 +46,7 @@
 
 <script>
     import palabrasJSON from './../../palabras.json';
+    
     export default {
         data() {
             
@@ -56,7 +57,9 @@
             };
         },
         mounted() {
-            this.palabras=palabrasJSON.palabras
+            this.palabras = palabrasJSON.palabras;
+           
+            
         },
         methods: {
             addComment() {
@@ -64,9 +67,28 @@
                     this.comments.push(this.newComment); // Agrega el nuevo comentario al array
                     this.newComment = ''; // Limpia el campo de texto después de agregar el comentario
                 }
+            
             }
-        }
-    };
+           
+
+            /*
+            cargarComentarios() {
+                const comentariosGuardados = localStorage.getItem('comments');
+                if (comentariosGuardados) {
+                    this.comments = JSON.parse(comentariosGuardados);
+                }
+            },
+            guardarComentario() {
+                this.comments.push(this.nuevoComentario);
+                // Guardar comentarios actualizados en localStorage
+                localStorage.setItem('comments', JSON.stringify(this.comments));
+                this.newComment = ''; // Limpiar el campo de texto después de guardar el comentario
+            }*/
+        },
+        
+        
+    }
+       
 </script>
 
 
