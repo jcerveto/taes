@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <img src="./../assets/LogoMaquinUA.png"
+            <img src="./../assets/LogoMaquinUA.jpg"
                  width="130" height="130" />
             <h1>MaquinUA</h1>
         </header>
@@ -46,7 +46,7 @@
 
 <script>
     import palabrasJSON from './../../palabras.json';
-    
+    //const fs = require('fs');
     export default {
         data() {
             
@@ -67,7 +67,7 @@
                     this.comments.push(this.newComment); // Agrega el nuevo comentario al array
                     this.newComment = ''; // Limpia el campo de texto después de agregar el comentario
                 }
-            
+                //fs.writeFileSync(rutaArchivo, json);
             }
            
 
