@@ -1,13 +1,19 @@
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 
 
-import * as db from './services/db';
-import { User } from './model/User';
+import * as db from './services/db.js';
+import { User } from './model/User.js';
 
 
 const app = express();
 const PORT = 3000;
+
+app.use(express.json());
+
+// MIddleware para loggear las peticiones
+app.use(morgan('dev'));
 
 // Allow CORS requests from your Vue.js application's URL
 app.use(cors({ origin: 'http://localhost:8080' })); // Replace with your Vue.js app's URL
@@ -30,23 +36,43 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.get('/users/:id', async (req, res) => {
+/**
+ * Returns a user by email: readUser
+ * @param {string} email
+ * @returns {Promise<User>}
+ */
+app.post('/users', async (req, res) => {
     try {
-        const user = await User.read(req.params.email)
-        res.json(user.json());
+        const email = req.body.email;
+        console.log(email);
+        const user = await User.read(email);
+      
+        res.json(user.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
 });
 
-app.post('/users', async (req, res) => {
+/**
+ * Creates a new user
+ * @param {string} name
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<User>}
+ * @throws {Error} If the user is not created
+ */
+app.post('/user', async (req, res) => {
     try {
-        const cleanUser = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        };
+        console.log("creating: ", req.body);
+
+        const cleanUser = new User();
+        cleanUser._name = req.body.name;
+        cleanUser._email = req.body.email;
+        cleanUser._password = req.body.password;
+
+        console.log("cleanUser: ", cleanUser);
+        
         const user = await db.createUser(cleanUser);
         res.json(user);
     } catch (error) {

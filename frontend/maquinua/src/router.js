@@ -79,7 +79,7 @@ const routes = [
     component: UserLocations
   },
   {
-    path: '/mydata/:id',
+    path: '/mydata/',
     component: UserData
   },
   {
