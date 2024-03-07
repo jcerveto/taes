@@ -1,10 +1,30 @@
 version: '3.8'
 services:
   mongodb:
-    image: mongo
+    image: mongo:6.0.13 
     ports:
       - '27017:27017'
-
     volumes:
       - ./data:/data/db
+    networks:
+      - maquinua-backend-network
+    restart: always
+
+  backend-maquinua:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+    command: /bin/bash 
+    depends_on:
+      - mongodb
+    networks:
+      - maquinua-backend-network
+    restart: always
+
+networks:
+  maquinua-backend-network:
+    driver: bridge
 
