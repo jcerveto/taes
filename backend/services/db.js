@@ -156,6 +156,7 @@ export async function readUser(email) {
       email: email,
       type: "user"
     });
+    console.log(userObj);
 
     if (userObj === null) {
       throw new Error("User not read! User not found in DB");
@@ -197,6 +198,7 @@ export async function readAllUsers() {
         const iterUser = new User();
 
         iterUser.name = u.name;
+        console.log(u.name);
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);
@@ -206,7 +208,7 @@ export async function readAllUsers() {
 
     return typeUsers;
   } catch (error) {
-    console.error(error);
+    console.error(1 + error);
     throw new Error("Users not read!")
   } finally {
     //if (db != null()) {

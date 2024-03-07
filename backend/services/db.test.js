@@ -5,6 +5,8 @@ import { User } from "../model/User.js";
 async function main() {
     console.log("start");
 
+    deleteAllUsers();
+    
     readAllUsers().then((users) => console.log(users)).catch((error) => console.error(error));
 
 

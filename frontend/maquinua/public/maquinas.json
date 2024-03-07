@@ -1,0 +1,12 @@
+[
+    {
+      "lat": 38.3843,
+      "lon": -0.5103,
+      "id": 1,
+      "popupContent": "Edificio: Aulario 2, planta baja",
+      "edificio": "Aulario 2",
+      "type": "CRISTIAN MARCA EL TIPO DE MAQUINA COMO COLD, HOT, HEALTHY, MIXED",
+      "lista_productos": ["Pan de pipas VELARTE","Coco Fruta Fresca BORN", "Mini Tortitas Mediterraneas BICENTURY", "Palitos con pipas SNATT'S", "Choco Chips GULLÓN", "Barrita Chocolate Negro BICENTURY", "Snack choco negro GULLÓN", "Dark Chocolate FITNESS", "Botella agua 50cl NESTLÉ AQUAREL", "Zumo de Naranja DON SIMON" ],
+      "lista_precios": ["0.98","COMPLETALA CRISTIAN"]
+    }
+]
