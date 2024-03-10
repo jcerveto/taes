@@ -1,48 +1,79 @@
 <template>
-  <div>
-    <h1>Mapa de la Universidad de Alicante</h1>
-    <div id="map"></div>
+  <div class="mapaweb">
+    <l-map :useGlobalLeaflet="false" :zoom="zoom" :center="center">
+      <l-tile-layer :url="url" :attribution="attribution" />
+      <l-geo-json :geojson="geojson" :options="geojsonOptions" />
+      <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker.position">
+        <l-popup :content="marker.popupContent" />
+      </l-marker>
+    </l-map>
   </div>
 </template>
 
 <script>
-
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
-// Importa la imagen del marcador
-import miMarcadorIcon from './mi_marcador.png';
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
+import { circleMarker } from "leaflet/dist/leaflet-src.esm";
 
 export default {
-  mounted() {
-    this.initMap();
+  components: {
+    LMap,
+    LTileLayer,
+    LGeoJson,
+    LMarker,
+    LPopup,
+  },
+  data() {
+    return {
+      center: [38.3841, -0.5132],
+      zoom: 17,
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+      geojson: {
+        type: "FeatureCollection",
+        features: [],
+      },
+      geojsonOptions: {
+        pointToLayer: (feature, latLng) => circleMarker(latLng, { radius: 8 }),
+      },
+      markers: [],
+    };
+  },
+  async beforeMount() {
+    await this.loadMarkersFromJson("maquinas.json");
+    this.mapIsReady = true;
   },
   methods: {
-    initMap() {
-      const uaCoordinates = [38.384, -0.513];
-      const map = L.map('map').setView(uaCoordinates, 19);
+    async loadMarkersFromJson(jsonFile) {
+      try {
+        const response = await fetch(jsonFile);
+        const data = await response.json();
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
-      }).addTo(map);
+        this.markers = data.map((entry) => ({
+          position: [entry.lat, entry.lon],
+          popupContent: `<h3>${entry.popupContent.title}</h3><p>${entry.popupContent.description}</p>`,
+        }));
 
-      // Uso un marcador llamado mi_marcador.png
-      L.marker(uaCoordinates, {
-        icon: L.icon({
-          iconUrl: miMarcadorIcon,
-          iconSize: [15, 35],
-          iconAnchor: [22, 94],
-          popupAnchor: [-3, -76],
-        }),
-      }).addTo(map).bindPopup('Universidad de Alicante').openPopup();
+        // Add markers to geojson for rendering on the map
+        this.geojson.features = this.markers.map((marker, index) => ({
+          type: "Feature",
+          properties: { id: index },
+          geometry: {
+            type: "Point",
+            coordinates: [marker.position[1], marker.position[0]],
+          },
+        }));
+      } catch (error) {
+        console.error("Error loading markers from JSON:", error);
+      }
     },
   },
 };
 </script>
 
 <style>
-#map {
-  height: 600px;
-}
+  .mapaweb{
+    width:100%;
+    height:calc(100vh - 106px);;
+  }
 </style>
-
