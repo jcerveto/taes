@@ -24,6 +24,9 @@
   </template>
   
   <script>
+  import axios from 'axios';
+  import Cookies from 'js-cookie';
+
   export default {
     data() {
       return {
@@ -32,17 +35,33 @@
       };
     },
     methods: {
-      signIn() {
+      async signIn() {
         // Aquí normalmente enviarías estos datos a tu backend para verificar la autenticación
-        // Por ahora, solo simularemos el inicio de sesión
-        if (this.email === 'test@example.com' && this.password === 'password') {
-          // Inicio de sesión exitoso
-          // Aquí redirigirías a la página de dashboard si las credenciales son correctas
-          this.$router.push('/');
-        } else {
-          // Mensaje de error en caso de credenciales incorrectas
-          alert('Invalid email or password. Please try again.');
-        }
+        // Datos que se enviarán en la solicitud POST
+
+        // Realizar la solicitud POST usando Axios (pedimos al backend que nos devuelva ese usuario)
+        await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
+          .then((res) => {
+            if (res.data.password === this.password && res.data.email === this.email) {
+            // Inicio de sesión exitoso
+            
+            //alert("Correcto")
+            
+            const tokenDeSesion = Cookies.get('tokenDeSesion');
+            if (tokenDeSesion) {
+              alert("inicio de sesion correcto");
+            } else {
+              alert("inicio de sesion incorrecto");
+            }
+          } else {
+            // Mensaje de error en caso de credenciales incorrectas
+            alert('Invalid email or password. Please try again.');
+          }})
+          .catch((error) => {
+            console.error(error);
+          });
+
+        
       },
     },
   };
