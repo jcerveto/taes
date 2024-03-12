@@ -1800,6 +1800,142 @@
       "type": "BEBIDAS FRIAS",
       "lista_productos": [],
       "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519806
+      ,
+      "id": 121,
+      "popupContent": {
+        "title": "Máquina 1 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519706
+      ,
+      "id": 122,
+      "popupContent": {
+        "title": "Máquina 2 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519606
+      ,
+      "id": 123,
+      "popupContent": {
+        "title": "Máquina 3 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519506
+      ,
+      "id": 124,
+      "popupContent": {
+        "title": "Máquina 4 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519583
+      ,
+      "id": 125,
+      "popupContent": {
+        "title": "Máquina 5 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519483
+      ,
+      "id": 125,
+      "popupContent": {
+        "title": "Máquina 6 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519383
+      ,
+      "id": 126,
+      "popupContent": {
+        "title": "Máquina 7 - Facultad de Educación",
+        "description": "Teika"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.343027
+      ,
+      "lon": -0.485670
+      ,
+      "id": 127,
+      "popupContent": {
+        "title": "Máquina 1 - Edificio San Fernando",
+        "description": "Teika"
+      },
+      "edificio": "Edificio San Fernando",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.343027
+      ,
+      "lon": -0.485570
+      ,
+      "id": 128,
+      "popupContent": {
+        "title": "Máquina 2 - Edificio San Fernando",
+        "description": "Teika"
+      },
+      "edificio": "Edificio San Fernando",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
     }
+
 
 ]
