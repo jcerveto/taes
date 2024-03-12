@@ -45,8 +45,9 @@
 
 
 <script>
-    import palabrasJSON from './../../palabras.json';
-    //const fs = require('fs');
+    import guardar_json from './../guardar_json';
+    //import palabrasJSON from './../../palabras.json';
+    
     export default {
         data() {
             
@@ -56,19 +57,16 @@
                 palabras: []
             };
         },
-        mounted() {
-            this.palabras = palabrasJSON.palabras;
-           
-            
-        },
+       
         methods: {
             addComment() {
                 if (this.newComment.trim() !== '') { // Asegúrate de que el comentario no esté vacío
                     this.comments.push(this.newComment); // Agrega el nuevo comentario al array
                     this.newComment = ''; // Limpia el campo de texto después de agregar el comentario
                 }
-                //fs.writeFileSync(rutaArchivo, json);
+                
             }
+
            
 
             /*
@@ -85,6 +83,12 @@
                 this.newComment = ''; // Limpiar el campo de texto después de guardar el comentario
             }*/
         },
+        mounted() {
+            // Ejemplo de uso de la función guardarArray
+            guardar_json(this.palabras);
+
+
+        }
         
         
     }
