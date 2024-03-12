@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "jest": "^29.7.0",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",
