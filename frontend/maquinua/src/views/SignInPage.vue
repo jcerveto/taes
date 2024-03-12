@@ -47,12 +47,9 @@
             
             //alert("Correcto")
             
-            const tokenDeSesion = Cookies.get('tokenDeSesion');
-            if (tokenDeSesion) {
-              alert("inicio de sesion correcto");
-            } else {
-              alert("inicio de sesion incorrecto");
-            }
+            Cookies.get('tokenDeSesion');
+
+            this.$router.push('/user');
           } else {
             // Mensaje de error en caso de credenciales incorrectas
             alert('Invalid email or password. Please try again.');

@@ -51,6 +51,14 @@ app.post('/users', async (req, res) => {
         // creamos un token de sesión
         const tokenDeSesion = jwt.sign({ email }, 'secreto', { expiresIn: '7d' });
 
+        /*const userTokenPayload = {
+            username: user.name,
+        };
+    
+        // Generate the user token with the payload and a different secret key
+        jwt.sign(userTokenPayload, 'user_secret', { expiresIn: '1h' }); // Shorter expiration for user tokens*/
+      
+
         // Establecemos el token
         res.cookie('tokenDeSesion', tokenDeSesion, { domain: 'localhost', sameSite: 'strict' });
 
