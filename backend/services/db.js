@@ -196,8 +196,9 @@ export async function readAllUsers() {
     const typeUsers = usersObj.map((u) => {
         const iterUser = new User();
 
+        iterUser.username = u.username;
         iterUser.name = u.name;
-        console.log(u.name);
+        iterUser.surname = u.surname;
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);

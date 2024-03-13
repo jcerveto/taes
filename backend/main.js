@@ -79,7 +79,7 @@ app.post('/user', async (req, res) => {
         const cleanUser = new User();
         cleanUser.username = req.body.username;
         cleanUser.name = req.body.name;
-        // TODO apellidos en la bbdd
+        cleanUser.surname = req.body.surname;
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);

@@ -154,13 +154,28 @@
             password: this.password,
           };
 
-          // Realizar la solicitud POST usando Axios
-          const response = await axios.post('http://localhost:3000/user', userData);
-          //SI el email no esta lo hacemos dentro del post
+          await axios.post('http://localhost:3000/users', { email : this.email})
+            .then((res) => {
+              if (res.data.email === this.email) {
+                alert('Email already exists. Please try again.');
+              }
+
+              if (res.data.username === this.username) {
+                alert('Username already exists. Please try again.');
+              }
+            }).catch(() => {
+              // Realizar la solicitud POST usando Axios
+              const response = axios.post('http://localhost:3000/user', userData);
+              //SI el email no esta lo hacemos dentro del post
+              
+              console.log(response.data);
+              
+              this.$router.push('/');
+            });
+
+
+
           
-          console.log(response.data);
-          
-          this.$router.push('/');
         } else {
           console.log('ERROR. Please, review the data.');
         }
