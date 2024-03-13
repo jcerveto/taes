@@ -52,6 +52,7 @@
   
   <script>
   import axios from 'axios';
+  import User from '../../../../backend/model/User';
 
   export default {
     data() {
@@ -144,15 +145,20 @@
   
         
         if (this.formValid) {
-          //simular registro falta enviar a backend
-          const userData = {
-            username: this.username,
-            name: this.name,
-            surname: this.surname,
-            email: this.email,
-            bornDate: this.birthdate,
-            password: this.password,
-          };
+            try {
+            // Verificar si el email ya existe
+            const existingUser = await User.read(this.email);
+            if (existingUser) {
+              console.error('Error: Email already exists.');
+              return;
+            }
+            
+            // Verificar si el username ya existe
+            const existingUsername = await User.readByUsername(this.username);
+            if (existingUsername) {
+              console.error('Error: Username already exists.');
+              return;
+            }
 
           await axios.post('http://localhost:3000/users', { email : this.email})
             .then((res) => {
@@ -177,10 +183,12 @@
 
           
         } else {
+
           console.log('ERROR. Please, review the data.');
         }
       },
     },
   };
   </script>
+
   
