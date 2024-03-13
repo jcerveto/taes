@@ -55,6 +55,11 @@
             alert('Invalid email or password. Please try again.');
           }})
           .catch((error) => {
+            alert('Invalid email or password. Please try again.');
+
+            // Reload the page
+            location.reload();
+
             console.error(error);
           });
 

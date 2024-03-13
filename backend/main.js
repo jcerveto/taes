@@ -47,16 +47,11 @@ app.post('/users', async (req, res) => {
         const email = req.body.email;
         console.log(email);
         const user = await User.read(email);
+
+        const name = user.name;
         
         // creamos un token de sesión
-        const tokenDeSesion = jwt.sign({ email }, 'secreto', { expiresIn: '7d' });
-
-        /*const userTokenPayload = {
-            username: user.name,
-        };
-    
-        // Generate the user token with the payload and a different secret key
-        jwt.sign(userTokenPayload, 'user_secret', { expiresIn: '1h' }); // Shorter expiration for user tokens*/
+        const tokenDeSesion = jwt.sign({ email, name }, 'secreto', { expiresIn: '7d' });
       
 
         // Establecemos el token
@@ -82,6 +77,7 @@ app.post('/user', async (req, res) => {
         console.log("creating: ", req.body);
 
         const cleanUser = new User();
+        cleanUser.username = req.body.username;
         cleanUser.name = req.body.name;
         // TODO apellidos en la bbdd
         cleanUser.email = req.body.email;

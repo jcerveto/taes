@@ -25,7 +25,7 @@
 
 <script>
     import Cookies from 'js-cookie';
-    //import { jwtDecode } from "jwt-decode";
+    import { jwtDecode } from 'jwt-decode';
 
     export default {
         name: 'UserPage',
@@ -45,13 +45,14 @@
             
             this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
             
-            /*try {
-                
-                this.usuario = jwtDecode('user_secret');
-                
+            try {
+                const tokenDeSesion = localStorage.getItem("tokenDeSesion");
+                const decodedToken = jwtDecode(tokenDeSesion, 'secreto');
+                this.usuario = decodedToken.name;
             } catch (error) {
-                console.error(error);
-            }*/
+                console.error('Error al decodificar el token:', error);
+            }
+
         },
     };
 </script>

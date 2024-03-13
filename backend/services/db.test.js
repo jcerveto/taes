@@ -20,6 +20,7 @@ async function main() {
     ]
     const usersTypes = users.map((u) => {
         const iterUser = new User();
+        iterUser.username = u.username;
         iterUser.name = u.name;
         iterUser.bornDate = new Date();
         iterUser.email = u.name + "@ua.es"
