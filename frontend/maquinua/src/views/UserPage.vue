@@ -1,16 +1,11 @@
 <template>
-    <!-- 
-        FALTA: añadir un validador de si el usuario ha iniciado sesión, si no lo ha hecho hay que enviarle a LOGIN.
-
-        TO-DO: cuando tengamos la base de datos funcionando y podamos obtener los datos
-    -->
     <div class="user-page">
         <h1>User Page</h1>
 
-        <user-info :user="user" />
-        <h3> Hola, {{ "usuario" }}</h3>
-
-        <div class="user-actions">
+        <div class="user-actions" v-if="isLoggedIn">
+            <user-info :user="user" />
+            <h3> Hola, {{ usuario }}</h3>
+            
             <router-link class="router-button" to="/favourites">Favoritos</router-link> <br>
             <router-link class="router-button" to="/userstatistics">Estadísticas</router-link> <br>
             <router-link class="router-button" to="/myreviews">Mis Reseñas</router-link> <br>
@@ -19,12 +14,19 @@
             <router-link class="router-button" to="/mydata">Mis Datos</router-link> <br>
         </div>
 
+        <div v-else>
+            <router-link class="router-button" to="/register">REGISTER</router-link> <br>
+            <router-link class="router-button" to="/signin">SIGN IN</router-link> <br>
+        </div>
+
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
 </template>
 
 <script>
-    // Intento de pasar un objeto user para recibir el nombre
+    import Cookies from 'js-cookie';
+    import { jwtDecode } from 'jwt-decode';
+
     export default {
         name: 'UserPage',
         props: {
@@ -32,9 +34,29 @@
             type: Object,
             required: true,
             },
-        }
+        },
+        data() {
+            return {
+                isLoggedIn: false,
+                usuario: '',
+            };
+        },
+        created() {
+            
+            this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
+            
+            try {
+                const tokenDeSesion = localStorage.getItem("tokenDeSesion");
+                const decodedToken = jwtDecode(tokenDeSesion, 'secreto');
+                this.usuario = decodedToken.name;
+            } catch (error) {
+                console.error('Error al decodificar el token:', error);
+            }
+
+        },
     };
 </script>
+
 
 <style scoped>
     .router-button {

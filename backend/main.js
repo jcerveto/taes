@@ -1,13 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-
+import jwt from 'jsonwebtoken';
 
 import * as db from './services/db.js';
 import { User } from './model/User.js';
 
 
 const app = express();
+
 const PORT = 3000;
 
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Allow CORS requests from your Vue.js application's URL
-app.use(cors({ origin: 'http://localhost:8080' })); // Replace with your Vue.js app's URL
+app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
 
 
 app.get('/', async (req, res) => {
@@ -46,7 +47,16 @@ app.post('/users', async (req, res) => {
         const email = req.body.email;
         console.log(email);
         const user = await User.read(email);
+
+        const name = user.name;
+        
+        // creamos un token de sesión
+        const tokenDeSesion = jwt.sign({ email, name }, 'secreto', { expiresIn: '7d' });
       
+
+        // Establecemos el token
+        res.cookie('tokenDeSesion', tokenDeSesion, { domain: 'localhost', sameSite: 'strict' });
+
         res.json(user.toJSON());
     } catch (error) {
         console.error(error);
@@ -67,6 +77,7 @@ app.post('/user', async (req, res) => {
         console.log("creating: ", req.body);
 
         const cleanUser = new User();
+        cleanUser.username = req.body.username;
         cleanUser.name = req.body.name;
         // TODO apellidos en la bbdd
         cleanUser.email = req.body.email;
