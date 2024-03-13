@@ -13,7 +13,8 @@ const DATABASE = "maquinua";
 const COLLECTION_MAIN = "maquinua_main";
 const COLLECTION_ANALYTICS = "maquinua_analytics";
 
-const connectionString = `mongodb://localhost:27017/${DATABASE}`;
+// mongodb://<container-name>:27017/<database-name>
+const connectionString = `mongodb://mongodb:27017/${DATABASE}`;
 
 
 /**

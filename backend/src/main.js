@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Allow CORS requests from your Vue.js application's URL
-app.use(cors({ origin: 'http://localhost:8080' })); // Replace with your Vue.js app's URL
+app.use(cors({ origin: 'http://0.0.0.0:8080' })); // Replace with your Vue.js app's URL
 
 
 app.get('/', async (req, res) => {
