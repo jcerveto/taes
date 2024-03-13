@@ -52,6 +52,7 @@
   
   <script>
   import axios from 'axios';
+  import User from '../../../../backend/model/User';
 
   export default {
     data() {
@@ -144,28 +145,46 @@
   
         
         if (this.formValid) {
-          //simular registro falta enviar a backend
-          const userData = {
-            username: this.username,
-            name: this.name,
-            surname: this.surname,
-            email: this.email,
-            bornDate: this.birthdate,
-            password: this.password,
-          };
+            try {
+            // Verificar si el email ya existe
+            const existingUser = await User.read(this.email);
+            if (existingUser) {
+              console.error('Error: Email already exists.');
+              return;
+            }
+            
+            // Verificar si el username ya existe
+            const existingUsername = await User.readByUsername(this.username);
+            if (existingUsername) {
+              console.error('Error: Username already exists.');
+              return;
+            }
 
-          // Realizar la solicitud POST usando Axios
-          const response = await axios.post('http://localhost:3000/user', userData);
-          //SI el email no esta lo hacemos dentro del post
-          
-          console.log(response.data);
-          
-          this.$router.push('/');
-        } else {
+            const userData = {
+              username: this.username,
+              name: this.name,
+              surname: this.surname,
+              email: this.email,
+              bornDate: this.birthdate,
+              password: this.password,
+            };
+
+            // Realizar la solicitud POST usando Axios
+            const response = await axios.post('http://localhost:3000/user', userData);
+
+            console.log(response.data);
+
+            this.$router.push('/');
+          } catch (error) {
+            console.error('Error registering user:', error.response.data);
+          }
+        } 
+        else {
           console.log('ERROR. Please, review the data.');
         }
       },
     },
   };
   </script>
+
   

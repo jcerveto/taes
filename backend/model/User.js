@@ -130,6 +130,17 @@ export class User {
 
     async create() {
         try {
+            // Verificar si el email ya existe
+            const existingUser = await User.read(this.email);
+            if (existingUser) {
+                throw new Error('Error: Email already exists.');
+            }
+
+            // Verificar si el username ya existe
+            const existingUsername = await User.readByUsername(this.username);
+            if (existingUsername) {
+                throw new Error('Error: Username already exists.');
+            }
             await db.createUser(this);
         } catch (error) {
             console.error(error);
@@ -164,6 +175,7 @@ export class User {
         }
     }
 
+
     toJSON() {
         return {
             name: this._name,
@@ -174,14 +186,39 @@ export class User {
         }
     }
 
-
-
     static async readAll() {
         try {
             return await db.readAllUsers();
         } catch (error) {
             console.error(error);
             throw new Error("User not read!");
+        }
+    }
+    static async readByUsername(username) {
+        try {
+            const users = await db.readAllUsers();
+            return users.find(user => user.username === username);
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error reading user by username!");
+        }
+    }
+    static async readByUsername(username) {
+        try {
+            const users = await db.readAllUsers();
+            return users.find(user => user.username === username);
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error reading user by username!");
+        }
+    }
+    static async readById(id) {
+        try {
+            const users = await db.readAllUsers();
+            return users.find(user => user.id === id);
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error reading user by id!");
         }
     }
 
