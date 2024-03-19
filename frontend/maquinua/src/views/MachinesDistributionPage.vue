@@ -1,11 +1,10 @@
 <template>
-  <div style="height:600px; width:100%">
-    <p>Mapa Universidad de Alicante</p>
+  <div class="mapaweb">
     <l-map :useGlobalLeaflet="false" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-geo-json :geojson="geojson" :options="geojsonOptions" />
       <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker.position">
-        <l-popup>{{ marker.popupContent }}</l-popup>
+        <l-popup :content="marker.popupContent" />
       </l-marker>
     </l-map>
   </div>
@@ -52,7 +51,7 @@ export default {
 
         this.markers = data.map((entry) => ({
           position: [entry.lat, entry.lon],
-          popupContent: entry.popupContent,
+          popupContent: `<h3>${entry.popupContent.title}</h3><p>${entry.popupContent.description}</p>`,
         }));
 
         // Add markers to geojson for rendering on the map
@@ -71,3 +70,10 @@ export default {
   },
 };
 </script>
+
+<style>
+  .mapaweb{
+    width:100%;
+    height:calc(100vh - 106px);;
+  }
+</style>

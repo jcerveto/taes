@@ -1,13 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-
+import jwt from 'jsonwebtoken';
 
 import * as db from './services/db.js';
 import { User } from './model/User.js';
 
 
 const app = express();
+
 const PORT = 3000;
 
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Allow CORS requests from your Vue.js application's URL
-app.use(cors({ origin: 'http://0.0.0.0:8080' })); // Replace with your Vue.js app's URL
+app.use(cors({ origin: 'http://0.0.0.0:8080', credentials: true })); // Replace with your Vue.js app's URL
 
 
 app.get('/', async (req, res) => {
@@ -46,7 +47,21 @@ app.post('/users', async (req, res) => {
         const email = req.body.email;
         console.log(email);
         const user = await User.read(email);
+        
+        // creamos un token de sesión
+        const tokenDeSesion = jwt.sign({ email }, 'secreto', { expiresIn: '7d' });
+
+        /*const userTokenPayload = {
+            username: user.name,
+        };
+    
+        // Generate the user token with the payload and a different secret key
+        jwt.sign(userTokenPayload, 'user_secret', { expiresIn: '1h' }); // Shorter expiration for user tokens*/
       
+
+        // Establecemos el token
+        res.cookie('tokenDeSesion', tokenDeSesion, { domain: 'localhost', sameSite: 'strict' });
+
         res.json(user.toJSON());
     } catch (error) {
         console.error(error);
