@@ -59,31 +59,31 @@ const routes = [
     component: User
   },
   {
-    path: '/favourites',
+    path: '/user/favourites',
     component: UserFavourites
   },
   {
-    path: '/userstatistics',
+    path: '/user/userstatistics',
     component: UserStatistics
   },
   {
-    path: '/myreviews',
+    path: '/user/myreviews',
     component: UserReviews
   },
   {
-    path: '/myconsults',
+    path: '/user/myconsults',
     component: UserConsults
   },
   {
-    path: '/mylocations',
+    path: '/user/mylocations',
     component: UserLocations
   },
   {
-    path: '/mydata/',
+    path: '/user/mydata',
     component: UserData
   },
   {
-    path: '/editinfo',
+    path: '/user/mydata/myinfo',
     component: UserEditInfo
   },
   {

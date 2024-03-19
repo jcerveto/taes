@@ -6,12 +6,12 @@
             <user-info :user="user" />
             <h3> Hola, {{ usuario }}</h3>
             
-            <router-link class="router-button" to="/favourites">Favoritos</router-link> <br>
-            <router-link class="router-button" to="/userstatistics">Estadísticas</router-link> <br>
-            <router-link class="router-button" to="/myreviews">Mis Reseñas</router-link> <br>
-            <router-link class="router-button" to="/myconsults">Mis Consultas</router-link> <br>
-            <router-link class="router-button" to="/mylocations">Mis Ubicaciones</router-link> <br>
-            <router-link class="router-button" to="/mydata">Mis Datos</router-link> <br>
+            <router-link class="router-button" to="user/favourites">Favoritos</router-link> <br>
+            <router-link class="router-button" to="user/userstatistics">Estadísticas</router-link> <br>
+            <router-link class="router-button" to="user/myreviews">Mis Reseñas</router-link> <br>
+            <router-link class="router-button" to="user/myconsults">Mis Consultas</router-link> <br>
+            <router-link class="router-button" to="user/mylocations">Mis Ubicaciones</router-link> <br>
+            <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
         </div>
 
         <div v-else>
