@@ -166,7 +166,6 @@
             }).catch(() => {
               // Realizar la solicitud POST usando Axios
               const response = axios.post('http://localhost:3000/user', userData);
-              //SI el email no esta lo hacemos dentro del post
               
               console.log(response.data);
               

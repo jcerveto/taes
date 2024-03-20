@@ -17,7 +17,7 @@
     <p v-if="email">Correo Electrónico: {{ email }}</p>
     <br>
     <!-- Cambio en el enlace -->
-    <router-link class="router-button" to="/myinfo">Modificar Datos</router-link> <br>
+    <router-link class="router-button" to="/user/mydata/myinfo">Modificar Datos</router-link> <br>
 
     
   </div>

@@ -94,16 +94,32 @@ app.post('/user', async (req, res) => {
     }
 });
 
-
-app.put('/users/:id', async (req, res) => {
+/**
+ * Updates a new user
+ * @param {string} name
+ * @param {string} surname
+ * @param {string} email
+ * @param {string} username
+ * @param {string} password
+ * @param {Date} bornDate
+ * @returns {Promise<User>}
+ * @throws {Error} If the user is not updated
+ */
+app.put('/user', async (req, res) => {
     try {
-        const cleanUser = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        };
-        const user = await db.updateUser(req.params.id, cleanUser);
-        res.json(user);
+        console.log("updating: ", req.body);
+        const email = req.body.email;
+        const user = await User.read(email);
+        user.username = req.body.username;
+        user.name = req.body.name;
+        user.surname = req.body.surname;
+        user.password = req.body.password;
+        user.bornDate = new Date(req.body.bornDate);
+
+        console.log("User: ", user);
+        
+        user.update();
+        res.json(user.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });

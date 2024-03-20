@@ -8,14 +8,12 @@
           <p>{{ email }}</p>
         </div>
     
-        <!-- Mostrar username -->
-        <div>
-          <label>Username:</label><br>
-          <p>{{ username }}</p>
-        </div>
-    
+          
         <!-- Campos modificables -->
         <div>
+          <label for="name">Usuario::</label><br>
+          <input type="text" id="username" v-model="username" /><br><br>
+
           <label for="name">Nombre:</label><br>
           <input type="text" id="name" v-model="name" /><br><br>
     
@@ -32,7 +30,7 @@
   </template>
   
   <script>
-  //import axios from 'axios';
+  import axios from 'axios';
   
   export default {
     data() {
@@ -58,12 +56,19 @@
     },
     methods: {
       async getUserData() {
-        // En este ejemplo, simulamos datos de usuario
-        this.name = 'John';
-        this.surname = 'Doe';
-        this.email = 'johndoe@example.com';
-        this.bornDate = '1990-01-01';
-        this.username = 'johndoe123'; // Suponiendo que también obtienes el username del usuario
+        // FALTARÍA AÑADIR EL SESSION TOKEN    
+        this.email = 'test@example.com';
+        await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
+          .then((res) => {
+            this.name = res.data.name;
+            this.surname = res.data.surname;
+            this.email = res.data.email;
+            this.bornDate = res.data.bornDate;
+            this.username = res.data.username;
+          })
+          .catch((error) => {
+            console.error('Error al obtener datos del usuario:', error);
+          });
       },
       async submitForm() {
         // Realizar validaciones antes de enviar los datos
@@ -75,26 +80,21 @@
           const confirmation = confirm('¿Estás seguro de que deseas actualizar tus datos?');
           if (!confirmation) {
             return; // Cancelar si el usuario no confirma
-          }
-    
+          }  
           try {
-            /*const userData = {
+            const userData = {
               name: this.name,
               surname: this.surname,
               email: this.email,
               bornDate: this.bornDate,
-            };*/
-    
-            // Aquí realizarías una solicitud PUT o PATCH a tu API para actualizar los datos del usuario
-            // Por simplicidad, este ejemplo usa una solicitud POST
-            //const response = await axios.post('http://localhost:3000/update-user', userData);
-    
-            //console.log('Datos actualizados:', response.data);
+              username: this.username,
+            };    
+            const response = await axios.put('http://localhost:3000/user', userData);    
+            console.log('Datos actualizados:', response.data);
     
             this.$router.push('/user/mydata');
           } catch (error) {
             console.error('Error al actualizar datos:', error);
-            // Opcional: mostrar un mensaje de error
           }
         } else {
           console.log('Por favor, completa todos los campos correctamente.');
