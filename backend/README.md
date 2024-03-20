@@ -1,19 +1,20 @@
-# Levantar base de datos
-```bash
-docker-compose run mongodb
-```
-
-# Levantar servidor backend con docker:
-```bash
-docker-compose run --service-ports backend-maquinua
-```
-
-# En un futuro se podrá levantar el servidor backend con docker-compose:
+# Levantar todo: BBDD (MongoDB) + Backend HTTP (NodeJs Express)
 ```bash
 docker-compose up
 ```
 
-# Ejecutar el servidor backend como develop
+Se pueden levantar por separado los contenedores. Pero habría que configurar también la network. 
+# Levantar base de datos
 ```bash
-npm run dev
+docker-compose run <container-name>
 ```
+
+Una vez el contenedor ya esté corriendo, podemos entrar dentro con el siguiente comando:
+```bash
+docker exec -it backend-maquinua-container sh
+```
+Desde aquí podemos ejecutar test como `node src/services/db.test.js` de manera interactiva.
+
+# ¡OJO en Windows!
+Si estás en Windows y no te funciona, aasegúrate de estar ejecutando Docker desktop, no solamente los comandos por terminal. 
+
