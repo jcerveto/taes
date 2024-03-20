@@ -86,8 +86,8 @@ app.post('/user', async (req, res) => {
 
         console.log("cleanUser: ", cleanUser);
         
-        const user = await db.createUser(cleanUser);
-        res.json(user);
+        cleanUser.create();
+        res.json(cleanUser.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -95,7 +95,7 @@ app.post('/user', async (req, res) => {
 });
 
 
-app.put('/users/:id', async (req, res) => {
+app.put('/users/', async (req, res) => {
     try {
         const cleanUser = {
             name: req.body.name,
