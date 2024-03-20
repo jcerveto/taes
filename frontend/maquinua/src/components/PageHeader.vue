@@ -6,7 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/filter">Filter</router-link>
+            <router-link class="nav-link" to="/" @click="ToggleFiltros()">Filter</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/products">View products</router-link>
@@ -43,6 +43,10 @@
       </div>
     </div>
   </nav>
+
+  <div class="filtros-overlay" v-if="filtros">
+    <FiltrosMapa />
+  </div>
 </template>
 
 
@@ -74,14 +78,30 @@
     align-items: center;
   }
 
+  .filtros-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    z-index: 999;
+    
+  }
+
 </style>
 
 <script>
+import FiltrosMapa from './FiltrosMapa.vue';
   export default {
     name: 'PageHeader',
+    components:{
+      FiltrosMapa
+    },
     data() {
       return {
-        darkMode: false
+        darkMode: false,
+        filtros: false,
       }
     },
     methods: {
@@ -94,6 +114,9 @@
           document.body.classList.remove('dark-mode');
           document.getElementById('toggleDarkMode').classList.replace('bi-sun', 'bi-moon');
         }
+      },
+      ToggleFiltros(){
+        this.filtros = !this.filtros;
       }
     },
     mounted() {
