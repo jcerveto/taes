@@ -5,6 +5,7 @@
         <router-link to="/products">View products</router-link>
         <router-link to="/machines">View machines</router-link>
         <router-link to="/about">About</router-link>
+        <router-link to="/incidents">Incidents</router-link>
         <button id="toggleDarkMode">Dark Mode</button>
     </nav>
 </template>

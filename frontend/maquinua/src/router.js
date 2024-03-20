@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/HomePage.vue';
 import About from '@/views/AboutPage.vue';
+import Incidents from '@/views/IncidentsPage.vue';
 import Error404 from '@/views/Error404Page.vue';
 import ProductPricePage from '@/views/ProductPricesPage.vue';
 import MachinesDistributionPage from '@/views/MachinesDistributionPage.vue';
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/about',
     component: About,
+    },
+  {
+        path: '/incidents',
+        component: Incidents,
   },
   {
     path: '/products',

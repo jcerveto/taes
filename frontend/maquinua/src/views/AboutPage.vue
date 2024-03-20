@@ -13,87 +13,38 @@
             <h2>Nuestra mision</h2>
             <p>Nuestra mision es  facilitar el acceso a las distintos usuarios de la universidad de Alicante el acceso a todo tipo de maquinas expendedoras que cumpla con sus necesidades</p>
         </section>
-        </div>
+        <!-- </div>
     <div class="comment-box">
         <h2>Comentarios</h2>
-        <!-- Lista de comentarios -->
-        <ul>
-            <li v-for="palabra in palabras" :key="palabra">{{ palabra }}</li>
-        </ul>
-        <ul>
 
-            <li v-for="(comment, index) in comments" :key="index">
-                {{ comment }}
-            </li>
-        </ul>
+    <ul>
+        <li v-for="palabra in palabras" :key="palabra">{{ palabra }}</li>
+    </ul>
+    <ul>
 
-        <!-- Formulario para agregar un comentario -->
-        <form @submit.prevent="addComment">
-            <textarea v-model="newComment" placeholder="Escribe tu comentario"></textarea>
-            <button type="submit">Agregar Comentario</button>
-        </form>
+        <li v-for="(comment, index) in comments" :key="index">
+            {{ comment }}
+        </li>
+    </ul>
+
+    Formulario para agregar un comentario
+    <form @submit.prevent="addComment">
+        <textarea v-model="newComment" placeholder="Escribe tu comentario"></textarea>
+        <button type="submit">Agregar Comentario</button>
+    </form>-->
     </div>
-        <footer>
-            <h3>Contacto</h3>
-            <p>644344244</p>
-            <p>cgmg3@alu.ua.es</p>
-            <router-link to="/">Go to Home</router-link>
-        </footer>
-    
-   
+    <footer>
+        <h3>Contacto</h3>
+        <p>644344244</p>
+        <p>cgmg3@alu.ua.es</p>
+        <router-link to="/">Go to Home</router-link>
+    </footer>
+
+
 </template>
 
 
-<script>
-    import guardar_json from './../guardar_json';
-    //import palabrasJSON from './../../palabras.json';
-    
-    export default {
-        data() {
-            
-            return {
-                comments: [], // Array para almacenar los comentarios
-                newComment: '', // Nuevo comentario que se está escribiendo
-                palabras: []
-            };
-        },
-       
-        methods: {
-            addComment() {
-                if (this.newComment.trim() !== '') { // Asegúrate de que el comentario no esté vacío
-                    this.comments.push(this.newComment); // Agrega el nuevo comentario al array
-                    this.newComment = ''; // Limpia el campo de texto después de agregar el comentario
-                }
-                
-            }
-
-           
-
-            /*
-            cargarComentarios() {
-                const comentariosGuardados = localStorage.getItem('comments');
-                if (comentariosGuardados) {
-                    this.comments = JSON.parse(comentariosGuardados);
-                }
-            },
-            guardarComentario() {
-                this.comments.push(this.nuevoComentario);
-                // Guardar comentarios actualizados en localStorage
-                localStorage.setItem('comments', JSON.stringify(this.comments));
-                this.newComment = ''; // Limpiar el campo de texto después de guardar el comentario
-            }*/
-        },
-        mounted() {
-            // Ejemplo de uso de la función guardarArray
-            guardar_json(this.palabras);
-
-
-        }
-        
-        
-    }
-       
-</script>
+   
 
 
 <style scoped> 
