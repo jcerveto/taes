@@ -4,23 +4,29 @@
       <router-link class="navbar-brand" to="/">Home</router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/filter">Filter</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/products">View products</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/machines">View machines</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/user">User</router-link>
-          </li>
-        </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/filter">Filter</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/products">View products</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/machines">View machines</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/machines">View machines</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/incidents">Incidencias</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/about">About</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/user">User</router-link>
+              </li>
+          </ul>
       </div>
 
       <div class="d-flex">
