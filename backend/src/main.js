@@ -3,7 +3,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
 
-import * as db from './services/db.js';
 import { User } from './model/User.js';
 
 
@@ -16,8 +15,9 @@ app.use(express.json());
 // MIddleware para loggear las peticiones
 app.use(morgan('dev'));
 
-// Allow CORS requests from your Vue.js application's URL
-app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
+// TODO: Allow CORS requests from your Vue.js application's URL
+//app.use(cors({ origin: 'http://0.0.0.0:8080', credentials: true })); // Replace with your Vue.js app's URL
+app.use(cors());
 
 
 app.get('/', async (req, res) => {
@@ -90,7 +90,8 @@ app.post('/user', async (req, res) => {
 
         console.log("cleanUser: ", cleanUser);
         
-        const user = await db.createUser(cleanUser);
+        await cleanUser.create();
+
         res.json(user);
     } catch (error) {
         console.error(error);
@@ -106,7 +107,15 @@ app.put('/users/:id', async (req, res) => {
             email: req.body.email,
             password: req.body.password,
         };
-        const user = await db.updateUser(req.params.id, cleanUser);
+
+        const user = new User();
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.password = req.body.password;
+        user.bornDate = req.body.bornDate;
+    
+        await user.update();
+
         res.json(user);
     } catch (error) {
         console.error(error);
@@ -116,7 +125,9 @@ app.put('/users/:id', async (req, res) => {
 
 app.delete('/users/:id', async (req, res) => {
     try {
-        const user = await db.deleteUser(req.params.id);
+        const user = new User();
+        user.email = req.params.id;
+        await user.delete();
         res.json(user);
     } catch (error) {
         console.error(error);
