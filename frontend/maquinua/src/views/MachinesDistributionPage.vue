@@ -49,24 +49,40 @@ export default {
         const response = await fetch(jsonFile);
         const data = await response.json();
 
-        this.markers = data.map((entry) => ({
+        // Obtener el valor de los parámetros "tipo" y "edificio" de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const tipo = urlParams.get('tipo');
+        const edificio = urlParams.get('edificio');
+
+        // Filtrar los datos para obtener solo los marcadores que cumplan con los criterios especificados en la URL
+        let filteredMarkers = data;
+        if (tipo) {
+          filteredMarkers = filteredMarkers.filter(marker => marker.type === tipo);
+        }
+        if (edificio) {
+          filteredMarkers = filteredMarkers.filter(marker => marker.edificio === edificio);
+        }
+
+        this.markers = filteredMarkers.map((entry) => ({
           position: [entry.lat, entry.lon],
           popupContent: `<h3>${entry.popupContent.title}</h3><p>${entry.popupContent.description}</p>`,
         }));
 
-        // Add markers to geojson for rendering on the map
-        this.geojson.features = this.markers.map((marker, index) => ({
+        // Agregar marcadores filtrados al geojson para renderizar en el mapa
+        this.geojson.features = filteredMarkers.map((marker, index) => ({
           type: "Feature",
           properties: { id: index },
           geometry: {
             type: "Point",
-            coordinates: [marker.position[1], marker.position[0]],
+            coordinates: [marker.lon, marker.lat], // Cambiar el orden a [lon, lat]
           },
         }));
       } catch (error) {
         console.error("Error loading markers from JSON:", error);
       }
     },
+
+
   },
 };
 </script>
