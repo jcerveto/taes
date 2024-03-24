@@ -24,7 +24,10 @@ app.get('/', async (req, res) => {
     res.send('Hello World!')
 })
 
-
+/**
+ * Returns all users with all data
+ * @returns {Promise<User[]>}
+ */
 app.get('/users', async (req, res) => {
     try {
         const users = await User.readAll();
@@ -101,7 +104,6 @@ app.post('/user', async (req, res) => {
  * @param {string} email
  * @param {string} username
  * @param {string} password
- * @param {Date} bornDate
  * @returns {Promise<User>}
  * @throws {Error} If the user is not updated
  */
@@ -113,9 +115,7 @@ app.put('/user', async (req, res) => {
         user.username = req.body.username;
         user.name = req.body.name;
         user.surname = req.body.surname;
-        user.password = req.body.password;
-        user.bornDate = new Date(req.body.bornDate);
-
+   
         console.log("User: ", user);
         
         user.update();

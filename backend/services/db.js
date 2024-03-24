@@ -164,6 +164,8 @@ export async function readUser(email) {
 
     const user = new User();
     user.name = userObj.name;
+    user.username = userObj.username;
+    user.surname = userObj.surname;
     user.email = userObj.email;
     user.password = userObj.password;
     user.bornDate = new Date(userObj.bornDate);
