@@ -1,6 +1,6 @@
 import {createUser, deleteAllUsers, readAllUsers, updateUser} from "./db.js";
 
-import { User } from "../model/User.js";
+import { User } from "./model/User.js";
 
 async function main() {
     console.log("start");
