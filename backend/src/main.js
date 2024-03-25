@@ -16,8 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // TODO: Allow CORS requests from your Vue.js application's URL
-//app.use(cors({ origin: 'http://0.0.0.0:8080', credentials: true })); // Replace with your Vue.js app's URL
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
 
 
 app.get('/', async (req, res) => {
@@ -93,9 +92,8 @@ app.post('/user', async (req, res) => {
 
         console.log("cleanUser: ", cleanUser);
         await cleanUser.create();
-        console.log("cleanUser: ", cleanUser);        
+
         res.json(cleanUser.toJSON());
-        
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
