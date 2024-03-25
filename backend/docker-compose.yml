@@ -2,7 +2,7 @@ version: '3.8'
 services:
   mongodb:
     container_name: mongodb-maquinua-container
-    image: mongo:6.0.13 
+    image: mongo:7.0
     ports:
       - '27017:27017'
     volumes:
@@ -11,7 +11,6 @@ services:
       - maquinua-backend-network
     stdin_open: true
     tty: true 
-    restart: always
 
   backend-maquinua:
     container_name: backend-maquinua-container
@@ -19,6 +18,8 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+    expose:
+      - '3000'
     ports:
       - '3000:3000'
     command: sh -c "npm install && npm run dev"
@@ -26,9 +27,8 @@ services:
       - mongodb
     networks:
       - maquinua-backend-network
-    restart: always
+    restart: unless-stopped
 
 networks:
   maquinua-backend-network:
     driver: bridge
-

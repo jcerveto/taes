@@ -45,7 +45,7 @@
             if (res.data.password === this.password && res.data.email === this.email) {
             // Inicio de sesión exitoso
             
-            //alert("Correcto")
+            alert("Correcto")
             
             Cookies.get('tokenDeSesion');
 
