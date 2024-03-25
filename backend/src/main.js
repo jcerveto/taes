@@ -71,7 +71,9 @@ app.post('/users', async (req, res) => {
 
 /**
  * Creates a new user
- * @param {string} name
+ * @param {User} name
+ * @param {string} surname
+ * @param {string} username
  * @param {string} email
  * @param {string} password
  * @returns {Promise<User>}
@@ -80,19 +82,20 @@ app.post('/users', async (req, res) => {
 app.post('/user', async (req, res) => {
     try {
         console.log("creating: ", req.body);
-
+        
         const cleanUser = new User();
         cleanUser.name = req.body.name;
-        // TODO apellidos en la bbdd
+        cleanUser.surname = req.body.surname;
+        cleanUser.username = req.body.username;
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);
 
         console.log("cleanUser: ", cleanUser);
-        
         await cleanUser.create();
-
-        res.json(user);
+        console.log("cleanUser: ", cleanUser);        
+        res.json(cleanUser.toJSON());
+        
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -102,17 +105,14 @@ app.post('/user', async (req, res) => {
 
 app.put('/users/:id', async (req, res) => {
     try {
-        const cleanUser = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        };
-
+        console.log("updating: ", req.body);
         const user = new User();
         user.name = req.body.name;
         user.email = req.body.email;
+        user.surname = req.body.surname;
+        user.username = req.body.username;
         user.password = req.body.password;
-        user.bornDate = req.body.bornDate;
+
     
         await user.update();
 

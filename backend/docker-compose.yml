@@ -2,7 +2,7 @@ version: '3.8'
 services:
   mongodb:
     container_name: mongodb-maquinua-container
-    image: mongo:6.0.13 
+    image: mongo:7.0
     ports:
       - '27017:27017'
     volumes:
