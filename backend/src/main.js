@@ -3,7 +3,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
 
-import * as db from './services/db.js';
 import { User } from './model/User.js';
 
 
@@ -16,7 +15,7 @@ app.use(express.json());
 // MIddleware para loggear las peticiones
 app.use(morgan('dev'));
 
-// Allow CORS requests from your Vue.js application's URL
+// TODO: Allow CORS requests from your Vue.js application's URL
 app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
 
 
@@ -47,11 +46,16 @@ app.post('/users', async (req, res) => {
         const email = req.body.email;
         console.log(email);
         const user = await User.read(email);
-
-        const name = user.name;
         
         // creamos un token de sesión
-        const tokenDeSesion = jwt.sign({ email, name }, 'secreto', { expiresIn: '7d' });
+        const tokenDeSesion = jwt.sign({ email }, 'secreto', { expiresIn: '7d' });
+
+        /*const userTokenPayload = {
+            username: user.name,
+        };
+    
+        // Generate the user token with the payload and a different secret key
+        jwt.sign(userTokenPayload, 'user_secret', { expiresIn: '1h' }); // Shorter expiration for user tokens*/
       
 
         // Establecemos el token
@@ -86,7 +90,8 @@ app.post('/user', async (req, res) => {
 
         console.log("cleanUser: ", cleanUser);
         
-        cleanUser.create();
+        await cleanUser.create();
+
         res.json(cleanUser.toJSON());
     } catch (error) {
         console.error(error);
@@ -95,14 +100,22 @@ app.post('/user', async (req, res) => {
 });
 
 
-app.put('/users/', async (req, res) => {
+app.put('/users/:id', async (req, res) => {
     try {
         const cleanUser = {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         };
-        const user = await db.updateUser(req.params.id, cleanUser);
+
+        const user = new User();
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.password = req.body.password;
+        user.bornDate = req.body.bornDate;
+    
+        await user.update();
+
         res.json(user);
     } catch (error) {
         console.error(error);
@@ -112,7 +125,9 @@ app.put('/users/', async (req, res) => {
 
 app.delete('/users/:id', async (req, res) => {
     try {
-        const user = await db.deleteUser(req.params.id);
+        const user = new User();
+        user.email = req.params.id;
+        await user.delete();
         res.json(user);
     } catch (error) {
         console.error(error);

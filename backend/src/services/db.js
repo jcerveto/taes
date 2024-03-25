@@ -11,8 +11,10 @@ const HOST = "0.0.0.0";
 const PORT = "27017";
 const DATABASE = "maquinua";
 const COLLECTION_MAIN = "maquinua_main";
+const COLLECTION_ANALYTICS = "maquinua_analytics";
 
-const connectionString = `mongodb://localhost:27017/${DATABASE}`;
+// mongodb://<container-name>:27017/<database-name>
+const connectionString = `mongodb://mongodb:27017/${DATABASE}`;
 
 
 /**
@@ -236,6 +238,86 @@ export async function deleteAllUsers() {
   } catch (error) {
     console.error(error);
     throw new Error("Users not deleted!")
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
+  }
+}
+
+
+/**
+ * Creates a machine view in the database
+ * @param {object} machine
+ * @returns {Promise<void>}
+ */
+export async function createMachineView(machine) {
+  let db = null;
+  try {
+    if (machine === undefined) {
+      throw new Error("Machine not created!");
+    }
+
+    db = await connectToDatabase();
+    const machinesCollection = db.collection(COLLECTION_ANALYTICS);
+    const result = await machinesCollection.insertOne(machine.toJSON());
+
+    if (result.insertedCount !== 1) {
+      throw new Error("Machine view not created! Rows affected: ", result.insertedCount)
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error("Machine not created!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
+  }
+}
+
+
+/**
+ * Reads a machine view from the database
+ * @param {object} filter
+ * @returns {Promise<[]>}
+ */
+export async function readMachinesView(filter) {
+  let db = null;
+  try {
+    db = await connectToDatabase();
+    const machinesCollection = db.collection(COLLECTION_ANALYTICS);
+    const machinesObj = await machinesCollection.find(filter).toArray();
+    return machinesObj;
+
+  } catch (error) {
+    console.error(error);
+    throw new Error("Machines not read!")
+  } finally {
+    //if (db != null()) {
+    //  await db.close();
+    //  console.log('Disconnected from MongoDB');
+    //}
+  }
+}
+
+
+/**
+ * Deletes machine views from the database by filter
+ * @param {object} filter
+ * @returns {Promise<void>}
+ */
+export async function deleteMachinesView(filter) {
+  let db = null;
+  try {
+    db = await connectToDatabase();
+    const machinesCollection = db.collection(COLLECTION_ANALYTICS);
+    const result = await machinesCollection.deleteMany(filter);
+
+  } catch (error) {
+    console.error(error);
+    throw new Error("Machines not deleted!")
   } finally {
     //if (db != null) {
     //  await db.close();
