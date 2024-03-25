@@ -126,15 +126,23 @@ app.put('/users', async (req, res) => {
 
 app.delete('/users/:id', async (req, res) => {
     try {
-        const user = new User();
-        user.email = req.params.id;
+        const { email } = req.body; // Destructure from request body
+        const user = await User.read(email);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
         await user.delete();
-        res.json(user);
+        console.log("User deleted: ", email);
+        res.sendStatus(204);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
