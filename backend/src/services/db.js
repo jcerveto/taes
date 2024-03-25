@@ -150,14 +150,14 @@ export async function readUser(email) {
     if (email === undefined) {
       throw new Error("User not read!");
     }
-
+    
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const userObj = await usersCollection.findOne({
       email: email,
       type: "user"
     });
-    console.log(userObj);
+   
 
     if (userObj === null) {
       throw new Error("User not read! User not found in DB");
@@ -166,9 +166,11 @@ export async function readUser(email) {
 
     const user = new User();
     user.name = userObj.name;
+    user.username = userObj.username;
+    user.surname = userObj.surname;
     user.email = userObj.email;
     user.password = userObj.password;
-    user.bornDate = new Date(userObj.bornDate);
+    user.bornDate = userObj.bornDate;
 
     return user;
   } catch (error) {
@@ -198,8 +200,9 @@ export async function readAllUsers() {
     const typeUsers = usersObj.map((u) => {
         const iterUser = new User();
 
+        iterUser.username = u.username;
         iterUser.name = u.name;
-        console.log(u.name);
+        iterUser.surname = u.surname;
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);

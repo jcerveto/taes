@@ -16,8 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // TODO: Allow CORS requests from your Vue.js application's URL
-//app.use(cors({ origin: 'http://0.0.0.0:8080', credentials: true })); // Replace with your Vue.js app's URL
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
 
 
 app.get('/', async (req, res) => {
@@ -71,7 +70,9 @@ app.post('/users', async (req, res) => {
 
 /**
  * Creates a new user
- * @param {string} name
+ * @param {User} name
+ * @param {string} surname
+ * @param {string} username
  * @param {string} email
  * @param {string} password
  * @returns {Promise<User>}
@@ -80,43 +81,43 @@ app.post('/users', async (req, res) => {
 app.post('/user', async (req, res) => {
     try {
         console.log("creating: ", req.body);
-
+        
         const cleanUser = new User();
         cleanUser.name = req.body.name;
-        // TODO apellidos en la bbdd
+        cleanUser.surname = req.body.surname;
+        cleanUser.username = req.body.username;
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);
 
         console.log("cleanUser: ", cleanUser);
-        
         await cleanUser.create();
 
-        res.json(user);
+        res.json(cleanUser.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
 });
 
-
-app.put('/users/:id', async (req, res) => {
+app.put('/users', async (req, res) => {
     try {
-        const cleanUser = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        };
+        console.log("updating: ", req.body);
+        const email = req.body.email;
+        const user = await User.read(req.body.email);
+        const updatedUser = new User();
+        console.log("User: ", user);
+        updatedUser.name = user.name;
+        updatedUser.surname = user.surname;
+        updatedUser.username = user.username;
+        updatedUser.email = user.email;
+        updatedUser.password = user.password;
+        updatedUser.bornDate = user.bornDate;
 
-        const user = new User();
-        user.name = req.body.name;
-        user.email = req.body.email;
-        user.password = req.body.password;
-        user.bornDate = req.body.bornDate;
-    
-        await user.update();
+        console.log("User: ", updatedUser);
 
-        res.json(user);
+        await updatedUser.update(); // Wait for the update to complete
+        res.json(user.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });

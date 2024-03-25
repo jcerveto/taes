@@ -45,7 +45,7 @@
             if (res.data.password === this.password && res.data.email === this.email) {
             // Inicio de sesión exitoso
             
-            //alert("Correcto")
+            alert("Correcto")
             
             Cookies.get('tokenDeSesion');
 
@@ -55,6 +55,11 @@
             alert('Invalid email or password. Please try again.');
           }})
           .catch((error) => {
+            alert('Invalid email or password. Please try again.');
+
+            // Reload the page
+            location.reload();
+
             console.error(error);
           });
 

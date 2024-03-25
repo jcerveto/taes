@@ -30,6 +30,28 @@ export class User {
         this._id = new ObjectId(value);
     }
 
+    get username() {
+        if (this._username === undefined) {
+            throw new Error("username is undefined!");
+        }
+        if (this._username === "") {
+            throw new Error("Error: username can not be empty!");
+        }
+
+        return this._username;
+    }
+
+    set username(value) {
+        if (value === undefined) {
+            throw new Error("Error: username can not be undefined!");
+        }
+        if (value === "") {
+            throw new Error("Error: username can not be empty!");
+        }
+
+        this._username = value;
+    }
+
     get name() {
         if (this._name === undefined) {
             throw new Error("name is undefined!");
@@ -50,6 +72,28 @@ export class User {
         }
 
         this._name = value;
+    }
+
+    get surname() {
+        if (this._surname === undefined) {
+            throw new Error("surname is undefined!");
+        }
+        if (this._surname === "") {
+            throw new Error("Error: surname can not be empty!");
+        }
+
+        return this._surname;
+    }
+
+    set surname(value) {
+        if (value === undefined) {
+            throw new Error("Error: surname can not be undefined!");
+        }
+        if (value === "") {
+            throw new Error("Error: surname can not be empty!");
+        }
+
+        this._surname = value;
     }
 
     get email() {
@@ -120,7 +164,9 @@ export class User {
     }
 
     constructor({ id = new ObjectId() } = {}) {
+        this._username = "";
         this._name = "";
+        this._surname = "";
         this._email = "";
         this._password = "";
         this._bornDate = new Date();
@@ -166,7 +212,9 @@ export class User {
 
     toJSON() {
         return {
+            username: this._username,
             name: this._name,
+            surname: this._surname,
             email: this._email,
             password: this._password,
             bornDate: this._bornDate,
