@@ -19,6 +19,9 @@
         <label for="surname">Apellido:</label><br>
         <input type="text" id="surname" v-model="surname" /><br><br>
 
+        <label for="surname">Pasword:</label><br>
+        <input type="password" id="password" v-model="password" /><br><br>
+
         <button type="submit">Guardar Cambios</button>
       </div>
     </form>
@@ -60,6 +63,7 @@ export default {
           this.surname = res.data.surname;
           this.email = res.data.email;
           this.username = res.data.username;
+          this.password = res.data.password;
         })
         .catch((error) => {
           console.error('Error al obtener datos del usuario:', error);
@@ -72,13 +76,13 @@ export default {
       }
 
       try {
-        const userData = {
-          name: this.name,
-          surname: this.surname,
-          email: this.email,
+        /*const updatedFields = {
           username: this.username,
-        };    
-        const response = await axios.put('http://localhost:3000/user', userData);    
+          name: this.name,
+          email: this.email,
+          surname: this.surname,
+        };   */ 
+        const response = await axios.put('http://localhost:3000/users', {username: this.username , email: this.email, name: this.name,surname: this.surname, password: this.password}, { withCredentials: true });    
         console.log('Datos actualizados:', response.data);
 
         this.$router.push('/user/mydata');

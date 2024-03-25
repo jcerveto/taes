@@ -100,21 +100,24 @@ app.post('/user', async (req, res) => {
     }
 });
 
-
-app.put('/users/:id', async (req, res) => {
+app.put('/users', async (req, res) => {
     try {
         console.log("updating: ", req.body);
-        const user = new User();
-        user.name = req.body.name;
-        user.email = req.body.email;
-        user.surname = req.body.surname;
-        user.username = req.body.username;
-        user.password = req.body.password;
+        const email = req.body.email;
+        const user = await User.read(req.body.email);
+        const updatedUser = new User();
+        console.log("User: ", user);
+        updatedUser.name = user.name;
+        updatedUser.surname = user.surname;
+        updatedUser.username = user.username;
+        updatedUser.email = user.email;
+        updatedUser.password = user.password;
+        updatedUser.bornDate = user.bornDate;
 
-    
-        await user.update();
+        console.log("User: ", updatedUser);
 
-        res.json(user);
+        await updatedUser.update(); // Wait for the update to complete
+        res.json(user.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
