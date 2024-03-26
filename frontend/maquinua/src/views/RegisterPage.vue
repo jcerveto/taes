@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <div class="register-container">
+      <div class="form-container">
       <h2>Register</h2>
       <form @submit.prevent="register">
-        <div>
+        <div class>
           <label for="username">Username:</label><br>
           <input type="text" id="username" v-model="username" required>
           <br><span v-if="!usernameValid && usernameDirty" style="color: red;">Please enter a valid username</span>
@@ -48,8 +49,28 @@
       <p>Do you have an account?</p>
       <router-link to="/signin">Sign In</router-link>
     </div>
+  </div>
   </template>
-  
+  <style>
+  .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  </style>
   <script>
   import axios from 'axios';
 

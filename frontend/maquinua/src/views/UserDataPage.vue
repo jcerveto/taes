@@ -1,15 +1,21 @@
 <template>
-  <div class="mis-datos">
-    <h2>Mis Datos</h2>
+  <div class="register-container">
+  <div class="form-container">
+    <div class="mis-datos">
+      <h2>Mis Datos</h2>
 
-    <div class="propiedad" v-for="(prop, index) in propiedades" :key="index">
-      <label>{{ prop.label }}</label>
-      <p :style="{ color: prop.color }">{{ prop.value }}</p>
+      <div class="propiedad" v-for="(prop, index) in propiedades" :key="index">
+        <label>{{ prop.label }}</label>
+        <p :style="{ color: prop.color }">{{ prop.value }}</p>
+      </div>
+
+      <a href="/user/mydata/myinfo" class="boton-enlace">Modificar Datos</a>
+      <a href="/user/mydata/myinfo" class="boton-enlace2">Eliminar Perfil</a>
     </div>
-
-    <a href="/user/mydata/myinfo" class="boton-enlace">Modificar Datos</a>
-    <a href="/user/mydata/myinfo" class="boton-enlace2">Eliminar Perfil</a>
   </div>
+
+</div>
+
 </template>
 
 <script>
@@ -71,82 +77,100 @@ export default {
 </script>
 
 <style>
-.mis-datos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: sans-serif;
-  font-size: 16px;
-  margin: 20px;
-}
 
-.propiedad {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-}
+  .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
 
-.propiedad label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
 
-.propiedad p {
-  margin: 0;
-}
+  .mis-datos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 20px;
+  }
 
-/* Se eliminan los estilos individuales de las propiedades */
+  .propiedad {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* Estilo para el enlace */
+  .propiedad label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 
-.boton-enlace {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.boton-enlace2 {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #fa0000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .propiedad p {
+    margin: 0;
+  }
 
-.boton-enlace:hover {
-  background-color: #333;
-}
+  /* Se eliminan los estilos individuales de las propiedades */
 
-/* Se agregan estilos dinámicos a las propiedades */
+  /* Estilo para el enlace */
 
-.propiedad p {
-  color: #000;
-}
+  .boton-enlace {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .boton-enlace2 {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #fa0000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-.propiedad p::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-  border-radius: 50%;
-  background-color: #ccc;
-}
+  .boton-enlace:hover {
+    background-color: #333;
+  }
 
-.propiedad p::before {
-  background-color: var(--color);
-}
+  /* Se agregan estilos dinámicos a las propiedades */
 
+  .propiedad p {
+    color: #000;
+  }
+
+  .propiedad p::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+
+  .propiedad p::before {
+    background-color: var(--color);
+  }
 </style>

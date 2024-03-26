@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="register-container">
+  <div class="form-container">
     <h2>Modificar Mis Datos</h2>
     <form @submit.prevent="submitForm">
       <!-- Mostrar email -->
@@ -33,7 +34,28 @@
       </div>
     </form>
   </div>
+</div>
 </template>
+
+<style>
+    .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
+</style>  
 
 <script>
 import axios from 'axios';

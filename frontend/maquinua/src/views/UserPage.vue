@@ -1,4 +1,6 @@
 <template>
+    <div class="register-container">
+    <div class="form-container">
     <div class="user-page">
         <h1>User Page</h1>
 
@@ -21,6 +23,8 @@
 
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -79,4 +83,21 @@
     .router-button:hover {
         background-color: #ddd; /* Cambio de color al pasar el ratón */
     }
+    .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
 </style>
