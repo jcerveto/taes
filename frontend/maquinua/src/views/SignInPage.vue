@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="register-container">
+      <div class="form-container">
       <h2>Sign In</h2>
       <form @submit.prevent="signIn">
+      
         <div>
           <label for="email">Email:</label><br>
           <input type="email" id="email" v-model="email" required>
@@ -15,14 +17,37 @@
             <br>
           <button type="submit">Sign In</button>
         </div>
+      
       </form>
       <br>
       <p>Do not have an account yet?</p>
       <router-link to="/register">Register</router-link>
     </div>
+  </div>
+ 
     
   </template>
   
+  <style>
+  .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
+</style>
+
   <script>
   import axios from 'axios';
   import Cookies from 'js-cookie';
