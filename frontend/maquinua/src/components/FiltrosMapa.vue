@@ -10,19 +10,24 @@ export default {
     const tipo = ref('');
     const producto = ref('');
     const selectedEdificio = ref({ edificio: '' });
+    const selectedProducto = ref({ producto: '' });
 
     // Lista con los edificios
     const edificios = ref([]);
+    const productos = ref([]);
 
     onMounted(() => {
       getEdificios();
-      selectedEdificio.value = edificios.value[0];
+      getProductos();
     });
 
+    if(selectedEdificio.value.edificio === 'Cualquiera'){
+      selectedEdificio.value.edificio = '';
+    }
     const buscar = () => {
       const queryParams = {
         tipo: tipo.value,
-        producto: producto.value,
+        producto: selectedProducto.value.producto,
         edificio: selectedEdificio.value.edificio,
       };
 
@@ -33,18 +38,42 @@ export default {
     };
 
     function getEdificios() {
-      edificios.value.push({edificio: 'Cualquiera'})
+      
       for (const maquina of Object.values(json)) {
-        edificios.value.push({ edificio: maquina.edificio });
+        if (edificios.value.filter(e => e.edificio === maquina.edificio).length === 0) {
+          edificios.value.push({ edificio: maquina.edificio });
+        }
       }
     }
+
+
+    function getProductos() {
+
+      
+      
+      for (const maquina of Object.values(json)) {
+        for (const nproducto of maquina.lista_productos){
+          if ((productos.value.filter(e => e.producto === nproducto).length === 0))
+            productos.value.push({ producto: nproducto});
+        }
+              
+              
+        
+      }
+      
+    }
+
+    
+
 
     return {
       tipo,
       producto,
       selectedEdificio,
+      selectedProducto,
       buscar,
       edificios,
+      productos
     };
   },
   components: {
@@ -63,10 +92,18 @@ export default {
         <option value="BEBIDAS FRIAS">Frío</option>
         <option value="COMIDA SALUDABLE">Saludable</option>
       </select>
-
+      
       <label for="producto">Producto concreto</label>
-      <input type="text" class="form-control" v-model="producto">
-
+      <multiselect
+        style="margin-bottom: 10px;"
+        v-model="selectedProducto"
+        :options="productos"
+        :close-on-select="true"
+        label="producto"
+        track-by="producto"
+      ></multiselect>
+      
+      
       <!-- Utilizando vue-multiselect para edificio -->
       <label for="edificio">Edificio</label>
       <multiselect
