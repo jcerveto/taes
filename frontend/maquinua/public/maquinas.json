@@ -1,15 +1,1926 @@
 [
     {
-      "lat": 38.3843,
-      "lon": -0.5103,
+      "lat": 38.384306
+      ,
+      "lon": -0.510278
+      ,
       "id": 1,
       "popupContent": {
-        "title": "Máquina 1 - Aulario 2",
-        "description": "planta baja"
+        "title": "Máquina 1 - Aulario II",
+        "description": "Teika. Máquina de Bebidas Frías"
       },
-      "edificio": "Aulario 2",
-      "type": "CRISTIAN MARCA EL TIPO DE MAQUINA COMO COLD, HOT, HEALTHY, MIXED",
-      "lista_productos": ["Pan de pipas VELARTE","Coco Fruta Fresca BORN", "Mini Tortitas Mediterraneas BICENTURY", "Palitos con pipas SNATT'S", "Choco Chips GULLÓN", "Barrita Chocolate Negro BICENTURY", "Snack choco negro GULLÓN", "Dark Chocolate FITNESS", "Botella agua 50cl NESTLÉ AQUAREL", "Zumo de Naranja DON SIMON" ],
-      "lista_precios": ["0.98","COMPLETALA CRISTIAN"]
+      "edificio": "Aulario II",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384306
+      ,
+      "lon": -0.510178
+      ,
+      "id": 2,
+      "popupContent": {
+        "title": "Máquina 2 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384750
+      ,
+      "lon": -0.510361
+      ,
+      "id": 3,
+      "popupContent": {
+        "title": "Máquina 3 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384639
+      ,
+      "lon": -0.510444
+      ,
+      "id": 4,
+      "popupContent": {
+        "title": "Máquina 4 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384639
+      ,
+      "lon": -0.510344
+      ,
+      "id": 5,
+      "popupContent": {
+        "title": "Máquina 5 - Aulario II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384389
+      ,
+      "lon": -0.510306
+      ,
+      "id": 6,
+      "popupContent": {
+        "title": "Máquina 6 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384389
+      ,
+      "lon": -0.510206
+      ,
+      "id": 7,
+      "popupContent": {
+        "title": "Máquina 7 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384444
+      ,
+      "lon": -0.510333
+      ,
+      "id": 8,
+      "popupContent": {
+        "title": "Máquina 8 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384194
+      ,
+      "lon": -0.510167
+      ,
+      "id": 9,
+      "popupContent": {
+        "title": "Máquina 9 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384194
+      ,
+      "lon": -0.510067
+      ,
+      "id": 10,
+      "popupContent": {
+        "title": "Máquina 10 - Aulario II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384194
+      ,
+      "lon": -0.509967
+      ,
+      "id": 11,
+      "popupContent": {
+        "title": "Máquina 10 - Aulario II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382778
+      ,
+      "lon": -0.509639
+      ,
+      "id": 12,
+      "popupContent": {
+        "title": "Máquina 1 - Politécnica IV",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica IV",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382833
+      ,
+      "lon": -0.509472
+      ,
+      "id": 13,
+      "popupContent": {
+        "title": "Máquina 2 - Politécnica IV",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica IV",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382833
+      ,
+      "lon": -0.509372
+      ,
+      "id": 14,
+      "popupContent": {
+        "title": "Máquina 3 - Politécnica IV",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Politécnica IV",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.509528
+      ,
+      "id": 15,
+      "popupContent": {
+        "title": "Máquina 4 - Politécnica IV",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica IV",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.509428
+      ,
+      "id": 16,
+      "popupContent": {
+        "title": "Máquina 5 - Politécnica IV",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica IV",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382139
+      ,
+      "lon": -0.508250
+      ,
+      "id": 17,
+      "popupContent": {
+        "title": "Máquina 1 - AULARIO III",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "AULARIO III",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382139
+      ,
+      "lon": -0.508150
+      ,
+      "id": 18,
+      "popupContent": {
+        "title": "Máquina 2 - AULARIO III",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "AULARIO III",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382139
+      ,
+      "lon": -0.508050
+      ,
+      "id": 19,
+      "popupContent": {
+        "title": "Máquina 3 - AULARIO III",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "AULARIO III",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.387361
+      ,
+      "lon": -0.512278
+      ,
+      "id": 20,
+      "popupContent": {
+        "title": "Máquina 1 - Politécnica II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.387361
+      ,
+      "lon": -0.512178
+      ,
+      "id": 21,
+      "popupContent": {
+        "title": "Máquina 2 - Politécnica II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Politécnica II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386944
+      ,
+      "lon": -0.512194
+      ,
+      "id": 22,
+      "popupContent": {
+        "title": "Máquina 1 - Politécnica III",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Politécnica III",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386944
+      ,
+      "lon": -0.512094
+      ,
+      "id": 23,
+      "popupContent": {
+        "title": "Máquina 2 - Politécnica III",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Politécnica III",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.515389
+      ,
+      "id": 24,
+      "popupContent": {
+        "title": "Máquina 1 - Ciencias II",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "Ciencias II",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.515289
+      ,
+      "id": 25,
+      "popupContent": {
+        "title": "Máquina 2 - Ciencias II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Ciencias II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.515189
+      ,
+      "id": 26,
+      "popupContent": {
+        "title": "Máquina 3 - Ciencias II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Ciencias II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.515089
+      ,
+      "id": 27,
+      "popupContent": {
+        "title": "Máquina 4 - Ciencias II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Ciencias II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.514989
+      ,
+      "id": 28,
+      "popupContent": {
+        "title": "Máquina 5 - Ciencias II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Ciencias II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.386833
+      ,
+      "lon": -0.514889
+      ,
+      "id": 29,
+      "popupContent": {
+        "title": "Máquina 6 - Ciencias II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Ciencias II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516639
+      ,
+      "id": 30,
+      "popupContent": {
+        "title": "Máquina 1 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516539
+      ,
+      "id": 31,
+      "popupContent": {
+        "title": "Máquina 2 - Aulario I",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario I",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516439
+      ,
+      "id": 32,
+      "popupContent": {
+        "title": "Máquina 3 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516339
+      ,
+      "id": 33,
+      "popupContent": {
+        "title": "Máquina 4 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516239
+      ,
+      "id": 34,
+      "popupContent": {
+        "title": "Máquina 5 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383417
+      ,
+      "lon": -0.516139
+      ,
+      "id": 35,
+      "popupContent": {
+        "title": "Máquina 6 - Aulario I",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario I",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382528
+      ,
+      "lon": -0.516139
+      ,
+      "id": 36,
+      "popupContent": {
+        "title": "Máquina 7 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382528
+      ,
+      "lon": -0.516039
+      ,
+      "id": 37,
+      "popupContent": {
+        "title": "Máquina 8 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382528
+      ,
+      "lon": -0.515939
+      ,
+      "id": 38,
+      "popupContent": {
+        "title": "Máquina 9 - Aulario I",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario I",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382694
+      ,
+      "lon": -0.515639
+      ,
+      "id": 39,
+      "popupContent": {
+        "title": "Máquina 10 - Aulario I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Aulario I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.382694
+      ,
+      "lon": -0.515539
+      ,
+      "id": 40,
+      "popupContent": {
+        "title": "Máquina 11 - Aulario I",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Aulario I",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384694
+      ,
+      "lon": -0.513139
+      ,
+      "id": 41,
+      "popupContent": {
+        "title": "Máquina 1 - Torre de Control",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Torre de Control",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.384694
+      ,
+      "lon": -0.513039
+      ,
+      "id": 42,
+      "popupContent": {
+        "title": "Máquina 2 - Torre de Control",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Torre de Control",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385694
+      ,
+      "lon": -0.512778
+      ,
+      "id": 43,
+      "popupContent": {
+        "title": "Máquina 1 - Relaciones Internacionales",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Relaciones Internacionales",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385694
+      ,
+      "lon": -0.512678
+      ,
+      "id": 44,
+      "popupContent": {
+        "title": "Máquina 2 - Relaciones Internacionales",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Relaciones Internacionales",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385944
+      ,
+      "lon": -0.512000
+      ,
+      "id": 45,
+      "popupContent": {
+        "title": "Máquina 1 - Edificio Polivalente III",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Edificio Polivalente III",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385944
+      ,
+      "lon": -0.511900
+      ,
+      "id": 46,
+      "popupContent": {
+        "title": "Máquina 2 - Edificio Polivalente III",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Edificio Polivalente III",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385944
+      ,
+      "lon": -0.514472
+      ,
+      "id": 47,
+      "popupContent": {
+        "title": "Máquina 1 - Filosofía y Letras I",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Filosofía y Letras I",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385944
+      ,
+      "lon": -0.514372
+      ,
+      "id": 48,
+      "popupContent": {
+        "title": "Máquina 2 - Filosofía y Letras I",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Filosofía y Letras I",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385944
+      ,
+      "lon": -0.514272
+      ,
+      "id": 49,
+      "popupContent": {
+        "title": "Máquina 3 - Filosofía y Letras I",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "Filosofía y Letras I",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385389
+      ,
+      "lon": -0.514750
+      ,
+      "id": 50,
+      "popupContent": {
+        "title": "Máquina 1 - Filosofía y Letras II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Filosofía y Letras II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385389
+      ,
+      "lon": -0.514650
+      ,
+      "id": 51,
+      "popupContent": {
+        "title": "Máquina 2 - Filosofía y Letras II",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Filosofía y Letras II",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385389
+      ,
+      "lon": -0.514550
+      ,
+      "id": 52,
+      "popupContent": {
+        "title": "Máquina 3 - Filosofía y Letras II",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Filosofía y Letras II",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385056
+      ,
+      "lon": -0.515556
+      ,
+      "id": 53,
+      "popupContent": {
+        "title": "Máquina 1 - Filosofía y Letras III",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Filosofía y Letras III",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385056
+      ,
+      "lon": -0.515456
+      ,
+      "id": 54,
+      "popupContent": {
+        "title": "Máquina 2 - Filosofía y Letras III",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Filosofía y Letras III",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516861
+      ,
+      "id": 55,
+      "popupContent": {
+        "title": "Máquina 1 - Derecho",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Derecho",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516761
+      ,
+      "id": 56,
+      "popupContent": {
+        "title": "Máquina 2 - Derecho",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Derecho",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516661
+      ,
+      "id": 57,
+      "popupContent": {
+        "title": "Máquina 3 - Derecho",
+        "description": "Teika. Máquina de Comida Saludable"
+      },
+      "edificio": "Derecho",
+      "type": "COMIDA SALUDABLE",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516561
+      ,
+      "id": 58,
+      "popupContent": {
+        "title": "Máquina 4 - Derecho",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Derecho",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516461
+      ,
+      "id": 59,
+      "popupContent": {
+        "title": "Máquina 5 - Derecho",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Derecho",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516361
+      ,
+      "id": 60,
+      "popupContent": {
+        "title": "Máquina 6 - Derecho",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Derecho",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511750
+      ,
+      "id": 61,
+      "popupContent": {
+        "title": "Máquina 1 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511650
+      ,
+      "id": 62,
+      "popupContent": {
+        "title": "Máquina 2 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511550
+      ,
+      "id": 63,
+      "popupContent": {
+        "title": "Máquina 3 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511450
+      ,
+      "id": 64,
+      "popupContent": {
+        "title": "Máquina 4 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511350
+      ,
+      "id": 65,
+      "popupContent": {
+        "title": "Máquina 5 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511250
+      ,
+      "id": 66,
+      "popupContent": {
+        "title": "Máquina 6 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383833
+      ,
+      "lon": -0.511150
+      ,
+      "id": 67,
+      "popupContent": {
+        "title": "Máquina 7 - Biblioteca de Filosofía y Letras",
+        "description": "Teika. Máquina de Comida Saludable"
+      },
+      "edificio": "Biblioteca de Filosofía y Letras",
+      "type": "COMIDA SALUDABLE",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.513028
+      ,
+      "id": 68,
+      "popupContent": {
+        "title": "Máquina 1 - Club Social 2",
+        "description": "Sentil. Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.512928
+      ,
+      "id": 69,
+      "popupContent": {
+        "title": "Máquina 2 - Club Social 2",
+        "description": "Sentil. Máquina de Cafés"
+      },
+      "edificio": "Club Social 2",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.512928
+      ,
+      "id": 70,
+      "popupContent": {
+        "title": "Máquina 3 - Club Social 2",
+        "description": "Sentil. Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.512728
+      ,
+      "id": 71,
+      "popupContent": {
+        "title": "Máquina 4 - Club Social 2",
+        "description": "Sentil . Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.512628
+      ,
+      "id": 72,
+      "popupContent": {
+        "title": "Máquina 5 - Club Social 2",
+        "description": "Sentil. Máquina de Cafés"
+      },
+      "edificio": "Club Social 2",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383028
+      ,
+      "lon": -0.512528
+      ,
+      "id": 73,
+      "popupContent": {
+        "title": "Máquina 6 - Club Social 2",
+        "description": "Sentil. Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383139
+      ,
+      "lon": -0.513389
+      ,
+      "id": 74,
+      "popupContent": {
+        "title": "Máquina 7 - Club Social 2",
+        "description": "Sentil. Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383139
+      ,
+      "lon": -0.513289
+      ,
+      "id": 75,
+      "popupContent": {
+        "title": "Máquina 8 - Club Social 2",
+        "description": "Sentil. Máquina Mixta"
+      },
+      "edificio": "Club Social 2",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.383139
+      ,
+      "lon": -0.513189
+      ,
+      "id": 76,
+      "popupContent": {
+        "title": "Máquina 9 - Club Social 2",
+        "description": "Sentil. Máquina de Cafés"
+      },
+      "edificio": "Club Social 2",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.385750
+      ,
+      "lon": -0.513583
+      ,
+      "id": 77,
+      "popupContent": {
+        "title": "Máquina 1 - Alumnado",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Alumnado",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.387694
+      ,
+      "lon": -0.513889
+      ,
+      "id": 78,
+      "popupContent": {
+        "title": "Máquina 1 - Ciencias IV",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Ciencias IV",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.388833
+      ,
+      "lon": -0.515000
+      ,
+      "id": 79,
+      "popupContent": {
+        "title": "Máquina 1 - Polideportivo",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Polideportivo",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat": 38.388833
+      ,
+      "lon": -0.514900
+      ,
+      "id": 80,
+      "popupContent": {
+        "title": "Máquina 2 - Polideportivo",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Polideportivo",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388833
+      ,
+      "lon": -0.514800
+      ,
+      "id": 81,
+      "popupContent": {
+        "title": "Máquina 3 - Polideportivo",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Polideportivo",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388694
+      ,
+      "lon": -0.515111
+      ,
+      "id": 82,
+      "popupContent": {
+        "title": "Máquina 4 - Polideportivo",
+        "description": "Teika. Máquina de Comida Saludable"
+      },
+      "edificio": "Polideportivo",
+      "type": "COMIDA SALUDABLE",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388806
+      ,
+      "lon": -0.515167
+      ,
+      "id": 83,
+      "popupContent": {
+        "title": "Máquina 5 - Polideportivo",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "Polideportivo",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388806
+      ,
+      "lon": -0.515067
+      ,
+      "id": 84,
+      "popupContent": {
+        "title": "Máquina 6 - Polideportivo",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Polideportivo",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388806
+      ,
+      "lon": -0.514967
+      ,
+      "id": 85,
+      "popupContent": {
+        "title": "Máquina 7 - Polideportivo",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Polideportivo",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.386417
+      ,
+      "lon": -0.513722
+      ,
+      "id": 86,
+      "popupContent": {
+        "title": "Máquina 1 - Pabellón Universitario",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Pabellón Universitario",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.386417
+      ,
+      "lon": -0.513622
+      ,
+      "id": 87,
+      "popupContent": {
+        "title": "Máquina 2 - Pabellón Universitario",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Pabellón Universitario",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.385167
+      ,
+      "lon": -0.511806
+      ,
+      "id": 88,
+      "popupContent": {
+        "title": "Máquina 1 - Rectorado",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Rectorado",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384722
+      ,
+      "lon": -0.511472
+      ,
+      "id": 89,
+      "popupContent": {
+        "title": "Máquina 2 - Rectorado",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Rectorado",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384722
+      ,
+      "lon": -0.511372
+      ,
+      "id": 90,
+      "popupContent": {
+        "title": "Máquina 3 - Rectorado",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Rectorado",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.385222
+      ,
+      "lon": -0.509500
+      ,
+      "id": 91,
+      "popupContent": {
+        "title": "Máquina 1 - Colegio Mayor",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Colegio Mayor",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.385222
+      ,
+      "lon": -0.509400
+      ,
+      "id": 92,
+      "popupContent": {
+        "title": "Máquina 2 - Colegio Mayor",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Colegio Mayor",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.383611
+      ,
+      "lon": -0.511250
+      ,
+      "id": 93,
+      "popupContent": {
+        "title": "Máquina 1 - Ciencias Sociales",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Ciencias Sociales",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.383611
+      ,
+      "lon": -0.511150
+      ,
+      "id": 94,
+      "popupContent": {
+        "title": "Máquina 2 - Ciencias Sociales",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Ciencias Sociales",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.383611
+      ,
+      "lon": -0.511050
+      ,
+      "id": 95,
+      "popupContent": {
+        "title": "Máquina 3 - Ciencias Sociales",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Ciencias Sociales",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382806
+
+      ,
+      "lon": -0.514139
+      ,
+      "id": 96,
+      "popupContent": {
+        "title": "Máquina 1 - Economicas",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Economicas",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382806
+
+      ,
+      "lon": -0.514039
+      ,
+      "id": 97,
+      "popupContent": {
+        "title": "Máquina 2 - Economicas",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Economicas",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382806
+      ,
+      "lon": -0.513939
+      ,
+      "id": 98,
+      "popupContent": {
+        "title": "Máquina 3 - Economicas",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Economicas",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.383889
+      ,
+      "lon": -0.514639
+      ,
+      "id": 99,
+      "popupContent": {
+        "title": "Máquina 1 - Enfermería",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Enfermería",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.383944
+      ,
+      "lon": -0.514639
+      ,
+      "id": 100,
+      "popupContent": {
+        "title": "Máquina 2 - Enfermería",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Enfermería",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382389
+      ,
+      "lon": -0.510806
+      ,
+      "id": 101,
+      "popupContent": {
+        "title": "Máquina 1 - Óptica",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Óptica",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382389
+      ,
+      "lon": -0.510706
+      ,
+      "id": 102,
+      "popupContent": {
+        "title": "Máquina 2 - Óptica",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Óptica",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382639
+      ,
+      "lon": -0.511778
+      ,
+      "id": 103,
+      "popupContent": {
+        "title": "Máquina 1 - Institutos Universitarios",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Institutos Universitarios",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382639
+      ,
+      "lon": -0.511678
+      ,
+      "id": 104,
+      "popupContent": {
+        "title": "Máquina 2 - Institutos Universitarios",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Institutos Universitarios",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382639
+      ,
+      "lon": -0.511578
+      ,
+      "id": 105,
+      "popupContent": {
+        "title": "Máquina 3 - Institutos Universitarios",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Institutos Universitarios",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382139
+      ,
+      "lon": -0.512250
+      ,
+      "id": 106,
+      "popupContent": {
+        "title": "Máquina 1 - Edificio Germán Benacer",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Edificio Germán Benacer",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382139
+      ,
+      "lon": -0.512050
+      ,
+      "id": 107,
+      "popupContent": {
+        "title": "Máquina 2 - Edificio Germán Benacer",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Edificio Germán Benacer",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.382139
+      ,
+      "lon": -0.512250
+      ,
+      "id": 108,
+      "popupContent": {
+        "title": "Máquina 3 - Edificio Germán Benacer",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Edificio Germán Benacer",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384833
+      ,
+      "lon": -0.515833
+      ,
+      "id": 109,
+      "popupContent": {
+        "title": "Máquina 1 - Club Social 1",
+        "description": "Semacaf. Máquina Mixta"
+      },
+      "edificio": "Club Social 1",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384472
+      ,
+      "lon": -0.515944
+      ,
+      "id": 110,
+      "popupContent": {
+        "title": "Máquina 2 - Club Social 1",
+        "description": "Semacaf. Máquina Mixta"
+      },
+      "edificio": "Club Social 1",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384472
+      ,
+      "lon": -0.515844
+      ,
+      "id": 111,
+      "popupContent": {
+        "title": "Máquina 3 - Club Social 1",
+        "description": "Semacaf. Máquina de Cafés"
+      },
+      "edificio": "Club Social 1",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384472
+      ,
+      "lon": -0.515744
+      ,
+      "id": 112,
+      "popupContent": {
+        "title": "Máquina 4 - Club Social 1",
+        "description": "Semacaf. Máquina Mixta"
+      },
+      "edificio": "Club Social 1",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.384417
+      ,
+      "lon": -0.516806
+      ,
+      "id": 113,
+      "popupContent": {
+        "title": "Máquina 5 - Club Social 1",
+        "description": "Semacaf. Máquina Mixta"
+      },
+      "edificio": "Club Social 1",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387139
+      ,
+      "lon": -0.515194
+      ,
+      "id": 114,
+      "popupContent": {
+        "title": "Máquina 1 - Cafetería de Ciencias",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Cafetería de Ciencias",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387139
+      ,
+      "lon": -0.515094
+      ,
+      "id": 115,
+      "popupContent": {
+        "title": "Máquina 2 - Cafetería de Ciencias",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Cafetería de Ciencias",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387139
+      ,
+      "lon": -0.514994
+      ,
+      "id": 116,
+      "popupContent": {
+        "title": "Máquina 3 - Cafetería de Ciencias",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Cafetería de Ciencias",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387250
+      ,
+      "lon": -0.518278
+      ,
+      "id": 117,
+      "popupContent": {
+        "title": "Máquina 1 - CTQ",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "CTQ",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387250
+      ,
+      "lon": -0.518178
+      ,
+      "id": 118,
+      "popupContent": {
+        "title": "Máquina 2 - CTQ",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "CTQ",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387250
+      ,
+      "lon": -0.518078
+      ,
+      "id": 119,
+      "popupContent": {
+        "title": "Máquina 3 - CTQ",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "CTQ",
+      "type": "BEBIDAS FRIAS. Máquina de Bebidas Frías",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519806
+      ,
+      "id": 120,
+      "popupContent": {
+        "title": "Máquina 1 - Facultad de Educación",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519706
+      ,
+      "id": 121,
+      "popupContent": {
+        "title": "Máquina 2 - Facultad de Educación",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519606
+      ,
+      "id": 122,
+      "popupContent": {
+        "title": "Máquina 3 - Facultad de Educación",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.388000
+      ,
+      "lon": -0.519506
+      ,
+      "id": 123,
+      "popupContent": {
+        "title": "Máquina 4 - Facultad de Educación",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519583
+      ,
+      "id": 124,
+      "popupContent": {
+        "title": "Máquina 5 - Facultad de Educación",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519483
+      ,
+      "id": 125,
+      "popupContent": {
+        "title": "Máquina 6 - Facultad de Educación",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.387833
+      ,
+      "lon": -0.519383
+      ,
+      "id": 126,
+      "popupContent": {
+        "title": "Máquina 7 - Facultad de Educación",
+        "description": "Teika. Máquina Mixta"
+      },
+      "edificio": "Facultad de Educación",
+      "type": "MIXTA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.343027
+      ,
+      "lon": -0.485670
+      ,
+      "id": 127,
+      "popupContent": {
+        "title": "Máquina 1 - Edificio San Fernando",
+        "description": "Teika. Máquina de Cafés"
+      },
+      "edificio": "Edificio San Fernando",
+      "type": "CAFETERA",
+      "lista_productos": [],
+      "lista_precios": []
+    },
+    {
+      "lat":38.343027
+      ,
+      "lon": -0.485570
+      ,
+      "id": 128,
+      "popupContent": {
+        "title": "Máquina 2 - Edificio San Fernando",
+        "description": "Teika. Máquina de Bebidas Frías"
+      },
+      "edificio": "Edificio San Fernando",
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": [],
+      "lista_precios": []
     }
+
+
 ]

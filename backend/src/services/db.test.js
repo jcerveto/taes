@@ -12,15 +12,21 @@ async function main() {
 
     const users = [
         {
+            username: "joannnn",
             name: "joan",
+            surname: "hola"
         },
         {
+            username: "adddd",
             name: "adri",
+            surname: "adios"
         }
     ]
     const usersTypes = users.map((u) => {
         const iterUser = new User();
+        iterUser.username = u.username;
         iterUser.name = u.name;
+        iterUser.surname = u.surname;
         iterUser.bornDate = new Date();
         iterUser.email = u.name + "@ua.es"
         iterUser.password = "1234";

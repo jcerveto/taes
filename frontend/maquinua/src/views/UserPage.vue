@@ -1,30 +1,36 @@
 <template>
-    <!-- 
-        FALTA: añadir un validador de si el usuario ha iniciado sesión, si no lo ha hecho hay que enviarle a LOGIN.
-
-        TO-DO: cuando tengamos la base de datos funcionando y podamos obtener los datos
-    -->
+    <div class="register-container">
+    <div class="form-container">
     <div class="user-page">
         <h1>User Page</h1>
 
-        <user-info :user="user" />
-        <h3> Hola, {{ "usuario" }}</h3>
+        <div class="user-actions" v-if="isLoggedIn">
+            <user-info :user="user" />
+            <h3> Hola, {{ usuario }}</h3>
+            
+            <router-link class="router-button" to="user/favourites">Favoritos</router-link> <br>
+            <router-link class="router-button" to="user/userstatistics">Estadísticas</router-link> <br>
+            <router-link class="router-button" to="user/myreviews">Mis Reseñas</router-link> <br>
+            <router-link class="router-button" to="user/myconsults">Mis Consultas</router-link> <br>
+            <router-link class="router-button" to="user/mylocations">Mis Ubicaciones</router-link> <br>
+            <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
+        </div>
 
-        <div class="user-actions">
-            <router-link class="router-button" to="/favourites">Favoritos</router-link> <br>
-            <router-link class="router-button" to="/userstatistics">Estadísticas</router-link> <br>
-            <router-link class="router-button" to="/myreviews">Mis Reseñas</router-link> <br>
-            <router-link class="router-button" to="/myconsults">Mis Consultas</router-link> <br>
-            <router-link class="router-button" to="/mylocations">Mis Ubicaciones</router-link> <br>
-            <router-link class="router-button" to="/mydata">Mis Datos</router-link> <br>
+        <div v-else>
+            <router-link class="router-button" to="/register">REGISTER</router-link> <br>
+            <router-link class="router-button" to="/signin">SIGN IN</router-link> <br>
         </div>
 
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
+</div>
+</div>
 </template>
 
 <script>
-    // Intento de pasar un objeto user para recibir el nombre
+    import Cookies from 'js-cookie';
+    import { jwtDecode } from 'jwt-decode';
+
     export default {
         name: 'UserPage',
         props: {
@@ -32,9 +38,29 @@
             type: Object,
             required: true,
             },
-        }
+        },
+        data() {
+            return {
+                isLoggedIn: false,
+                usuario: '',
+            };
+        },
+        created() {
+            
+            this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
+            
+            try {
+                const tokenDeSesion = localStorage.getItem("tokenDeSesion");
+                const decodedToken = jwtDecode(tokenDeSesion, 'secreto');
+                this.usuario = decodedToken.name;
+            } catch (error) {
+                console.error('Error al decodificar el token:', error);
+            }
+
+        },
     };
 </script>
+
 
 <style scoped>
     .router-button {
@@ -57,4 +83,21 @@
     .router-button:hover {
         background-color: #ddd; /* Cambio de color al pasar el ratón */
     }
+    .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
 </style>
