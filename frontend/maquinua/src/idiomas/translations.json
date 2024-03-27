@@ -1,0 +1,15 @@
+{
+    "es": {
+      "Inicio": "Inicio",
+      "Filtros": "Filtros"
+    },
+    "en": {
+      "Inicio": "Home",
+      "Filtros": "Filters"
+    },
+    "cat": {
+        "Inicio": "Inici",
+        "Filtros": "Filtres"
+      }
+
+}
