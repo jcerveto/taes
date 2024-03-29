@@ -2,6 +2,8 @@
   <img src="resources/readme/logo.png" alt="maquinua">
 </div>
 
+
+#### Encuentra la mejor máquina expendedora cuando más la necesitas.
 <hr>
 
 
@@ -13,7 +15,6 @@
 
 # ![maquinua's interface](resources/readme/screenshot.png)
 
-#### Encuentra la mejor máquina expendedora cuando más la necesitas.
 
 ### Proyecto creado durante el curso 2023-2024 en la asignatura de **TAES** (*TÉCNICAS AVANZADAS DE ESPECIFICACIÓN SOFTWARE*) de la [Escola Politècnica Superior](https://eps.ua.es/) en la [Universitat d'Alacant](https://www.ua.es/).
 
@@ -71,6 +72,11 @@ Lints and fixes files
 npm run lint
 ```
 
+Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+<hr>
+
 ### Levanta la base de datos en tu máquina local siguiendo los siguientes pasos:
 
 Ves a la carpeta `backend`.
@@ -82,6 +88,30 @@ Ejecuta el `docker-compose` para levantar la base de datos y el servidor **HTTP*
 ```sh
 docker-compose up -d
 ```
+
+### Con más detalles:
+Levantar todo: BBDD (MongoDB) + Backend HTTP (NodeJs Express)
+```sh
+docker-compose up
+```
+
+Se pueden levantar por separado los contenedores. Pero habría que configurar también la *network*. 
+
+Levantar base de datos
+```sh
+docker-compose run <container-name>
+```
+
+Una vez el contenedor ya esté corriendo, podemos entrar dentro con el siguiente comando:
+```sh
+docker exec -it backend-maquinua-container sh
+```
+Desde aquí podemos ejecutar test como `node src/services/db.test.js` de manera interactiva.
+
+**¡OJO en Windows!**
+Si estás en Windows y no te funciona, aasegúrate de estar ejecutando Docker desktop, no solamente los comandos por terminal. 
+
+
 
 
 ## 🛠 Tecnologías utilizadas
