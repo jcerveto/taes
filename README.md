@@ -21,13 +21,17 @@
 
 ## 🚩 Tabla de contenidos
 
-- [¿Por qué usar maquinua?](#-why-maquinua)
-- [Levantar el proyecto en local](#-create-your-maquinua)
-- [Contributing](#-contributing)
-- [Tecnologías utilizadas](#-tecnologies)
-- [Maquinua Team](#-maquinua-team)
-- [License](#-license)
+- [¿Por qué usar maquinua?](#why-maquinua)
+- [Levantar el proyecto en local](#levantar-el-proyecto-en-local)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Maquinua Team](#maquinua-team)
+- [Reportar un problema](#reporting)
+- [Contributing](#contributing)
+- [License](#license)
 
+
+
+<a id="why-maquinua"></a>
 ## 🤖 ¿Por qué *maquinua*?
 
 **maquinua** es una aplicación web que te permite encontrar la máquina expendedora más cercana a tu ubicación en la [Universitat d'Alacant](https://www.ua.es/). Puedes filtrar por tu facultad, nombre del producto y muchos más. Encontrás la ubicación de la máquina en un mapa.
@@ -40,6 +44,9 @@
 - **Precio del producto**: Filtra por el precio del producto que buscas.
 - **Empresa**: Filtra por la empresa que gestiona la máquina.
 
+
+
+<a id="levantar-el-proyecto-en-local"></a>
 ## 🚀 Levantar el proyecto en local
 
 ### Descarga el proyecto en tu máquina local siguiendo los siguientes pasos:
@@ -113,7 +120,7 @@ Si estás en Windows y no te funciona, aasegúrate de estar ejecutando Docker de
 
 
 
-
+<a id="tecnologías-utilizadas"></a>
 ## 🛠 Tecnologías utilizadas
 En este proyecto se han utilizado las siguientes tecnologías:
 
@@ -126,6 +133,9 @@ En este proyecto se han utilizado las siguientes tecnologías:
 ### Express.js
 ![Express.js](/resources/readme/express.jpg)
 
+### Git
+![Git](/resources/readme/git.png)
+
 ### Docker
 ![Docker](/resources/readme/docker.png)
 
@@ -135,6 +145,9 @@ En este proyecto se han utilizado las siguientes tecnologías:
 ### OpenStreetMap
 ![OpenStreetMap](/resources/readme/openstreetmap.png)
 
+
+
+<a id="maquinua-team"></a>
 ## 📚 Maquinua Team
 
 ### Profesorado
@@ -146,12 +159,25 @@ En este proyecto se han utilizado las siguientes tecnologías:
 * Adrián Romero Romero
 * etc
 
+![UA](/resources/readme/logo-ua.jpg)
+![EPS](/resources/readme/eps-ua.png)
+
+
+<a id="reporting"></a>
+## 🚨 Reportar un problema
+
+* Crea un [Issue](https://github.com/jcerveto/taes/issues/new) en este repositorio.
+* Explica claramente el problema y proporciona información sobre cómo reproducirlo.
+
+
+<a id="contributing"></a>
 ## 💬 Contributing
 
 ### Colabora con nosotros para mejorar **maquinua**.
 Ves a [Contributing.md](CONTRIBUTING.md) para más información.
 
 
+<a id="license"></a>
 ## 📜 License
 
 This software is licensed under the [APACHE VERSION 2.0](LICENSE.md).
