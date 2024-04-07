@@ -1,107 +1,77 @@
 <template>
   <div class="about-section">
-    <h1>About Us Page</h1>
-    <p>Some text about who we are and what we do.</p>
-    <p>Resize the browser window to see that this page is responsive by the way.</p>
+    <h1>Sobre nosotros</h1>
+    <p>¡Hola! Nosotros somos MIUA y ofrecemos soluciones en forma de mapas interactivos para la Universidad de Alicante</p>
+    <p>Presentamos ahora MaquinUA, un mapa interactivo en el que se muestra la ubicación exacta de todas las maquinas expendedoras de la UA</p>
   </div>
 
   <h2 style="text-align:center">Our Team</h2>
-  <div class="row">
-    <div class="column">
-      <div class="card">
-        <div class="container">
-          <h2>Jose Megía</h2>
-          <p class="title">CEO & Founder</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>jane@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Jose Megia</h5>
+        <p class="card-text">Mi compromiso con el diseño web y mi destreza en el desarrollo frontend son contribuciones esenciales para el equipo.</p>
       </div>
     </div>
-
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-        <div class="container">
-          <h2>Mike Ross</h2>
-          <p class="title">Art Director</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>mike@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Joan Cerveto</h5>
+        <p class="card-text">Mi pasion por las redes y mis conocimientos en backend me convierten en una pieza fundamental</p>
       </div>
     </div>
-
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-        <div class="container">
-          <h2>John Doe</h2>
-          <p class="title">Designer</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>john@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Nicolas Martin</h5>
+        <p class="card-text">Tengo una amplia variedad de conocimientos tanto en frontend como en backend. Puedo ayudar en todo tipo de tareas</p>
       </div>
     </div>
   </div>
 
-  <!-- Nueva fila con tres tarjetas -->
-  <div class="row">
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team4.jpg" alt="Emily" style="width:100%">
-        <div class="container">
-          <h2>Emily Smith</h2>
-          <p class="title">Marketing Manager</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>emily@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Adrian Romero</h5>
+        <p class="card-text">Me apasionan las bases de datos y las redes de intercomunicaciones. Mi pasion por el trabajo es inigualable.</p>
       </div>
     </div>
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team5.jpg" alt="David" style="width:100%">
-        <div class="container">
-          <h2>David Johnson</h2>
-          <p class="title">Software Engineer</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>david@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Carlos Guirao</h5>
+        <p class="card-text">Me apasiona aprender cada vez más y poder aportar todo lo que puedo al equipo</p>
       </div>
     </div>
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team6.jpg" alt="Sarah" style="width:100%">
-        <div class="container">
-          <h2>Sarah Brown</h2>
-          <p class="title">Project Manager</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>sarah@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Daniel Ripoll</h5>
+        <p class="card-text">Altos conocimientos en desarrollo backend y frontend. Me encanta aportar todo mi esfuerzo al equipo</p>
       </div>
     </div>
   </div>
 
-  <!-- Nueva fila con una tarjeta -->
-  <div class="row">
-    <div class="column">
-      <div class="card">
-        <img src="/w3images/team7.jpg" alt="Alex" style="width:100%">
-        <div class="container">
-          <h2>Alex Johnson</h2>
-          <p class="title">Graphic Designer</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>alex@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Cristian Córdoba</h5>
+        <p class="card-text">Me apasiona ayudar a mi equipo y aportar todos mis conocimientos en desarrollo web</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
       </div>
     </div>
   </div>
+  
 </template>
+
 
 
 <style>
