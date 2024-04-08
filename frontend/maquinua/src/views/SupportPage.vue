@@ -3,36 +3,44 @@
       <h1>Support Page</h1>
       <router-link to="/">Go to Home</router-link>
   
-      <div v-for="machine in filteredMachines" :key="machine.id" :class="getTableClass(machine.type)">
+      <!-- Creating a details element for each building -->
+      <div v-for="(building, index) in buildings" :key="index">
         <details>
-          <summary>{{ machine.popupContent.title }}</summary>
-          <table>
-            <tbody>
-              <tr>
-                <th>Título de la máquina</th>
-                <td>{{ machine.popupContent.title }}</td>
-              </tr>
-              <tr>
-                <th>Descripción de la máquina</th>
-                <td>{{ machine.popupContent.description }}</td>
-              </tr>
-              <tr>
-                <th>Tipo de máquina</th>
-                <td>{{ machine.type }}</td>
-              </tr>
-              <tr class="productos-header">
-                <th colspan="2">Productos</th>
-              </tr>
-              <tr>
-                <th>Nombre del producto</th>
-                <th>Precio del producto</th>
-              </tr>
-              <tr v-for="(product, index) in machine.lista_productos" :key="product" :class="{ odd: index % 2 === 0, even: index % 2 !== 0 }">
-                <td>{{ product }}</td>
-                <td>{{ machine.lista_precios[index] }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <summary>{{ building.name }}</summary>
+          <ul>
+            <!-- Listing each machine in the building -->
+            <li v-for="machine in building.machines" :key="machine.id">
+              <details>
+                <summary>{{ machine.popupContent.title }}</summary>
+                <div class="table-container">
+                  <table :class="getTableClass(machine.type)">
+                    <tbody>
+                      <tr>
+                        <th>Título de la máquina</th>
+                        <td>{{ machine.popupContent.title }}</td>
+                      </tr>
+                      <tr>
+                        <th>Descripción de la máquina</th>
+                        <td>{{ machine.popupContent.description }}</td>
+                      </tr>
+                      <tr>
+                        <th>Tipo de máquina</th>
+                        <td>{{ machine.type }}</td>
+                      </tr>
+                      <tr>
+                        <th>Nombre del producto</th>
+                        <td>{{ machine.lista_productos.join(', ') }}</td>
+                      </tr>
+                      <tr>
+                        <th>Precio del producto</th>
+                        <td>{{ machine.lista_precios.join(', ') }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </li>
+          </ul>
         </details>
       </div>
     </div>
@@ -42,13 +50,9 @@
   export default {
     data() {
       return {
-        machines: []
+        machines: [],
+        buildings: []
       };
-    },
-    computed: {
-      filteredMachines() {
-        return this.machines.filter(machine => machine.lista_productos.length > 0);
-      }
     },
     created() {
       this.fetchMachines();
@@ -59,17 +63,32 @@
           .then(response => response.json())
           .then(data => {
             this.machines = data;
+            this.groupMachinesByBuilding();
           })
           .catch(error => console.error('Error:', error));
       },
+      groupMachinesByBuilding() {
+        const buildingMap = {};
+        this.machines.forEach(machine => {
+          if (!buildingMap[machine.edificio]) {
+            buildingMap[machine.edificio] = {
+              name: machine.edificio,
+              machines: []
+            };
+          }
+          buildingMap[machine.edificio].machines.push(machine);
+        });
+        this.buildings = Object.values(buildingMap);
+      },
       getTableClass(type) {
+        // ... existing method ...
         const typeToClassMap = {
-          'MIXTA': 'mixta',
-          'CAFETERA': 'cafetera',
-          'BEBIDAS FRIAS': 'bebidas-frias',
-          'COMIDA SALUDABLE': 'comida-saludable'
-        };
-        return `table-${typeToClassMap[type] || type.toLowerCase()}`;
+        'MIXTA': 'mixta',
+        'CAFETERA': 'cafetera',
+        'BEBIDAS FRIAS': 'bebidas-frias',
+        'COMIDA SALUDABLE': 'comida-saludable'
+      };
+      return `table-${typeToClassMap[type] || type.toLowerCase()}`;
       }
     }
   };
