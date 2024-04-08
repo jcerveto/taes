@@ -12,7 +12,7 @@
       "edificio": "Aulario II",
       "type": "BEBIDAS FRIAS",
       "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
-      "lista_precios": [1.00, 1.25, 1.75]
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat": 38.385444
