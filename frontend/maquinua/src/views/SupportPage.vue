@@ -4,33 +4,36 @@
       <router-link to="/">Go to Home</router-link>
   
       <div v-for="machine in filteredMachines" :key="machine.id" :class="getTableClass(machine.type)">
-        <table>
-          <tbody>
-            <tr>
-              <th>Título de la máquina</th>
-              <td>{{ machine.popupContent.title }}</td>
-            </tr>
-            <tr>
-              <th>Descripción de la máquina</th>
-              <td>{{ machine.popupContent.description }}</td>
-            </tr>
-            <tr>
-              <th>Tipo de máquina</th>
-              <td>{{ machine.type }}</td>
-            </tr>
-            <tr class="productos-header">
-              <th colspan="2">Productos</th>
-            </tr>
-            <tr>
-              <th>Nombre del producto</th>
-              <th>Precio del producto</th>
-            </tr>
-            <tr v-for="(product, index) in machine.lista_productos" :key="product" :class="{'odd': index % 2 === 0, 'even': index % 2 !== 0}">
-              <td>{{ product }}</td>
-              <td>{{ machine.lista_precios[index] }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <details>
+          <summary>{{ machine.popupContent.title }}</summary>
+          <table>
+            <tbody>
+              <tr>
+                <th>Título de la máquina</th>
+                <td>{{ machine.popupContent.title }}</td>
+              </tr>
+              <tr>
+                <th>Descripción de la máquina</th>
+                <td>{{ machine.popupContent.description }}</td>
+              </tr>
+              <tr>
+                <th>Tipo de máquina</th>
+                <td>{{ machine.type }}</td>
+              </tr>
+              <tr class="productos-header">
+                <th colspan="2">Productos</th>
+              </tr>
+              <tr>
+                <th>Nombre del producto</th>
+                <th>Precio del producto</th>
+              </tr>
+              <tr v-for="(product, index) in machine.lista_productos" :key="product" :class="{ odd: index % 2 === 0, even: index % 2 !== 0 }">
+                <td>{{ product }}</td>
+                <td>{{ machine.lista_precios[index] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
       </div>
     </div>
   </template>
