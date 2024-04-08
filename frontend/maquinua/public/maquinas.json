@@ -56,8 +56,8 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat": 38.384639
@@ -71,8 +71,8 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat": 38.384639
@@ -176,8 +176,8 @@
       },
       "edificio": "Aulario II",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
+      "lista_precios": [2.15,1.65,1.75,2.00]
     },
     {
       "lat": 38.382778
@@ -206,8 +206,8 @@
       },
       "edificio": "Politécnica IV",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
+      "lista_precios": [1.35, 1.25, 1.75, 1.60]
     },
     {
       "lat": 38.382833
@@ -221,8 +221,8 @@
       },
       "edificio": "Politécnica IV",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
+      "lista_precios": [2.15,1.65,1.75,2.00]
     },
     {
       "lat": 38.383028
@@ -296,8 +296,8 @@
       },
       "edificio": "AULARIO III",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
+      "lista_precios": [2.15,1.65,1.75,2.00]
     },
     {
       "lat": 38.387361
@@ -326,8 +326,8 @@
       },
       "edificio": "Politécnica II",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
+      "lista_precios": [2.15,1.65,1.75,2.00]
     },
     {
       "lat": 38.386944
@@ -746,8 +746,8 @@
       },
       "edificio": "Filosofía y Letras I",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat": 38.385389
@@ -866,8 +866,8 @@
       },
       "edificio": "Derecho",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
+      "lista_precios": [1.35, 1.25, 1.75, 1.60]
     },
     {
       "lat": 38.385444
@@ -1016,8 +1016,8 @@
       },
       "edificio": "Biblioteca de Filosofía y Letras",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
+      "lista_precios": [1.35, 1.25, 1.75, 1.60]
     },
     {
       "lat": 38.383028
@@ -1241,8 +1241,8 @@
       },
       "edificio": "Polideportivo",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
+      "lista_precios": [1.35, 1.25, 1.75, 1.60]
     },
     {
       "lat":38.388806
@@ -1256,8 +1256,8 @@
       },
       "edificio": "Polideportivo",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat":38.388806
@@ -1797,9 +1797,9 @@
         "description": "Teika. Máquina de Bebidas Frías"
       },
       "edificio": "CTQ",
-      "type": "BEBIDAS FRIAS. Máquina de Bebidas Frías",
-      "lista_productos": [],
-      "lista_precios": []
+      "type": "BEBIDAS FRIAS",
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
       "lat":38.388000
