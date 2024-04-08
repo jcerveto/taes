@@ -1,15 +1,23 @@
 <template>
     <div>
       <h1>Support Page</h1>
+      <!-- Dropdown filter for machine type -->
+      <select v-model="selectedMachineType">
+        <option value="">All Types</option>
+        <option value="MIXTA">MIXTA</option>
+        <option value="CAFETERA">CAFETERA</option>
+        <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
+        <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
+      </select>
       <router-link to="/">Go to Home</router-link>
   
       <!-- Creating a details element for each building -->
-      <div v-for="(building, index) in buildings" :key="index">
+      <div v-for="(building, index) in filteredBuildings" :key="index">
         <details>
           <summary>{{ building.name }}</summary>
           <!-- Use a div to contain each vending machine detail for proper block display -->
           <div v-for="machine in building.machines" :key="machine.id">
-            <details>
+            <details v-if="!selectedMachineType || machine.type === selectedMachineType">
               <summary>{{ machine.popupContent.title }}</summary>
               <div class="table-container">
                 <!-- Machine details table here -->
@@ -51,11 +59,23 @@
   <script>
   export default {
     data() {
-      return {
-        machines: [],
-        buildings: []
-      };
+    return {
+      machines: [],
+      buildings: [],
+      selectedMachineType: '', // Holds the selected machine type
+    };
+  },
+
+  computed: {
+    filteredBuildings() {
+      // Filter buildings to include only those that have machines of the selected type
+      if (!this.selectedMachineType) return this.buildings;
+      return this.buildings.filter(building => 
+        building.machines.some(machine => machine.type === this.selectedMachineType)
+      );
     },
+  },
+
     created() {
       this.fetchMachines();
     },
