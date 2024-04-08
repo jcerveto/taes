@@ -1,50 +1,53 @@
 <template>
-    <div>
-      <h1>Support Page</h1>
-      <router-link to="/">Go to Home</router-link>
-  
-      <!-- Creating a details element for each building -->
-      <div v-for="(building, index) in buildings" :key="index">
-        <details>
-          <summary>{{ building.name }}</summary>
-          <ul>
-            <!-- Listing each machine in the building -->
-            <li v-for="machine in building.machines" :key="machine.id">
-              <details>
-                <summary>{{ machine.popupContent.title }}</summary>
-                <div class="table-container">
-                  <table :class="getTableClass(machine.type)">
-                    <tbody>
-                      <tr>
-                        <th>Título de la máquina</th>
-                        <td>{{ machine.popupContent.title }}</td>
-                      </tr>
-                      <tr>
-                        <th>Descripción de la máquina</th>
-                        <td>{{ machine.popupContent.description }}</td>
-                      </tr>
-                      <tr>
-                        <th>Tipo de máquina</th>
-                        <td>{{ machine.type }}</td>
-                      </tr>
-                      <tr>
-                        <th>Nombre del producto</th>
-                        <td>{{ machine.lista_productos.join(', ') }}</td>
-                      </tr>
-                      <tr>
-                        <th>Precio del producto</th>
-                        <td>{{ machine.lista_precios.join(', ') }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </details>
-      </div>
+  <div>
+    <h1>Support Page</h1>
+    <router-link to="/">Go to Home</router-link>
+
+    <!-- Creating a details element for each building -->
+    <div v-for="(building, index) in buildings" :key="index">
+      <details>
+        <summary>{{ building.name }}</summary>
+        <!-- Use a div to contain each vending machine detail for proper block display -->
+        <div v-for="machine in building.machines" :key="machine.id">
+          <details>
+            <summary>{{ machine.popupContent.title }}</summary>
+            <div class="table-container">
+              <!-- Machine details table here -->
+              <table :class="getTableClass(machine.type)">
+                <tbody>
+                  <!-- Table rows here -->
+                  <tr>
+                    <th>Título de la máquina</th>
+                    <td>{{ machine.popupContent.title }}</td>
+                  </tr>
+                  <tr>
+                    <th>Descripción de la máquina</th>
+                    <td>{{ machine.popupContent.description }}</td>
+                  </tr>
+                  <tr>
+                    <th>Tipo de máquina</th>
+                    <td>{{ machine.type }}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Producto</th>
+                  </tr>
+                  <tr>
+                    <th>Nombre del producto</th>
+                    <td>{{ machine.lista_productos.join(', ') }}</td>
+                  </tr>
+                  <tr>
+                    <th>Precio del producto</th>
+                    <td>{{ machine.lista_precios.join(', ') }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </details>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
   export default {
@@ -95,6 +98,17 @@
   </script>
   
   <style scoped>
+
+    div.table-container {
+  margin-top: 1em; /* Adds space between vending machine details */
+}
+
+details > summary {
+  cursor: pointer;
+  padding: 0.5em;
+  margin-top: 0.5em;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
