@@ -8,21 +8,23 @@
           <tbody>
             <tr>
               <th>Título de la máquina</th>
-              <td>{{ machine.popupContent.title }}</td>
+              <td colspan="4">{{ machine.popupContent.title }}</td>
             </tr>
             <tr>
               <th>Descripción de la máquina</th>
-              <td>{{ machine.popupContent.description }}</td>
+              <td colspan="4">{{ machine.popupContent.description }}</td>
             </tr>
             <tr>
               <th>Tipo de máquina</th>
-              <td>{{ machine.type }}</td>
+              <td colspan="4">{{ machine.type }}</td>
             </tr>
-            <tr v-for="(product, index) in machine.lista_productos" :key="`product-${index}`">
+            <tr>
               <th>Nombre del producto</th>
-              <td>{{ product }}</td>
+              <td v-for="product in machine.lista_productos" :key="product">{{ product }}</td>
+            </tr>
+            <tr>
               <th>Precio del producto</th>
-              <td>{{ machine.lista_precios[index] }}</td>
+              <td v-for="price in machine.lista_precios" :key="price">{{ price }}</td>
             </tr>
           </tbody>
         </table>
@@ -74,47 +76,66 @@
     margin-bottom: 2em;
   }
   
-  th, td {
-    padding: 0.5em;
-    border: 1px solid #ddd;
-  }
-  
   th {
     background-color: #f2f2f2;
     text-align: left;
+  }
+  
+  td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  td ul li {
+    padding: 0.5em;
+    border: 1px solid #ddd;
   }
   
   /* MIXTA style */
   .table-mixta th {
     background-color: #FFC0CB;
   }
-  .table-mixta td {
+  .table-mixta ul li:nth-child(odd) {
     background-color: #FFD6DD;
+  }
+  .table-mixta ul li:nth-child(even) {
+    background-color: #FFC0CB;
   }
   
   /* CAFETERA style */
   .table-cafetera th {
     background-color: #D2B48C;
   }
-  .table-cafetera td {
+  .table-cafetera ul li:nth-child(odd) {
     background-color: #E4CDA2;
+  }
+  .table-cafetera ul li:nth-child(even) {
+    background-color: #D2B48C;
   }
   
   /* BEBIDAS FRIAS style */
   .table-bebidas-frias th {
     background-color: #ADD8E6;
   }
-  .table-bebidas-frias td {
+  .table-bebidas-frias ul li:nth-child(odd) {
     background-color: #BFEFFF;
+  }
+  .table-bebidas-frias ul li:nth-child(even) {
+    background-color: #ADD8E6;
   }
   
   /* COMIDA SALUDABLE style */
   .table-comida-saludable th {
     background-color: #90EE90;
   }
-  .table-comida-saludable td {
+  .table-comida-saludable ul li:nth-child(odd) {
     background-color: #98FB98;
   }
+  .table-comida-saludable ul li:nth-child(even) {
+    background-color: #90EE90;
+  }
   </style>
+  
   
   
