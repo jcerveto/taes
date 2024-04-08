@@ -2,29 +2,32 @@
     <div>
       <h1>Support Page</h1>
       <router-link to="/">Go to Home</router-link>
-    
+  
       <div v-for="machine in filteredMachines" :key="machine.id" :class="getTableClass(machine.type)">
         <table>
           <tbody>
             <tr>
               <th>Título de la máquina</th>
-              <td colspan="4">{{ machine.popupContent.title }}</td>
+              <td>{{ machine.popupContent.title }}</td>
             </tr>
             <tr>
               <th>Descripción de la máquina</th>
-              <td colspan="4">{{ machine.popupContent.description }}</td>
+              <td>{{ machine.popupContent.description }}</td>
             </tr>
             <tr>
               <th>Tipo de máquina</th>
-              <td colspan="4">{{ machine.type }}</td>
+              <td>{{ machine.type }}</td>
+            </tr>
+            <tr class="productos-header">
+              <th colspan="2">Productos</th>
             </tr>
             <tr>
               <th>Nombre del producto</th>
-              <td v-for="product in machine.lista_productos" :key="product">{{ product }}</td>
-            </tr>
-            <tr>
               <th>Precio del producto</th>
-              <td v-for="price in machine.lista_precios" :key="price">{{ price }}</td>
+            </tr>
+            <tr v-for="(product, index) in machine.lista_productos" :key="product" :class="{'odd': index % 2 === 0, 'even': index % 2 !== 0}">
+              <td>{{ product }}</td>
+              <td>{{ machine.lista_precios[index] }}</td>
             </tr>
           </tbody>
         </table>
@@ -83,44 +86,43 @@ th, td {
 }
 
 /* MIXTA style - odd rows darker, even rows lighter */
-.table-mixta tr:nth-child(odd) th,
-.table-mixta tr:nth-child(odd) td {
-  background-color: #FFD6DD; /* Darker pink */
+.table-mixta tr:nth-child(odd) {
+  background-color: #FFD6DD; /* Darker pink for odd rows */
 }
-.table-mixta tr:nth-child(even) th,
-.table-mixta tr:nth-child(even) td {
-  background-color: #FFC0CB; /* Lighter pink */
+.table-mixta tr:nth-child(even), .table-mixta .productos-header {
+  background-color: #FFC0CB; /* Lighter pink for even rows and productos header */
 }
 
 /* CAFETERA style - odd rows darker, even rows lighter */
-.table-cafetera tr:nth-child(odd) th,
-.table-cafetera tr:nth-child(odd) td {
-  background-color: #E4CDA2; /* Darker brown */
+.table-cafetera tr:nth-child(odd) {
+  background-color: #D2B48C; /* Darker brown for odd rows */
 }
-.table-cafetera tr:nth-child(even) th,
-.table-cafetera tr:nth-child(even) td {
-  background-color: #D2B48C; /* Lighter brown */
+.table-cafetera tr:nth-child(even), .table-cafetera .productos-header {
+  background-color: #E4CDA2; /* Lighter brown for even rows and productos header */
 }
 
 /* BEBIDAS FRIAS style - odd rows darker, even rows lighter */
-.table-bebidas-frias tr:nth-child(odd) th,
-.table-bebidas-frias tr:nth-child(odd) td {
-  background-color: #ADD8E6; /* Darker blue */
+.table-bebidas-frias tr:nth-child(odd) {
+  background-color: #ADD8E6; /* Darker blue for odd rows */
 }
-.table-bebidas-frias tr:nth-child(even) th,
-.table-bebidas-frias tr:nth-child(even) td {
-  background-color: #BFEFFF; /* Lighter blue */
+.table-bebidas-frias tr:nth-child(even), .table-bebidas-frias .productos-header {
+  background-color: #BFEFFF; /* Lighter blue for even rows and productos header */
 }
 
 /* COMIDA SALUDABLE style - odd rows darker, even rows lighter */
-.table-comida-saludable tr:nth-child(odd) th,
-.table-comida-saludable tr:nth-child(odd) td {
-  background-color: #90EE90; /* Darker green */
+.table-comida-saludable tr:nth-child(odd) {
+  background-color: #90EE90; /* Darker green for odd rows */
 }
-.table-comida-saludable tr:nth-child(even) th,
-.table-comida-saludable tr:nth-child(even) td {
-  background-color: #98FB98; /* Lighter green */
+.table-comida-saludable tr:nth-child(even), .table-comida-saludable .productos-header {
+  background-color: #98FB98; /* Lighter green for even rows and productos header */
+}
+
+/* Adjusting the "Productos" header to span two columns */
+.productos-header th {
+  text-align: center;
+  font-weight: bold;
 }
 </style>
+
 
   
