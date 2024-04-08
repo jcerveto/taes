@@ -56,8 +56,8 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
-      "lista_precios": [1.00, 1.25, 1.75,2.15]
+      "lista_productos": ["Doritos", "Bocadillo mixto", "Chocoboms", "Oreos"],
+      "lista_precios": [2.25,1.25,2.75,1.60]
     },
     {
       "lat": 38.384639
