@@ -3,23 +3,25 @@
       <h1>Support Page</h1>
       <router-link to="/">Go to Home</router-link>
   
-      <div v-for="machine in machines" :key="machine.id">
-        <table v-if="machine.lista_productos.length > 0" :class="getTableClass(machine.type)">
-          <thead>
+      <div v-for="machine in filteredMachines" :key="machine.id" :class="getTableClass(machine.type)">
+        <table>
+          <tbody>
             <tr>
               <th>Título de la máquina</th>
-              <th>Descripción de la máquina</th>
-              <th>Tipo de máquina</th>
-              <th>Nombre del producto</th>
-              <th>Precio del producto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(product, index) in machine.lista_productos" :key="index">
               <td>{{ machine.popupContent.title }}</td>
+            </tr>
+            <tr>
+              <th>Descripción de la máquina</th>
               <td>{{ machine.popupContent.description }}</td>
+            </tr>
+            <tr>
+              <th>Tipo de máquina</th>
               <td>{{ machine.type }}</td>
+            </tr>
+            <tr v-for="(product, index) in machine.lista_productos" :key="`product-${index}`">
+              <th>Nombre del producto</th>
               <td>{{ product }}</td>
+              <th>Precio del producto</th>
               <td>{{ machine.lista_precios[index] }}</td>
             </tr>
           </tbody>
@@ -35,13 +37,16 @@
         machines: []
       };
     },
+    computed: {
+      filteredMachines() {
+        return this.machines.filter(machine => machine.lista_productos.length > 0);
+      }
+    },
     created() {
       this.fetchMachines();
     },
     methods: {
       fetchMachines() {
-        // Fetch the data from the local JSON file
-        // Note: Depending on your setup you might need to set the correct path to your JSON file
         fetch('/maquinas.json')
           .then(response => response.json())
           .then(data => {
@@ -50,34 +55,66 @@
           .catch(error => console.error('Error:', error));
       },
       getTableClass(type) {
-        switch (type) {
-          case 'MIXTA':
-            return 'table-mixta';
-          case 'CAFETERA':
-            return 'table-cafetera';
-          case 'BEBIDAS FRIAS':
-            return 'table-bebidas-frias';
-          case 'COMIDA SALUDABLE':
-            return 'table-comida-saludable';
-          default:
-            return '';
-        }
+        const typeToClassMap = {
+          'MIXTA': 'mixta',
+          'CAFETERA': 'cafetera',
+          'BEBIDAS FRIAS': 'bebidas-frias',
+          'COMIDA SALUDABLE': 'comida-saludable'
+        };
+        return `table-${typeToClassMap[type] || type.toLowerCase()}`;
       }
     }
   };
   </script>
   
-  <style>
-  /* Add your styles here, example for one type of machine */
-  .table-mixta thead {
-    background-color: #FFC0CB; /* Light pink background for header */
+  <style scoped>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
   }
-  .table-mixta tbody tr:nth-child(odd) {
-    background-color: #FFB6C1; /* Lighter pink for odd rows */
+  
+  th, td {
+    padding: 0.5em;
+    border: 1px solid #ddd;
   }
-  .table-mixta tbody tr:nth-child(even) {
-    background-color: #FFC0CB; /* Darker pink for even rows */
+  
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
   }
-  /* Repeat similar styles for .table-cafetera, .table-bebidas-frias, and .table-comida-saludable */
+  
+  /* MIXTA style */
+  .table-mixta th {
+    background-color: #FFC0CB;
+  }
+  .table-mixta td {
+    background-color: #FFD6DD;
+  }
+  
+  /* CAFETERA style */
+  .table-cafetera th {
+    background-color: #D2B48C;
+  }
+  .table-cafetera td {
+    background-color: #E4CDA2;
+  }
+  
+  /* BEBIDAS FRIAS style */
+  .table-bebidas-frias th {
+    background-color: #ADD8E6;
+  }
+  .table-bebidas-frias td {
+    background-color: #BFEFFF;
+  }
+  
+  /* COMIDA SALUDABLE style */
+  .table-comida-saludable th {
+    background-color: #90EE90;
+  }
+  .table-comida-saludable td {
+    background-color: #98FB98;
+  }
   </style>
+  
   
