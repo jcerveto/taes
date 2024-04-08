@@ -79,10 +79,18 @@ table {
   margin-bottom: 2em;
 }
 
-th, td {
+/*
+.myGood {
   padding: 0.5em;
   border: 1px solid #ddd;
   text-align: left;
+}
+*/
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 /* MIXTA style - odd rows darker, even rows lighter */
