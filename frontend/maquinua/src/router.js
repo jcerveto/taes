@@ -17,6 +17,7 @@ import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
+import SupportPage from './views/SupportPage.vue';
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
   {
     path: '/filter',
     component: FilterPage,
+  },
+
+  {
+    path: '/support',
+    component: SupportPage,
   },
   /*{
     path: '/',

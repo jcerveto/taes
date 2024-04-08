@@ -11,8 +11,23 @@
       },
       "edificio": "Aulario II",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Coca Cola", "Nestea", "Aquarius"],
-      "lista_precios": []
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
+      "lista_precios": [1.00, 1.25, 1.75]
+    },
+    {
+      "lat": 38.385444
+      ,
+      "lon": -0.516661
+      ,
+      "id": 57,
+      "popupContent": {
+        "title": "Máquina 3 - Derecho",
+        "description": "Teika. Máquina de Comida Saludable"
+      },
+      "edificio": "Derecho",
+      "type": "COMIDA SALUDABLE",
+      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
+      "lista_precios": [1.35, 1.25, 1.75, 1.60]
     },
     {
       "lat": 38.384306
@@ -26,8 +41,8 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Doritos", "Bocadillo mixto"],
-      "lista_precios": []
+      "lista_productos": ["Doritos", "Bocadillo mixto", "Chocoboms", "Oreos"],
+      "lista_precios": [2.25,1.25,2.75,1.60]
     },
     {
       "lat": 38.384750
@@ -71,7 +86,7 @@
       },
       "edificio": "Aulario II",
       "type": "CAFETERA",
-      "lista_productos": [],
+      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
       "lista_precios": []
     },
     {
