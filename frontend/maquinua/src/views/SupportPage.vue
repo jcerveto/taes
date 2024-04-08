@@ -1,53 +1,52 @@
 <template>
-  <div>
-    <h1>Support Page</h1>
-    <router-link to="/">Go to Home</router-link>
-
-    <!-- Creating a details element for each building -->
-    <div v-for="(building, index) in buildings" :key="index">
-      <details>
-        <summary>{{ building.name }}</summary>
-        <!-- Use a div to contain each vending machine detail for proper block display -->
-        <div v-for="machine in building.machines" :key="machine.id">
-          <details>
-            <summary>{{ machine.popupContent.title }}</summary>
-            <div class="table-container">
-              <!-- Machine details table here -->
-              <table :class="getTableClass(machine.type)">
-                <tbody>
-                  <!-- Table rows here -->
-                  <tr>
-                    <th>Título de la máquina</th>
-                    <td>{{ machine.popupContent.title }}</td>
-                  </tr>
-                  <tr>
-                    <th>Descripción de la máquina</th>
-                    <td>{{ machine.popupContent.description }}</td>
-                  </tr>
-                  <tr>
-                    <th>Tipo de máquina</th>
-                    <td>{{ machine.type }}</td>
-                  </tr>
-                  <tr>
-                    <th colspan="2">Producto</th>
-                  </tr>
-                  <tr>
-                    <th>Nombre del producto</th>
-                    <td>{{ machine.lista_productos.join(', ') }}</td>
-                  </tr>
-                  <tr>
-                    <th>Precio del producto</th>
-                    <td>{{ machine.lista_precios.join(', ') }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
-        </div>
-      </details>
+    <div>
+      <h1>Support Page</h1>
+      <router-link to="/">Go to Home</router-link>
+  
+      <!-- Creating a details element for each building -->
+      <div v-for="(building, index) in buildings" :key="index">
+        <details>
+          <summary>{{ building.name }}</summary>
+          <!-- Use a div to contain each vending machine detail for proper block display -->
+          <div v-for="machine in building.machines" :key="machine.id">
+            <details>
+              <summary>{{ machine.popupContent.title }}</summary>
+              <div class="table-container">
+                <!-- Machine details table here -->
+                <table :class="getTableClass(machine.type)">
+                  <tbody>
+                    <tr>
+                      <th>Título de la máquina</th>
+                      <td>{{ machine.popupContent.title }}</td>
+                    </tr>
+                    <tr>
+                      <th>Descripción de la máquina</th>
+                      <td>{{ machine.popupContent.description }}</td>
+                    </tr>
+                    <tr>
+                      <th>Tipo de máquina</th>
+                      <td>{{ machine.type }}</td>
+                    </tr>
+                    <tr class="productos-header">
+                      <th colspan="2">Productos</th>
+                    </tr>
+                    <tr>
+                      <th>Nombre del producto</th>
+                      <th>Precio del producto</th>
+                    </tr>
+                    <tr v-for="(product, index) in machine.lista_productos" :key="product" :class="{ odd: index % 2 === 0, even: index % 2 !== 0 }">
+                      <td>{{ product }}</td>
+                      <td>{{ machine.lista_precios[index] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
     </div>
-  </div>
-</template>
+  </template>
   
   <script>
   export default {
@@ -84,14 +83,13 @@
         this.buildings = Object.values(buildingMap);
       },
       getTableClass(type) {
-        // ... existing method ...
         const typeToClassMap = {
-        'MIXTA': 'mixta',
-        'CAFETERA': 'cafetera',
-        'BEBIDAS FRIAS': 'bebidas-frias',
-        'COMIDA SALUDABLE': 'comida-saludable'
-      };
-      return `table-${typeToClassMap[type] || type.toLowerCase()}`;
+          'MIXTA': 'mixta',
+          'CAFETERA': 'cafetera',
+          'BEBIDAS FRIAS': 'bebidas-frias',
+          'COMIDA SALUDABLE': 'comida-saludable'
+        };
+        return `table-${typeToClassMap[type] || type.toLowerCase()}`;
       }
     }
   };
