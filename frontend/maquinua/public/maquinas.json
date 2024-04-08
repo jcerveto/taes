@@ -56,7 +56,7 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Doritos"],
+      "lista_productos": [],
       "lista_precios": []
     },
     {
@@ -87,7 +87,7 @@
       "edificio": "Aulario II",
       "type": "CAFETERA",
       "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
-      "lista_precios": []
+      "lista_precios": [2.15,1.65,1.75,2.00]
     },
     {
       "lat": 38.384389

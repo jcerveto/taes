@@ -70,26 +70,57 @@
   </script>
   
   <style scoped>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 2em;
-  }
-  
-  th {
-    text-align: left;
-  }
-  
-  /* Zebra striping styles */
-  tr:nth-child(odd) {
-    background-color: #ADD8E6; /* Lighter color for odd rows */
-  }
-  
-  tr:nth-child(even) {
-    background-color: #BFEFFF; /* Darker color for even rows */
-  }
-  
-  /* Additional styles for different types of machines can be added here */
-  /* ... */
-  </style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2em;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* MIXTA style - odd rows darker, even rows lighter */
+.table-mixta tr:nth-child(odd) th,
+.table-mixta tr:nth-child(odd) td {
+  background-color: #FFD6DD; /* Darker pink */
+}
+.table-mixta tr:nth-child(even) th,
+.table-mixta tr:nth-child(even) td {
+  background-color: #FFC0CB; /* Lighter pink */
+}
+
+/* CAFETERA style - odd rows darker, even rows lighter */
+.table-cafetera tr:nth-child(odd) th,
+.table-cafetera tr:nth-child(odd) td {
+  background-color: #E4CDA2; /* Darker brown */
+}
+.table-cafetera tr:nth-child(even) th,
+.table-cafetera tr:nth-child(even) td {
+  background-color: #D2B48C; /* Lighter brown */
+}
+
+/* BEBIDAS FRIAS style - odd rows darker, even rows lighter */
+.table-bebidas-frias tr:nth-child(odd) th,
+.table-bebidas-frias tr:nth-child(odd) td {
+  background-color: #ADD8E6; /* Darker blue */
+}
+.table-bebidas-frias tr:nth-child(even) th,
+.table-bebidas-frias tr:nth-child(even) td {
+  background-color: #BFEFFF; /* Lighter blue */
+}
+
+/* COMIDA SALUDABLE style - odd rows darker, even rows lighter */
+.table-comida-saludable tr:nth-child(odd) th,
+.table-comida-saludable tr:nth-child(odd) td {
+  background-color: #90EE90; /* Darker green */
+}
+.table-comida-saludable tr:nth-child(even) th,
+.table-comida-saludable tr:nth-child(even) td {
+  background-color: #98FB98; /* Lighter green */
+}
+</style>
+
   
