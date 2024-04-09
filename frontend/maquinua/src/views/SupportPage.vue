@@ -117,7 +117,7 @@ export default {
       return building.machines.filter(machine => {
         const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
         const matchesProduct = !this.productFilter || machine.lista_productos.some(product =>
-          product.toLowerCase().includes(this.productFilter.toLowerCase()));
+          product.toLowerCase().startsWith(this.productFilter.toLowerCase())); // Adjusted to use startsWith
         const matchesMinPrice = !this.minPrice || machine.lista_precios.some(price => price >= this.minPrice);
         const matchesMaxPrice = !this.maxPrice || machine.lista_precios.some(price => price <= this.maxPrice);
 
