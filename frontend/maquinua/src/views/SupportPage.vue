@@ -21,7 +21,6 @@
     <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10">
     <br>
     <router-link to="/">Go to Home</router-link>
-    <br>
 
     <div v-for="(building, index) in filteredBuildings" :key="index">
       <details>
@@ -81,8 +80,16 @@ export default {
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Filters buildings based on the applied filters
-      return this.buildings.filter(building => this.filteredMachines(building).length > 0);
+      // Filters buildings based on the selected machine type, building, product filter, and price filters
+      if (this.selectedBuilding) {
+        // Filter for a specific selected building
+        return this.buildings.filter(building => 
+          building.name === this.selectedBuilding && this.filteredMachines(building).length > 0
+        );
+      } else {
+        // No specific building selected, apply other filters
+        return this.buildings.filter(building => this.filteredMachines(building).length > 0);
+      }
     },
   },
   methods: {
