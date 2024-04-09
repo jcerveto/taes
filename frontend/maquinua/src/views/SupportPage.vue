@@ -1,24 +1,27 @@
 <template>
-  <div>
+   <div>
     <h1>Support Page</h1>
-    <!-- Dropdown filter for machine type -->
-    <select v-model="selectedMachineType">
-      <option value="">All Types</option>
-      <option value="MIXTA">MIXTA</option>
-      <option value="CAFETERA">CAFETERA</option>
-      <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
-      <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
-    </select>
-    <!-- Dropdown filter for building -->
-    <select v-model="selectedBuilding">
-      <option value="">All Buildings</option>
-      <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
-    </select>
-    <input type="text" v-model="productFilter" placeholder="Producto concreto">
-    <!-- Input for Precio mínimo -->
-    <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10">
-    <!-- Input for Precio máximo -->
-    <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10">
+    <div class="filter-container">
+      <!-- Dropdown filter for machine type with class added -->
+      <select v-model="selectedMachineType" class="filter-dropdown">
+        <option value="">All Types</option>
+        <option value="MIXTA">MIXTA</option>
+        <option value="CAFETERA">CAFETERA</option>
+        <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
+        <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
+      </select>
+      <!-- Dropdown filter for building with class added -->
+      <select v-model="selectedBuilding" class="filter-dropdown">
+        <option value="">All Buildings</option>
+        <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
+      </select>
+      <!-- Input for specific product with class added -->
+      <input type="text" v-model="productFilter" placeholder="Producto concreto" class="filter-input">
+      <!-- Input for Precio mínimo with class added -->
+      <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10" class="filter-input">
+      <!-- Input for Precio máximo with class added -->
+      <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10" class="filter-input">
+    </div>
     <br>
     <router-link to="/">Go to Home</router-link>
 
@@ -175,10 +178,6 @@ export default {
 };
 </script>
 
-
-
-
-
   
   <style scoped>
 
@@ -249,6 +248,40 @@ th, td {
   text-align: center;
   font-weight: bold;
 }
+
+/* Add styles for the filter section */
+.filter-container {
+  display: flex;
+  gap: 8px; /* Adjust the space between filters */
+  margin-bottom: 16px; /* Space below the filter section */
+  justify-content: center;
+}
+
+.filter-container select,
+.filter-container input {
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px; /* Rounded corners */
+  outline: none; /* Removes the default focus outline */
+}
+
+.filter-container select:focus,
+.filter-container input:focus {
+  border-color: #666666; /* Darker border on focus */
+}
+
+/* Style the dropdown to match the provided style */
+.filter-container select {
+  -webkit-appearance: none; /* Removes default arrow in WebKit browsers */
+  -moz-appearance: none; /* Removes default arrow in Firefox */
+  appearance: none; /* Removes default arrow */
+  background-size: 12px; /* Adjust as needed */
+  cursor: pointer;
+}
+
+/* You may need to adjust the URL to the correct path of your dropdown arrow image */
+
+
 </style>
 
 
