@@ -51,9 +51,9 @@
                     <th> Precio del producto</th>
                   </tr>
                   <!-- Looping through each product and price pair -->
-                  <tr v-for="(product, index) in machine.lista_productos" :key="product">
-                    <td>{{ product }}</td>
-                    <td>{{ machine.lista_precios[index] }}</td>
+                  <tr v-for="(product, index) in machine.lista_productos" :key="index">
+                    <td contenteditable="true" @blur="updateProductName(machine.id, index, $event.target.innerText)">{{ product }}</td>
+                    <td contenteditable="true" @blur="updateProductPrice(machine.id, index, $event.target.innerText)" @input="validatePrice($event)">{{ machine.lista_precios[index].toFixed(2) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -137,10 +137,41 @@ export default {
       };
       return `table-${typeToClassMap[type] || type.toLowerCase()}`;
     },
+
+
+    updateProductName(machineId, productIndex, newName) {
+    // Find machine by id and update the product name
+    // This is a placeholder; actual implementation will depend on how you manage state and backend updates
+    console.log(`Update product name for machine ${machineId}, product index ${productIndex}, new name: ${newName}`);
+    // Example: this.machines.find(machine => machine.id === machineId).lista_productos[productIndex] = newName;
+    // You would typically make an API call here to update the backend
+    },
+    updateProductPrice(machineId, productIndex, newPrice) {
+    const price = parseFloat(newPrice).toFixed(2);
+    if (!isNaN(price)) {
+      // Find machine by id and update the product price
+      // This is a placeholder; actual implementation will depend on your state management and backend update mechanism
+      console.log(`Update product price for machine ${machineId}, product index ${productIndex}, new price: ${price}`);
+      // Example: this.machines.find(machine => machine.id === machineId).lista_precios[productIndex] = parseFloat(price);
+      // You would typically make an API call here to update the backend
+    }
+   },
+  validatePrice(event) {
+    // Prevent input if it's not a number or if it doesn't fit the price format
+    const input = event.target.innerText;
+    const validFormat = /^\d+(\.\d{0,2})?$/;
+    if (!validFormat.test(input)) {
+      event.target.innerText = input.slice(0, -1);
+    }
+   },
+
   },
   created() {
     this.fetchMachines();
   }
+
+  
+
 };
 </script>
 
