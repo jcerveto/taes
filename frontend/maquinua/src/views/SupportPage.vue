@@ -19,7 +19,9 @@
     <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10">
     <!-- Input for Precio máximo -->
     <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10">
+    <br>
     <router-link to="/">Go to Home</router-link>
+    <br>
 
     <div v-for="(building, index) in filteredBuildings" :key="index">
       <details>
@@ -79,7 +81,7 @@ export default {
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Filters buildings based on the selected machine type, building, product filter, min price, and max price
+      // Filters buildings based on the applied filters
       return this.buildings.filter(building => this.filteredMachines(building).length > 0);
     },
   },
@@ -104,19 +106,23 @@ export default {
       this.buildings = Object.values(buildingMap);
     },
     filteredMachines(building) {
+      // Filters machines within each building based on the applied filters
       return building.machines.filter(machine => {
         const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
         const matchesProduct = !this.productFilter || machine.lista_productos.some(product =>
           product.toLowerCase().includes(this.productFilter.toLowerCase()));
-        const matchesMinPrice = this.minPrice === null || machine.lista_precios.some(price => price >= this.minPrice);
-        const matchesMaxPrice = this.maxPrice === null || machine.lista_precios.some(price => price <= this.maxPrice);
+        const matchesMinPrice = !this.minPrice || machine.lista_precios.some(price => price >= this.minPrice);
+        const matchesMaxPrice = !this.maxPrice || machine.lista_precios.some(price => price <= this.maxPrice);
 
         return matchesType && matchesProduct && matchesMinPrice && matchesMaxPrice;
       });
     },
     getTableClass(type) {
       const typeToClassMap = {
-        'MIXTA': 'mixta', 'CAFETERA': 'cafetera', 'BEBIDAS FRIAS': 'bebidas-frias', 'COMIDA SALUDABLE': 'comida-saludable'
+        'MIXTA': 'mixta',
+        'CAFETERA': 'cafetera',
+        'BEBIDAS FRIAS': 'bebidas-frias',
+        'COMIDA SALUDABLE': 'comida-saludable'
       };
       return `table-${typeToClassMap[type] || type.toLowerCase()}`;
     },
@@ -126,6 +132,9 @@ export default {
   }
 };
 </script>
+
+
+
 
 
   
