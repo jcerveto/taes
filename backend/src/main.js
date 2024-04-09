@@ -135,6 +135,37 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/incidents', async (req, res) => {
+    try {
+        const incidecia = req.body;
+        const newIncident = await Incident.create(incidecia);
+        res.json(newIncident);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        await Incident.delete(req.params.id);
+        res.json({ message: 'Incident deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
