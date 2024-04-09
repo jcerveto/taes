@@ -46,6 +46,10 @@
                   <tr class="productos-header">
                     <th colspan="2">Productos</th>
                   </tr>
+                  <tr>
+                    <th> Nombre del producto</th>
+                    <th> Precio del producto</th>
+                  </tr>
                   <!-- Looping through each product and price pair -->
                   <tr v-for="(product, index) in machine.lista_productos" :key="product">
                     <td>{{ product }}</td>
