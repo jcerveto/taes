@@ -15,21 +15,6 @@
       "lista_precios": [1.00, 1.25, 1.75,2.15]
     },
     {
-      "lat": 38.385444
-      ,
-      "lon": -0.516661
-      ,
-      "id": 57,
-      "popupContent": {
-        "title": "Máquina 3 - Derecho",
-        "description": "Teika. Máquina de Comida Saludable"
-      },
-      "edificio": "Derecho",
-      "type": "COMIDA SALUDABLE",
-      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
-      "lista_precios": [1.35, 1.25, 1.75, 1.60]
-    },
-    {
       "lat": 38.384306
       ,
       "lon": -0.510178
