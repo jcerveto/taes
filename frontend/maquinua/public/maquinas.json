@@ -11,7 +11,7 @@
       },
       "edificio": "Aulario II",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": [],
+      "lista_productos": ["Coca Cola", "Nestea", "Aquarius"],
       "lista_precios": []
     },
     {
@@ -26,7 +26,7 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
+      "lista_productos": ["Doritos", "Bocadillo mixto"],
       "lista_precios": []
     },
     {
@@ -41,7 +41,7 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
+      "lista_productos": ["Doritos"],
       "lista_precios": []
     },
     {
