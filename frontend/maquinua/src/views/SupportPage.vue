@@ -14,8 +14,7 @@
       <option value="">All Buildings</option>
       <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
     </select>
-    <input type="text" v-model="productFilter" placeholder="Producto concreto">
-    <button @click="applyProductFilter">Apply</button>
+    <input type="text" v-model="filteredProduct" placeholder="Producto concreto">
     <router-link to="/">Go to Home</router-link>
 
     <!-- Creating a details element for each filtered building -->
@@ -77,16 +76,18 @@ export default {
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Adjusted to include product filter in building filtering
-      return this.buildings.filter(building => 
-        (!this.selectedMachineType || building.machines.some(machine => machine.type === this.selectedMachineType)) &&
-        (!this.selectedBuilding || building.name === this.selectedBuilding) &&
-        (!this.filteredProduct || building.machines.some(machine => 
+      // Filter buildings and machines based on selected filters and product filter
+      return this.buildings.filter(building => {
+        const hasMachineType = !this.selectedMachineType || building.machines.some(machine => machine.type === this.selectedMachineType);
+        const isBuildingSelected = !this.selectedBuilding || building.name === this.selectedBuilding;
+        const hasProduct = !this.filteredProduct.trim().toLowerCase() || building.machines.some(machine => 
           machine.lista_productos.some(product =>
-            product.toLowerCase().includes(this.filteredProduct.toLowerCase())
+            product.toLowerCase().startsWith(this.filteredProduct.trim().toLowerCase()) || 
+            product.toLowerCase() === this.filteredProduct.trim().toLowerCase()
           )
-        ))
-      );
+        );
+        return hasMachineType && isBuildingSelected && hasProduct;
+      });
     },
   },
   created() {
@@ -119,7 +120,7 @@ export default {
       // Convert the filter to lower case for case-insensitive comparison
       this.filteredProduct = this.productFilter.trim().toLowerCase();
     },
-    
+
     matchesFilters(machine) {
       // Method now checks if product names start with the filter string
       const filter = this.filteredProduct;
