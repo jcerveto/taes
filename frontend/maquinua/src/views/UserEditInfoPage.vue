@@ -11,16 +11,15 @@
 
       <!-- Campos modificables -->
       <div>
-        <label for="username">Usuario:</label><br>
+        <label for="username">Userame:</label><br>
         <input type="text" id="username" v-model="username" @click="editField('username')" /><br>
-        <span v-if="username === '' && usernameDirty" style="color: red;">El nombre de usuario es requerido</span><br><br>
+        {{ username === '' ? 'El nombre de usuario no puede estar vacío' : '' }}<br>
 
         <label for="name">Nombre:</label><br>
-        <input type="text" id="name" v-model="name" @click="editField('name')" /><br>
-        <span v-if="name === '' && nameDirty" style="color: red;">El nombre es requerido</span><br><br>
+        <input type="text" id="name" v-model="name" @click="editField('name')" /><br><br>
 
         <label for="surname">Apellido:</label><br>
-        <input type="text" id="surname" v-model="surname" @click="editField('surname')" /><br>
+        <input type="text" id="surname" v-model="surname" @click="editField('surname')" /><br><br>
         <span v-if="surname === '' && surnameDirty" style="color: red;">El apellido es requerido</span><br><br>
 
         <label for="password">Contraseña:</label><br>
@@ -60,6 +59,8 @@
 <script>
 import axios from 'axios';
 
+import { useUserStore } from '../stores/user-store-setup';
+
 export default {
   data() {
     return {
@@ -75,31 +76,32 @@ export default {
       emailValid: false,
       bornDateValid: false,
       nameDirty: false,
+      usernameDirty: false,
       surnameDirty: false,
       emailDirty: false,
       bornDateDirty: false,
     };
   },
   created() {
-    this.getUserData();
+    const userStore = useUserStore();
+    // Aquí obtienes los datos del usuario
+    this.email = userStore.uid;
+    console.log('Email del usuario:', this.email);
+
+    axios.get(`http://localhost:3000/users/${this.email}`, { withCredentials: true })
+      .then((res) => {
+        this.name = res.data.name;
+        this.surname = res.data.surname;
+        this.email = res.data.email;
+        this.username = res.data.username;
+        this.password = res.data.password; 
+        this.initialUsername = res.data.username;
+      })
+      .catch((error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      });
   },
   methods: {
-    async getUserData() {
-      // Aquí obtienes los datos del usuario
-      this.email = 'test@example.com';
-      await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
-        .then((res) => {
-          this.name = res.data.name;
-          this.surname = res.data.surname;
-          this.email = res.data.email;
-          this.username = res.data.username;
-          this.password = res.data.password; 
-          this.initialUsername = res.data.username;
-        })
-        .catch((error) => {
-          console.error('Error al obtener datos del usuario:', error);
-        });
-    },
     async submitForm() {
       const confirmation = confirm('¿Estás seguro de que deseas actualizar tus datos?');
       if (!confirmation) {
@@ -108,7 +110,7 @@ export default {
 
       if (this.validateForm()) {
         try {
-          await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
+          await axios.get(`http://localhost:3000/users/${this.email}`, { withCredentials: true })
             .then((res) => {
               if(this.username === res.data.username){
                 alert('El nombre de usuario ya existe. Por favor, elige otro.');

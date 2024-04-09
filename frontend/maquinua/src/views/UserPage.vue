@@ -5,7 +5,6 @@
         <h1>User Page</h1>
 
         <div class="user-actions" v-if="isLoggedIn">
-            <user-info :user="user" />
             <h3> Hola, {{ usuario }}</h3>
             
             <router-link class="router-button" to="user/favourites">Favoritos</router-link> <br>
@@ -14,13 +13,14 @@
             <router-link class="router-button" to="user/myconsults">Mis Consultas</router-link> <br>
             <router-link class="router-button" to="user/mylocations">Mis Ubicaciones</router-link> <br>
             <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
+            <router-link @click="logout()" to="/">Log out</router-link> <br>
         </div>
 
         <div v-else>
             <router-link class="router-button" to="/register">REGISTER</router-link> <br>
             <router-link class="router-button" to="/signin">SIGN IN</router-link> <br>
         </div>
-
+        
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
 </div>
@@ -28,17 +28,10 @@
 </template>
 
 <script>
-    import Cookies from 'js-cookie';
-    import { jwtDecode } from 'jwt-decode';
+    import { useUserStore } from '../stores/user-store-setup';
 
     export default {
         name: 'UserPage',
-        props: {
-            user: {
-            type: Object,
-            required: true,
-            },
-        },
         data() {
             return {
                 isLoggedIn: false,
@@ -46,18 +39,28 @@
             };
         },
         created() {
-            
-            this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
-            
+            const userStore = useUserStore();
             try {
-                const tokenDeSesion = localStorage.getItem("tokenDeSesion");
-                const decodedToken = jwtDecode(tokenDeSesion, 'secreto');
-                this.usuario = decodedToken.name;
+                if (userStore.user) {
+                    this.isLoggedIn = true;
+                    this.usuario = userStore.user;
+                }
             } catch (error) {
                 console.error('Error al decodificar el token:', error);
             }
 
         },
+        methods: {
+            logout() {
+                try {
+                    const userStore = useUserStore();
+                    userStore.logout();
+                    this.isLoggedIn = false;
+                } catch (error) {
+                    console.error('Error al cerrar sesión:', error);
+                }
+            }
+        }
     };
 </script>
 
