@@ -14,6 +14,8 @@
       <option value="">All Buildings</option>
       <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
     </select>
+    <input type="text" v-model="productFilter" placeholder="Producto concreto">
+    <button @click="applyProductFilter">Apply</button>
     <router-link to="/">Go to Home</router-link>
 
     <!-- Creating a details element for each filtered building -->
@@ -64,6 +66,8 @@ export default {
       buildings: [],
       selectedMachineType: '', // Holds the selected machine type
       selectedBuilding: '', // Holds the selected building
+      productFilter: '', // New filter for product name
+      filteredProduct: '', // Holds the applied product filter after button click
     };
   },
   computed: {
@@ -73,10 +77,15 @@ export default {
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Filter buildings to match both selected machine type and selected building
+      // Adjusted to include product filter in building filtering
       return this.buildings.filter(building => 
         (!this.selectedMachineType || building.machines.some(machine => machine.type === this.selectedMachineType)) &&
-        (!this.selectedBuilding || building.name === this.selectedBuilding)
+        (!this.selectedBuilding || building.name === this.selectedBuilding) &&
+        (!this.filteredProduct || building.machines.some(machine => 
+          machine.lista_productos.some(product =>
+            product.toLowerCase().includes(this.filteredProduct.toLowerCase())
+          )
+        ))
       );
     },
   },
@@ -106,9 +115,19 @@ export default {
       });
       this.buildings = Object.values(buildingMap);
     },
+    applyProductFilter() {
+      // Apply the product filter when button is clicked
+      this.filteredProduct = this.productFilter;
+    },
     matchesFilters(machine) {
-      return (!this.selectedMachineType || machine.type === this.selectedMachineType) &&
-             (!this.selectedBuilding || machine.edificio === this.selectedBuilding);
+      // Updated method to include the new product filter
+      const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
+      const matchesBuilding = !this.selectedBuilding || machine.edificio === this.selectedBuilding;
+      const matchesProduct = !this.filteredProduct || machine.lista_productos.some(product => 
+        product.toLowerCase().includes(this.filteredProduct.toLowerCase())
+      );
+
+      return matchesType && matchesBuilding && matchesProduct;
     },
     getTableClass(type) {
       const typeToClassMap = {
@@ -118,7 +137,8 @@ export default {
         'COMIDA SALUDABLE': 'comida-saludable'
       };
       return `table-${typeToClassMap[type] || type.toLowerCase()}`;
-    }
+    },
+    
   }
 };
 </script>
