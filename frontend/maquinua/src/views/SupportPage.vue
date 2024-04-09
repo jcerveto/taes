@@ -5,7 +5,7 @@
     <router-link to="/" class="allign-right-home">Go to Home</router-link>
     <br>
     <div class="filter-container">
-      
+
       <select v-model="selectedMachineType" class="filter-dropdown">
         <option value="">Todos los tipos</option>
         <option value="MIXTA">MIXTA</option>
@@ -44,7 +44,7 @@
           <details>
             <summary>{{ machine.popupContent.title }}</summary>
             <div class="table-container">
-              <table :class="getTableClass(machine.type)">
+              <table :class="getTableClass(machine.type)" style="margin-left: auto; margin-right: auto; width: 80%;" >
                 <tbody>
                   <tr>
                     <th>Título de la máquina</th>
@@ -185,6 +185,8 @@ export default {
 
     div.table-container {
   margin-top: 1em; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 details > summary {
