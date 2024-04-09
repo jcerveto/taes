@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Support Page</h1>
+    <!-- Dropdown filter for machine type -->
     <select v-model="selectedMachineType">
       <option value="">All Types</option>
       <option value="MIXTA">MIXTA</option>
@@ -8,6 +9,7 @@
       <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
       <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
     </select>
+    <!-- Dropdown filter for building -->
     <select v-model="selectedBuilding">
       <option value="">All Buildings</option>
       <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
@@ -15,7 +17,10 @@
     <input type="text" v-model="productFilter" placeholder="Producto concreto">
     <!-- Input for Precio mínimo -->
     <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10">
+    <!-- Input for Precio máximo -->
+    <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10">
     <router-link to="/">Go to Home</router-link>
+
     <div v-for="(building, index) in filteredBuildings" :key="index">
       <details>
         <summary>{{ building.name }}</summary>
@@ -40,11 +45,8 @@
                   <tr class="productos-header">
                     <th colspan="2">Productos</th>
                   </tr>
-                  <tr>
-                    <th>Nombre del producto</th>
-                    <th>Precio del producto</th>
-                  </tr>
-                  <tr v-for="(product, index) in machine.lista_productos" :key="index">
+                  <!-- Looping through each product and price pair -->
+                  <tr v-for="(product, index) in machine.lista_productos" :key="product">
                     <td>{{ product }}</td>
                     <td>{{ machine.lista_precios[index] }}</td>
                   </tr>
@@ -58,7 +60,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
@@ -69,6 +70,7 @@ export default {
       selectedBuilding: '',
       productFilter: '',
       minPrice: null, // Holds the minimum price entered by the user
+      maxPrice: null, // Holds the maximum price entered by the user
     };
   },
   computed: {
@@ -77,15 +79,12 @@ export default {
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Enhanced to ensure buildings are filtered based on the building, machine type, product, and price filters.
-      return this.buildings.filter(building => {
-        return building.machines.some(machine => this.matchesFilters(machine, building));
-      });
+      // Filters buildings based on the selected machine type, building, product filter, min price, and max price
+      return this.buildings.filter(building => this.filteredMachines(building).length > 0);
     },
   },
   methods: {
     fetchMachines() {
-      // Fetch machines and group them by building
       fetch('/maquinas.json')
         .then(response => response.json())
         .then(data => {
@@ -95,7 +94,6 @@ export default {
         .catch(error => console.error('Error:', error));
     },
     groupMachinesByBuilding() {
-      // Group machines by building for easier filtering
       const buildingMap = {};
       this.machines.forEach(machine => {
         if (!buildingMap[machine.edificio]) {
@@ -105,22 +103,18 @@ export default {
       });
       this.buildings = Object.values(buildingMap);
     },
-    matchesFilters(machine, building) {
-      // Checks if machine matches all active filters
-      const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
-      const matchesBuilding = !this.selectedBuilding || building.name === this.selectedBuilding;
-      const matchesProduct = !this.productFilter || machine.lista_productos.some(product =>
-        product.toLowerCase().includes(this.productFilter.toLowerCase()));
-      const matchesPrice = this.minPrice === null || machine.lista_precios.some(price => price >= this.minPrice);
-
-      return matchesType && matchesBuilding && matchesProduct && matchesPrice;
-    },
     filteredMachines(building) {
-      // Return machines that match all filters within a building
-      return building.machines.filter(machine => this.matchesFilters(machine, building));
+      return building.machines.filter(machine => {
+        const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
+        const matchesProduct = !this.productFilter || machine.lista_productos.some(product =>
+          product.toLowerCase().includes(this.productFilter.toLowerCase()));
+        const matchesMinPrice = this.minPrice === null || machine.lista_precios.some(price => price >= this.minPrice);
+        const matchesMaxPrice = this.maxPrice === null || machine.lista_precios.some(price => price <= this.maxPrice);
+
+        return matchesType && matchesProduct && matchesMinPrice && matchesMaxPrice;
+      });
     },
     getTableClass(type) {
-      // Returns CSS class based on the machine type
       const typeToClassMap = {
         'MIXTA': 'mixta', 'CAFETERA': 'cafetera', 'BEBIDAS FRIAS': 'bebidas-frias', 'COMIDA SALUDABLE': 'comida-saludable'
       };
@@ -132,6 +126,7 @@ export default {
   }
 };
 </script>
+
 
   
   <style scoped>
