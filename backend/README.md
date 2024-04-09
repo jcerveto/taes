@@ -1,14 +1,4 @@
-# Levantar base de datos
-```bash
-docker-compose up -d
-```
+# maquinua
 
-# Ejecutar el servidor backend como develop
-```bash
-npm run dev
-```
+View all the documentation in the README.md file in the root of the project here [README.md](/README.md)
 
-# Ejecutar como producción
-```bash
-npm run start
-```

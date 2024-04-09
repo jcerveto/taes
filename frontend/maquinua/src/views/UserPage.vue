@@ -1,4 +1,6 @@
 <template>
+    <div class="register-container">
+    <div class="form-container">
     <div class="user-page">
         <h1>User Page</h1>
 
@@ -6,12 +8,12 @@
             <user-info :user="user" />
             <h3> Hola, {{ usuario }}</h3>
             
-            <router-link class="router-button" to="/favourites">Favoritos</router-link> <br>
-            <router-link class="router-button" to="/userstatistics">Estadísticas</router-link> <br>
-            <router-link class="router-button" to="/myreviews">Mis Reseñas</router-link> <br>
-            <router-link class="router-button" to="/myconsults">Mis Consultas</router-link> <br>
-            <router-link class="router-button" to="/mylocations">Mis Ubicaciones</router-link> <br>
-            <router-link class="router-button" to="/mydata">Mis Datos</router-link> <br>
+            <router-link class="router-button" to="user/favourites">Favoritos</router-link> <br>
+            <router-link class="router-button" to="user/userstatistics">Estadísticas</router-link> <br>
+            <router-link class="router-button" to="user/myreviews">Mis Reseñas</router-link> <br>
+            <router-link class="router-button" to="user/myconsults">Mis Consultas</router-link> <br>
+            <router-link class="router-button" to="user/mylocations">Mis Ubicaciones</router-link> <br>
+            <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
         </div>
 
         <div v-else>
@@ -21,11 +23,13 @@
 
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
+</div>
+</div>
 </template>
 
 <script>
     import Cookies from 'js-cookie';
-    //import { jwtDecode } from "jwt-decode";
+    import { jwtDecode } from 'jwt-decode';
 
     export default {
         name: 'UserPage',
@@ -45,13 +49,14 @@
             
             this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
             
-            /*try {
-                
-                this.usuario = jwtDecode('user_secret');
-                
+            try {
+                const tokenDeSesion = localStorage.getItem("tokenDeSesion");
+                const decodedToken = jwtDecode(tokenDeSesion, 'secreto');
+                this.usuario = decodedToken.name;
             } catch (error) {
-                console.error(error);
-            }*/
+                console.error('Error al decodificar el token:', error);
+            }
+
         },
     };
 </script>
@@ -78,4 +83,21 @@
     .router-button:hover {
         background-color: #ddd; /* Cambio de color al pasar el ratón */
     }
+    .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
 </style>
