@@ -116,15 +116,17 @@ export default {
       this.buildings = Object.values(buildingMap);
     },
     applyProductFilter() {
-      // Apply the product filter when button is clicked
-      this.filteredProduct = this.productFilter;
+      // Convert the filter to lower case for case-insensitive comparison
+      this.filteredProduct = this.productFilter.trim().toLowerCase();
     },
+    
     matchesFilters(machine) {
-      // Updated method to include the new product filter
+      // Method now checks if product names start with the filter string
+      const filter = this.filteredProduct;
       const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
       const matchesBuilding = !this.selectedBuilding || machine.edificio === this.selectedBuilding;
-      const matchesProduct = !this.filteredProduct || machine.lista_productos.some(product => 
-        product.toLowerCase().includes(this.filteredProduct.toLowerCase())
+      const matchesProduct = !filter || machine.lista_productos.some(product => 
+        product.toLowerCase().startsWith(filter) || product.toLowerCase() === filter
       );
 
       return matchesType && matchesBuilding && matchesProduct;
