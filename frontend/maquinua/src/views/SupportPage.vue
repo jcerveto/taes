@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Support Page</h1>
-    <!-- Dropdown filter for machine type -->
     <select v-model="selectedMachineType">
       <option value="">All Types</option>
       <option value="MIXTA">MIXTA</option>
@@ -9,20 +8,19 @@
       <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
       <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
     </select>
-    <!-- Dropdown filter for building -->
     <select v-model="selectedBuilding">
       <option value="">All Buildings</option>
       <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
     </select>
-    <input type="text" v-model="filteredProduct" placeholder="Producto concreto">
+    <input type="text" v-model="productFilter" placeholder="Producto concreto">
+    <!-- Input for Precio mínimo -->
+    <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10">
     <router-link to="/">Go to Home</router-link>
-
-    <!-- Creating a details element for each filtered building -->
     <div v-for="(building, index) in filteredBuildings" :key="index">
       <details>
         <summary>{{ building.name }}</summary>
-        <div v-for="machine in building.machines" :key="machine.id">
-          <details v-if="matchesFilters(machine)">
+        <div v-for="machine in filteredMachines(building)" :key="machine.id">
+          <details>
             <summary>{{ machine.popupContent.title }}</summary>
             <div class="table-container">
               <table :class="getTableClass(machine.type)">
@@ -46,8 +44,7 @@
                     <th>Nombre del producto</th>
                     <th>Precio del producto</th>
                   </tr>
-                  <!-- Looping through each product and price pair -->
-                  <tr v-for="(product, index) in machine.lista_productos" :key="product">
+                  <tr v-for="(product, index) in machine.lista_productos" :key="index">
                     <td>{{ product }}</td>
                     <td>{{ machine.lista_precios[index] }}</td>
                   </tr>
@@ -61,44 +58,34 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
       machines: [],
       buildings: [],
-      selectedMachineType: '', // Holds the selected machine type
-      selectedBuilding: '', // Holds the selected building
-      productFilter: '', // New filter for product name
-      filteredProduct: '', // Holds the applied product filter after button click
+      selectedMachineType: '',
+      selectedBuilding: '',
+      productFilter: '',
+      minPrice: null, // Holds the minimum price entered by the user
     };
   },
   computed: {
     buildingOptions() {
-      // Compute unique building names for the dropdown
       const buildingSet = new Set(this.machines.map(machine => machine.edificio));
       return Array.from(buildingSet);
     },
     filteredBuildings() {
-      // Filter buildings and machines based on selected filters and product filter
+      // Enhanced to ensure buildings are filtered based on the building, machine type, product, and price filters.
       return this.buildings.filter(building => {
-        const hasMachineType = !this.selectedMachineType || building.machines.some(machine => machine.type === this.selectedMachineType);
-        const isBuildingSelected = !this.selectedBuilding || building.name === this.selectedBuilding;
-        const hasProduct = !this.filteredProduct.trim().toLowerCase() || building.machines.some(machine => 
-          machine.lista_productos.some(product =>
-            product.toLowerCase().startsWith(this.filteredProduct.trim().toLowerCase()) || 
-            product.toLowerCase() === this.filteredProduct.trim().toLowerCase()
-          )
-        );
-        return hasMachineType && isBuildingSelected && hasProduct;
+        return building.machines.some(machine => this.matchesFilters(machine, building));
       });
     },
   },
-  created() {
-    this.fetchMachines();
-  },
   methods: {
     fetchMachines() {
+      // Fetch machines and group them by building
       fetch('/maquinas.json')
         .then(response => response.json())
         .then(data => {
@@ -108,47 +95,44 @@ export default {
         .catch(error => console.error('Error:', error));
     },
     groupMachinesByBuilding() {
+      // Group machines by building for easier filtering
       const buildingMap = {};
       this.machines.forEach(machine => {
         if (!buildingMap[machine.edificio]) {
-          buildingMap[machine.edificio] = {
-            name: machine.edificio,
-            machines: []
-          };
+          buildingMap[machine.edificio] = { name: machine.edificio, machines: [] };
         }
         buildingMap[machine.edificio].machines.push(machine);
       });
       this.buildings = Object.values(buildingMap);
     },
-    applyProductFilter() {
-      // Convert the filter to lower case for case-insensitive comparison
-      this.filteredProduct = this.productFilter.trim().toLowerCase();
-    },
-
-    matchesFilters(machine) {
-      // Method now checks if product names start with the filter string
-      const filter = this.filteredProduct;
+    matchesFilters(machine, building) {
+      // Checks if machine matches all active filters
       const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
-      const matchesBuilding = !this.selectedBuilding || machine.edificio === this.selectedBuilding;
-      const matchesProduct = !filter || machine.lista_productos.some(product => 
-        product.toLowerCase().startsWith(filter) || product.toLowerCase() === filter
-      );
+      const matchesBuilding = !this.selectedBuilding || building.name === this.selectedBuilding;
+      const matchesProduct = !this.productFilter || machine.lista_productos.some(product =>
+        product.toLowerCase().includes(this.productFilter.toLowerCase()));
+      const matchesPrice = this.minPrice === null || machine.lista_precios.some(price => price >= this.minPrice);
 
-      return matchesType && matchesBuilding && matchesProduct;
+      return matchesType && matchesBuilding && matchesProduct && matchesPrice;
+    },
+    filteredMachines(building) {
+      // Return machines that match all filters within a building
+      return building.machines.filter(machine => this.matchesFilters(machine, building));
     },
     getTableClass(type) {
+      // Returns CSS class based on the machine type
       const typeToClassMap = {
-        'MIXTA': 'mixta',
-        'CAFETERA': 'cafetera',
-        'BEBIDAS FRIAS': 'bebidas-frias',
-        'COMIDA SALUDABLE': 'comida-saludable'
+        'MIXTA': 'mixta', 'CAFETERA': 'cafetera', 'BEBIDAS FRIAS': 'bebidas-frias', 'COMIDA SALUDABLE': 'comida-saludable'
       };
       return `table-${typeToClassMap[type] || type.toLowerCase()}`;
     },
-    
+  },
+  created() {
+    this.fetchMachines();
   }
 };
 </script>
+
   
   <style scoped>
 
