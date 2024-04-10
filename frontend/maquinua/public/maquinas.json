@@ -70,8 +70,18 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Palmera de Chocolate", "Trozo de Pizza", "Espinacas", "Conos 3D"],
-      "lista_precios": [2.25,1.15,2.75,1.60]
+      "lista_productos": ["Donut Azúcar Glas", "Chocoboms (Chocolate Blanco)", "Doritos","Tortitas de Maíz (Marca Snatt's)","Patatas Saladas (Marca Aitana)", "Bolsa de Bits", "PapaDelta",
+                          "JR Brownie","Donettes (Chocolate Negro)", "Galletas Oreo", "Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness", "Barritas de Chocolate (Nestle)", "Barritas Crunchy de Chocolate (Nestle)", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Mister Corn Mix", "Mezcladitos (Marca Africa)", "Pipas Velarte", "Saladitos",
+                          "Sandwich de Pollo (Ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Cangrejo (Ñaming)", "Sandwich Americano (Teika)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limón", "Limonada (Font Vella)", "Café (Teika)", "Sandwich (El Griego)", "Monster Verde",
+                          "Fanta de Naranja", "Nestea Sin Azúcar (Lata)", "Iso Drink (Lata)", "Red Bull", "Don Simon Brick (MultiFrutas)", "Don Simon Brick(Piña)", "Brick Toy' Story de Chocolate"],
+      "lista_precios": [1.00,1.30,0.95,0.85,0.65,0.60,0.60,
+                        1.00,1.40,0.95,0.95,0.65,0.50,0.40,0.50,0.90,1.40,
+                        0.70,1.30,0.40,0.50,1.20,0.80,0.60,
+                        1.00,1.00,1.00,1.50,1.50,
+                        1.40,1.40,1.00,1.70,2.50,1.40,1.90,
+                        0.90,0.90,0.90,1.80,0.60,0.45,0.45]
     },
     {
       "lat": 38.384639
