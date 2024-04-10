@@ -83,6 +83,7 @@
                         1.40,1.40,1.00,1.70,2.50,1.40,1.90,
                         0.90,0.90,0.90,1.80,0.60,0.45,0.45]
     },
+
     {
       "lat": 38.384639
       ,
@@ -95,8 +96,14 @@
       },
       "edificio": "Aulario II",
       "type": "CAFETERA",
-      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
-      "lista_precios": [2.15,1.65,1.75,2.00]
+      "lista_productos": ["Espresso corto", "Espresso corto de finca", "Espresso largo", "Espresso largo de finca", "Café cortado", "Café Cortado de Finca",
+                          "Café con leche", "Café con leche de finca", "Capuchino", "Capuchino de finca", "Café cortado descafeinado", "Café con leche descafeinado",
+                          "Capuchino Italiano", "Chocolate", "Café avellana", "Leche manchada", "Café bombón", "Té con limón"],
+      "lista_precios": [0.35,0.55,0.35,0.55,
+                        0.55,0.55,0.55,0.55,
+                        0.55,0.55,0.55,0.55,
+                        0.75,0.55,0.75,0.10,
+                        0.75,0.10]
     },
     {
       "lat": 38.384389
