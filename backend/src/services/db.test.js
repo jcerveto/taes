@@ -84,7 +84,9 @@ async function main() {
     /// API: Usar la clase User para hacer las operaciones a la base de datos en lugar de las funciones de db.js ///
     console.log("test class User");
     const user = new User();
+    user.username = "joaclass";
     user.name = "joan_class";
+    user.surname = "joansurname_class";
     user.email = user.name + "@ua.es";
     user.password = "0000";
     user.bornDate = new Date();

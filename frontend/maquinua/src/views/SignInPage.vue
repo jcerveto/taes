@@ -1,5 +1,5 @@
 <template>
-    <div class="register-container">
+    <div class="login-container">
       <div class="form-container">
       <h2>Sign In</h2>
       <form @submit.prevent="signIn">
@@ -26,9 +26,34 @@
   </div>
  
     
-  </template>
+</template>
+
+<script setup>
+  import { ref } from "vue";
+  import { useUserStore } from "../stores/user-store-setup";
+  import { useRouter } from "vue-router";
+
+  const router = useRouter();
+  const userStore = useUserStore();
   
-  <style>
+  const email = ref("");
+  const password = ref("");
+
+  const signIn = async () => {
+    try {
+      await userStore.access(email.value, password.value);
+
+      email.value = "";
+      password.value = "";
+
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+</script>
+  
+<style>
   .register-container {
     background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
     background-size: cover;
@@ -47,50 +72,3 @@
     border-radius: 10px;
   }
 </style>
-
-  <script>
-  import axios from 'axios';
-  import Cookies from 'js-cookie';
-
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-      };
-    },
-    methods: {
-      async signIn() {
-        // Aquí normalmente enviarías estos datos a tu backend para verificar la autenticación
-        // Datos que se enviarán en la solicitud POST
-
-        // Realizar la solicitud POST usando Axios (pedimos al backend que nos devuelva ese usuario)
-        await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
-          .then((res) => {
-            if (res.data.password === this.password && res.data.email === this.email) {
-            // Inicio de sesión exitoso
-            
-            alert("Correcto")
-            
-            Cookies.get('tokenDeSesion');
-
-            this.$router.push('/user');
-          } else {
-            // Mensaje de error en caso de credenciales incorrectas
-            alert('Invalid email or password. Please try again.');
-          }})
-          .catch((error) => {
-            alert('Invalid email or password. Please try again.');
-
-            // Reload the page
-            location.reload();
-
-            console.error(error);
-          });
-
-        
-      },
-    },
-  };
-  </script>
-  
