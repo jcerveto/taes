@@ -56,6 +56,23 @@ export class Incidents {
         this._incidencia = value;
     }
 
+    static async readAll() {
+        try {
+            return await db.readAllIncidents();
+        } catch (error) {
+            console.error(error);
+            throw new Error("Incidents not read!");
+        }
+    }
+
+    async delete() {
+        try {
+            await db.deleteIncident(this.id);
+        } catch (error) {
+            console.error(error);
+            throw new Error("Incedent not deleted!");
+        }
+    }
 
 
 

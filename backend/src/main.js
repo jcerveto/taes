@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
-
 import { User } from './model/User.js';
+import { Incidents } from './model/Incidents.js'
 
 
 const app = express();
@@ -137,7 +137,7 @@ app.delete('/users/:id', async (req, res) => {
 
 app.get('/incidents', async (req, res) => {
     try {
-        const incidents = await Incident.readAll();
+        const incidents = await Incidents.readAll();
         res.json(incidents);
     } catch (error) {
         console.error(error);
@@ -148,7 +148,7 @@ app.get('/incidents', async (req, res) => {
 app.post('/incidents', async (req, res) => {
     try {
         const incidecia = req.body;
-        const newIncident = await Incident.create(incidecia);
+        const newIncident = await Incidents.create(incidecia);
         res.json(newIncident);
     } catch (error) {
         console.error(error);
@@ -158,7 +158,7 @@ app.post('/incidents', async (req, res) => {
 
 app.delete('/incidents/:id', async (req, res) => {
     try {
-        await Incident.delete(req.params.id);
+        await Incidents.delete(req.params.id);
         res.json({ message: 'Incident deleted successfully' });
     } catch (error) {
         console.error(error);

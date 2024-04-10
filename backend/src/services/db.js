@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
+import { Incidents } from '../model/Incidents.js';
 
 import { User} from "../model/User.js";
 
@@ -244,6 +245,28 @@ export async function deleteAllUsers() {
     //}
   }
 }
+//incidents
+/**
+ * Reads all users from the database
+ * @returns { Promise < [Incidents] >}
+ * @throws { Error } If the incidents are not read
+ **/
+ export async function readAllIncidents() {
+  try {
+    const db = await connectToDatabase();
+    const incidentsCollection = db.collection(COLLECTION_MAIN);
+    const incidents = await incidentsCollection.find().toArray();
+    return incidents;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Incidents not read!");
+  }
+}
+
+//readAllIncidents deletIncidents createIncident
+
+
+
 
 
 /**

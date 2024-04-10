@@ -4,16 +4,14 @@
     <div>
         <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
         <button @click="addIncident">Add Incident</button>
-
-        <ul>
-            <li>{{ this.incidents }}</li>
-        </ul>
+        <button @click="getIncidents"> Mostrar Incidents </button>
 
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    
 
     export default {
         data() {
@@ -22,35 +20,34 @@
                 
             };
         },
-        created() {
-            this.getIncidents();
-        },
+       
         methods: {
             async addIncident() {
-                try {
+               
                     // Agrega el nuevo incidente a la lista de incidentes en el frontend
-                    this.incidents.push({ incidencia: this.incidentDetails });
+                    //this.incidents.push({ incidencia: this.incidentDetails });
 
                     // Envía los datos al backend
-                    await axios.post('http://localhost:3000/incidents', { incidencia: this.incidentDetails });
+                    JSON.stringify(this.incidentDetails);
+                    const response=await axios.post('http://localhost:3000/incidents', { incidencia: this.incidentDetails });
 
+                    console.log(response.data);
                     // Limpia el campo de detalles del incidente después de enviar los datos
-                    this.incidentDetails = '';
-                } catch (error) {
-                    console.error('Error adding incident:', error);
-                }
+                    //this.incidentDetails = '';
+                
             },
             async getIncidents() {
                try {
                     //Obtiene los incidentes desde el backend
                    const response = await axios.get('http://localhost:3000/incidents');
                    this.incidents = response.data;
+                   
                 } catch (error) {
                     console.error('Error fetching incidents:', error);
                 }
             }
         }
-        };
+    };
 </script>
 
 <style scoped>
