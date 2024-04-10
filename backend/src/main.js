@@ -172,3 +172,42 @@ app.listen(PORT, () => {
 })
 
 
+app.post('/incidents', async (req, res) => {
+    const { email, text } = req.body;
+    if (!email || !text) {
+        return res.status(400).json({ error: "Email and text are required" });
+    }
+
+    try {
+        const newIncident = new Incident({ email, text });
+        await newIncident.save();
+        res.status(201).json(newIncident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const incident = new Incident({ id });
+        await incident.delete();
+        res.sendStatus(204); // No Content
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+

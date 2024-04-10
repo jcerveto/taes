@@ -245,60 +245,6 @@ export async function deleteAllUsers() {
     //}
   }
 }
-//incidents
-/**
- * Reads all users from the database
- * @returns { Promise < [Incidents] >}
- * @throws { Error } If the incidents are not read
- **/
- export async function readAllIncidents() {
-  try {
-    const db = await connectToDatabase();
-    const incidentsCollection = db.collection(COLLECTION_MAIN);
-    const incidents = await incidentsCollection.find().toArray();
-    return incidents;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Incidents not read!");
-  }
-}
-/**
- * Creates an incident in the database
- * @param {Object} incident The incident object to be created
- * @returns {Promise<void>} Promise indicating the success of the operation
- * @throws {Error} If the incident object is not provided or creation fails
- */
-export async function createIncidents(incident) {
-    try {
-        // Verificar si se proporciona el objeto de incidencia
-        if (!incident) {
-            throw new Error("Incident object not provided!");
-        }
-
-        // Conectar a la base de datos
-        const db = await connectToDatabase();
-        const incidentsCollection = db.collection(COLLECTION_MAIN);
-
-        // Insertar la incidencia en la colección
-        const result = await incidentsCollection.insertOne(incident);
-
-        // Verificar si se insertó correctamente una fila
-        if (result.insertedCount !== 1) {
-            throw new Error("Incident not created! Rows affected: " + result.insertedCount);
-        }
-    } catch (error) {
-        // Capturar y manejar cualquier error que ocurra durante el proceso
-        console.error(error);
-        throw new Error("Failed to create incident!");
-    }
-}
-
-
-//readAllIncidents deletIncidents createIncident
-
-
-
-
 
 /**
  * Creates a machine view in the database
@@ -376,5 +322,66 @@ export async function deleteMachinesView(filter) {
     //  await db.close();
     //  console.log('Disconnected from MongoDB');
     //}
+  }
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+
+export async function deleteIncident(id) {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteOne({ _id: new ObjectId(id) });
+  if (result.deletedCount !== 1) {
+      throw new Error("Incident not deleted!");
+  }
+}
+
+export async function readAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const incidents = await incidentsCollection.find({}).toArray();
+  return incidents.map(incident => new Incident(incident));
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created. Expected to have 'email' and 'text' properties.
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+export async function createIncident(incident) {
+  let db = null;
+  try {
+    if (!incident || !incident.email || !incident.text) {
+      throw new Error("Invalid incident data provided!");
+    }
+
+    db = await connectToDatabase();
+    const incidentsCollection = db.collection("incidents"); // Using a specific collection for incidents
+
+    // Insert the incident into the collection
+    const result = await incidentsCollection.insertOne({
+      email: incident.email,
+      text: incident.text,
+      createdAt: new Date() // Optionally add a timestamp
+    });
+
+    if (result.insertedCount !== 1) {
+      throw new Error("Incident not created! Rows affected: " + result.insertedCount);
+    }
+  } catch (error) {
+    console.error("Failed to create incident: ", error);
+    throw new Error("Failed to create incident due to an error.");
+  } finally {
+    if (db) {
+      await db.close();
+    }
   }
 }

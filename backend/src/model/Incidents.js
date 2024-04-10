@@ -1,76 +1,75 @@
+// models/Incidents.js
+import { ObjectId } from 'mongodb';
 import * as db from "../services/db.js";
-import { ObjectId } from "mongodb";
 
-
-export class Incidents {
-    /**
-    get id() {
-        if (this._id === undefined) {
-            throw new Error("id is undefined!");
-        }
-        if (this._id === "") {
-            throw new Error("Error: id can not be empty!");
-        }
-
-        return new ObjectId(this._id);
-    }
-    **/
-    /**
-    set id(value) {
-        if (value === undefined) {
-            throw new Error("Error: id can not be undefined!");
-        }
-        if (value === "") {
-            throw new Error("Error: id can not be empty!");
-        }
-        if (!ObjectId.isValid(value)) {
-            throw new Error("Error: id is not a valid ObjectId!");
-        }
-
-        this._id = new ObjectId(value);
-    }
-    **/
-    get incidencia() {
-        if (this._incidencia === undefined) {
-            throw new Error("incidencia is undefined!");
-        }
-        if (this._incidencia === "") {
-            throw new Error("Error: incidencia can not be empty!");
-        }
-
-        return this._incidencia;
-    }
-    /**
-    constructor({ id = new ObjectId() } = {}) {
-        this._incidencia = "";
+export class Incident {
+    constructor({ email, text, id = new ObjectId() } = {}) {
         this._id = new ObjectId(id);
-    }
-    **/
-    set incidencia(value) {
-        if (value === undefined) {
-            throw new Error("Error: incidencia can not be undefined!");
-        }
-        if (value === "") {
-            throw new Error("Error: incidencia can not be empty!");
-        }
+        this.email = email;  // Esto invocará el setter this.email(value)
+        this.text = text;    // Esto invocará el setter this.text(value)
+    }    
 
-        this._incidencia = value;
+    // Getters and Setters
+    get id() {
+        return this._id;
     }
-    async create() {
+
+    get email() {
+        return this._email;
+    }
+
+    set email(value) {
+        if (!value) {
+            throw new Error("Email cannot be empty!");
+        }
+        this._email = value;
+    }
+
+    get text() {
+        return this._text;
+    }
+
+    set text(value) {
+        if (!value) {
+            throw new Error("Text cannot be empty!");
+        }
+        this._text = value;
+    }
+
+    toJSON() {
+        return {
+            id: this._id,
+            email: this._email,
+            text: this._text,
+            type: "incident"
+        };
+    }
+
+    // Database Operations
+    async save() {
         try {
-            await db.createIncidents(this);
+            await db.createIncident(this);
         } catch (error) {
             console.error(error);
-            throw new Error("Incident not created!");
+            throw new Error("Incident not saved!");
         }
     }
 
     async delete() {
         try {
-            await db.deleteIncident(this.id);
+            await db.deleteIncident(this._id);
         } catch (error) {
             console.error(error);
-            throw new Error("Incedent not deleted!");
+            throw new Error("Incident not deleted!");
+        }
+    }
+
+    static async findByEmail(email) {
+        try {
+            return await db.readIncidents({ email: email });
+        } catch (error) {
+            console.error(error);
+            throw new Error("Incidents not found!");
         }
     }
 
@@ -82,10 +81,4 @@ export class Incidents {
             throw new Error("Incidents not read!");
         }
     }
-
-   
-
-
-
-    
 }
