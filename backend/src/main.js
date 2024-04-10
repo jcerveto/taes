@@ -44,6 +44,7 @@ app.get('/', async (req, res) => {
 app.get('/users', async (req, res) => {
     try {
         const users = await User.readAll();
+        
         // ver formato de respuesta, creo qye es Array<User>. Checkear q es correcto al hacer res.json()
         // COmprobarlo en todos los endpoints (funciones de express)
         res.json(users.map(user => user.toJSON()));
@@ -196,18 +197,15 @@ app.post('/user', async (req, res) => {
 app.put('/users', async (req, res) => {
     try {
         console.log("updating: ", req.body);
-        const email = req.body.email;
+
         const user = await User.read(req.body.email);
         const updatedUser = new User();
         console.log("User: ", user);
-        updatedUser.name = user.name;
-        updatedUser.surname = user.surname;
-        updatedUser.username = user.username;
+        updatedUser.username = req.body.username;
         updatedUser.email = user.email;
-        updatedUser.password = user.password;
-        updatedUser.bornDate = user.bornDate;
-
-        console.log("User: ", updatedUser);
+        updatedUser.name = req.body.name;
+        updatedUser.surname = req.body.surname;
+        updatedUser.password = req.body.password;
 
         await updatedUser.update(); // Wait for the update to complete
         res.json(user.toJSON());
@@ -219,7 +217,7 @@ app.put('/users', async (req, res) => {
 
 app.delete('/users/:id', async (req, res) => {
     try {
-        const { email } = req.body; // Destructure from request body
+        const email = req.params.id; // Destructure from request body
         const user = await User.read(email);
 
         if (!user) {
@@ -228,7 +226,7 @@ app.delete('/users/:id', async (req, res) => {
 
         await user.delete();
         console.log("User deleted: ", email);
-        res.sendStatus(204);
+        res.status(204).json({ message: 'User deleted' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
