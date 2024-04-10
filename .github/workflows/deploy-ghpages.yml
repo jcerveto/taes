@@ -1,0 +1,34 @@
+name: Update Frontend using GithubPages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2 
+        with:
+          node-version: '18' 
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build frontend
+        run: npm run build 
+
+      - name: Deploy frontend
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JOAN }}
+          publish_dir: ./dist
+          user_name: GitHub Actions
+          user_email: actions@github.com
+          publish_branch: gh-pages
