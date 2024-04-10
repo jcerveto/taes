@@ -50,29 +50,11 @@
       <router-link to="/signin">Sign In</router-link>
     </div>
   </div>
-  </template>
-  <style>
-  .register-container {
-    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
-    background-size: cover;
-    background-position: center;
-    height: 100%; /* Ajusta la altura según tu necesidad */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+</template>
 
-  .form-container {
-    background-color: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  </style>
-  <script>
+<script>
   import axios from 'axios';
+  import { useUserStore } from '../stores/user-store-setup';
 
   export default {
     data() {
@@ -175,26 +157,17 @@
             password: this.password,
           };
 
-          await axios.post('http://localhost:3000/users', { email : this.email})
-            .then((res) => {
-              if (res.data.email === this.email) {
-                alert('Email already exists. Please try again.');
-              }
 
-              if (res.data.username === this.username) {
-                alert('Username already exists. Please try again.');
-              }
-            }).catch(() => {
-              // Realizar la solicitud POST usando Axios
-              const response = axios.post('http://localhost:3000/user', userData);
-              
-              console.log(response.data);
-              
-              this.$router.push('/');
-            });
+          // Realizar la solicitud POST usando Axios
+          const response = await axios.post('http://localhost:3000/register', userData);
+          
+          console.log(response.data);
 
+          const userStore = useUserStore();
 
-
+          userStore.access(this.email, this.password);
+          
+          this.$router.push('/');
           
         } else {
           console.log('ERROR. Please, review the data.');
@@ -202,5 +175,25 @@
       },
     },
   };
-  </script>
+</script>
   
+
+<style>
+  .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
+</style>
