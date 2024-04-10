@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 
 
 export class Incidents {
-
+    /**
     get id() {
         if (this._id === undefined) {
             throw new Error("id is undefined!");
@@ -14,7 +14,8 @@ export class Incidents {
 
         return new ObjectId(this._id);
     }
-
+    **/
+    /**
     set id(value) {
         if (value === undefined) {
             throw new Error("Error: id can not be undefined!");
@@ -28,7 +29,7 @@ export class Incidents {
 
         this._id = new ObjectId(value);
     }
-
+    **/
     get incidencia() {
         if (this._incidencia === undefined) {
             throw new Error("incidencia is undefined!");
@@ -39,12 +40,12 @@ export class Incidents {
 
         return this._incidencia;
     }
-
+    /**
     constructor({ id = new ObjectId() } = {}) {
         this._incidencia = "";
         this._id = new ObjectId(id);
     }
-
+    **/
     set incidencia(value) {
         if (value === undefined) {
             throw new Error("Error: incidencia can not be undefined!");
@@ -55,13 +56,12 @@ export class Incidents {
 
         this._incidencia = value;
     }
-
-    static async readAll() {
+    async create() {
         try {
-            return await db.readAllIncidents();
+            await db.createIncidents(this);
         } catch (error) {
             console.error(error);
-            throw new Error("Incidents not read!");
+            throw new Error("Incident not created!");
         }
     }
 
@@ -74,14 +74,18 @@ export class Incidents {
         }
     }
 
-
-
-    async create() {
+    static async readAll() {
         try {
-            await db.createIncidents(this);
+            return await db.readAllIncidents();
         } catch (error) {
             console.error(error);
-            throw new Error("Incident not created!");
+            throw new Error("Incidents not read!");
         }
     }
+
+   
+
+
+
+    
 }

@@ -147,15 +147,16 @@ app.get('/incidents', async (req, res) => {
 
 app.post('/incidents', async (req, res) => {
     try {
-        const incidecia = req.body;
-        const newIncident = await Incidents.create(incidecia);
-        res.json(newIncident);
+        const cleanIncident = new Incidents();
+        cleanIncident.incidencia = req.body;
+        console.log("cleanIncidents: ", cleanIncident);
+        await cleanIncident.create();
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
 });
-
+/**
 app.delete('/incidents/:id', async (req, res) => {
     try {
         await Incidents.delete(req.params.id);
@@ -165,7 +166,7 @@ app.delete('/incidents/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
+**/
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })

@@ -262,6 +262,37 @@ export async function deleteAllUsers() {
     throw new Error("Incidents not read!");
   }
 }
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+export async function createIncidents(incident) {
+    try {
+        // Verificar si se proporciona el objeto de incidencia
+        if (!incident) {
+            throw new Error("Incident object not provided!");
+        }
+
+        // Conectar a la base de datos
+        const db = await connectToDatabase();
+        const incidentsCollection = db.collection(COLLECTION_MAIN);
+
+        // Insertar la incidencia en la colección
+        const result = await incidentsCollection.insertOne(incident);
+
+        // Verificar si se insertó correctamente una fila
+        if (result.insertedCount !== 1) {
+            throw new Error("Incident not created! Rows affected: " + result.insertedCount);
+        }
+    } catch (error) {
+        // Capturar y manejar cualquier error que ocurra durante el proceso
+        console.error(error);
+        throw new Error("Failed to create incident!");
+    }
+}
+
 
 //readAllIncidents deletIncidents createIncident
 
