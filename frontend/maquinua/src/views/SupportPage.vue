@@ -63,7 +63,7 @@
                   </tr>
                   <tr>
                     <th> Nombre del producto</th>
-                    <th> Precio del producto</th>
+                    <th> Precio del producto (€)</th>
                   </tr>
                   <tr v-for="(product, index) in machine.lista_productos" :key="index">
                     <td contenteditable="true" @blur="updateProductName(machine.id, index, $event.target.innerText)">{{ product }}</td>

@@ -11,8 +11,8 @@
       },
       "edificio": "Aulario II",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
-      "lista_precios": [1.00, 1.25, 1.75,2.15]
+      "lista_productos": ["Aquarel","Coca Cola", "Coca Cola Zero"],
+      "lista_precios": [0.60,0.90,0.90]
     },
     {
       "lat": 38.384306
@@ -26,8 +26,10 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Doritos", "Bocadillo mixto", "Chocoboms", "Oreos"],
-      "lista_precios": [2.25,1.25,2.75,1.60]
+      "lista_productos": ["Pipas Velarte", "Coco (Marca Born)", "Galletas Bicentury (Recetea Mediterránea)","Pipas Snatt's",
+                          "Galletas Bio Organic (Marca Gutton)", "Barritas de Chocolate Bicentury", "Barquillos de Chocolate Zero (Marca Guillón)", "Galletas Gluton Free (Marca Guillón)", "Barrita de Chcolate Energética Fitness", "Almendras (Marca Medina)"],
+      "lista_precios": [0.80,1.35,0.65,0.65,0.75,
+                        1.30,0.65,1.30,0.95,0.65,1.20]
     },
     {
       "lat": 38.384750
