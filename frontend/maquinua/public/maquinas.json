@@ -192,8 +192,18 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Chuches King Regal", "Cheetos Pandilla", "Doritos", "Tortitas de Maíz (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "Donettes (Chocolate Blanco y Negro)", "Galletas Oreo", "Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness", "Barritas Crunchy de Chocolate (Nestle)", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Mister Corn Mix", "Mezcladitos (Marca Africa)", "Pipas Velarte", "Saladitos",
+                          "Sandwich de Cangrejo (Ñaming)", "Sandwich de Salchichón (ñaming)", "Sandwich de Atún (ñaming)", "Sandwich de Cangrejo (Ñaming)", "Sandwich Mixto (Ñaming)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Limonada (Font Vella)", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Blanco",
+                          "Fanta de Naranja (Lata)", "Nestea Sin Azúcar (Lata)", "Iso Drink (Lata)", "Red Bull", "Brick de Zumo (Don Simón)", "Brick de Leche de Horchata", "Brick Toy' Story de Chocolate"],
+      "lista_precios": [1.00, 0.95, 0.95, 0.85, 0.65, 0.60, 0.60,
+                        1.40, 0.95, 0.55, 0.50, 0.50, 0.90, 1.40,1.00,
+                        0.70, 1.30, 0.50, 1.20, 0.80, 0.60,
+                        1.00, 1.00, 1.00, 1.00, 1.00, 1.50,
+                        1.10, 1.10, 1.00, 1.70, 2.50, 1.40, 1.90,
+                        0.90, 0.90, 0.90, 0.90, 1.80, 0.65, 0.45, 0.45]
     },
     {
       "lat": 38.384194
@@ -207,8 +217,18 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Saladitos", "Pipas Velarte", "Cheetos Pandilla", "Tortitas de Maíz (Marca Snatt's)","Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "Chocoboms (Chocolate Blanco)", "Donettes (Chocolate Negro)", "Barrita de Maiz (Corny)", "Almendras (Snatt's)", "Barrita de Chocolate (Twix)", "JR Brownie", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Agua (Marca Nestle Aquarel, Botella 75cl)",
+                          "Agua (Lanjarón, Botella 1L)",
+                          "Coca Cola (Botella, 1L)","Coca Cola Zero (Botella, 1L)", "Agua con Gas",
+                          "Coca Cola (Lata, 75cl)", "Coca Cola Zero (Lata, 75cl", "Red Bull"],
+      "lista_precios": [0.60, 0.80, 0.95, 0.85, 0.65, 0.60, 0.60,
+                        1.30, 1.40, 1.25, 1.20, 1.00, 1.00, 1.10, 1.40,
+                        0.60,
+                        1.00,
+                        1.30,1.30,0.60,1.00,
+                        0.90,0.90,1.80]
     },
     {
       "lat": 38.384194
@@ -217,13 +237,37 @@
       ,
       "id": 11,
       "popupContent": {
-        "title": "Máquina 10 - Aulario II",
+        "title": "Máquina 11 - Aulario II",
         "description": "Teika. Máquina de Cafés"
       },
       "edificio": "Aulario II",
       "type": "CAFETERA",
-      "lista_productos": ["Café manchado", "Café Iris", "Café con leche amarilla", "Café rosa"],
-      "lista_precios": [1.45,1.65,2.35,1.45]
+      "lista_productos": ["Capuccino de Finca XXL", "Café Avellana XXL", "White Cappuccino XXL", "Crema de Cacao XXL", 
+                          "Café corto de Finca", "Café largo de Finca", "Café Cortado de Finca", "Café con Leche de Finca",
+                          "Café Corto Clásico", "Café Largo Clásico", "Café Cortado Clásico",
+                          "Café con Leche Clásico", "Capuccino Con Chocolate", "Leche Manchada Clásic",
+                          "Café con Leche XXL", "Café Americano XXL",
+                          "Café Avellana XXL", "Crema a la Avellana XXL", "Café Mocca XXL",
+                          "Smooth Cappuccino XXL", "White Cappuccino XXL", "Cappuccino de Finca XXL",
+                          "Latte Macchiato XXL", "Cappuccino de Finca XXL", "Ristretto de Finca",
+                          "Descafeinado Corto", "Descafeinado Largo",
+                          "Cappuccino Descafeinado", "Leche Manchada Descafeinada",
+                          "Capuccino XXL Descafeinado", "Café con Leche Descafeinado",
+                          "Chocolate Small", "Chocolate con Leche Small", "Chocolate Premium XXL",
+                          "Chocolate con Leche Premium XXL", "Chocolate Blanco XXL", "Crema de Cacao XXL"],
+      "lista_precios": [1.50, 1.50, 1.50, 1.50,
+                        0.55, 0.55, 0.55, 0.55,
+                        0.35, 0.35, 0.55,
+                        0.55, 0.55, 0.10,
+                        1.20, 1.20,
+                        1.50, 1.50, 1.50,
+                        1.50, 1.50, 1.50,
+                        1.50, 1.50, 0.55,
+                        0.35, 0.35,
+                        0.55, 0.10,
+                        1.50, 1.20,
+                        0.35, 0.55, 1.50,
+                        1.50, 1.50, 1.50]
     },
     {
       "lat": 38.382778
