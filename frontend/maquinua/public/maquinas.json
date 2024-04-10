@@ -11,7 +11,7 @@
       },
       "edificio": "Aulario II",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Aquarel","Coca Cola", "Coca Cola Zero"],
+      "lista_productos": ["Ague (Marca Aquarel)","Coca Cola", "Coca Cola Zero"],
       "lista_precios": [0.60,0.90,0.90]
     },
     {
@@ -28,7 +28,7 @@
       "type": "MIXTA",
       "lista_productos": ["Pipas Velarte", "Coco (Marca Born)", "Galletas Bicentury (Recetea Mediterránea)","Pipas Snatt's",
                           "Galletas Bio Organic (Marca Gutton)", "Barritas de Chocolate Bicentury", "Barquillos de Chocolate Zero (Marca Guillón)", "Galletas Gluton Free (Marca Guillón)", "Barrita de Chcolate Energética Fitness", "Almendras (Marca Medina)",
-                        "Agua (Marca Nestle Aquarel",
+                        "Agua (Marca Nestle Aquarel)",
                       "Zumo de Naranja 100% Natural"],
       "lista_precios": [0.80,1.35,0.65,0.65,0.75,
                         1.30,0.65,1.30,0.95,0.65,1.20,
@@ -47,8 +47,16 @@
       },
       "edificio": "Aulario II",
       "type": "MIXTA",
-      "lista_productos": ["Cacahuetes", "Nozilla", "Lata de atún", "Mazorca de maíz"],
-      "lista_precios": [1.30,1.45,2.30,3.75]
+      "lista_productos": ["Pipas Velarte", "Saladitos", "Tortitas de Maíz (Marca Snatt's)", "Cheetos Pandilla", "Bolsa de Bits",
+                          "Chocoboms (Chocolate Blanco)", "Chocoboms (Chocolate Negro)", "JR Brownie",
+                          "Agua (Marca Nestle Aquarel)",
+                          "Bocadillo de Jamón", "Bocadillo de Atún",
+                          "Coca Cola", "Coca Cola Zero"],
+      "lista_precios": [0.80,0.60,0.85,0.95,0.85,
+                        1.30,1.30,1.00,
+                        0.60,
+                        1.80,1.80,
+                        0.80,0.80]
     },
     {
       "lat": 38.384639
