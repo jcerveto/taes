@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '18' 
 
+      - name: Go to frontend directory
+        run: cd frontend/maquinua
+
       - name: Install dependencies
         run: npm install
 
