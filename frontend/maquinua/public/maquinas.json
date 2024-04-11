@@ -1076,8 +1076,18 @@
       },
       "edificio": "Torre de Control",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café Mocca", "Espresso Largo",
+                          "White Cappuccino", "Café a la Avellana",
+                          "Capuccino Descafeinado", "Smooth Capuchino",
+                          "Cortado Descafeinado", "Capuccino",
+                          "Café con Leche Descafeinado", "Café Cortado",
+                          "Chocolate", "Café con Leche"],
+      "lista_precios": [0.75, 0.35,
+                        0.75, 0.75,
+                        0.55, 0.75,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55]
     },
     {
       "lat": 38.384694
@@ -1091,8 +1101,11 @@
       },
       "edificio": "Torre de Control",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Palmera de Chocolate (Dulcesol)", "Doritos", "Pipas Velarte",
+                          "Galletas Chips Ahoy!", "Barrita Crunchy", "Mister Corn Mix", "Oreos", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Agua (Marca Nestle Aquarel)", "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Brick de Zumo (Don Simón)"],
+      "lista_precios": [0.70, 0.95, 0.95,
+                        0.95, 0.80, 0.50, 0.95, 0.90, 1.40, 0.60, 0.90, 0.90, 0.90, 0.60]
     },
     {
       "lat": 38.385694
