@@ -302,8 +302,18 @@
       },
       "edificio": "Politécnica IV",
       "type": "MIXTA",
-      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
-      "lista_precios": [1.35, 1.25, 1.75, 1.60]
+      "lista_productos": ["Chuches King Regal", "Cheetos Pandilla", "Doritos", "Tortitas de Maíz (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins","PapaDelta",
+                          "Donettes (Chocolate Blanco y Negro)", "Donettes (Chocolate Negro)", "Oreos", "Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Mister Corn Mix", "Mezcladitos (Marca Africa)", "Pipas Velarte", "Saladitos",
+                          "Sandwich de Cangrejo (Ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Atún (ñaming)", "Sandwich de Queso (Teika)", "Sandwich Vegetal (Teika)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Verde",
+                          "Fanta de Naranja (Lata, 75cl)", "Nestea Sin Azúcar (Lata, 75cl)", "Iso Drink (Lata, 75cl)", "Red Bull", "Brick de Zumo (Don Simón)", "Brick de Leche de Horchata", "Brick Toy Story de Chocolate"],
+      "lista_precios": [1.00, 0.95, 0.95, 0.85, 0.65, 0.60, 0.60,
+                        1.40, 1.40, 0.95, 0.95, 0.65, 0.50, 0.90, 1.40,
+                        0.70, 1.30, 1.30, 0.50, 1.20, 0.80, 0.60,
+                        1.00, 1.00, 1.00, 1.50, 1.50, 1.50,
+                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 1.80,
+                        0.90, 0.90, 0.90, 1.80, 0.65, 0.45, 0.45]
     },
     {
       "lat": 38.382833
