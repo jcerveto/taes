@@ -421,10 +421,10 @@
       ,
       "id": 17,
       "popupContent": {
-        "title": "Máquina 1 - AULARIO III",
+        "title": "Máquina 1 - Aulario III",
         "description": "Teika. Máquina Mixta"
       },
-      "edificio": "AULARIO III",
+      "edificio": "Aulario III",
       "type": "MIXTA",
       "lista_productos": ["Pipas Velarte", "Saladitos", "Tortitas de Maíz (Marca Snatt's)", "Doritos", "Cheetos Pandilla", "Patatas Saladas (Marca Aitana)",
                           "Chocoboms (Chocolate Blanco)", "Chocoboms (Chocolate Negro)", "Donettes (Chocolate Blanco y Negro)",
@@ -442,13 +442,23 @@
       ,
       "id": 18,
       "popupContent": {
-        "title": "Máquina 2 - AULARIO III",
+        "title": "Máquina 2 - Aulario III",
         "description": "Teika. Máquina Mixta"
       },
-      "edificio": "AULARIO III",
+      "edificio": "Aulario III",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Chuches King Regal", "Pipas Velarte", "Saladitos", "Tortitas de Maíz (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "JR Brownie", "Donettes (Chocolate Blanco y Negro)", "Oreos", "Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Chicles de Menta (Orbit)", "Barrita de Chocolate (Twix)", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Palmera de Chocolate (Dulcesol)", "Galletas Bio Organic (Marca Gutton)", "Mister Corn Mix", "Mezcladitos (Marca Africa)", "Chocoboms (Chocolate Blanco)",
+                          "Sandwich Mixto (Ñaming)", "Sandwich de Cangrejo (Ñaming)", "Sandwich de Salchichón (ñaming)", "Sandwich de Atún (ñaming)", "Sandwich de Queso (Teika)", "Sandwich Americano (Teika)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Limonada (Font Vella)", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Blanco",
+                          "Fanta de Naranja (Lata, 75cl)", "Nestea Sin Azúcar (Lata, 75cl)", "Iso Drink (Lata, 75cl)", "Red Bull", "Brick de Leche de Horchata", "Brick de Zumo (Don Simón)", "Brick de Zumo de Piña (Don Simón)", "Brick Mickey Mouse de Chocolate"],
+      "lista_precios": [1.00, 0.80, 0.60, 0.85, 0.65, 0.60, 0.60,
+                        1.00, 1.40, 0.95, 0.95, 0.65, 0.50, 0.40, 1.00, 0.90, 1.40,
+                        0.70, 1.30, 0.50, 1.20, 1.20, 1.30,
+                        1.00, 1.00, 1.00, 1.00, 1.50, 1.50, 1.50,
+                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 1.90,
+                        0.90, 0.90, 0.90, 1.80, 0.45, 0.60, 0.45, 0.45]
     },
     {
       "lat": 38.382139
@@ -457,13 +467,29 @@
       ,
       "id": 19,
       "popupContent": {
-        "title": "Máquina 3 - AULARIO III",
+        "title": "Máquina 3 - Aulario III",
         "description": "Teika. Máquina de Cafés"
       },
-      "edificio": "AULARIO III",
+      "edificio": "Aulario III",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Espresso Corto", "Espresso Corto de Finca", 
+                          "Espresso Largo", "Espresso Largo de Finca", 
+                          "Café Cortado", "Café Cortado de Finca",
+                          "Café con Leche", "Café con Leche de Finca", 
+                          "Capuchino", "Capuchino de Finca", 
+                          "Café Cortado Descafeinado", "Café con Leche Descafeinado",
+                          "Capuchino Italiano", "Chocolate", 
+                          "Café Avellana", "Smooth Capuchino", 
+                          "Café Bombón", "Chocolate Blanco"],
+      "lista_precios": [0.35, 0.55,
+                        0.35, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.75]
     },
     {
       "lat": 38.387361
