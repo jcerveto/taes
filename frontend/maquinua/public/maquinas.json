@@ -387,6 +387,7 @@
       "lista_productos": ["Cacahuetes", "Nozilla", "Lata de atún", "Mazorca de maíz"],
       "lista_precios": [1.30,1.45,2.30,3.75]
     },
+        
     {
       "lat": 38.382139
       ,
@@ -399,8 +400,8 @@
       },
       "edificio": "AULARIO III",
       "type": "MIXTA",
-      "lista_productos": ["Chicles", "Pipas", "Gominolas", "Caramelos"],
-      "lista_precios": [2.35,1.75,0.50,0.25]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.382139
@@ -414,8 +415,8 @@
       },
       "edificio": "AULARIO III",
       "type": "MIXTA",
-      "lista_productos": ["Palmera de Chocolate", "Trozo de Pizza", "Espinacas", "Conos 3D"],
-      "lista_precios": [2.25,1.15,2.75,1.60]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.382139
@@ -429,8 +430,8 @@
       },
       "edificio": "AULARIO III",
       "type": "CAFETERA",
-      "lista_productos": ["Café solo", "Café con leche", "Café cortado", "Café descafeinado"],
-      "lista_precios": [2.15,1.65,1.75,2.00]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.387361
@@ -444,8 +445,8 @@
       },
       "edificio": "Politécnica II",
       "type": "MIXTA",
-      "lista_productos": ["Doritos", "Bocadillo mixto", "Chocoboms", "Oreos"],
-      "lista_precios": [2.25,1.25,2.75,1.60]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.387361
@@ -459,8 +460,8 @@
       },
       "edificio": "Politécnica II",
       "type": "CAFETERA",
-      "lista_productos": ["Café manchado", "Café Iris", "Café con leche amarilla", "Café rosa"],
-      "lista_precios": [1.45,1.65,2.35,1.45]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.386944
@@ -474,8 +475,8 @@
       },
       "edificio": "Politécnica III",
       "type": "MIXTA",
-      "lista_productos": ["Cacahuetes", "Nozilla", "Lata de atún", "Mazorca de maíz"],
-      "lista_precios": [1.30,1.45,2.30,3.75]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.386944
@@ -489,13 +490,13 @@
       },
       "edificio": "Politécnica III",
       "type": "CAFETERA",
-      "lista_productos": ["Café lila", "Café Capuccino", "Café con azúcar", "Café picante"],
-      "lista_precios": [3.00,1.15,0.25,0.5]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386747
       ,
-      "lon": -0.515389
+      "lon": -0.515038
       ,
       "id": 24,
       "popupContent": {
@@ -504,13 +505,13 @@
       },
       "edificio": "Ciencias II",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Fanta de Taronja", "Aquarius de Limon", "Tónica","Cerveza 00"],
-      "lista_precios": [2.15,2.25,1.00,0.65]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386731
       ,
-      "lon": -0.515289
+      "lon": -0.515193
       ,
       "id": 25,
       "popupContent": {
@@ -523,9 +524,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386718
       ,
-      "lon": -0.515189
+      "lon": -0.515247
       ,
       "id": 26,
       "popupContent": {
@@ -538,9 +539,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386710
       ,
-      "lon": -0.515089
+      "lon": -0.515301
       ,
       "id": 27,
       "popupContent": {
@@ -553,9 +554,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386706
       ,
-      "lon": -0.514989
+      "lon": -0.515349
       ,
       "id": 28,
       "popupContent": {
@@ -568,9 +569,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.386833
+      "lat": 38.386670
       ,
-      "lon": -0.514889
+      "lon": -0.515418
       ,
       "id": 29,
       "popupContent": {
@@ -598,7 +599,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383417
+      "lat": 38.383430
       ,
       "lon": -0.516539
       ,
@@ -613,7 +614,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383417
+      "lat": 38.383445
       ,
       "lon": -0.516439
       ,
@@ -628,7 +629,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383417
+      "lat": 38.383460
       ,
       "lon": -0.516339
       ,
@@ -643,7 +644,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383417
+      "lat": 38.383480
       ,
       "lon": -0.516239
       ,
@@ -658,7 +659,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383417
+      "lat": 38.383491
       ,
       "lon": -0.516139
       ,
@@ -879,8 +880,8 @@
       },
       "edificio": "Filosofía y Letras I",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Red Bull", "Agua Lanjarón", "Chupito de menta","Batido de Proteínas"],
-      "lista_precios": [0.75,0.85,1.25,8.35]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.385389
@@ -958,7 +959,7 @@
       "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3856454
       ,
       "lon": -0.516861
       ,
@@ -973,9 +974,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3856000
       ,
-      "lon": -0.516761
+      "lon": -0.516840
       ,
       "id": 56,
       "popupContent": {
@@ -988,9 +989,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3855546
       ,
-      "lon": -0.516661
+      "lon": -0.516820
       ,
       "id": 57,
       "popupContent": {
@@ -999,13 +1000,13 @@
       },
       "edificio": "Derecho",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": ["Lechuga verde", "Tomate rojo", "Pepino verde", "Zanahoria naranja"],
-      "lista_precios": [1.35, 1.25, 1.75, 1.60]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3855110
       ,
-      "lon": -0.516561
+      "lon": -0.516800
       ,
       "id": 58,
       "popupContent": {
@@ -1018,9 +1019,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3854656
       ,
-      "lon": -0.516461
+      "lon": -0.516770
       ,
       "id": 59,
       "popupContent": {
@@ -1033,9 +1034,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.385444
+      "lat": 38.3854202
       ,
-      "lon": -0.516361
+      "lon": -0.516770
       ,
       "id": 60,
       "popupContent": {
@@ -1048,9 +1049,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383606
       ,
-      "lon": -0.511750
+      "lon": -0.512086
       ,
       "id": 61,
       "popupContent": {
@@ -1063,9 +1064,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383631
       ,
-      "lon": -0.511650
+      "lon": -0.512005
       ,
       "id": 62,
       "popupContent": {
@@ -1078,9 +1079,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383648
       ,
-      "lon": -0.511550
+      "lon": -0.511925
       ,
       "id": 63,
       "popupContent": {
@@ -1093,9 +1094,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383661
       ,
-      "lon": -0.511450
+      "lon": -0.511855
       ,
       "id": 64,
       "popupContent": {
@@ -1108,9 +1109,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383673
       ,
-      "lon": -0.511350
+      "lon": -0.511780
       ,
       "id": 65,
       "popupContent": {
@@ -1123,9 +1124,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383682
       ,
-      "lon": -0.511250
+      "lon": -0.511705
       ,
       "id": 66,
       "popupContent": {
@@ -1138,9 +1139,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383833
+      "lat": 38.383698
       ,
-      "lon": -0.511150
+      "lon": -0.511630
       ,
       "id": 67,
       "popupContent": {
@@ -1149,13 +1150,13 @@
       },
       "edificio": "Biblioteca de Filosofía y Letras",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": ["Pepino", "Berenjena", "Peso Pluma", "Tomate de la huerta"],
-      "lista_precios": [23.50,11.25,14.15,69.65]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.383028
       ,
-      "lon": -0.513028
+      "lon": -0.513070
       ,
       "id": 68,
       "popupContent": {
@@ -1168,9 +1169,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383028
+      "lat": 38.3829
       ,
-      "lon": -0.512928
+      "lon": -0.513000
       ,
       "id": 69,
       "popupContent": {
@@ -1183,9 +1184,9 @@
       "lista_precios": []
     },
     {
-      "lat": 38.383028
+      "lat": 38.382980
       ,
-      "lon": -0.512928
+      "lon": -0.513050
       ,
       "id": 70,
       "popupContent": {
@@ -1299,8 +1300,8 @@
       },
       "edificio": "Alumnado",
       "type": "CAFETERA",
-      "lista_productos": ["pepe"],
-      "lista_precios": [2]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat": 38.387694
@@ -1374,8 +1375,8 @@
       },
       "edificio": "Polideportivo",
       "type": "COMIDA SALUDABLE",
-      "lista_productos": ["Puerro", "Cebolla", "Lechuga fresca", "Rábanos"],
-      "lista_precios": [2.75,6.55,0.01,0.25]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat":38.388806
@@ -1389,8 +1390,8 @@
       },
       "edificio": "Polideportivo",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Monster", "Agua con gas", "Jagger","Whiskey"],
-      "lista_precios": [5.65,111.25,45,75,90]
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat":38.388806
@@ -1930,9 +1931,9 @@
         "description": "Teika. Máquina de Bebidas Frías"
       },
       "edificio": "CTQ",
-      "type": "BEBIDAS FRIAS",
-      "lista_productos": ["Coca Cola", "Nestea", "Aquarius","Lipton"],
-      "lista_precios": [1.00, 1.25, 1.75,2.15]
+      "type": "BEBIDAS FRIAS. Máquina de Bebidas Frías",
+      "lista_productos": [],
+      "lista_precios": []
     },
     {
       "lat":38.388000
