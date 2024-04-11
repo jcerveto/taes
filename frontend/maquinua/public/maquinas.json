@@ -528,8 +528,24 @@
       },
       "edificio": "Politécnica II",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Espresso Corto", "Espresso Corto de Finca", 
+                          "Espresso Largo", "Espresso Largo de Finca", 
+                          "Café Cortado", "Café Cortado de Finca",
+                          "Café con Leche", "Café con Leche de Finca", 
+                          "Capuchino", "Capuchino de Finca", 
+                          "Café Cortado Descafeinado", "Café con Leche Descafeinado",
+                          "Capuchino Italiano", "Chocolate", 
+                          "Café Avellana", "Leche Manchada", 
+                          "Café Bombón", "Té con limón"],
+      "lista_precios": [0.35, 0.55,
+                        0.35, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.10,
+                        0.75, 0.10]
     },
     {
       "lat": 38.386944
