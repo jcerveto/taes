@@ -559,8 +559,17 @@
       },
       "edificio": "Politécnica III",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Chuches King Regal", "Pipas Velarte", "Donut Azúcar Glas", "Tortitas de Maíz con Tomate (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "Chocoboms (Chocolate Blanco)", "JR Brownie","Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Barritas de Chocolate KitKat",
+                          "Agua (Marca Nestle Aquarel)",
+                          "Sandwich de Atún (Teika)", "Sandwich Americano (Teika)", "Sandwich de Salami y Queso (Teika)", "Sandwich de Atún (ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Cangrejo (Ñaming)", "Zumo de Naranja 100% Natural",
+                          "Coca Cola (Botella, 1L)", "Coca Cola Zero (Botella, 1L)", "Limonada (Font Vella)", "Brick de Leche de Horchata", "Café (Mocay)", "Toro Bebida Energética", "Red Bull",
+                          "Coca Cola (Lata, 75cl)", "Coca Cola Zero (Lata, 75cl", "Iso Drink (Lata, 75cl)", "Brick de Zumo (Don Simón)", "Brick de Zumo de Piña (Don Simón)", "Brick Mickey Mouse de Chocolate"],
+      "lista_precios": [1.00, 0.80, 1.00, 0.85, 0.65, 0.60, 0.60,
+                        1.30, 1.00, 0.65, 0.50, 0.90, 0.60, 
+                        1.50, 1.50, 1.50, 1.00, 1.00, 1.00, 1.50,
+                        1.30, 1.30, 1.00, 0.45, 1.70, 1.40, 1.80,
+                        0.90, 0.75, 0.60, 0.45, 0.45, 0.45]
     },
     {
       "lat": 38.386944
@@ -574,8 +583,24 @@
       },
       "edificio": "Politécnica III",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Espresso Corto", "Espresso Corto de Finca", 
+                          "Espresso Largo", "Espresso Largo de Finca", 
+                          "Café Cortado", "Café Cortado de Finca",
+                          "Café con Leche", "Café con Leche de Finca", 
+                          "Capuchino", "Capuchino de Finca", 
+                          "Café Cortado Descafeinado", "Café con Leche Descafeinado",
+                          "Capuchino Italiano", "Chocolate", 
+                          "Café Avellana", "Smooth Capuchino", 
+                          "Café Bombón", "Chocolate Blanco"],
+      "lista_precios": [0.35, 0.55,
+                        0.35, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.75]
     },
     {
       "lat": 38.386747
