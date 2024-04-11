@@ -503,8 +503,18 @@
       },
       "edificio": "Politécnica II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Chuches King Regal", "Pipas Velarte", "Doritos", "Cheetos Pandilla", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "Chocoboms (Chocolate Blanco)", "Pastel de Chocolate (Dulcesol)", "Barrita de Chcolate Energética Fitness", "Galletas Chips Ahoy!", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Agua (Marca Nestle Aquarel)",
+                          "Sandwich de Atún (Teika)", "Sandwich Americano (Teika)", "Sandwich de Atún (ñaming)", "Donettes (Chocolate Negro)", "Zumo de Naranja 100% Natural",
+                          "Coca Cola (Botella, 1L)", "Limonada (Font Vella)", "Café (Mocay)", "Toro Bebida Energética", "Red Bull",
+                          "Coca Cola (Lata, 75cl)", "Coca Cola Zero (Lata, 75cl)", "Fanta de Naranja (Lata, 75cl)", "Iso Drink (Lata, 75)", "Brick de Zumo (Don Simón)", "Brick de Zumo de Piña (Don Simón)", "Brick Toy Story de Chocolate"],
+      "lista_precios": [1.00, 0.80, 0.95, 0.95, 0.65, 0.60, 0.60,
+                        1.30, 0.70, 0.65, 0.95, 0.50, 0.90, 1.40,
+                        0.60,
+                        1.50, 1.50, 1.00, 1.40, 1.50,
+                        1.30, 1.00, 1.70, 1.40, 1.80,
+                        0.90, 0.90, 0.90, 0.75, 0.60, 0.45, 0.45]
     },
     {
       "lat": 38.387361
