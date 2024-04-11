@@ -1,80 +1,66 @@
 <template>
-   <div>
+  <div>
     <h1>Support Page</h1>
-    <br>
-    <router-link to="/" class="allign-right-home">Go to Home</router-link>
-    <br>
+    <router-link to="/" class="align-right-home">Go to Home</router-link>
+
+    <!-- Filter container for the building selection -->
     <div class="filter-container">
-
-      <select v-model="selectedMachineType" class="filter-dropdown">
-        <option value="">Todos los tipos</option>
-        <option value="MIXTA">MIXTA</option>
-        <option value="CAFETERA">CAFETERA</option>
-        <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
-        <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
-      </select>
-
-      <select v-model="selectedBuilding" class="filter-dropdown">
-        <option value="">Todos los edificios</option>
+      <select v-model="selectedBuilding" @change="buildingSelected" class="filter-dropdown">
+        <option value="">None</option>
         <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
       </select>
-      <div class="input-container">
-        <input type="text" v-model="productFilter" class="filter-input">
-        <label for="productFilter">Producto concreto</label>
-      </div>
+      
+      <!-- Machine title filter; appears when a building is selected -->
+      <select v-if="selectedBuilding" v-model="selectedMachineTitle" @change="machineSelected" class="filter-dropdown">
+        <option value="">None</option>
+        <option v-for="machine in machinesInSelectedBuilding" :key="machine.id">
+          {{ machine.popupContent.title }}
+        </option>
+      </select>
 
-      <div class="input-container">
-        <input type="number" v-model.number="minPrice" step="0.10" min="0" class="filter-input">
-        <label for="minPrice">Precio mínimo</label>
-      </div>
+      <!-- Remaining filters; appear when a machine title is selected -->
+      <div v-if="selectedMachine">
+        <select v-model="selectedMachineType" class="filter-dropdown">
+          <option value="">Todos los tipos</option>
+          <option value="MIXTA">MIXTA</option>
+          <option value="CAFETERA">CAFETERA</option>
+          <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
+          <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
+        </select>
 
-      <div class="input-container">
-        <input type="number" v-model.number="maxPrice" step="0.10" min="0" class="filter-input">
-        <label for="maxPrice">Precio máximo</label>
-      </div>
-
-    </div>
-    <br>
-    
-
-    <div v-for="(building, index) in filteredBuildings" :key="index">
-      <details>
-        <summary>{{ building.name }}</summary>
-        <div v-for="machine in filteredMachines(building)" :key="machine.id">
-          <details>
-            <summary>{{ machine.popupContent.title }}</summary>
-            <div class="table-container">
-              <table :class="getTableClass(machine.type)" style="margin-left: auto; margin-right: auto; width: 80%;" >
-                <tbody>
-                  <tr>
-                    <th>Título de la máquina</th>
-                    <td>{{ machine.popupContent.title }}</td>
-                  </tr>
-                  <tr>
-                    <th>Descripción de la máquina</th>
-                    <td>{{ machine.popupContent.description }}</td>
-                  </tr>
-                  <tr>
-                    <th>Tipo de máquina</th>
-                    <td>{{ machine.type }}</td>
-                  </tr>
-                  <tr class="productos-header">
-                    <th colspan="2">Productos</th>
-                  </tr>
-                  <tr>
-                    <th> Nombre del producto</th>
-                    <th> Precio del producto (€)</th>
-                  </tr>
-                  <tr v-for="(product, index) in machine.lista_productos" :key="index">
-                    <td contenteditable="true" @blur="updateProductName(machine.id, index, $event.target.innerText)">{{ product }}</td>
-                    <td contenteditable="true" @blur="updateProductPrice(machine.id, index, $event.target.innerText)" @input="validatePrice($event)">{{ machine.lista_precios[index].toFixed(2) }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
+        <div class="input-container">
+          <input type="text" v-model="productFilter" placeholder="Producto concreto" class="filter-input">
         </div>
-      </details>
+
+        <div class="input-container">
+          <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10" min="0" class="filter-input">
+        </div>
+
+        <div class="input-container">
+          <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10" min="0" class="filter-input">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Details of the selected machine; appears when a machine title is selected -->
+    <div v-if="selectedMachineDetails" class="machine-details">
+      <h2>{{ selectedMachineDetails.popupContent.title }}</h2>
+      <p>{{ selectedMachineDetails.popupContent.description }}</p>
+      <!-- Table containing the products and prices of the selected machine -->
+      <table :class="getTableClass(selectedMachineDetails.type)">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
+            <td>{{ product }}</td>
+            <td>{{ selectedMachineDetails.lista_precios[index] }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -88,15 +74,25 @@ export default {
       selectedMachineType: '',
       selectedBuilding: '',
       productFilter: '',
-      minPrice: null, 
-      maxPrice: null, 
+      minPrice: null,
+      maxPrice: null,
+      selectedMachine: '', // Holds the title of the selected machine
+      selectedMachineDetails: null, // Holds the full details of the selected machine
+      selectedMachineTitle: '',
     };
   },
   computed: {
     buildingOptions() {
-      const buildingSet = new Set(this.machines.map(machine => machine.edificio));
-      return Array.from(buildingSet);
+      return Array.from(new Set(this.machines.map(machine => machine.edificio)));
     },
+
+    machinesInSelectedBuilding() {
+      if (!this.selectedBuilding) {
+        return [];
+      }
+      return this.machines.filter(machine => machine.edificio === this.selectedBuilding);
+    },
+
     filteredBuildings() {
   
       if (this.selectedBuilding) {
@@ -112,11 +108,13 @@ export default {
   },
   methods: {
     fetchMachines() {
+      // Fetch the machines from the JSON file
       fetch('/maquinas.json')
         .then(response => response.json())
         .then(data => {
           this.machines = data;
-          this.groupMachinesByBuilding();
+          // After fetching, you might want to populate the buildings array or other initial setups
+          this.buildings = this.buildingOptions; // This line is an example and may vary based on your logic
         })
         .catch(error => console.error('Error:', error));
     },
@@ -129,6 +127,10 @@ export default {
         buildingMap[machine.edificio].machines.push(machine);
       });
       this.buildings = Object.values(buildingMap);
+    },
+    machineSelected() {
+    this.selectedMachineDetails = this.machines.find(machine => 
+      machine.popupContent.title === this.selectedMachineTitle);
     },
     filteredMachines(building) {
       return building.machines.filter(machine => {

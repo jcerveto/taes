@@ -292,11 +292,11 @@
       "edificio": "Politécnica IV",
       "type": "MIXTA",
       "lista_productos": ["Pipas Velarte", "Tortitas de Maíz (Marca Snatt's)", "Doritos", "Cheetos Pandilla", "Patatas Saladas (Marca Aitana)",
-                          "Chocoboms (Chocolate Blanco)", "Chocoboms (Chocolate Negro)", "Donettes (Chocolate Blanco y Negro)", 
+                          "Chocoboms (Chocolate Blanco)", "Chocoboms (Chocolate Negro)", "Qé Gofre Belga de Chocolate", "Donettes (Chocolate Blanco y Negro)", 
                           "Agua (Marca Nestle Aquarel, Botella 33cl)",
                           "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)"],
-      "lista_precios": [0.80, 0.80, 0.85, 0.95, 0.95, 0.65,
-                        1.30, 1.30,
+      "lista_precios": [0.80, 0.85, 0.95, 0.95, 0.65, 
+                        1.30, 1.30, 1.40, 1.30,
                         0.60,
                         0.90, 0.90]
     },
@@ -313,17 +313,18 @@
       "edificio": "Politécnica IV",
       "type": "MIXTA",
       "lista_productos": ["Chuches King Regal", "Cheetos Pandilla", "Doritos", "Tortitas de Maíz (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins","PapaDelta",
-                          "Donettes (Chocolate Blanco y Negro)", "Donettes (Chocolate Negro)", "Oreos", "Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
+                          "Donettes (Chocolate Blanco y Negro)", "Donettes (Chocolate Negro)", "Oreos", "Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
                           "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Mister Corn Mix", "Mezcladitos (Marca Africa)", "Pipas Velarte", "Saladitos",
                           "Sandwich de Cangrejo (Ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Atún (ñaming)", "Sandwich de Queso (Teika)", "Sandwich Vegetal (Teika)", "Zumo de Naranja 100% Natural",
-                          "Aquarius de Naranja", "Aquarius de Limon", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Verde",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Limonada (Font Vella)", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Verde",
                           "Fanta de Naranja (Lata, 33cl)", "Nestea Sin Azúcar (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Red Bull", "Brick de Zumo (Don Simón)", "Brick de Leche de Horchata", "Brick Toy Story de Chocolate"],
       "lista_precios": [1.00, 0.95, 0.95, 0.85, 0.65, 0.60, 0.60,
-                        1.40, 1.40, 0.95, 0.95, 0.65, 0.50, 0.90, 1.40,
-                        0.70, 1.30, 1.30, 0.50, 1.20, 0.80, 0.60,
+                        1.40, 1.40, 0.95, 0.95, 0.65, 0.50,0.90, 1.40,
+                        0.70, 1.30, 0.50, 1.20, 0.80, 0.60,
                         1.00, 1.00, 1.00, 1.50, 1.50, 1.50,
-                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 1.80,
-                        0.90, 0.90, 0.90, 1.80, 0.65, 0.45, 0.45]
+                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 1.90,
+                        0.90, 0.90, 0.90, 1.80, 0.45, 0.45, 0.45
+                        ]
     },
     {
       "lat": 38.382833
@@ -1105,7 +1106,8 @@
                           "Galletas Chips Ahoy!", "Barrita Crunchy", "Mister Corn Mix", "Oreos", "Barritas de Chocolate KitKat", "Barritas de Kinder Bueno",
                           "Agua (Marca Nestle Aquarel)", "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Brick de Zumo (Don Simón)"],
       "lista_precios": [0.70, 0.95, 0.95,
-                        0.95, 0.80, 0.50, 0.95, 0.90, 1.40, 0.60, 0.90, 0.90, 0.90, 0.60]
+                        0.95, 0.80, 0.50, 0.95, 0.90, 1.40,
+                        0.60, 0.90, 0.90, 0.90, 0.60]
     },
     {
       "lat": 38.385694
@@ -1119,8 +1121,18 @@
       },
       "edificio": "Relaciones Internacionales",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Café Mocca", "Espresso Largo",
+                          "White Cappuccino", "Café a la Avellana",
+                          "Capuccino Descafeinado", "Smooth Capuchino",
+                          "Cortado Descafeinado", "Capuccino",
+                          "Café con Leche Descafeinado", "Café Cortado",
+                          "Chocolate", "Café con Leche"],
+      "lista_precios": [0.75, 0.35,
+                        0.75, 0.75,
+                        0.55, 0.75,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55]
     },
     {
       "lat": 38.385694
@@ -1134,8 +1146,14 @@
       },
       "edificio": "Relaciones Internacionales",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Pipas Velarte", "Chuches King Regal", "Galletas Bicentury (Recetea Mediterránea)",
+                          "Pipas Snatt's" ,"Galletas Chips Ahoy!", "Almendras (Marca Medina)", "Barritas de Chocolate KitKat", "Chicles de Menta (Orbit)",
+                          "Zumo de Naranja 100% Natural","Agua (Marca Nestle Aquarel)", 
+                          "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Red Bull", "Brick de Zumo (Don Simón)"],
+      "lista_precios": [0.80, 1.00, 0.65,
+                        0.75, 0.95, 1.20, 0.90, 1.80,
+                        0.95, 0.60, 
+                        0.90, 0.90, 0.90, 1.80, 0.60]
     },
     {
       "lat": 38.385944
@@ -1149,8 +1167,15 @@
       },
       "edificio": "Edificio Polivalente III",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Chuches King Regal","Pipas Velarte", "Saladitos", "Tortitas de Maíz con Tomate (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins", "PapaDelta",
+                          "Chocoboms (Chocolate Blanco)", "Donettes (Chocolate Blanco y Negro)", 
+                          "Agua (Marca Nestle Aquarel)",
+                          "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)"],
+      "lista_precios": [1.00, 0.80, 0.60, 0.85, 0.65, 0.60, 0.60, 
+                        1.30, 1.30,
+                        0.60,
+                        0.90, 0.90]
+
     },
     {
       "lat": 38.385944
@@ -1164,8 +1189,24 @@
       },
       "edificio": "Edificio Polivalente III",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Espresso Corto", "Espresso Corto de Finca", 
+                          "Espresso Largo", "Espresso Largo de Finca", 
+                          "Café Cortado", "Café Cortado de Finca",
+                          "Café con Leche", "Café con Leche de Finca", 
+                          "Capuchino", "Capuchino de Finca", 
+                          "Café Cortado Descafeinado", "Café con Leche Descafeinado",
+                          "Capuchino Italiano", "Chocolate", 
+                          "Café Avellana", "Smooth Capuchino", 
+                          "Café Bombón"],
+      "lista_precios": [0.35, 0.55,
+                        0.35, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.55,
+                        0.75]
     },
     {
       "lat": 38.385944
@@ -1179,8 +1220,18 @@
       },
       "edificio": "Filosofía y Letras I",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Donut Azúcar Glas","Cheetos Pandilla", "Doritos", "Tortitas de Maíz con Tomate (Marca Snatt's)", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins","PapaDelta",
+                          "Palmera de Chocolate (Dulcesol)", "JR Brownie","Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness","Chicles de Menta (Orbit)","Barrita Crunchy", "Barritas de Chocolate KitKat", "Barrita de Chocolate (Twix)",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Mister Corn Mix", "Pipas Velarte", "Saladitos",
+                          "Sandwich de Cangrejo (Ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Atún (ñaming)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Limonada (Font Vella)", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Blanco",
+                          "Fanta de Naranja (Lata, 33cl)", "Nestea Sin Azúcar (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Brick de Zumo (Don Simón)", "Brick de Leche de Horchata", "Brick Toy Story de Chocolate"],
+      "lista_precios": [0.95, 0.95, 0.85, 0.65, 0.60, 0.60,
+                        0.70, 1.00, 0.95, 0.65, 0.40, 0.65, 0.50,0.90, 1.00,
+                        0.70, 1.30, 0.50, 0.80, 0.60,
+                        1.00, 1.00, 1.00, 1.50,
+                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 1.90,
+                        0.90, 0.90, 0.90, 0.45, 0.45, 0.45]
     },
     {
       "lat": 38.385944
@@ -1194,8 +1245,24 @@
       },
       "edificio": "Filosofía y Letras I",
       "type": "CAFETERA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Espresso Corto", "Espresso Corto de Finca", 
+                          "Espresso Largo", "Espresso Largo de Finca", 
+                          "Café Cortado", "Café Cortado de Finca",
+                          "Café con Leche", "Café con Leche de Finca", 
+                          "Capuchino", "Capuchino de Finca", 
+                          "Café Cortado Descafeinado", "Café con Leche Descafeinado",
+                          "Capuchino Italiano", "Chocolate", 
+                          "Café Avellana", "Leche Manchada", 
+                          "Café Bombón", "Té con Limón"],
+      "lista_precios": [0.35, 0.55,
+                        0.35, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.55, 0.55,
+                        0.75, 0.55,
+                        0.75, 0.10,
+                        0.75, 0.10]
     },
     {
       "lat": 38.385944
@@ -1209,8 +1276,8 @@
       },
       "edificio": "Filosofía y Letras I",
       "type": "BEBIDAS FRIAS",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Agua (Marca Aquarel, 0.5L)", "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)"],
+      "lista_precios": [0.60, 0.90, 0.90]
     },
     {
       "lat": 38.385389
@@ -1224,8 +1291,14 @@
       },
       "edificio": "Filosofía y Letras II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Pipas Velarte", "Saladitos", "Tortitas de Maíz con Tomate (Marca Snatt's)", "Patatas Saladas (Marca Aitana)",
+                          "Chocoboms (Chocolate Blanco)", "Chocoboms (Chocolate Negro)",
+                          "Agua (Marca Nestle Aquarel)",
+                          "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)"],
+      "lista_precios": [0.80, 0.60, 0.85, 0.65,
+                        1.30, 1.20,
+                        0.60,
+                        0.90, 0.90]
     },
     {
       "lat": 38.385389
@@ -1239,8 +1312,18 @@
       },
       "edificio": "Filosofía y Letras II",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Cheetos Pandilla", "Doritos", "Patatas Saladas (Marca Aitana)", "Bolsa de Gublins","PapaDelta",
+                          "Oreos", "Galletas Chips Ahoy!", "Barrita de Chcolate Energética Fitness", "Barrita Crunchy", "Barritas de Chocolate KitKat", "Barrita de Chocolate Huesitos",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Negro)", "Mister Corn Mix", "Donettes (Chocolate Negro)", "Pipas Velarte", "Saladitos",
+                          "Sandwich de Cangrejo (Ñaming)", "Sandwich Mixto (Ñaming)", "Sandwich de Atún (ñaming)", "Sandwich de Queso (Teika)", "Sandwich Vegetal (Teika)", "Zumo de Naranja 100% Natural",
+                          "Aquarius de Naranja", "Aquarius de Limon", "Limonada (Font Vella)", "Café (Mocay)", "Sandwich (El Griego)", "Toro Bebida Energética", "Monster Blanco", "Botella de Lipton",
+                          "Fanta de Naranja (Lata, 33cl)", "Nestea Sin Azúcar (Lata, 33cl)", "Iso Drink (Lata, 33cl)", "Red Bull", "Brick de Zumo (Don Simón)", "Brick de Zumo de Piña", "Brick Toy Story de Chocolate"],
+      "lista_precios": [0.95, 0.95, 0.65, 0.60, 0.60,
+                        0.95, 0.95, 0.65, 0.50,0.90, 0.80,
+                        0.70, 1.30, 0.50, 1.40, 0.80, 0.60,
+                        1.00, 1.00, 1.00, 1.50, 1.50, 1.50,
+                        1.40, 1.40, 1.00, 1.70, 2.50, 1.40, 0.90, 0.90,
+                        0.90, 0.90, 0.90, 1.80, 0.45, 0.45, 0.45]
     },
     {
       "lat": 38.385389
