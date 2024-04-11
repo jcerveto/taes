@@ -833,8 +833,18 @@
       },
       "edificio": "Aulario I",
       "type": "MIXTA",
-      "lista_productos": [],
-      "lista_precios": []
+      "lista_productos": ["Pipas Velarte", "Saladitos", "Cheetos Pandilla", "Doritos",
+                          "Palmera de Chocolate (Dulcesol)", "Chocoboms (Chocolate Blanco)", "Galletas Bio Organic (Marca Gutton)", "JR Brownie","Barritas Tokke", "Mister Corn Mix", "Barritas de Kinder Bueno",
+                          "Agua (Marca Nestle Aquarel)",
+                          "Agua (Lanjarón, Botella 1L)",
+                          "Zumo de Naranja 100% Natural", "Aquarius de Naranja", "Aquarius de Limón", "Limonada (Font Vella)", "Agua con Gas",
+                          "Coca Cola (Lata, 33cl)", "Coca Cola Zero (Lata, 33cl)", "Red Bull"
+                          ],
+      "lista_precios": [0.80, 0.60, 1.20, 0.95, 0.95,
+                        0.70, 1.30, 1.00, 0.90, 0.80, 0.70, 0.60, 1.00,
+                        1.50, 1.40, 1.40, 1.00, 1.00,
+                        0.90, 0.90, 1.80
+                        ]
     },
     {
       "lat": 38.383460
