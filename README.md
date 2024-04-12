@@ -84,13 +84,7 @@ Lints and fixes files
 ```
 npm run lint
 ```
-
 Deploy the project
-
-Este proyecto tiene automatizado el despliegue en GitHub Pages. Usa un workflow de GitHub Actions para ello.
-
-Sin embargo, si quieres desplegarlo manualmente, sigue los siguientes pasos:
-
 1) Build the project
 ```sh
 npm run build
@@ -107,8 +101,6 @@ serve -s dist
 npm run predeploy
 npm run deploy
 ```
-
-
 Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 

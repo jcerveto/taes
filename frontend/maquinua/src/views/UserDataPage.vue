@@ -9,8 +9,7 @@
         <p :style="{ color: prop.color }">{{ prop.value }}</p>
       </div>
 
-      <a href="/user/mydata/myinfo" class="boton-enlace">Modificar Datos</a>
-      <a href="/user/mydata/myinfo" class="boton-enlace2">Eliminar Perfil</a>
+      <router-link to="/user/mydata/myinfo">Modificar Datos</router-link>
     </div>
   </div>
 
@@ -20,6 +19,7 @@
 
 <script>
 import axios from 'axios';
+import { useUserStore } from '../stores/user-store-setup';
 
 export default {
   data() {
@@ -60,7 +60,12 @@ export default {
     async getUserData() {
       // Simular obtención de datos del usuario
       this.email = 'test@example.com';
-      await axios.post('http://localhost:3000/users', { email: this.email }, { withCredentials: true })
+
+      const userStore = useUserStore();
+      
+      const user = userStore.uid;
+      
+      await axios.get(`http://localhost:3000/users/${user}`, { withCredentials: true })
         .then((res) => {
           this.propiedades[0].value = res.data.username;
           this.propiedades[1].value = res.data.name;

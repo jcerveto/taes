@@ -28,7 +28,7 @@ services:
       - mongodb
     networks:
       - maquinua-backend-network
-    restart: unless-stopped
+    restart: always
 
 networks:
   maquinua-backend-network:
