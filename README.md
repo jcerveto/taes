@@ -95,6 +95,7 @@ Sin embargo, si quieres desplegarlo manualmente, sigue los siguientes pasos:
 ```sh
 npm run build
 ```
+
 2) Test the project in local
 ```sh
 npm install -g serve
@@ -102,6 +103,7 @@ npm install -g serve
 # which deals with the routing problem below
 serve -s dist
 ```
+
 3) Deploy the frontend to GitHub Pages
 ```sh
 npm run predeploy
