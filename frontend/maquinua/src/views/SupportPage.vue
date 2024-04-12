@@ -50,6 +50,12 @@
         </tbody>
       </table>
     </div>
+    <!-- Add Product Section -->
+    <div v-if="selectedMachineDetails" class="add-product-section">
+      <input v-model="newProductName" placeholder="Product Name" />
+      <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
+      <button @click="addProduct">Confirm</button>
+    </div>
   </div>
 </template>
 
@@ -67,6 +73,8 @@ export default {
       selectedMachine: '', // Holds the title of the selected machine
       selectedMachineDetails: null, // Holds the full details of the selected machine
       selectedMachineTitle: '',
+      newProductName: '',
+      newProductPrice: '',
     };
   },
   computed: {
@@ -189,6 +197,18 @@ export default {
       event.target.innerText = input.slice(0, -1);
     }
    },
+
+   addProduct() {
+      if (!this.newProductName || !this.newProductPrice || this.newProductPrice <= 0) {
+        alert('Please enter a valid product name and price greater than 0.');
+        return;
+      }
+      this.selectedMachineDetails.lista_productos.push(this.newProductName);
+      this.selectedMachineDetails.lista_precios.push(parseFloat(this.newProductPrice));
+      this.saveChanges();  // Reuse saveChanges to push the update to the backend
+      this.newProductName = '';
+      this.newProductPrice = '';
+    },
 
   },
   created() {

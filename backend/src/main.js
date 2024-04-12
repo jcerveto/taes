@@ -179,6 +179,30 @@ app.post('/update-machine', async (req, res) => {
     }
 });
 
+app.put('/update-machine', async (req, res) => {
+    const { id, newProduct, newPrice } = req.body;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+
+    try {
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const machine = machines.find(machine => machine.id === id);
+
+        if (!machine) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+
+        machine.lista_productos.push(newProduct);
+        machine.lista_precios.push(parseFloat(newPrice));
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Product added successfully', machine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
