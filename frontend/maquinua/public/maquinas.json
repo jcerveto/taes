@@ -13,13 +13,15 @@
       "My main Goal",
       "Coca Cola",
       "Coca Cola Zero",
-      "hola"
+      "hola",
+      "Boniato"
     ],
     "lista_precios": [
       0.6969,
       0.9,
       0.9,
-      1.3
+      1.3,
+      69
     ]
   },
   {
@@ -421,7 +423,7 @@
     "type": "MIXTA",
     "lista_productos": [
       "Donut Azúcar Glas",
-      "Cheetos Pandilla",
+      "Cheetos Tortilla",
       "Tortitas de Maíz (Marca Snatt's)",
       "Patatas Saladas (Marca Aitana)",
       "Bolsa de Gublins",
@@ -2716,7 +2718,8 @@
       "Café con Leche Descafeinado",
       "Café Cortado",
       "Chocolate",
-      "Café con Leche"
+      "Café con Leche",
+      "Café Con Sorpresa"
     ],
     "lista_precios": [
       0.75,
@@ -2730,7 +2733,8 @@
       0.55,
       0.55,
       0.55,
-      0.55
+      0.55,
+      420
     ]
   },
   {
