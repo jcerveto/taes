@@ -1,31 +1,28 @@
 <template>
-    <div class="login-container">
-      <div class="form-container">
+  <div class="login-container">
+    <div class="form-container">
       <h2>Sign In</h2>
-      <form @submit.prevent="signIn">
-      
-        <div>
+      <br>
+      <form @submit.prevent="signIn" class="form">
+        <div class="form-group">
           <label for="email">Email:</label><br>
-          <input type="email" id="email" v-model="email" required>
+          <input class="form-control" type="email" id="email" v-model="email" required>
         </div>
         <br>
         <div>
           <label for="password">Password:</label><br>
-          <input type="password" id="password" v-model="password" required>
+          <input class="form-control" type="password" id="password" v-model="password" required>
         </div>
         <div>
-            <br>
-          <button type="submit">Sign In</button>
+          <br>
+          <button class="btn custom-btn-color" type="submit">Sign In</button>
         </div>
-      
       </form>
       <br>
       <p>Do not have an account yet?</p>
       <router-link to="/register">Register</router-link>
     </div>
   </div>
- 
-    
 </template>
 
 <script setup>
@@ -53,22 +50,36 @@
   }
 </script>
   
-<style>
-  .register-container {
-    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+<style scoped>
+  .login-container {
+    background-image: url('~@/assets/backgroundhd.png');
     background-size: cover;
     background-position: center;
-    height: 100%; /* Ajusta la altura según tu necesidad */
+    height: 84vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
   }
 
   .form-container {
     background-color: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .custom-btn-color {
+    text-align: center;
+    color: white;
+    background-color: #7fcaad;
+  }
+  
+  .custom-btn-color:hover {
+    color: white;
+    background-color: #5a917b;
+  }
+
+  .form-control {
+    max-width: 200px;
   }
 </style>
