@@ -1,5 +1,49 @@
-<script>
+<template>
+  <div :class="{ 'dark-mode': darkMode }">
+    <div class="card">
+      <form>
+        <label for="tipo">Tipo de máquina</label>
+        <select id="tipo" class="form-select" v-model="tipo">
+          <option value="MIXTA" selected>Mixta</option>
+          <option value="CAFETERA">Café</option>
+          <option value="BEBIDAS FRIAS">Frío</option>
+          <option value="COMIDA SALUDABLE">Saludable</option>
+        </select>
+        
+        <label for="producto">Producto concreto</label>
+        <multiselect
+          style="margin-bottom: 10px;"
+          v-model="selectedProducto"
+          :options="productos"
+          :close-on-select="true"
+          label="producto"
+          track-by="producto"
+        ></multiselect>
+        
+        
+        <!-- Utilizando vue-multiselect para edificio -->
+        <label for="edificio">Edificio</label>
+        <multiselect
+          v-model="selectedEdificio"
+          :options="edificios"
+          :close-on-select="true"
+          label="edificio"
+          track-by="edificio"
+        ></multiselect>
+        <br>
+        
+        
 
+         
+
+        <button style="margin-right:20px" class="btn custom-btn-color">Cancelar</button>
+        <button @click.prevent="buscar()" class="btn custom-btn-color">Aplicar</button>
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
 import Multiselect from 'vue-multiselect';
 import json from '/public/maquinas.json';
 import { onMounted, ref } from 'vue';
@@ -79,53 +123,23 @@ export default {
   components: {
     Multiselect,
   },
+  data() {
+    return {
+      darkMode: false
+    };
+  },
+  methods: {
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+      if (this.darkMode) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+  }
 };
 </script>
-
-<template>
-  <div class="card">
-    <form>
-      <label for="tipo">Tipo de máquina</label>
-      <select id="tipo" class="form-select" v-model="tipo">
-        <option value="MIXTA" selected>Mixta</option>
-        <option value="CAFETERA">Café</option>
-        <option value="BEBIDAS FRIAS">Frío</option>
-        <option value="COMIDA SALUDABLE">Saludable</option>
-      </select>
-      
-      <label for="producto">Producto concreto</label>
-      <multiselect
-        style="margin-bottom: 10px;"
-        v-model="selectedProducto"
-        :options="productos"
-        :close-on-select="true"
-        label="producto"
-        track-by="producto"
-      ></multiselect>
-      
-      
-      <!-- Utilizando vue-multiselect para edificio -->
-      <label for="edificio">Edificio</label>
-      <multiselect
-        v-model="selectedEdificio"
-        :options="edificios"
-        :close-on-select="true"
-        label="edificio"
-        track-by="edificio"
-      ></multiselect>
-      <br>
-      
-      
-
-       
-
-      <button style="margin-right:20px" class="btn custom-btn-color">Cancelar</button>
-      <button @click.prevent="buscar()" class="btn custom-btn-color">Aplicar</button>
-    </form>
-  </div>
-</template>
-
-
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style scoped>
@@ -164,11 +178,16 @@ export default {
   visibility: hidden;
 }
 
+.dark-mode .card {
+  background-color: #333;
+  color: white;
+}
 
+.dark-mode .custom-btn-color {
+  background-color: #555;
+}
 
-
-
-
-
-
+.dark-mode .custom-btn-color:hover {
+  background-color: #777;
+}
 </style>
