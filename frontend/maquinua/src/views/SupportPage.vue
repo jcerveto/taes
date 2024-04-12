@@ -295,12 +295,37 @@ th, td {
 
 .filter-container {
   display: flex;
-  gap: 8px; 
-  margin-bottom: 16px; 
+  gap: 15px;
+  margin-bottom: 24px;
   justify-content: center;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 10px #bebebe,
+              -5px -5px 10px #ffffff;
+  transition: all 0.2s ease-in-out;
 }
 
-.filter-container select,
+.filter-container:hover {
+  background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
+  box-shadow: 5px 5px 15px #adadad,
+              -5px -5px 15px #ffffff;
+}
+
+.filter-container select {
+  padding: 8px 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1em;
+  color: #444;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+
 .filter-container input {
   padding: 8px;
   border: 1px solid #cccccc;
@@ -309,14 +334,50 @@ th, td {
 }
 
 .filter-container select:focus,
+.filter-container select:hover {
+  border-color: #888888;
+}
+
+.filter-container option {
+  padding: 8px;
+}
+
+
+.filter-dropdown {
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: inset 2px 2px 5px #e6e6e6,
+              inset -2px -2px 5px #ffffff;
+  cursor: pointer;
+  font-size: 1em;
+  color: #444;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.filter-dropdown::-ms-expand {
+  display: none; /* Hide the default dropdown arrow in IE */
+}
+
+.filter-dropdown option:hover {
+  background-color: #f0f0f0;
+}
+
+.filter-dropdown:focus {
+  box-shadow: inset 1px 1px 2px #bfbfbf, 
+              inset -1px -1px 2px #ffffff;
+}
+
 .filter-container input:focus {
   border-color: #666666; 
 }
 
-.filter-container select {
-  background-size: 12px; 
-  cursor: pointer;
+.filter-dropdown:hover {
+  border-color: #b3b3b3;
 }
+
 
 .allign-right-home {
   position: absolute;
