@@ -248,34 +248,34 @@ th, td {
 
 
 .table-mixta tr:nth-child(odd) {
-  background-color: #FFD6DD; 
+  background-color: #CCCCCC;
 }
 .table-mixta tr:nth-child(even), .table-mixta .productos-header {
-  background-color: #FFC0CB; 
+  background-color: #E6E6E6
 }
 
 
 .table-cafetera tr:nth-child(odd) {
-  background-color: #D2B48C; 
+  background-color: #CCCCCC;
 }
 .table-cafetera tr:nth-child(even), .table-cafetera .productos-header {
-  background-color: #E4CDA2; 
+  background-color: #E6E6E6 
 }
 
 
 .table-bebidas-frias tr:nth-child(odd) {
-  background-color: #ADD8E6; 
+  background-color: #CCCCCC; 
 }
 .table-bebidas-frias tr:nth-child(even), .table-bebidas-frias .productos-header {
-  background-color: #BFEFFF; 
+  background-color: #E6E6E6
 }
 
 
 .table-comida-saludable tr:nth-child(odd) {
-  background-color: #90EE90; 
+  background-color: #CCCCCC; 
 }
 .table-comida-saludable tr:nth-child(even), .table-comida-saludable .productos-header {
-  background-color: #98FB98; 
+  background-color: #E6E6E6 
 }
 
 
