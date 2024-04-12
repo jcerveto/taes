@@ -2,14 +2,12 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+
 
 // Create a new router for the machine routes
 const router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-console.log("Directory of current file:", __dirname);
+
 
 
 // Route to update a vending machine's details
@@ -17,11 +15,8 @@ router.post('/update-machine', async (req, res) => {
     try {
         // Get the updated machine data from the request body
         const updatedMachine = req.body;
-        console.log("Current working directory:", process.cwd());
-console.log("Directory of the current script:", __dirname);
-
         // Construct the path to the maquinas.json file
-        const filePath = path.join(__dirname, '../../../../../frontend/maquinua/public/maquinas.json');
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
         console.log("Resolved File Path:", filePath);
 
         // Read the current data from maquinas.json

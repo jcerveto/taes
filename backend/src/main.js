@@ -13,6 +13,12 @@ const app = express();
 
 const PORT = 3000;
 
+app.use(cors({
+    origin: 'http://localhost:8080', // Your Vue.js application's URL
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization"
+  }));
 
 
 app.use(express.json());
@@ -22,15 +28,9 @@ app.use(morgan('dev'));
 
 
 
-
 app.use('/api', machineRoutes);
 
-app.use(cors({
-    origin: 'http://localhost:8080', // Your Vue.js application's URL
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type, Authorization"
-  }));
+
 
 
 app.get('/', async (req, res) => {
@@ -159,7 +159,7 @@ app.delete('/users/:id', async (req, res) => {
 app.post('/update-machine', async (req, res) => {
     try {
         const updatedMachine = req.body;
-        const filePath = path.join(path.resolve(), '../../../frontend/maquinua/public/maquinas.json');
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
         const data = await fs.promises.readFile(filePath, 'utf8');
         let machines = JSON.parse(data);
