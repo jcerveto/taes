@@ -10,18 +10,20 @@
     "edificio": "Aulario II",
     "type": "BEBIDAS FRIAS",
     "lista_productos": [
-      "My main Goal",
+      "",
       "Coca Cola",
       "Coca Cola Zero",
       "hola",
-      "Boniato"
+      "Boniato",
+      "yii"
     ],
     "lista_precios": [
       0.6969,
       0.9,
       0.9,
       1.3,
-      69
+      69,
+      1.24
     ]
   },
   {
@@ -35,7 +37,7 @@
     "edificio": "Aulario II",
     "type": "MIXTA",
     "lista_productos": [
-      "Pipas Velarte",
+      "Telepizza",
       "Coco (Marca Born)",
       "Galletas Bicentury (Recetea Mediterránea)",
       "Pipas Snatt's",
@@ -46,7 +48,8 @@
       "Barrita de Chcolate Energética Fitness",
       "Almendras (Marca Medina)",
       "Agua (Marca Nestle Aquarel)",
-      "Zumo de Naranja 100% Natural"
+      "Zumo de Naranja 100% Natural",
+      "pastelito de fresa"
     ],
     "lista_precios": [
       0.8,
@@ -61,7 +64,8 @@
       0.65,
       1.2,
       0.6,
-      1.5
+      1.5,
+      42
     ]
   },
   {

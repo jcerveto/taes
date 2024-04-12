@@ -30,6 +30,16 @@
       </div>
     </div>
     
+    <br>
+
+    <!-- Add Product Section -->
+    <div v-if="selectedMachineDetails" class="add-product-section">
+      <input v-model="newProductName" placeholder="Product Name" />
+      <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
+      <button @click="addProduct">Confirm</button>
+    </div>
+
+    <br>
     <!-- Details of the selected machine; appears when a machine title is selected -->
     <div v-if="selectedMachineDetails" class="machine-details">
       <h2>{{ selectedMachineDetails.popupContent.title }}</h2>
@@ -38,8 +48,8 @@
       <table :class="getTableClass(selectedMachineDetails.type)">
         <thead>
           <tr>
-            <th>Producto</th>
-            <th>Precio (€)</th>
+            <th class="productos-header">Producto</th>
+            <th class="productos-header">Precio (€)</th>
           </tr>
         </thead>
         <tbody>
@@ -49,12 +59,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <!-- Add Product Section -->
-    <div v-if="selectedMachineDetails" class="add-product-section">
-      <input v-model="newProductName" placeholder="Product Name" />
-      <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
-      <button @click="addProduct">Confirm</button>
     </div>
   </div>
 </template>
@@ -236,7 +240,8 @@ details > summary {
 }
 
 table {
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   border-collapse: collapse;
   margin-bottom: 2em;
 }
