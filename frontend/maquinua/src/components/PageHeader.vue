@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav :class="{ 'navbar': true, 'navbar-expand-lg': true, 'navbar-light': !darkMode, 'navbar-dark': darkMode, 'bg-light': !darkMode, 'bg-dark': darkMode }">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">Home</router-link>
 
@@ -11,9 +11,7 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/products">View products</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/machines">View machines</router-link>
-          </li>
+
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
@@ -36,7 +34,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="dark-mode-button" @click="toggleDarkMode">
+        <div class="dark-mode-button" @click="toggleDarkMode" :style="{ color: darkMode ? '#fff' : '#000' }">
           <i id="toggleDarkMode" :class="darkMode ? 'bi-sun' : 'bi-moon'"></i>
         </div>
       </div>
@@ -79,16 +77,10 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f1f1f1;
-}
-
+/* Estilos compartidos */
 nav a {
   text-decoration: none;
   padding: 10px;
-  color: black;
 }
 
 nav a:hover {
@@ -98,8 +90,6 @@ nav a:hover {
 .dark-mode-button {
   font-size: 1.5rem;
   cursor: pointer;
-  color: #000;
-
   /* center vertically */
   display: flex;
   align-items: center;
