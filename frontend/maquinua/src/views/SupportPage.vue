@@ -109,7 +109,7 @@ export default {
   methods: {
     fetchMachines() {
       // Fetch the machines from the JSON file
-      fetch('/maquinas.json')
+      fetch('/taes/maquinas.json')
         .then(response => response.json())
         .then(data => {
           this.machines = data;
