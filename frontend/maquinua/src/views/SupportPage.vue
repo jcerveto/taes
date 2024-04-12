@@ -27,18 +27,6 @@
           <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
           <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
         </select>
-
-        <div class="input-container">
-          <input type="text" v-model="productFilter" placeholder="Producto concreto" class="filter-input">
-        </div>
-
-        <div class="input-container">
-          <input type="number" v-model.number="minPrice" placeholder="Precio mínimo" step="0.10" min="0" class="filter-input">
-        </div>
-
-        <div class="input-container">
-          <input type="number" v-model.number="maxPrice" placeholder="Precio máximo" step="0.10" min="0" class="filter-input">
-        </div>
       </div>
     </div>
     
@@ -56,8 +44,8 @@
         </thead>
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
-            <td>{{ product }}</td>
-            <td>{{ selectedMachineDetails.lista_precios[index] }}</td>
+            <td contenteditable="true" @blur="updateProductName(index, $event.target.innerText)">{{ product }}</td>
+            <td contenteditable="true" @blur="updateProductPrice(index, $event.target.innerText)">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>
@@ -154,16 +142,46 @@ export default {
     },
 
 
-    updateProductName(machineId, productIndex, newName) {
-    console.log(`Update product name for machine ${machineId}, product index ${productIndex}, new name: ${newName}`);
-    
+    updateProductName(productIndex, newName) {
+      // Update the product name locally
+      this.selectedMachineDetails.lista_productos[productIndex] = newName;
+      this.saveChanges();
     },
-    updateProductPrice(machineId, productIndex, newPrice) {
-    const price = parseFloat(newPrice).toFixed(2);
-    if (!isNaN(price)) {
-      console.log(`Update product price for machine ${machineId}, product index ${productIndex}, new price: ${price}`);
+
+    updateProductPrice(productIndex, newPriceText) {
+      const newPrice = parseFloat(newPriceText);
+      if (!isNaN(newPrice)) {
+        // Update the product price locally
+        this.selectedMachineDetails.lista_precios[productIndex] = newPrice;
+        this.saveChanges();
+      }
+    },
+
+    saveChanges() {
+      console.log('1');
+  fetch('http://localhost:3000/api/update-machine', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(this.selectedMachineDetails),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-   },
+    return response.json();
+  })
+  .then(data => {
+    console.log('Update successful:', data);
+  })
+  .catch(error => {
+    console.error('Error updating machine:', error);
+  });
+},
+
+
+
   validatePrice(event) {
     const input = event.target.innerText;
     const validFormat = /^\d+(\.\d{0,2})?$/;

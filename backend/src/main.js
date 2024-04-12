@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
+import machineRoutes from './routes/machineRoutes.js';
 
 import { User } from './model/User.js';
 
@@ -10,13 +13,24 @@ const app = express();
 
 const PORT = 3000;
 
+
+
 app.use(express.json());
 
 // MIddleware para loggear las peticiones
 app.use(morgan('dev'));
 
-// TODO: Allow CORS requests from your Vue.js application's URL
-app.use(cors({ origin: 'http://localhost:8080', credentials: true })); // Replace with your Vue.js app's URL
+
+
+
+app.use('/api', machineRoutes);
+
+app.use(cors({
+    origin: 'http://localhost:8080', // Your Vue.js application's URL
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization"
+  }));
 
 
 app.get('/', async (req, res) => {
@@ -142,7 +156,28 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+app.post('/update-machine', async (req, res) => {
+    try {
+        const updatedMachine = req.body;
+        const filePath = path.join(path.resolve(), '../../../frontend/maquinua/public/maquinas.json');
 
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const index = machines.findIndex(m => m.id === updatedMachine.id);
+        
+        if (index === -1) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+        
+        machines[index] = updatedMachine;
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Machine updated successfully', updatedMachine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
