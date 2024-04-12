@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Machines Listing Page</h1>
+    <h1>Support Page</h1>
     <router-link to="/" class="align-right-home">Go to Home</router-link>
 
     <!-- Filter container for the building selection -->
@@ -30,6 +30,14 @@
       </div>
     </div>
     
+    <br>
+
+    <!-- Add Product Section -->
+    <div v-if="selectedMachineDetails" class="add-product-section">
+      <input v-model="newProductName" placeholder="Product Name" />
+      <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
+      <button @click="addProduct">Confirm</button>
+    </div>
 
     <br>
     <!-- Details of the selected machine; appears when a machine title is selected -->
@@ -46,8 +54,8 @@
         </thead>
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
-            <td contenteditable="false" @blur="updateProductName(index, $event.target.innerText)">{{ product }}</td>
-            <td contenteditable="false" @blur="updateProductPrice(index, $event.target.innerText)">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
+            <td contenteditable="true" @blur="updateProductName(index, $event.target.innerText)">{{ product }}</td>
+            <td contenteditable="true" @blur="updateProductPrice(index, $event.target.innerText)">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>
@@ -353,12 +361,6 @@ th, td {
   display: none; /* Hide the default dropdown arrow in IE */
 }
 
-.filter-dropdown option {
-  padding: 8px;
-  background-color: #ffffff; /* Default background */
-  color: #333; /* Default text color */
-}
-
 .filter-dropdown option:hover {
   background-color: #f0f0f0;
 }
@@ -406,3 +408,5 @@ th, td {
 
 </style>
 
+
+  

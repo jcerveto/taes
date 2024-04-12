@@ -2,8 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
+import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
-
 import { User } from './model/User.js';
 import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
 
@@ -13,6 +15,14 @@ const app = express();
 app.use(cookieParser());
 
 const PORT = 3000;
+
+app.use(cors({
+    origin: 'http://localhost:8080', // Your Vue.js application's URL
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization"
+  }));
+
 
 app.use(express.json());
 
@@ -35,6 +45,7 @@ app.use(
     })
 );
 
+app.use('/api', machineRoutes);
 
 app.get('/', async (req, res) => {
     res.send('Hello World!')
@@ -233,7 +244,52 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+app.post('/update-machine', async (req, res) => {
+    try {
+        const updatedMachine = req.body;
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const index = machines.findIndex(m => m.id === updatedMachine.id);
+        
+        if (index === -1) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+        
+        machines[index] = updatedMachine;
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Machine updated successfully', updatedMachine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/update-machine', async (req, res) => {
+    const { id, newProduct, newPrice } = req.body;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+
+    try {
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const machine = machines.find(machine => machine.id === id);
+
+        if (!machine) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+
+        machine.lista_productos.push(newProduct);
+        machine.lista_precios.push(parseFloat(newPrice));
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Product added successfully', machine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)

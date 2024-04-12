@@ -37,7 +37,7 @@ import Papa from 'papaparse';
 
 export default {
   setup() {
-    const csvPath = ref("/prices.csv");
+    const csvPath = ref("/taes/prices.csv");
     const title = "Prices";
     const csvData = ref([]);
     const error = ref(null);

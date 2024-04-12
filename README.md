@@ -84,7 +84,6 @@ Lints and fixes files
 ```
 npm run lint
 ```
-
 Deploy the project
 1) Build the project
 ```sh
@@ -102,8 +101,6 @@ serve -s dist
 npm run predeploy
 npm run deploy
 ```
-
-
 Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
