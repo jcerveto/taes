@@ -10,20 +10,22 @@
     "edificio": "Aulario II",
     "type": "BEBIDAS FRIAS",
     "lista_productos": [
-      "",
+      "Coca Cola Espumaaaa",
       "Coca Cola",
       "Coca Cola Zero",
       "hola",
       "Boniato",
-      "yii"
+      "yii",
+      "Hello Da"
     ],
     "lista_precios": [
-      0.6969,
+      0.99,
       0.9,
       0.9,
       1.3,
       69,
-      1.24
+      1.24,
+      2.13
     ]
   },
   {
