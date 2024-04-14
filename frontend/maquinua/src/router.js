@@ -17,8 +17,8 @@ import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
+import SupportPage from './views/SupportPage.vue';
 import { useUserStore } from './stores/user-store-setup';
-
 const routes = [
   {
     path: '/',
@@ -42,6 +42,11 @@ const routes = [
   {
     path: '/filter',
     component: FilterPage,
+  },
+
+  {
+    path: '/support',
+    component: SupportPage,
   },
   /*{
     path: '/',
@@ -115,7 +120,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
