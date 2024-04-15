@@ -17,11 +17,15 @@ import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
-
+import SupportPage from './views/SupportPage.vue';
+import { useUserStore } from './stores/user-store-setup';
 const routes = [
   {
     path: '/',
     component: MachinesDistributionPage,
+    meta: {
+      auth: false,
+    }
   },
   {
     path: '/about',
@@ -39,6 +43,11 @@ const routes = [
     path: '/filter',
     component: FilterPage,
   },
+
+  {
+    path: '/support',
+    component: SupportPage,
+  },
   /*{
     path: '/',
     redirect: '/signin' // Redirigir a la página de inicio de sesión por defecto
@@ -46,7 +55,10 @@ const routes = [
   {
     path: '/signin',
     name: 'SignIn',
-    component: SignIn
+    component: SignIn,
+    meta: {
+      auth: false,
+    }
   },
   {
     path: '/register',
@@ -56,7 +68,10 @@ const routes = [
   {
     path: '/user',
     name: 'User',
-    component: User
+    component: User,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/user/favourites',
@@ -80,11 +95,17 @@ const routes = [
   },
   {
     path: '/user/mydata',
-    component: UserData
+    component: UserData,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/user/mydata/myinfo',
-    component: UserEditInfo
+    component: UserEditInfo,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/machines-filter',
@@ -99,8 +120,23 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(async (to, from, next) => {
+  const authRequired = to.meta?.auth;
+  const userStore = useUserStore();
+
+  if (authRequired) {
+    await userStore.refreshToken();
+    if (userStore.token) {
+      return next();
+    } else {
+      return next("/signin");
+    }
+  }
+  next();
 });
 
 export default router;
