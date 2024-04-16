@@ -1,91 +1,119 @@
 <template>
-    <div>
-        <header>
-            <img src="./../assets/LogoMaquinUA.jpg"
-                 width="130" height="130" />
-            <h1>MaquinUA</h1>
-        </header>
-        <section>
-            <h2>Sobre nosotros</h2>
-            <p>Esta pagina esta dedicada a la ubicación y busqueda de productos mediante un mapa iteractivo de maquinas expendedoras en la Universidad de Alicante </p>
-        </section>
-        <section>
-            <h2>Nuestra mision</h2>
-            <p>Nuestra mision es  facilitar el acceso a las distintos usuarios de la universidad de Alicante el acceso a todo tipo de maquinas expendedoras que cumpla con sus necesidades</p>
-        </section>
-        <!-- </div>
-    <div class="comment-box">
-        <h2>Comentarios</h2>
-
-    <ul>
-        <li v-for="palabra in palabras" :key="palabra">{{ palabra }}</li>
-    </ul>
-    <ul>
-
-        <li v-for="(comment, index) in comments" :key="index">
-            {{ comment }}
-        </li>
-    </ul>
-
-    Formulario para agregar un comentario
-    <form @submit.prevent="addComment">
-        <textarea v-model="newComment" placeholder="Escribe tu comentario"></textarea>
-        <button type="submit">Agregar Comentario</button>
-    </form>-->
+  <div :class="{ 'dark-mode': darkMode }">
+    <div class="about-section">
+      <h1>Sobre nosotros</h1>
+      <p>¡Hola! Nosotros somos MIUA y ofrecemos soluciones en forma de mapas interactivos para la Universidad de Alicante</p>
+      <p>Presentamos ahora MaquinUA, un mapa interactivo en el que se muestra la ubicación exacta de todas las maquinas expendedoras de la UA</p>
     </div>
-    <footer>
-        <h3>Contacto</h3>
-        <p>644344244</p>
-        <p>cgmg3@alu.ua.es</p>
-        <router-link to="/">Go to Home</router-link>
-    </footer>
 
+    <h2 style="text-align:center">Our Team</h2>
 
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Jose Megia</h5>
+          <p class="card-text">Mi compromiso con el diseño web y mi destreza en el desarrollo frontend son contribuciones esenciales para el equipo.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Joan Cerveto</h5>
+          <p class="card-text">Mi pasion por las redes y mis conocimientos en backend me convierten en una pieza fundamental</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Nicolas Martin</h5>
+          <p class="card-text">Tengo una amplia variedad de conocimientos tanto en frontend como en backend. Puedo ayudar en todo tipo de tareas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Adrian Romero</h5>
+          <p class="card-text">Me apasionan las bases de datos y las redes de intercomunicaciones. Mi pasion por el trabajo es inigualable.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Carlos Guirao</h5>
+          <p class="card-text">Me apasiona aprender cada vez más y poder aportar todo lo que puedo al equipo</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Daniel Ripoll</h5>
+          <p class="card-text">Altos conocimientos en desarrollo backend y frontend. Me encanta aportar todo mi esfuerzo al equipo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cristian Córdoba</h5>
+          <p class="card-text">Me apasiona ayudar a mi equipo y aportar todos mis conocimientos en desarrollo web</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      darkMode: false
+    };
+  },
+  mounted() {
+    // Check for dark mode preference
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    this.darkMode = darkModeMediaQuery.matches;
 
-   
+    // Listen for changes in dark mode preference
+    darkModeMediaQuery.addListener((e) => {
+      this.darkMode = e.matches;
+    });
+  }
+};
+</script>
 
+<style scoped>
+/* Estilos generales */
+.about-section {
+  padding: 50px;
+  text-align: center;
+}
 
-<style scoped> 
-    .about {
-        font-family: Arial, sans-serif;
-    }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
 
-    header {
-        background-color: #fff;
-        color: #333;
-        padding: 20px;
-        text-align: center;
-    }
+/* Estilos específicos del modo claro */
+.dark-mode .about-section {
+  background-color: #474e5d;
+  color: white;
+}
 
-    section {
-        padding: 20px;
-    }
-
-    h1, h2 {
-        color: #333;
-    }
-    .comment-box {
-        
-        padding: 20px;
-        margin: 20px 0;
-    }
-    .palabra {
-        border: 1px solid #000;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-
-    textarea {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    footer {
-        background-color: #fff;
-        color: #333;
-        text-align: center;
-        padding: 10px;
-    }
-</style>  
+/* Estilos específicos del modo oscuro */
+.dark-mode .card {
+  background-color: #222;
+  color: white;
+}
+</style>

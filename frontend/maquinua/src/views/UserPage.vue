@@ -1,40 +1,37 @@
 <template>
+    <div class="register-container">
+    <div class="form-container">
     <div class="user-page">
         <h1>User Page</h1>
 
         <div class="user-actions" v-if="isLoggedIn">
-            <user-info :user="user" />
             <h3> Hola, {{ usuario }}</h3>
             
-            <router-link class="router-button" to="/favourites">Favoritos</router-link> <br>
-            <router-link class="router-button" to="/userstatistics">Estadísticas</router-link> <br>
-            <router-link class="router-button" to="/myreviews">Mis Reseñas</router-link> <br>
-            <router-link class="router-button" to="/myconsults">Mis Consultas</router-link> <br>
-            <router-link class="router-button" to="/mylocations">Mis Ubicaciones</router-link> <br>
-            <router-link class="router-button" to="/mydata">Mis Datos</router-link> <br>
+            <router-link class="router-button" to="user/favourites">Favoritos</router-link> <br>
+            <router-link class="router-button" to="user/userstatistics">Estadísticas</router-link> <br>
+            <router-link class="router-button" to="user/myreviews">Mis Reseñas</router-link> <br>
+            <router-link class="router-button" to="user/myconsults">Mis Consultas</router-link> <br>
+            <router-link class="router-button" to="user/mylocations">Mis Ubicaciones</router-link> <br>
+            <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
+            <router-link @click="logout()" to="/">Log out</router-link> <br>
         </div>
 
         <div v-else>
             <router-link class="router-button" to="/register">REGISTER</router-link> <br>
             <router-link class="router-button" to="/signin">SIGN IN</router-link> <br>
         </div>
-
+        
         <router-link class="router-button home" to="/">Go to Home</router-link>
     </div>
+</div>
+</div>
 </template>
 
 <script>
-    import Cookies from 'js-cookie';
-    //import { jwtDecode } from "jwt-decode";
+    import { useUserStore } from '../stores/user-store-setup';
 
     export default {
         name: 'UserPage',
-        props: {
-            user: {
-            type: Object,
-            required: true,
-            },
-        },
         data() {
             return {
                 isLoggedIn: false,
@@ -42,17 +39,28 @@
             };
         },
         created() {
-            
-            this.isLoggedIn = !!Cookies.get('tokenDeSesion') ;
-            
-            /*try {
-                
-                this.usuario = jwtDecode('user_secret');
-                
+            const userStore = useUserStore();
+            try {
+                if (userStore.user) {
+                    this.isLoggedIn = true;
+                    this.usuario = userStore.user;
+                }
             } catch (error) {
-                console.error(error);
-            }*/
+                console.error('Error al decodificar el token:', error);
+            }
+
         },
+        methods: {
+            logout() {
+                try {
+                    const userStore = useUserStore();
+                    userStore.logout();
+                    this.isLoggedIn = false;
+                } catch (error) {
+                    console.error('Error al cerrar sesión:', error);
+                }
+            }
+        }
     };
 </script>
 
@@ -78,4 +86,21 @@
     .router-button:hover {
         background-color: #ddd; /* Cambio de color al pasar el ratón */
     }
+    .register-container {
+    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+  }
 </style>
