@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
-import { Incidents } from '../model/Incidents.js';
+import { Incident } from '../model/Incidents.js';
 
 import { User} from "../model/User.js";
 

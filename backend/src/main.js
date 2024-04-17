@@ -8,7 +8,7 @@ import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
 import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
-import { Incidents } from './model/Incidents.js'
+import { Incident } from './model/Incidents.js'
 
 const app = express();
 
@@ -293,7 +293,7 @@ app.put('/update-machine', async (req, res) => {
 
 app.get('/incidents', async (req, res) => {
     try {
-        const incidents = await Incidents.readAll();
+        const incidents = await Incident.readAll();
         res.json(incidents);
     } catch (error) {
         console.error(error);
@@ -303,7 +303,7 @@ app.get('/incidents', async (req, res) => {
 
 app.post('/incidents', async (req, res) => {
     try {
-        const cleanIncident = new Incidents();
+        const cleanIncident = new Incident();
         cleanIncident.incidencia = req.body;
         console.log("cleanIncidents: ", cleanIncident);
         await cleanIncident.create();
