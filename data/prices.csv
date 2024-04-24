@@ -1,0 +1,26 @@
+name_es;name_ca;base;vat;total;type
+Café solo, largo. Descafeinados: solo o largo;Cafè sol, llarg. Descafeïnats: sol o llarg;0.32;10;0.35;hot
+Café cortado, con leche, capuchino, capuchino avellana, Descafeinados: cortado con leche, capuchino;Cafè tallat, amb llet, capuchino, capuchino avellana. Descafeïnats: tallat amb llet, capuchino;0.500;10;0.55;hot
+Leche sola, manchado;Llet sola, tacat;0.09;10;0.10;hot
+Té al limón;Te al llimó;0.09;10;0.10;hot
+Selecciones de café Comercio Justo;Seleccions de cafè Comerç Just;0.50;10;0.55;hot
+Agua mineral de 0,50 L.;Aigua mineral de 0,50 L.;0.55;10;0.60;cold
+Agua mineral de 1,50 L;Aigua mineral de 1,50 L.;0.41;10;0.45;cold
+Batido de chocolate;Batut de xocolate;0.41;10;0.4;cold
+Refrescos: Cola, Cola Light, Limón, Naranja;Refresc: Cola, Cola Light, Llimó, Taronja;0.74;21;0.90;cold
+Zumos;Sucs;0.37;21;0.45;cold
+BioFrutas;Biofruites;0.50;21;0.60;cold
+Bebidas isotónicas;Begudes isotòniques;0.62;21;0.75;cold
+Bebida refrescante de té (Nesteá o similar);Beguda refrescant de te (Nesteá o similar);0.41;21;0.50;cold
+Bolsa de frutos secos;Bossa de fruits secs;0.45;10;0.50;solid
+Chicles;Xiclets;0.36;10;0.40;solid
+Bolsa de patatas fritas;Bossa de creïlles fregides;0.59;10;0.65;solid
+Bollería pequeña: sin relleno;Pastisseria xicoteta: sense farcit;0.36;10;0.40;solid
+Bollería grande: sin relleno;Pastisseria grand: sense farcit;0.55;10;0.60;solid
+Bollería pequeña: con relleno;Pastisseria xicoteta: amb farcit;0.36;10;0.40;solid
+Bollería grande: con relleno;Pastisseria grand: amb farcit;0.64;10;0.70;solid
+Palmera de chocolate;Palmera de xocolate;0.64;10;0.70;solid
+Snacks de chocolate;Snacks de xocolate;0.45;10;0.50;solid
+Snacks de comida sana o dietéticos;Snacks de menjar sa o dietètics;0.59;10;0.65;solid
+Sandwich variado;Sandvitx variat;0.91;10;1.00;solid
+Ensaladas;Ensalades;0.91;10;1.00;solid
