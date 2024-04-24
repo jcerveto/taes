@@ -17,6 +17,7 @@
     </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 
@@ -54,10 +55,11 @@ export default {
                         throw new Error('No data received from the server');
                     }
                 } catch (error) {
-                    console.error('Failed to add incident:', error);
+                    
+                    console.error('Failed to add incident: ', error);
                     // Asegúrate de verificar si error.response y error.response.data existen antes de intentar acceder a error.response.data.error
                     const errorMessage = error.response && error.response.data && error.response.data.error ? error.response.data.error : error.message;
-                    alert('Failed to add incident: ' + errorMessage);
+                    alert('Failed to add incident : ' + errorMessage);
                 }
             } else {
                 alert('Please enter incident details.');

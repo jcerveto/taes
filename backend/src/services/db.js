@@ -373,7 +373,7 @@ export async function createIncident(incident) {
     const result = await incidentsCollection.insertOne({
       email: incident.email,
       text: incident.text,
-      createdAt: new Date() // Optionally add a timestamp
+      //createdAt: new Date() // Optionally add a timestamp
     });
 
     if (result.insertedCount !== 1) {

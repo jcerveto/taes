@@ -290,7 +290,7 @@ app.put('/update-machine', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
+/*
 app.get('/incidents', async (req, res) => {
     try {
         const incidents = await Incident.readAll();
@@ -312,7 +312,7 @@ app.post('/incidents', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-/**
+
 app.delete('/incidents/:id', async (req, res) => {
     try {
         await Incidents.delete(req.params.id);
@@ -345,22 +345,27 @@ app.post('/incidents', async (req, res) => {
 });
 
 app.delete('/incidents/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const incident = new Incident({ id });
-        await incident.delete();
-        res.sendStatus(204); // No Content
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-});
+        try {
+            const { id } = req.params;
+            const incident = await Incident.findById(id);
+            if (!incident) {
+                return res.status(404).json({ error: "Incident not found" });
+            }
+            await incident.delete();
+            res.sendStatus(204); // No Content
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: error.message });
+        }
+    });
+
+
 
 app.get('/incidents', async (req, res) => {
     try {
         const incidents = await Incident.readAll();
         res.json(incidents.map(incident => incident.toJSON()));
-    } catch (error) {
+    } catch (error) { 
         console.error(error);
         res.status(500).json({ error: error.message });
     }
