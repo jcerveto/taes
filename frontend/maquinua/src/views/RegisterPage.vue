@@ -2,77 +2,60 @@
     <div class="register-container">
       <div class="form-container">
       <h2>Register</h2>
+      <br>
       <form @submit.prevent="register">
         <div class>
           <label for="username">Username:</label><br>
-          <input type="text" id="username" v-model="username" required>
+          <input class="form-control" type="text" id="username" v-model="username" required>
           <br><span v-if="!usernameValid && usernameDirty" style="color: red;">Please enter a valid username</span>
         </div>
-        <div><br>
+        <div>
           <label for="name">Name:</label><br>
-          <input type="text" id="name" v-model="name" required>
+          <input class="form-control" type="text" id="name" v-model="name" required>
           <br><span v-if="!nameValid && nameDirty" style="color: red;">Please enter a valid name</span>
         </div>
-        <div><br>
+        <div>
           <label for="surname">Surname:</label><br>
-          <input type="text" id="surname" v-model="surname" required>
+          <input class="form-control" type="text" id="surname" v-model="surname" required>
           <br><span v-if="!surnameValid && surnameDirty" style="color: red;">Please enter a valid surname</span>
         </div>
-        <div><br>
+        <div>
           <label for="email">Email:</label><br>
-          <input type="email" id="email" v-model="email" required>
+          <input class="form-control" type="email" id="email" v-model="email" required>
           <br><span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
         </div>
   
-        <div><br>
+        <div>
           <label for="birthdate">Birthdate:</label><br>
-          <input type="date" v-model="birthdate" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
+          <input class="form-control" type="date" v-model="birthdate" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
 
           <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate (you must be 16 years)</span>
         </div>
   
         <div><br>
           <label for="password">Password:</label><br>
-          <input type="password" id="password" v-model="password" required>
+          <input class="form-control" type="password" id="password" v-model="password" required>
           <br><span v-if="!passwordValid && passwordDirty" style="color: red;">Please enter a valid password (min 6 characters)</span>
         </div>
-        <div><br>
+        <div>
           <label for="repeatPassword">Repeat Password:</label><br>
-          <input type="password" id="repeatPassword" v-model="repeatPassword" required>
+          <input class="form-control" type="password" id="repeatPassword" v-model="repeatPassword" required>
           <br><span v-if="!repeatPasswordValid && repeatPasswordDirty" style="color: red;">Passwords do not match</span>
         </div>
-        <div><br>
-          <button type="submit" >Register</button>
+        <div>
+          <button class="custom-btn-color btn" type="submit" >Register</button>
         </div>
       </form><br>
-      <br>
+      
       <p>Do you have an account?</p>
       <router-link to="/signin">Sign In</router-link>
     </div>
   </div>
-  </template>
-  <style>
-  .register-container {
-    background-image: url('~@/assets/background.png'); /* Ruta a tu imagen de fondo */
-    background-size: cover;
-    background-position: center;
-    height: 100%; /* Ajusta la altura según tu necesidad */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+</template>
 
-  .form-container {
-    background-color: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  </style>
-  <script>
+<script>
   import axios from 'axios';
+  import { useUserStore } from '../stores/user-store-setup';
 
   export default {
     data() {
@@ -175,26 +158,17 @@
             password: this.password,
           };
 
-          await axios.post('http://localhost:3000/users', { email : this.email})
-            .then((res) => {
-              if (res.data.email === this.email) {
-                alert('Email already exists. Please try again.');
-              }
 
-              if (res.data.username === this.username) {
-                alert('Username already exists. Please try again.');
-              }
-            }).catch(() => {
-              // Realizar la solicitud POST usando Axios
-              const response = axios.post('http://localhost:3000/user', userData);
-              
-              console.log(response.data);
-              
-              this.$router.push('/');
-            });
+          // Realizar la solicitud POST usando Axios
+          const response = await axios.post('http://localhost:3000/register', userData);
+          
+          console.log(response.data);
 
+          const userStore = useUserStore();
 
-
+          userStore.access(this.email, this.password);
+          
+          this.$router.push('/');
           
         } else {
           console.log('ERROR. Please, review the data.');
@@ -202,5 +176,38 @@
       },
     },
   };
-  </script>
+</script>
   
+
+<style scoped>
+  .register-container {
+    background-image: url('~@/assets/backgroundhd.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Ajusta la altura según tu necesidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  }
+
+
+  .custom-btn-color {
+    text-align: center;
+    color: white;
+    background-color: #7fcaad;
+  }
+  
+  .custom-btn-color:hover {
+    color: white;
+    background-color: #5a917b;
+  }
+</style>

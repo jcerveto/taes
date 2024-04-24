@@ -18,6 +18,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+      - ../frontend/maquinua/public:/app/public  # Correctly mount the public directory
     expose:
       - '3000'
     ports:
@@ -27,7 +28,7 @@ services:
       - mongodb
     networks:
       - maquinua-backend-network
-    restart: unless-stopped
+    restart: always
 
 networks:
   maquinua-backend-network:

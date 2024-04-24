@@ -11,12 +11,15 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/products">View products</router-link>
           </li>
-
+                  
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/user">User</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/support">Support</router-link>
           </li>
         </ul>
       </div>
