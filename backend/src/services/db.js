@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
+import { Incident } from '../model/Incidents.js';
 
 import { User} from "../model/User.js";
 
@@ -248,7 +249,6 @@ export async function deleteAllUsers() {
   }
 }
 
-
 /**
  * Creates a machine view in the database
  * @param {object} machine
@@ -324,6 +324,67 @@ export async function deleteMachinesView(filter) {
     //if (db != null) {
     //  await db.close();
     //  console.log('Disconnected from MongoDB');
+    //}
+  }
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+
+export async function deleteIncident(id) {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteOne({ _id: new ObjectId(id) });
+  if (result.deletedCount !== 1) {
+      throw new Error("Incident not deleted!");
+  }
+}
+
+export async function readAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const incidents = await incidentsCollection.find({}).toArray();
+  return incidents.map(incident => new Incident(incident));
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created. Expected to have 'email' and 'text' properties.
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+export async function createIncident(incident) {
+  let db = null;
+  try {
+    if (!incident || !incident.email || !incident.text) {
+      throw new Error("Invalid incident data provided!");
+    }
+
+    db = await connectToDatabase();
+    const incidentsCollection = db.collection("incidents"); // Using a specific collection for incidents
+
+    // Insert the incident into the collection
+    const result = await incidentsCollection.insertOne({
+      email: incident.email,
+      text: incident.text,
+      //createdAt: new Date() // Optionally add a timestamp
+    });
+
+    /*if (result.insertedCount !== 1) {
+      throw new Error("Incident not created! Rows affected: " + result.insertedCount);
+    }*/
+  } catch (error) {
+    console.error("Failed to create incident: ", error);
+    throw new Error("Failed to create incident due to an error.");
+  } finally {
+    //if (db) {
+     // await db.close();
     //}
   }
 }
