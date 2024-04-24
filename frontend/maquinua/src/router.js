@@ -136,6 +136,7 @@ router.beforeEach(async (to, from, next) => {
       return next("/signin");
     }
   }
+  
   next();
 });
 

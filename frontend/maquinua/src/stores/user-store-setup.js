@@ -5,7 +5,6 @@ import { api } from "../boot/axios.js";
 export const useUserStore = defineStore("user", () => {
 
   const uid = ref(null);
-  const user = ref(null);
   const token = ref(null);
   const expiresIn = ref(null);
 
@@ -18,10 +17,9 @@ export const useUserStore = defineStore("user", () => {
       
       token.value = res.data.token;
       expiresIn.value = res.data.expiresIn;
-      user.value = res.data.name;
       uid.value = res.data.uid;
       
-      sessionStorage.setItem("user", "🔥🔥");
+      localStorage.setItem("user", res.data.name);
       setTime();
       return res.data;
     } catch (error) {
@@ -60,14 +58,12 @@ export const useUserStore = defineStore("user", () => {
 
   const resetStore = () => {
     uid.value = null;
-    user.value = null;
     token.value = null;
     expiresIn.value = null;
   };
 
   return {
     uid,
-    user,
     token,
     expiresIn,
     access,
