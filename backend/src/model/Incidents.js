@@ -50,9 +50,9 @@ export class Incident {
         try {
             await db.createIncident(this);
         } catch (error) {
-            console.error(error);
+           console.error(error);
             throw new Error("Incident not saved!");
-        }
+          }
     }
 
     async delete() {

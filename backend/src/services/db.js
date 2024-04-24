@@ -376,15 +376,15 @@ export async function createIncident(incident) {
       //createdAt: new Date() // Optionally add a timestamp
     });
 
-    if (result.insertedCount !== 1) {
+    /*if (result.insertedCount !== 1) {
       throw new Error("Incident not created! Rows affected: " + result.insertedCount);
-    }
+    }*/
   } catch (error) {
     console.error("Failed to create incident: ", error);
     throw new Error("Failed to create incident due to an error.");
   } finally {
-    if (db) {
-      await db.close();
-    }
+    //if (db) {
+     // await db.close();
+    //}
   }
 }
