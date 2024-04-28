@@ -19,9 +19,15 @@ import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
+import LandingPage from '@/views/LandingPage.vue';
 import { useUserStore } from './stores/user-store-setup';
 const routes = [
-  {
+    {
+        path: '/LandingPage',
+        component: LandingPage,
+    },
+
+    {
     path: '/',
     component: MachinesDistributionPage,
     meta: {
@@ -52,7 +58,8 @@ const routes = [
   {
     path: '/support',
     component: SupportPage,
-  },
+    },
+
   /*{
     path: '/',
     redirect: '/signin' // Redirigir a la página de inicio de sesión por defecto
