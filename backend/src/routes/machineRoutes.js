@@ -46,6 +46,7 @@ router.post('/update-machine', async (req, res) => {
 });
 
 router.put('/update-machine', async (req, res) => {
+    console.log("pene")
     const { id, newProduct, newPrice } = req.body;
     const filePath = path.join(path.resolve(), 'public/maquinas.json');
 

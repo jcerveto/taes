@@ -23,6 +23,7 @@ services:
       - '3000'
     ports:
       - '3000:3000'
+      - '9229:9229'
     command: sh -c "npm install && npm run dev"
     depends_on:
       - mongodb
