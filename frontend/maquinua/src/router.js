@@ -19,6 +19,7 @@ import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import { useUserStore } from './stores/user-store-setup';
+import DebugTest from './views/DebugTest.vue'
 const routes = [
   {
     path: '/',
@@ -115,6 +116,10 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     component: Error404,
+  },
+  {
+    path: '/debug',
+    component: DebugTest
   }
   
 ];
