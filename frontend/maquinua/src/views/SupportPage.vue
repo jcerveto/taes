@@ -39,8 +39,10 @@
       <button @click="addProduct">Confirm</button>
     </div>
 
+    <br>
+
     <div v-if="selectedMachineDetails" class="delete-product-section">
-      <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID of the Product you want to delete" />
+      <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID to delete" />
       <button @click="confirmDeleteProduct">Delete</button>
     </div>
     
@@ -149,7 +151,23 @@ export default {
       } else {
         this.lastProductId = 0; // If it's the first machine, reset the counter
       }
+      this.updateUrl();
     },
+
+    updateUrl() {
+      let url = '/support';
+      const queryParams = [];
+      if (this.selectedBuilding) {
+        queryParams.push(`building=${encodeURIComponent(this.selectedBuilding)}`);
+      }
+      if (this.selectedMachineDetails) {
+        const machineLeftPartTitle = encodeURIComponent(this.selectedMachineDetails.popupContent.title.split(' - ')[0]);
+        queryParams.push(`machine=${machineLeftPartTitle}`);
+        queryParams.push(`id=${this.selectedMachineDetails.id}`);
+      }
+      this.$router.push(`${url}${queryParams.length ? '?' + queryParams.join('&') : ''}`);
+    },
+
     filteredMachines(building) {
       return building.machines.filter(machine => {
         const matchesType = !this.selectedMachineType || machine.type === this.selectedMachineType;
@@ -189,26 +207,26 @@ export default {
 
     saveChanges() {
       console.log('1');
-  fetch('http://localhost:3000/api/update-machine', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+      fetch('http://localhost:3000/api/update-machine', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.selectedMachineDetails),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Update successful:', data);
+      })
+      .catch(error => {
+        console.error('Error updating machine:', error);
+      });
     },
-    body: JSON.stringify(this.selectedMachineDetails),
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Update successful:', data);
-  })
-  .catch(error => {
-    console.error('Error updating machine:', error);
-  });
-},
 
 
 
@@ -264,14 +282,29 @@ export default {
       this.selectedMachineDetails.lista_precios.splice(index, 1);
       this.saveChanges();
       this.productIdToDelete = null; // Reset the input field after deletion
-  }
+  },
+
+  parseUrlParams() {
+      const query = new URLSearchParams(window.location.search);
+      const building = query.get('building');
+      const machine = query.get('machine');
+      const id = query.get('id');
+      if (building) {
+        this.selectedBuilding = building;
+        this.buildingSelected(); // To load the machines in the selected building
+      }
+      if (machine && id) {
+        this.selectedMachineTitle = machine;
+        this.machineSelected(); // To load the selected machine details
+      }
+    },
 
   },
   created() {
     this.fetchMachines();
-  }
+    this.parseUrlParams();
+  },
 
-  
 
 };
 </script>
