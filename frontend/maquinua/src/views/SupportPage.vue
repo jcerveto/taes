@@ -93,6 +93,10 @@ export default {
       productIdToDelete: null,
     };
   },
+
+
+
+
   computed: {
     buildingOptions() {
       return Array.from(new Set(this.machines.map(machine => machine.edificio)));
@@ -132,7 +136,23 @@ export default {
         this.machines = data;
         this.buildings = this.buildingOptions;
         this.machines.sort((a, b) => a.id - b.id);
-        this.lastProductId = this.machines.reduce((acc, machine) => acc + machine.lista_productos.length, 0);
+
+
+        const queryParams = new URLSearchParams(window.location.search);
+        const machineId = parseInt(queryParams.get('id'), 10);
+
+        // Check if the machine ID exists and calculate lastProductId accordingly
+        const index = this.machines.findIndex(machine => machine.id === machineId);
+        if (index !== -1) {
+          // Machine exists, calculate lastProductId up to the index of the specified machine (exclusive)
+          this.lastProductId = this.machines.slice(0, index).reduce((acc, machine) => acc + machine.lista_productos.length, 0);
+        } else {
+          // Machine does not exist or no ID was provided, calculate for all machines
+          this.lastProductId = this.machines.reduce((acc, machine) => acc + machine.lista_productos.length, 0);
+        }
+        
+        console.log('Machines loaded, last product ID:', this.lastProductId);
+
       })
       .catch(error => {
         console.error('Error fetching machines:', error);
@@ -323,11 +343,16 @@ export default {
     loadMachineDetailsById(id) {
       const machine = this.machines.find(m => m.id === id);
       if (machine) {
-        this.selectedMachineDetails = machine;
-        this.selectedMachine = machine.popupContent.title.split(' - ')[0]; // For UI consistency
-        this.updateUrl(); // Update URL to ensure it's consistent with current state
+          this.selectedMachineDetails = machine;
+          this.selectedMachine = machine.popupContent.title.split(' - ')[0]; // For UI consistency
+          this.updateUrl(); // Update URL to ensure it's consistent with current state
+
+          // Assuming each machine's products have predefined IDs stored in an array, perhaps `productIDs`
+          // This requires modifying your JSON structure or computing it on load
+          this.productIDs = machine.productIDs || machine.lista_productos.map((item, index) => index + 1); // Fallback to index-based IDs if no specific IDs provided
       }
     },
+
 
   },
   
