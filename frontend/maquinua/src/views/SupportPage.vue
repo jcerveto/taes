@@ -120,17 +120,25 @@ export default {
   },
   methods: {
     fetchMachines() {
-      fetch('/taes/maquinas.json')
-        .then(response => response.json())
-        .then(data => {
-          this.machines = data;
-          this.buildings = this.buildingOptions;
-          this.machines.sort((a, b) => a.id - b.id);
-          // Calculate the initial lastProductId by getting the sum of all products in all machines loaded before
-          this.lastProductId = this.machines.reduce((acc, machine) => acc + machine.lista_productos.length, 0);
-        })
-        .catch(error => console.error('Error:', error));
-    },
+    // Always return a promise from this method
+    return fetch('/taes/maquinas.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        this.machines = data;
+        this.buildings = this.buildingOptions;
+        this.machines.sort((a, b) => a.id - b.id);
+        this.lastProductId = this.machines.reduce((acc, machine) => acc + machine.lista_productos.length, 0);
+      })
+      .catch(error => {
+        console.error('Error fetching machines:', error);
+        // Handle errors or set some defaults if necessary
+      });
+  },
     groupMachinesByBuilding() {
       const buildingMap = {};
       this.machines.forEach(machine => {
@@ -284,27 +292,54 @@ export default {
       this.productIdToDelete = null; // Reset the input field after deletion
   },
 
+
+  buildingSelected() {
+    // This method will run when a building is selected
+    // Make sure to update related properties and/or perform actions like fetching machines in the selected building
+    this.selectedMachine = ''; // Reset selected machine when building changes
+    this.selectedMachineDetails = null; // Reset machine details
+    this.updateUrl(); // Update the URL based on the new state
+  },
+
+
   parseUrlParams() {
       const query = new URLSearchParams(window.location.search);
       const building = query.get('building');
-      const machine = query.get('machine');
-      const id = query.get('id');
+      const machineTitle = query.get('machine'); // May not use directly, but good for UI consistency
+      const machineId = parseInt(query.get('id'), 10);
+
       if (building) {
         this.selectedBuilding = building;
-        this.buildingSelected(); // To load the machines in the selected building
+        this.buildingSelected();
       }
-      if (machine && id) {
-        this.selectedMachineTitle = machine;
-        this.machineSelected(); // To load the selected machine details
+      if (machineId && !isNaN(machineId)) {
+        this.loadMachineDetailsById(machineId);
+      } else if (machineTitle) {
+        this.selectedMachineTitle = decodeURIComponent(machineTitle);
+        this.machineSelected();
+      }
+    },
+
+    loadMachineDetailsById(id) {
+      const machine = this.machines.find(m => m.id === id);
+      if (machine) {
+        this.selectedMachineDetails = machine;
+        this.selectedMachine = machine.popupContent.title.split(' - ')[0]; // For UI consistency
+        this.updateUrl(); // Update URL to ensure it's consistent with current state
       }
     },
 
   },
+  
   created() {
-    this.fetchMachines();
-    this.parseUrlParams();
-  },
-
+  this.fetchMachines()
+    .then(() => {
+      this.parseUrlParams(); // Ensure this is called after machines are loaded
+    })
+    .catch(error => {
+      console.error('Error during initialization:', error);
+    });
+}
 
 };
 </script>

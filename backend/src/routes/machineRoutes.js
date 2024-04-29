@@ -69,5 +69,25 @@ router.put('/update-machine', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+// Route to get a single machine's details by ID
+router.get('/machine/:id', async (req, res) => {
+    const { id } = req.params;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+    try {
+      const data = await fs.promises.readFile(filePath, 'utf8');
+      const machines = JSON.parse(data);
+      const machine = machines.find(m => m.id === parseInt(id, 10));
+      if (!machine) {
+        return res.status(404).json({ message: 'Machine not found' });
+      }
+      res.json(machine);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+
 // Export the router
 export default router;
