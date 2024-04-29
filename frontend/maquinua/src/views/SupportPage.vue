@@ -39,6 +39,12 @@
       <button @click="addProduct">Confirm</button>
     </div>
 
+    <div v-if="selectedMachineDetails" class="delete-product-section">
+      <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID of the Product you want to delete" />
+      <button @click="confirmDeleteProduct">Delete</button>
+    </div>
+    
+
     <br>
     <!-- Details of the selected machine; appears when a machine title is selected -->
     <div v-if="selectedMachineDetails" class="machine-details">
@@ -82,6 +88,7 @@ export default {
       newProductName: '',
       newProductPrice: '',
       lastProductId: 0,
+      productIdToDelete: null,
     };
   },
   computed: {
@@ -227,7 +234,37 @@ export default {
     computeProductId(index) {
       // Compute product ID for the current index, incrementing from the last saved global product ID
       return this.lastProductId + index + 1;
-    }
+    },
+
+    confirmDeleteProduct() {
+      const productId = this.productIdToDelete;
+      const startId = this.lastProductId + 1; // ID of the first product in the current machine list
+      const endId = this.lastProductId + this.selectedMachineDetails.lista_productos.length; // ID of the last product in the current machine list
+
+      if (productId == null || productId < startId || productId > endId) {
+        alert(`Invalid Product ID. Please enter an ID between ${startId} and ${endId}.`);
+        return;
+      }
+
+      const productIndex = productId - this.lastProductId - 1; // Calculate the array index of the product
+      const productToDelete = this.selectedMachineDetails.lista_productos[productIndex];
+
+      if (confirm(`Are you sure you want to delete the product with ID: ${productId} (${productToDelete}) of the machine: ${this.selectedMachineDetails.popupContent.title}?`)) {
+        this.deleteProduct(productIndex);
+      }
+    },
+
+    deleteProduct(index) {
+      // Directly use the index calculated in confirmDeleteProduct
+      if (index < 0 || index >= this.selectedMachineDetails.lista_productos.length) {
+        alert('Invalid Product ID');
+        return;
+      }
+      this.selectedMachineDetails.lista_productos.splice(index, 1);
+      this.selectedMachineDetails.lista_precios.splice(index, 1);
+      this.saveChanges();
+      this.productIdToDelete = null; // Reset the input field after deletion
+  }
 
   },
   created() {
