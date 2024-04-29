@@ -225,19 +225,7 @@ export default {
 </script>
 
   
-  <style scoped>
-
-    div.table-container {
-  margin-top: 1em; 
-  margin-left: auto;
-  margin-right: auto;
-}
-
-details > summary {
-  cursor: pointer;
-  padding: 0.5em;
-  margin-top: 0.5em;
-}
+<style scoped>
 
 table {
   margin-left: auto;
@@ -246,52 +234,30 @@ table {
   margin-bottom: 2em;
 }
 
-
-
 th, td {
   padding: 0.5em;
   border: 1px solid #ddd;
   text-align: center;
 }
 
-
-.table-mixta tr:nth-child(odd) {
-  background-color: #CCCCCC;
-}
-.table-mixta tr:nth-child(even), .table-mixta .productos-header {
-  background-color: #E6E6E6
-}
-
-
-.table-cafetera tr:nth-child(odd) {
-  background-color: #CCCCCC;
-}
-.table-cafetera tr:nth-child(even), .table-cafetera .productos-header {
-  background-color: #E6E6E6 
-}
-
-
-.table-bebidas-frias tr:nth-child(odd) {
-  background-color: #CCCCCC; 
-}
-.table-bebidas-frias tr:nth-child(even), .table-bebidas-frias .productos-header {
-  background-color: #E6E6E6
-}
-
-
+.table-mixta tr:nth-child(odd), 
+.table-cafetera tr:nth-child(odd), 
+.table-bebidas-frias tr:nth-child(odd), 
 .table-comida-saludable tr:nth-child(odd) {
-  background-color: #CCCCCC; 
-}
-.table-comida-saludable tr:nth-child(even), .table-comida-saludable .productos-header {
-  background-color: #E6E6E6 
+  background-color: #CCCCCC;
 }
 
+.table-mixta tr:nth-child(even), .table-mixta .productos-header,
+.table-cafetera tr:nth-child(even), .table-cafetera .productos-header,
+.table-bebidas-frias tr:nth-child(even), .table-bebidas-frias .productos-header,
+.table-comida-saludable tr:nth-child(even), .table-comida-saludable .productos-header {
+  background-color: #E6E6E6;
+}
 
 .productos-header th {
   text-align: center;
   font-weight: bold;
 }
-
 
 .filter-container {
   display: flex;
@@ -301,18 +267,16 @@ th, td {
   padding: 15px;
   border-radius: 12px;
   background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
-  box-shadow: 5px 5px 10px #bebebe,
-              -5px -5px 10px #ffffff;
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
 .filter-container:hover {
   background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
-  box-shadow: 5px 5px 15px #adadad,
-              -5px -5px 15px #ffffff;
+  box-shadow: 5px 5px 15px #adadad, -5px -5px 15px #ffffff;
 }
 
-.filter-container select {
+.filter-container select, .filter-container input {
   padding: 8px 16px;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -325,31 +289,16 @@ th, td {
   transition: border-color 0.3s ease;
 }
 
-
-.filter-container input {
-  padding: 8px;
-  border: 1px solid #cccccc;
-  border-radius: 4px; 
-  outline: none; 
-}
-
-.filter-container select:focus,
-.filter-container select:hover {
+.filter-container select:focus, .filter-container select:hover, .filter-container input:focus {
   border-color: #888888;
 }
-
-.filter-container option {
-  padding: 8px;
-}
-
 
 .filter-dropdown {
   padding: 10px 20px;
   border: 1px solid transparent;
   border-radius: 8px;
   background-color: #ffffff;
-  box-shadow: inset 2px 2px 5px #e6e6e6,
-              inset -2px -2px 5px #ffffff;
+  box-shadow: inset 2px 2px 5px #e6e6e6, inset -2px -2px 5px #ffffff;
   cursor: pointer;
   font-size: 1em;
   color: #444;
@@ -366,45 +315,18 @@ th, td {
 }
 
 .filter-dropdown:focus {
-  box-shadow: inset 1px 1px 2px #bfbfbf, 
-              inset -1px -1px 2px #ffffff;
-}
-
-.filter-container input:focus {
-  border-color: #666666; 
+  box-shadow: inset 1px 1px 2px #bfbfbf, inset -1px -1px 2px #ffffff;
 }
 
 .filter-dropdown:hover {
   border-color: #b3b3b3;
 }
 
-
-.allign-right-home {
+.align-right-home {
   position: absolute;
   right: 0;
   top: 7.5%;
 }
-
-.input-container {
-  position: relative;
-  margin-bottom: 20px; 
-}
-
-.input-container input {
-  width: 100%; 
-  height: 157%;
-}
-
-.input-container label {
-  position: absolute;
-  top: -25px; 
-  left: 0;
-  transform: translateX(35%);
-  font-size: 1.0em; 
-  font-weight: bold;
-}
-
-
 
 </style>
 
