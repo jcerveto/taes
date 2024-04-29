@@ -48,12 +48,14 @@
       <table :class="getTableClass(selectedMachineDetails.type)">
         <thead>
           <tr>
+            <th class="productos-header">ID</th>
             <th class="productos-header">Producto</th>
             <th class="productos-header">Precio (€)</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
+            <td>{{ computeProductId(index) }}</td>
             <td contenteditable="true" @blur="updateProductName(index, $event.target.innerText)">{{ product }}</td>
             <td contenteditable="true" @blur="updateProductPrice(index, $event.target.innerText)">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
           </tr>
@@ -79,6 +81,7 @@ export default {
       selectedMachineTitle: '',
       newProductName: '',
       newProductPrice: '',
+      lastProductId: 0,
     };
   },
   computed: {
@@ -108,13 +111,14 @@ export default {
   },
   methods: {
     fetchMachines() {
-      // Fetch the machines from the JSON file
       fetch('/taes/maquinas.json')
         .then(response => response.json())
         .then(data => {
           this.machines = data;
-          // After fetching, you might want to populate the buildings array or other initial setups
-          this.buildings = this.buildingOptions; // This line is an example and may vary based on your logic
+          this.buildings = this.buildingOptions;
+          this.machines.sort((a, b) => a.id - b.id);
+          // Calculate the initial lastProductId by getting the sum of all products in all machines loaded before
+          this.lastProductId = this.machines.reduce((acc, machine) => acc + machine.lista_productos.length, 0);
         })
         .catch(error => console.error('Error:', error));
     },
@@ -129,8 +133,15 @@ export default {
       this.buildings = Object.values(buildingMap);
     },
     machineSelected() {
-    this.selectedMachineDetails = this.machines.find(machine => 
-      machine.popupContent.title === this.selectedMachineTitle);
+      this.selectedMachineDetails = this.machines.find(machine => 
+        machine.popupContent.title === this.selectedMachineTitle);
+      const currentIndex = this.machines.indexOf(this.selectedMachineDetails);
+      if (currentIndex > 0) {
+        // Update the lastProductId to the ID of the last product of the previous machine
+        this.lastProductId = this.machines.slice(0, currentIndex).reduce((acc, machine) => acc + machine.lista_productos.length, 0);
+      } else {
+        this.lastProductId = 0; // If it's the first machine, reset the counter
+      }
     },
     filteredMachines(building) {
       return building.machines.filter(machine => {
@@ -213,6 +224,10 @@ export default {
       this.newProductName = '';
       this.newProductPrice = '';
     },
+    computeProductId(index) {
+      // Compute product ID for the current index, incrementing from the last saved global product ID
+      return this.lastProductId + index + 1;
+    }
 
   },
   created() {
