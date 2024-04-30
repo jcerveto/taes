@@ -13,20 +13,20 @@
      <div class="container">
         <div class="column">
             <img class="img" src=..\assets\lupa.png >
-            <p>¿Que maquina escojo?</p>
-         <p class="texto">Estás indeciso en que maquina expendedora elegir? busca en nuestro mapa</p>
+            <p>Â·Que maquina escojo?</p>
+         <p class="texto">EstÃ¡s indeciso en que maquina expendedora elegir? Busca en nuestro mapa</p>
          <button @click="redirigirmap">Mapa</button>
              </div>
         <div class="column">
          <img class="img" src=..\assets\exclamacion.png >
-            <p>¿Error en la maquina?</p>
-         <p class="texto">Has visto algun error en nuestras maquinas expendedoras? informanos del error </p>
+            <p>Â·Error en la maquina?</p>
+         <p class="texto">Has visto algun error en nuestras maquinas expendedoras? Informanos del error </p>
          <button @click="redirigirincid">Incidencia</button>
         </div>
         <div class="column">
          <img class="img" src=..\assets\lupa.png >
-            <p>¿Que prefieres?</p>
-         <p class="texto">Hay algun producto que te interese en especial? aqui encontraras todos los que hay</p>
+            <p>Â·Que prefieres?</p>
+         <p class="texto">Hay algun producto que te interese en especial? Aqui encontraras todos los que hay</p>
          <button @click="redirigirprod">Productos</button>
          </div>
       </div>
@@ -126,12 +126,12 @@ button {
     margin-left: 15px;
     text-align: left;
     color: #000;
-  font-size: 30px; /* Tamaño del texto */
+  font-size: 30px; /* Tamaï¿½o del texto */
   font-weight: bold; /* Texto en negrita */
   
 }
     .imagen-desvanecida {
-    width: 300px; /* Ajusta el tamaño de la imagen */
+    width: 300px; /* Ajusta el tamaï¿½o de la imagen */
     height: 300px;
     verflow: hidden;
    
@@ -153,7 +153,7 @@ button {
   flex: 1;
   padding: 10px;
   box-sizing: border-box;
-  font-size: 20px; /* Tamaño del texto */
+  font-size: 20px; /* Tamaï¿½o del texto */
   font-weight: bold; /* Texto en negrita */
   color: #000; /* Color del texto */
 }
@@ -163,7 +163,7 @@ button {
   color: #000000; /* Este es el color negro, pero puedes cambiarlo a lo que prefieras */
 }
     .img{
-    width: 40px; /* Ajusta el tamaño de la imagen */
+    width: 40px; /* Ajusta el tamaï¿½o de la imagen */
     height: 40px;
     opacity: 0.3;
 }
@@ -189,14 +189,14 @@ button {
    
     text-align: left;
     color: #000;
-    font-size: 30px; /* Tamaño del texto */
+    font-size: 30px; /* Tamaï¿½o del texto */
     font-weight: bold; /* Texto en negrita */
   
 }
      .textdown {
     
    
-    font-size: 20px; /* Tamaño del texto */
+    font-size: 20px; /* Tamaï¿½o del texto */
     font-weight: normal; /* Texto en negrita */
   
 }
@@ -211,7 +211,7 @@ button {
     }
 
     .marca1, .marca2{
-    width: 100px; /* Este será el ancho de tu div */
+    width: 100px; /* Este serï¿½ el ancho de tu div */
     height: 100px;
      margin-left: 10%;
     
@@ -250,7 +250,7 @@ button {
     text-align: center;
   }
      .marca1, .marca2 {
-    width: 50px; /* Reducimos el tamaño de las imágenes en pantallas pequeñas */
+    width: 50px; /* Reducimos el tamaï¿½o de las imï¿½genes en pantallas pequeï¿½as */
     height: 50px;
    }
 }

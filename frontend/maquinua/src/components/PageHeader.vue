@@ -24,6 +24,9 @@
               <li class="nav-item">
                   <router-link class="nav-link" to="/support">Support</router-link>
               </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/LandingPage">Landing Page</router-link>
+              </li>
           </ul>
       </div>
 
