@@ -33,11 +33,13 @@
      
       <div class="midpage">
         <img src=..\assets\maquinaex.png >
-        
-        <p class="textend">Contamos con las mejores marcas de maquinas expendedoras<br><span class="textdown"></span> </p>
-        <img class="marca2" src=..\assets\marca2.png >
-        <img class="marca1" src=..\assets\marca1.png >
-
+        <div class="row">
+            <p class="textend">Contamos con las mejores marcas de maquinas expendedoras<br><span class="textdown"></span> </p>
+            <div class="marcas">
+                <img class="marca2" src=..\assets\marca2.png >
+                <img class="marca1" src=..\assets\marca1.png >
+            </div>
+        </div>    
       </div>
         <div class="footer">
 
@@ -69,6 +71,7 @@
 
 
 .landing-page {
+  flex:1;
   display: flex;
   justify-content: space-between;
   color: #fff; /* Color del texto */
@@ -78,6 +81,7 @@
 
 }
 .landing-page::before{
+    display: flex;
   content: "";
   position: absolute;
   top: 0;
@@ -130,7 +134,7 @@ button {
     width: 300px; /* Ajusta el tamaño de la imagen */
     height: 300px;
     verflow: hidden;
-    margin-right: 100px;
+   
     display: inline-block;
     border-radius: 9999999999px;
     
@@ -168,7 +172,7 @@ button {
     
     }
    .midpage{
-    
+    overflow: hidden;
    display:flex;
    justify-content: space-between;
    color: #fff; /* Color del texto */
@@ -182,7 +186,7 @@ button {
      .textend {
     
     margin-top: 100px;
-    margin-right: 250px;
+   
     text-align: left;
     color: #000;
     font-size: 30px; /* Tamaño del texto */
@@ -196,23 +200,60 @@ button {
     font-weight: normal; /* Texto en negrita */
   
 }
-    .marca1{
-     width: 100px; /* Este será el ancho de tu div */
-    height: 100px;
-    position: absolute; /* Esto hará que tu imagen se posicione de manera absoluta */
-    top: 1130px; /* Esto moverá tu imagen 50px desde la parte superior del contenedor */
-    left: 700px; /* Esto moverá tu imagen 100px desde la izquierda del contenedor */
+    .row {
+    display: flex;
+    flex-direction: row;
+}
+
+    .marcas {
+        display: flex;
+        margin-left: 15%;
     }
-    .marca2{
-     width: 100px; /* Este será el ancho de tu div */
+
+    .marca1, .marca2{
+    width: 100px; /* Este será el ancho de tu div */
     height: 100px;
-    position: absolute; /* Esto hará que tu imagen se posicione de manera absoluta */
-    top: 1130px; /* Esto moverá tu imagen 50px desde la parte superior del contenedor */
-    left: 1050px; /* Esto moverá tu imagen 100px desde la izquierda del contenedor */
+     margin-left: 10%;
+    
     }
     .footer{
     padding:50px;
+}
+    @media screen and (max-width: 1400px) {
+    .imagen-desvanecida {
+    display: none;
+  }
     }
+    @media screen and (max-width: 600px) {
+    .imagen-desvanecida {
+    display: none;
+  }
+  .landing-page {
+    flex-direction: column;
+    padding: 50px;
+  }
+  .content {
+    align-items: center;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .column {
+    margin-bottom: 20px;
+  }
+  .midpage {
+    flex-direction: column;
+    align-items: center;
+  }
+  .textend {
+    margin-right: 0;
+    text-align: center;
+  }
+     .marca1, .marca2 {
+    width: 50px; /* Reducimos el tamaño de las imágenes en pantallas pequeñas */
+    height: 50px;
+   }
+}
  
 
 </style>
