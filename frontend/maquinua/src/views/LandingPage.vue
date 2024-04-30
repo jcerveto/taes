@@ -13,19 +13,19 @@
      <div class="container">
         <div class="column">
             <img class="img" src=..\assets\lupa.png >
-            <p>·Que maquina escojo?</p>
+            <p>Que maquina escojo?</p>
          <p class="texto">Estás indeciso en que maquina expendedora elegir? Busca en nuestro mapa</p>
          <button @click="redirigirmap">Mapa</button>
              </div>
         <div class="column">
          <img class="img" src=..\assets\exclamacion.png >
-            <p>·Error en la maquina?</p>
+            <p>Error en la maquina?</p>
          <p class="texto">Has visto algun error en nuestras maquinas expendedoras? Informanos del error </p>
          <button @click="redirigirincid">Incidencia</button>
         </div>
         <div class="column">
          <img class="img" src=..\assets\lupa.png >
-            <p>·Que prefieres?</p>
+            <p>Que prefieres?</p>
          <p class="texto">Hay algun producto que te interese en especial? Aqui encontraras todos los que hay</p>
          <button @click="redirigirprod">Productos</button>
          </div>
