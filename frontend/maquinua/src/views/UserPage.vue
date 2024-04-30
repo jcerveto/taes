@@ -41,9 +41,9 @@
         created() {
             const userStore = useUserStore();
             try {
-                if (userStore.user) {
+                if (userStore.token) {
                     this.isLoggedIn = true;
-                    this.usuario = userStore.user;
+                    this.usuario = sessionStorage.getItem('user');
                 }
             } catch (error) {
                 console.error('Error al decodificar el token:', error);
