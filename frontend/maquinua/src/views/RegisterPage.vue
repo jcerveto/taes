@@ -23,6 +23,7 @@
           <label for="email">Email:</label><br>
           <input class="form-control" type="email" id="email" v-model="email" required>
           <br><span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
+          {{ emailExists }}
         </div>
   
         <div>
@@ -156,19 +157,22 @@
             email: this.email,
             bornDate: this.birthdate,
             password: this.password,
-          };
-
+          };      
 
           // Realizar la solicitud POST usando Axios
-          const response = await axios.post('http://localhost:3000/register', userData);
-          
-          console.log(response.data);
+          try {
+            const response = await axios.post('http://localhost:3000/register', userData);
 
-          const userStore = useUserStore();
+            console.log(response.data);
 
-          userStore.access(this.email, this.password);
-          
-          this.$router.push('/');
+            const userStore = useUserStore();
+
+            userStore.access(this.email, this.password);
+            
+            this.$router.push('/');
+          } catch (error) {
+            alert("User already exists");
+          }
           
         } else {
           console.log('ERROR. Please, review the data.');
