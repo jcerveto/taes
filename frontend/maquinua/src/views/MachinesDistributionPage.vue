@@ -67,10 +67,19 @@ export default {
           filteredMarkers = filteredMarkers.filter(marker => marker.lista_productos.includes(producto));
         }
 
-        this.markers = filteredMarkers.map((entry) => ({
-          position: [entry.lat, entry.lon],
-          popupContent: `<h3>${entry.popupContent.title}</h3><p>${entry.popupContent.description}</p>`,
-        }));
+        this.markers = filteredMarkers.map((entry) => {
+          const titleLeftPart = entry.popupContent.title.split(' - ')[0];
+          const url = `support?building=${entry.edificio}&machine=${encodeURIComponent(titleLeftPart)}&id=${entry.id}`;
+          const incidentUrl = `incidents?building=${entry.edificio}&machine=${encodeURIComponent(titleLeftPart)}&id=${entry.id}`;
+
+          return {
+            position: [entry.lat, entry.lon],
+            popupContent: `<h3><a href="${url}" target="_blank">${entry.popupContent.title}</a></h3>
+                            <p>${entry.popupContent.description}</p>
+                            <button type="button" class="btn btn-danger" onclick="window.location.href='${incidentUrl}'">Incidencia</button>`
+          };
+        });
+
 
         // Agregar marcadores filtrados al geojson para renderizar en el mapa
         this.geojson.features = filteredMarkers.map((marker, index) => ({
