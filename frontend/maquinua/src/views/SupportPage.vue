@@ -18,16 +18,7 @@
         </option>
       </select>
 
-      <!-- Remaining filters; appear when a machine title is selected -->
-      <div v-if="selectedMachine">
-        <select v-model="selectedMachineType" class="filter-dropdown">
-          <option value="">Todos los tipos</option>
-          <option value="MIXTA">MIXTA</option>
-          <option value="CAFETERA">CAFETERA</option>
-          <option value="BEBIDAS FRIAS">BEBIDAS FRIAS</option>
-          <option value="COMIDA SALUDABLE">COMIDA SALUDABLE</option>
-        </select>
-      </div>
+     
     </div>
     
     <br>

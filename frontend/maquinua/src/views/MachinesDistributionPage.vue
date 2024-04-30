@@ -67,10 +67,19 @@ export default {
           filteredMarkers = filteredMarkers.filter(marker => marker.lista_productos.includes(producto));
         }
 
-        this.markers = filteredMarkers.map((entry) => ({
-          position: [entry.lat, entry.lon],
-          popupContent: `<h3>${entry.popupContent.title}</h3><p>${entry.popupContent.description}</p>`,
-        }));
+        this.markers = filteredMarkers.map((entry) => {
+          // Extract the left part of the title before the dash
+          const titleLeftPart = entry.popupContent.title.split(' - ')[0];
+          // Construct the URL with dynamic parameters
+          const url = `http://localhost:8080/taes/support?building=${entry.edificio}&machine=${encodeURIComponent(titleLeftPart)}&id=${entry.id}`;
+          // Add the hyperlink to the entire title in the popupContent
+          return {
+            position: [entry.lat, entry.lon],
+            popupContent: `<h3><a href="${url}" target="_blank">${entry.popupContent.title}</a></h3>
+                          <p>${entry.popupContent.description}</p>`
+          };
+        });
+
 
         // Agregar marcadores filtrados al geojson para renderizar en el mapa
         this.geojson.features = filteredMarkers.map((marker, index) => ({
