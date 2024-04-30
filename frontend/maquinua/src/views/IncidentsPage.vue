@@ -1,13 +1,25 @@
 <template>
     <div class="incident-app">
       <div class="incident-form">
+        <div v-if="building">
+          <p>Building: {{ building }}</p>
+          <p>Machine: {{ machine }}</p>
+          <p>ID: {{ id }}</p>
+        </div>
+        <div v-else>
+          AÑADIR UN FORMULARIO Q PERMITA SELECCIONAR ENTRE LOS EDIFICIOS, LAS MÁQUINAS Y LOS ID DE LAS MÁQUINAS
+        </div>
         <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
         <button @click="addIncident">Add Incident</button>
       </div>
       <div class="incident-list">
         <ul>
+          Mostrando las incidencias de: {{  }}
           <li v-for="incident in paginatedIncidents" :key="incident.id">
-            {{ incident.text }}
+            Building: {{ incident.machineBuilding }}<br>
+            Machine: {{  incident.machineName }}<br>
+            ID: {{ incident.machineId }}<br>
+            Text: {{ incident.text }}
           </li>
         </ul>
         <div class="pagination">
@@ -29,6 +41,10 @@
         incidents: [],
         currentPage: 0,
         pageSize: 10,
+        building: '',
+        machine: '',
+        id: '',
+        user: ''
       };
     },
     computed: {
@@ -47,6 +63,9 @@
           try {
             const response = await axios.post('http://localhost:3000/incidents', {
               email: 'test@example.com',
+              machineId: this.id,
+              machineName: this.machine,
+              machineBuilding: this.building,
               text: this.incidentDetails
             });
             if (response.data) {
@@ -85,6 +104,13 @@
       }
     },
     created() {
+      // Parámetros de la URL
+      this.building = this.$route.query.building || '';
+      this.machine = this.$route.query.machine || '';
+      this.id = this.$route.query.id || '';
+
+      this.user = localStorage.getItem('user');
+
       this.fetchIncidents();
     }
   };
