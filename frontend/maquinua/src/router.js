@@ -15,6 +15,7 @@ import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import PrivatePage from './views/PrivatePage.vue';
+import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
 
 import { useUserStore } from './stores/user-store-setup';
 const routes = [
@@ -52,6 +53,13 @@ const routes = [
   {
     path: '/support',
     component: SupportPage,
+  },
+  {
+    path: '/incidentsAdmin',
+    component: IncidentsForAdmin,
+    meta: {
+      auth: true,
+    }
   },
   /*{
     path: '/',
