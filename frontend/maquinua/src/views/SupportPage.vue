@@ -26,10 +26,9 @@
     </div>
     
     <br>
-
     <!-- Add Product Section -->
     <div v-if="selectedMachineDetails" class="add-product-section">
-      <input v-model="newProductName" placeholder="Product Name" style="width: 10%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" />
+      <input v-model="newProductName" placeholder="Product Name" style="width: 10%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" onmouseover="this.style.borderColor='#007bff';" onmouseout="this.style.borderColor='#ccc';" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,7 +39,9 @@
 
     <div v-if="selectedMachineDetails" class="delete-product-section">
       <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID to delete" />
+      &nbsp;
       <button @click="confirmDeleteProduct">Delete</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button @click="confirmDeleteMachine">Delete Table</button>
     </div>
     
@@ -461,7 +462,7 @@ h1 {
 }
 
 /* Styling for dropdowns and buttons within filters for a uniform appearance */
-.filter-container select, .filter-container input, .filter-container button {
+.filter-container select{
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
@@ -472,6 +473,14 @@ h1 {
 
 .filter-container select:hover, .filter-container input:hover, .filter-container button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.add-product-section {
+  align-items: center;
+  border-radius: 12px;
+  background-color: #f2f2f2; /* Subtle background to distinguish section */
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -511,37 +520,20 @@ h1 {
   border: none;
   color: black;
   background-color: #00BFFF; /* Red for cancel/edit toggle button */
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s, transform 0.1s;
   cursor: pointer;
 }
 
-.add-product-section input[type="text"]:focus,
-.add-product-section input[type="number"]:focus {
+.add-product-section input[type="text"]:hover,
+.add-product-section input[type="number"]:hover {
   border-color: #007bff; /* Bootstrap primary color for focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
-.add-product-section input[type="text"]:focus,
-.add-product-section input[type="number"]:focus {
-  border-color: #007bff; /* Bootstrap primary color for focus */
-}
-
-.add-product-section button {
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  border: none; /* Ensures buttons do not have an additional border */
-}
 
 .add-product-section button:hover {
   background-color: #0056b3;
-}
-
-.add-product-section button:nth-child(1) {
-  background-color: #28a745; /* Green for confirm/add button */
-}
-
-.add-product-section button:nth-child(2) {
-  background-color: #dc3545; /* Red for cancel/edit toggle button */
+  transform: scale(1.1);
 }
 
 .add-product-container {
@@ -549,6 +541,61 @@ h1 {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional styles for the Delete Product Section */
+.delete-product-section {
+  align-items: center;
+  border-radius: 12px;
+  background-color: #f2f2f2; /* Subtle background to distinguish section */
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.delete-product-section input[type="number"] {
+  width: 10%; /* Larger input for visibility */
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #F08080;
+}
+
+
+.delete-product-section input[type="number"]:hover,
+.delete-product-section input[type="number"]:focus {
+  border-color: #FF0800; /* Highlighting the input field */
+  box-shadow: 0 0 8px rgba(255, 99, 71, 0.5);
+}
+
+
+
+
+.delete-product-section button {
+  width: 10%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  background-color: #dc3545; /* Initial color set to a lighter red */
+  transition: background-color 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+
+.delete-product-section button:nth-child(2) {
+  background-color: #FF2400; /* Standard delete button color */
+}
+
+.delete-product-section button:nth-child(3) {
+  background-color: #E60026 /* Standard delete button color */
+}
+
+
+.delete-product-section button:hover {
+  background-color: #a50000; /* Dark red on hover */
+  transform: scale(1.1); /* Slight scale to indicate interactive element */
 }
 
 /* Detailed Machine View and Interaction */
@@ -614,6 +661,17 @@ tr:nth-child(even) {
 
   .add-product-section button {
     margin-bottom: 10px;
+  }
+
+  .delete-product-section {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: stretch;
+  }
+
+  .delete-product-section input,
+  .delete-product-section button {
+    width: 100%; /* Full width for inputs and buttons on small screens */
+    margin-top: 10px;
   }
 
 }
