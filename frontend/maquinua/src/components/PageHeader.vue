@@ -2,7 +2,7 @@
   <nav
     :class="{ 'navbar': true, 'navbar-expand-lg': true, 'navbar-light': !darkMode, 'navbar-dark': darkMode, 'bg-light': !darkMode, 'bg-dark': darkMode }">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Home</router-link>
+      <router-link class="navbar-brand" to="/">maquinua</router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -22,10 +22,6 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/support">Support</router-link>
           </li>
-          <li class="nav-item">
-            <span :key="language">Current language: {{ language }} </span>
-          </li>
-
         </ul>
       </div>
 
@@ -38,24 +34,22 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img :src="require(`@/assets/languages.svg`)" alt="Languages" />
+          </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li v-for="(lang, index) in supportedLanguages" :key="index" @click="changeLanguage(lang)">
+              <a class="dropdown-item">{{ lang.code }} ({{ lang.region }})</a>
+            </li>
+          </ul>
+        </div>
+
         <div class="dark-mode-button" @click="toggleDarkMode" :style="{ color: darkMode ? '#fff' : '#000' }">
           <i id="toggleDarkMode" :class="darkMode ? 'bi-sun' : 'bi-moon'"></i>
         </div>
-
-        <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img :src="require(`@/assets/languages.svg`)" alt="Languages" />        
-          Language
-          {{ $t('greeting') }}
-        </button>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li v-for="(lang, index) in supportedLanguages" :key="index" @click="changeLanguage(lang)">
-            <a class="dropdown-item">{{ lang.code }} ({{ lang.region }})</a>
-          </li>
-        </ul>
-      </div>
 
       </div>
     </div>
@@ -89,7 +83,7 @@ export default {
         { code: 'IT', name: 'Italiano', region: 'Italia', subregion: null },
         { code: 'PT', name: 'Português', region: 'Portugal', subregion: null }
       ]
-      };
+    };
   },
   methods: {
     toggleDarkMode() {
