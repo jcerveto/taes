@@ -1,54 +1,33 @@
 <template>
   <div class="incident-app">
-    <div class="incident-form">
-      <div v-if="building && machine && id">
-        <p>Building: {{ building }}</p>
-        <p>Machine: {{ machine }}</p>
-        <p>ID: {{ id }}</p>
-        <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
-        <button @click="addIncident" class="add-incident-btn">Add Incident</button>
-        <button @click="refreshPage" class="refresh-btn">Refresh</button>
-      </div>
-      <div v-else>
-        <p>SELECT THE MACHINE</p>
-        <div class="filter-container">
-          <select v-model="selectedBuilding" @change="buildingSelected" class="filter-dropdown">
-            <option value="">Select Building</option>
-            <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
-          </select>
-          <!-- Machine title filter; appears when a building is selected -->
-          <select v-if="selectedBuilding" v-model="selectedMachineTitle" @change="machineSelected" class="filter-dropdown">
-            <option value="">Select Machine</option>
-            <option v-for="machine in machinesInSelectedBuilding" :key="machine.id">
-              {{ machine.popupContent.title }}
-            </option>
-          </select>
-        </div>
-        <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
-        <button @click="addIncident" class="add-incident-btn">Add Incident</button>
-        <button @click="refreshPage" class="refresh-btn">Refresh</button>
-      </div>
-    </div>
     <div class="incident-list">
-      <h3>Showing incidents for: {{ user }}</h3>
+      <h3>Incidencias que deben ser atendidas</h3>
+
       <div v-if="incidents.length > 0">
         <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.id">
           <div class="card-header">
             <p>Building: {{ incident.machineBuilding }}</p>
             <p>Machine: {{ incident.machineName }}</p>
             <p>ID: {{ incident.machineId }}</p>
+            <button type="button" class="btn btn-warning" @click="solveIncident(incident)">Solucionar</button>
+          </div>
+          <div>
+            
           </div>
           <div class="card-body">
             <p>{{ incident.text }}</p>
           </div>
-          <div class="card-footer center-button">
-            <div class="status-circle" :class="{ 'open': incident.status === 'open', 'close': incident.status === 'close' }"></div>
+
+          <div>
+            <button type="button" class="btn btn-danger">Cerrar incidencia</button>
           </div>
+
         </div>
       </div>
       <div v-else>
         <p>No incidents to show.</p>
       </div>
+      
       <div class="pagination">
         <button @click="previousPage" :disabled="currentPage <= 0">Previous</button>
         <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
@@ -59,13 +38,10 @@
 </template>
 
 
-
-  
 <script>
 
 import axios from 'axios';
 import { useRoute } from 'vue-router';
-
 
 export default {
   data() {
@@ -112,7 +88,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('http://localhost:3000/incidents/', {
+        const response = await axios.post('http://localhost:3000/incidents', {
           email: this.user,
           machineId: this.id,
           machineName: this.machine,
@@ -131,10 +107,11 @@ export default {
     },
     async fetchIncidents() {
       try {
-        const response = await axios.get(`http://localhost:3000/incidents/${this.user}`);
+        const response = await axios.get('http://localhost:3000/incidents');
         this.incidents = response.data;
       } catch (error) {
         console.error('Error fetching incidents:', error);
+        alert('Error fetching incidents: ' + (error.response && error.response.data ? error.response.data.error : error.message));
       }
     },
     nextPage() {
@@ -165,6 +142,11 @@ export default {
         this.id = this.selectedMachineDetails.id;
       }
     },
+    solveIncident(incident) {
+      const url = `support?building=${incident.machineBuilding}&machine=${encodeURIComponent(incident.machineName)}&id=${incident.machineId}`;
+      // Redirect to the support page with the incident details
+      window.location.href = url;
+    },
   },
   created() {
     this.user = localStorage.getItem('email') || 'guest';
@@ -177,7 +159,8 @@ export default {
   }
 };
 </script>
-  
+    
+    
   
 <style scoped>
 .incident-app {
@@ -347,6 +330,7 @@ export default {
 }
 </style>
 
-
-
   
+  
+  
+    

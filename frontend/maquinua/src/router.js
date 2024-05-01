@@ -15,6 +15,7 @@ import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import PrivatePage from './views/PrivatePage.vue';
+import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
 
 import { useUserStore } from './stores/user-store-setup';
 const routes = [
@@ -61,6 +62,13 @@ const routes = [
         console.error(error);
         next('/signin'); // Redirigir a la página de inicio de sesión si hay un error
       }
+    }
+  },
+  {
+    path: '/incidentsAdmin',
+    component: IncidentsForAdmin,
+    meta: {
+      auth: true,
     }
   },
   /*{

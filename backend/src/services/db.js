@@ -402,3 +402,39 @@ export async function createIncident(incident) {
   }
 }
 
+  /**
+ * Reads incidents from the database by email
+ * @param {Object} filter - This should contain the email to filter by.
+ * @returns {Promise<Array>}
+ * @throws {Error} If the incidents cannot be read
+ */
+export async function readIncidents( email ) {
+  let db = null;
+  try {
+    if (!email) {
+      throw new Error("Email parameter is required!");
+    }
+    console.log("email: ", email);
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    
+    // Query the database for incidents by email
+    const incidents = await incidentsCollection.find({ email: email }).toArray();
+    
+    if (!incidents.length) {
+      throw new Error("No incidents found for the provided email.");
+    }
+
+    return incidents.map(incident => new Incident(incident));
+
+  } catch (error) {
+    console.error("Failed to read incidents: ", error);
+    throw new Error("Failed to read incidents due to an error.");
+  } finally {
+    //if (db) {
+      //await db.close();
+    //}
+  }
+}
+
+
