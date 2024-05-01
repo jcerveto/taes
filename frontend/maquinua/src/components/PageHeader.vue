@@ -24,6 +24,9 @@
               <li class="nav-item">
                   <router-link class="nav-link" to="/support">Support</router-link>
               </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/incidentsAdmin">Incidents Admin</router-link>
+              </li>
           </ul>
       </div>
 
