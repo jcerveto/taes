@@ -48,7 +48,7 @@
 
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li v-for="(lang, index) in supportedLanguages" :key="index" @click="changeLanguage(lang)">
-              <a class="dropdown-item">{{ lang.code }} ({{ lang.region }})</a>
+              <a class="dropdown-item">{{ lang.code }} ({{ lang.country }})</a>
             </li>
           </ul>
         </div>
@@ -68,7 +68,7 @@
 
 <script>
 import FiltrosMapa from './FiltrosMapa.vue';
-
+import { supportedLanguages } from './../locale/languagesConfig'
 
 export default {
   name: 'PageHeader',
@@ -79,16 +79,7 @@ export default {
     return {
       darkMode: false,
       filtros: false,
-
-      supportedLanguages: [
-        { code: 'EN', name: 'English', region: 'U.S.', subregion: null },
-        { code: 'VA', name: 'Català', region: 'País Valencià', subregion: null },
-        { code: 'ES', name: 'Español', region: 'España', subregion: null },
-        { code: 'FR', name: 'Erançaise', region: 'France', subregion: null },
-        { code: 'DE', name: 'Deutsch', region: 'Deutschland', subregion: null },
-        { code: 'IT', name: 'Italiano', region: 'Italia', subregion: null },
-        { code: 'PT', name: 'Português', region: 'Portugal', subregion: null }
-      ]
+      supportedLanguages
     };
   },
   methods: {
