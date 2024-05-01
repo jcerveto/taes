@@ -1,30 +1,30 @@
 <template>
-  <div>
-    <h1>New Machine Creation</h1>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="edificio">Building:</label>
-        <input id="edificio" v-model="machine.edificio" required>
+  <div class="container mt-5">
+    <h1 class="mb-4">New Machine Creation</h1>
+    <form @submit.prevent="submitForm" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="edificio" class="form-label">Building:</label>
+        <input type="text" class="form-control" id="edificio" v-model="machine.edificio" required>
       </div>
-      <div>
-        <label for="title">Title:</label>
-        <input id="title" v-model="machine.popupContent.title" required>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" class="form-control" id="title" v-model="machine.popupContent.title" required>
       </div>
-      <div>
-        <label for="description">Description:</label>
-        <input id="description" v-model="machine.popupContent.description" required>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <input type="text" class="form-control" id="description" v-model="machine.popupContent.description" required>
       </div>
-      <div>
-        <label for="lat">Latitude:</label>
-        <input id="lat" type="number" step="0.000001" v-model.number="machine.lat" required>
+      <div class="mb-3">
+        <label for="lat" class="form-label">Latitude:</label>
+        <input type="number" class="form-control" id="lat" step="0.000001" v-model.number="machine.lat" required>
       </div>
-      <div>
-        <label for="lon">Longitude:</label>
-        <input id="lon" type="number" step="0.000001" v-model.number="machine.lon" required>
+      <div class="mb-3">
+        <label for="lon" class="form-label">Longitude:</label>
+        <input type="number" class="form-control" id="lon" step="0.000001" v-model.number="machine.lon" required>
       </div>
-      <button type="submit">Add Machine</button>
+      <button type="submit" class="btn btn-primary">Add Machine</button>
     </form>
-    <router-link to="/support" class="align-right-home">Back to Support</router-link>
+    <router-link to="/support" class="btn btn-link align-right-home">Back to Support</router-link>
   </div>
 </template>
 
@@ -74,4 +74,52 @@ export default {
 .align-right-home {
   float: right;
 }
+
+.container {
+  max-width: 400px; /* Adjust the width as necessary */
+  margin: auto; /* Centers the container */
+}
+
+input {
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+}
+
+input:hover {
+  border-color: #80bdff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+input:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+button {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+form {
+  margin-top: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 </style>
