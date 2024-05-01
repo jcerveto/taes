@@ -125,7 +125,6 @@ export default {
         this.incidents = response.data;
       } catch (error) {
         console.error('Error fetching incidents:', error);
-        alert('You do not have incidents yet.');
       }
     },
     nextPage() {
