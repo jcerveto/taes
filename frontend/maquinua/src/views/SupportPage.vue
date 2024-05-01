@@ -20,6 +20,10 @@
 
      
     </div>
+
+    <div v-if="$route.path === '/support' && (Object.keys($route.query).length === 0 || (Object.keys($route.query).length === 1 && $route.query.building))">
+      <button @click="redirectToCreateNewMachine">Create a New Machine</button>
+    </div>
     
     <br>
 
@@ -83,6 +87,7 @@ export default {
       newProductPrice: '',
       lastProductId: 0,
       productIdToDelete: null,
+      urlIsValid: false,
     };
   },
 
@@ -113,6 +118,10 @@ export default {
         return this.buildings.filter(building => this.filteredMachines(building).length > 0);
       }
     },
+    showCreateTableButton() {
+      // Only show the button if on the specific base URL without extra query parameters
+      return this.$route.path === '/taes/support' && Object.keys(this.$route.query).length === 0;
+    }
   },
   methods: {
     fetchMachines() {
@@ -369,6 +378,10 @@ export default {
         console.error('Error deleting machine:', error);
       });
     },
+
+    redirectToCreateNewMachine() {
+      this.$router.push('/NewMachine');
+    }
 
 
   },

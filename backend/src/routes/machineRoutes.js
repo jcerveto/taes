@@ -69,6 +69,37 @@ router.delete('/delete-machine/:id', async (req, res) => {
     }
 });
 
+router.post('/add-machine', async (req, res) => {
+    const newMachine = req.body;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+  
+    try {
+      // Read the current machines data
+      const data = await fs.promises.readFile(filePath, 'utf8');
+      let machines = JSON.parse(data);
+  
+      // Assign a new ID; assumes IDs are unique and sequential
+      const newId = machines.length > 0 ? machines[machines.length - 1].id + 1 : 1;
+      newMachine.id = newId; // Set the new ID
+  
+      // Initialize other fields to default values
+      newMachine.type = "";
+      newMachine.lista_productos = [];
+      newMachine.lista_precios = [];
+  
+      // Add the new machine to the array
+      machines.push(newMachine);
+  
+      // Write the updated machines array back to the file
+      await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+  
+      // Respond with success
+      res.status(201).json({ message: 'New machine added successfully', machine: newMachine });
+    } catch (error) {
+      console.error("Failed to add new machine:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
 
 
 // Export the router
