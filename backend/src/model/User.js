@@ -163,6 +163,28 @@ export class User {
         this._bornDate = value;
     }
 
+    get type() {
+        if (this._type === undefined) {
+            throw new Error("type is undefined!");
+        }
+        if (this._type === "") {
+            throw new Error("Error: type can not be empty!");
+        }
+
+        return this._type;
+    }
+
+    set type(value) {
+        if (value === undefined) {
+            throw new Error("Error: type can not be undefined!");
+        }
+        if (value === "") {
+            throw new Error("Error: type can not be empty!");
+        }
+
+        this._type = value;
+    }
+
     constructor({ id = new ObjectId() } = {}) {
         this._username = "";
         this._name = "";
@@ -170,6 +192,7 @@ export class User {
         this._email = "";
         this._password = "";
         this._bornDate = new Date();
+        this._type = "";
         this._id = new ObjectId(id);
     }
 
@@ -218,7 +241,7 @@ export class User {
             email: this._email,
             password: this._password,
             bornDate: this._bornDate,
-            type: "user"
+            type: this._type
         }
     }
 

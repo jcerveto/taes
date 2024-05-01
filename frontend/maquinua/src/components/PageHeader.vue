@@ -25,9 +25,9 @@
                   <router-link class="nav-link" to="/about">{{ $t("button-about") }}</router-link>
               </li>
               <li class="nav-item">
-                  <router-link class="nav-link" to="/">{{ $t("button-logout") }}</router-link>
+                  <router-link class="nav-link" to="/user">{{ $t("button-logout") }}</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="isAdmin">
                   <router-link class="nav-link" to="/incidentsAdmin">{{ $t("button-incidentsAdmin") }}</router-link>
               </li>
 
@@ -71,7 +71,8 @@
 
 <script>
 import FiltrosMapa from './FiltrosMapa.vue';
-import { supportedLanguages } from './../locale/languagesConfig'
+import { supportedLanguages } from './../locale/languagesConfig';
+import { useUserStore } from "@/stores/user-store-setup";
 
 export default {
   name: 'PageHeader',
@@ -82,10 +83,18 @@ export default {
     return {
       darkMode: false,
       filtros: false,
-      supportedLanguages
+      supportedLanguages,
+      isAdmin: false,
     };
   },
+  created() {
+    this.checkAdminStatus();
+  },
   methods: {
+    async checkAdminStatus() {
+      this.isAdmin = await useUserStore().isAdmin();
+    },
+
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
       if (this.darkMode) {
@@ -109,6 +118,9 @@ export default {
     language(newValue, oldValue) {
       console.log('Language changed from', oldValue, 'to', newValue);
       this.changeLanguage(newValue);
+    },
+    '$route'() {
+      this.checkAdminStatus();
     }
   },
 };
