@@ -62,15 +62,13 @@
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
             <td>{{ computeProductId(index) }}</td>
             <td :contenteditable="isEditing" @blur="updateProductName(index, $event.target.innerText)" class="editable-cell">
-              <span class="circle-editable">
-                {{ product }}
-              </span>
+              <span v-if="isEditing" class="circle-editable">{{ product }}</span>
+              <template v-else>{{ product }}</template>
             </td>
 
             <td :contenteditable="isEditing" @blur="updateProductPrice(index, $event.target.innerText)" class="editable-cell">
-              <span class="circle-editable">
-                {{ selectedMachineDetails.lista_precios[index].toFixed(2) }}
-              </span>
+              <span v-if="isEditing" class="circle-editable">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</span>
+              <template v-else>{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</template>
             </td>
             
           </tr>
@@ -520,7 +518,7 @@ th, td {
 }
 
 .circle-editable{
-  border: none;
+  border: 2px solid black;
   display: inline-block;
   background: white;
   text-align: center;
