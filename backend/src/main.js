@@ -111,6 +111,28 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/admin', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.read(email);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (user.password !== password) {
+            return res.status(401).json({ error: 'Incorrect password' });
+        }
+
+        if (user.type === 'admin') {
+            return res.json({ admin: true });
+        }
+        return res.status(401).json({ error: 'User is not an admin' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.post('/register', async (req, res) => {
     try {  
         const cleanUser = new User();

@@ -87,7 +87,6 @@ export async function updateUser(email, updatedUserData) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.updateOne({
       email: email,
-      type: "user"
     }, { $set: updatedUserData.toJSON() });
 
     //if (result.modifiedCount !== 1) {
@@ -121,7 +120,6 @@ export async function deleteUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteOne({
       email: email,
-      type: "user"
     });
 
     if (result.deletedCount !== 1) {
@@ -156,7 +154,6 @@ export async function readUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const userObj = await usersCollection.findOne({
       email: email,
-      type: "user"
     });
    
 
@@ -172,6 +169,7 @@ export async function readUser(email) {
     user.email = userObj.email;
     user.password = userObj.password;
     user.bornDate = userObj.bornDate;
+    user.type = userObj.type;
 
     return user;
   } catch (error) {
@@ -196,7 +194,7 @@ export async function readAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const usersObj = await usersCollection.find({
-      type: "user"
+      
     }).toArray();
     const typeUsers = usersObj.map((u) => {
         const iterUser = new User();
@@ -207,6 +205,7 @@ export async function readAllUsers() {
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);
+        iterUser.type = u.type;
 
         return iterUser;
     });
@@ -235,7 +234,7 @@ export async function deleteAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteMany({
-      type: "user"
+      
     });
 
   } catch (error) {
