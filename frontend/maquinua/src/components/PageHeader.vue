@@ -27,6 +27,9 @@
               <li class="nav-item">
                   <router-link class="nav-link" to="/">{{ $t("button-logout") }}</router-link>
               </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/incidentsAdmin">{{ $t("button-incidentsAdmin") }}</router-link>
+              </li>
 
           </ul>
       </div>

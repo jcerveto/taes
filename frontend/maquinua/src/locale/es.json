@@ -8,5 +8,6 @@
     "button-user": "Perfil",
     "button-logout": "Cerrar sesión",
     "button-reports": "Incidencias",
-    "button-support": "Soporte"
+    "button-support": "Soporte",
+    "button-incidentsAdmin": "Resolver Incidencias"
 }
