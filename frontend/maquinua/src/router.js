@@ -52,6 +52,16 @@ const routes = [
   {
     path: '/support',
     component: SupportPage,
+    beforeEnter: async (to, from, next) => {
+      try {
+        const userStore = useUserStore();
+        await userStore.isAdmin();
+        next();
+      } catch (error) {
+        console.error(error);
+        next('/signin'); // Redirigir a la página de inicio de sesión si hay un error
+      }
+    }
   },
   /*{
     path: '/',
@@ -105,7 +115,7 @@ const routes = [
     path: '/private',
     component: PrivatePage,
     meta: {
-      auth: true,
+      auth: false,
     }
   },
   

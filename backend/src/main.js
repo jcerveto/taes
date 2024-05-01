@@ -7,7 +7,7 @@ import path from 'path';
 import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
-import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
+import { generateAdminToken, generateRefreshToken, generateToken } from './helpers/generateTokens.js';
 import { Incident } from './model/Incidents.js'
 
 const app = express();
@@ -104,6 +104,10 @@ app.post('/login', async (req, res) => {
         const { token, expiresIn } = generateToken(user.email);
         generateRefreshToken(user.email, res);
 
+        if (user.type === 'admin') {
+            generateAdminToken(user.email, res);
+        }
+
         res.json({ token, expiresIn, name: user.name, uid: email});
     } catch (error) {
         console.error(error);
@@ -111,25 +115,23 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.post('/admin', async (req, res) => {
+app.get('/admin', async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const user = await User.read(email);
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
+        let adminTokenCookie = req.cookies?.adminToken;
+        if (!adminTokenCookie) throw new Error("No existe el adminToken");
+
+        const { uid } = jwt.verify(adminTokenCookie, 'codigo_secreto_a_poner_en_el_env');
+
+        const user = await User.read(uid);
+
+        if (user.type !== 'admin') {
+            throw new Error("User is not an admin");
         }
 
-        if (user.password !== password) {
-            return res.status(401).json({ error: 'Incorrect password' });
-        }
-
-        if (user.type === 'admin') {
-            return res.json({ admin: true });
-        }
-        return res.status(401).json({ error: 'User is not an admin' });
+        return res.json({ admin: true });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
+        console.log(error);
+        return res.status(401).json({ admin: false });
     }
 });
 

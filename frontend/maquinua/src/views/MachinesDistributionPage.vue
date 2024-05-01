@@ -14,6 +14,7 @@
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
 import { circleMarker } from "leaflet/dist/leaflet-src.esm";
+import { useUserStore } from "@/stores/user-store-setup";
 
 export default {
   components: {
@@ -37,9 +38,11 @@ export default {
         pointToLayer: (feature, latLng) => circleMarker(latLng, { radius: 8 }),
       },
       markers: [],
+      isAdmin: false,
     };
   },
   async beforeMount() {
+    this.isAdmin = await useUserStore().isAdmin();
     await this.loadMarkersFromJson("maquinas.json");
     this.mapIsReady = true;
   },
@@ -48,6 +51,8 @@ export default {
       try {
         const response = await fetch(jsonFile);
         const data = await response.json();
+
+        
 
         // Obtener el valor de los parámetros "tipo", "edificio" y "producto" de la URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -72,10 +77,18 @@ export default {
           const url = `support?building=${entry.edificio}&machine=${encodeURIComponent(titleLeftPart)}&id=${entry.id}`;
           const incidentUrl = `incidents?building=${entry.edificio}&machine=${encodeURIComponent(titleLeftPart)}&id=${entry.id}`;
 
+          const admin = `<h3><a href="${url}" target="_blank">${entry.popupContent.title}</a></h3>`;
+          const user = `<h3>${entry.popupContent.title}</h3>`;
+          
+          let text = user;
+          if (this.isAdmin === true) {
+            text = admin;
+          }
+
           return {
             position: [entry.lat, entry.lon],
-            popupContent: `<h3><a href="${url}" target="_blank">${entry.popupContent.title}</a></h3>
-                            <p>${entry.popupContent.description}</p>
+            popupContent: text+
+                            `<p>${entry.popupContent.description}</p>
                             <button type="button" class="btn btn-danger" onclick="window.location.href='${incidentUrl}'">Incidencia</button>`
           };
         });
