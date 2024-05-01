@@ -14,7 +14,7 @@
       </div>
       <div class="incident-list">
         <ul>
-          Mostrando las incidencias de: {{  }}
+          Mostrando las incidencias de: {{ user }}
           <li v-for="incident in paginatedIncidents" :key="incident.id">
             Building: {{ incident.machineBuilding }}<br>
             Machine: {{  incident.machineName }}<br>
@@ -62,7 +62,7 @@
         if (this.incidentDetails.trim()) {
           try {
             const response = await axios.post('http://localhost:3000/incidents', {
-              email: 'test@example.com',
+              email: this.user,
               machineId: this.id,
               machineName: this.machine,
               machineBuilding: this.building,
@@ -70,14 +70,14 @@
             });
             if (response.data) {
               this.incidents.unshift(response.data);
-              this.incidentDetails = '';
+              //this.incidentDetails = '';
             } else {
               throw new Error('No data received from the server');
             }
           } catch (error) {
             console.error('Failed to add incident: ', error);
             const errorMessage = error.response && error.response.data && error.response.data.error ? error.response.data.error : error.message;
-            alert('Failed to add incident : ' + errorMessage);
+            alert('Failed to add incident : ' + errorMessage + " email: " + this.email + "text: " + this.incidentDetails);
           }
         } else {
           alert('Please enter incident details.');
@@ -109,7 +109,7 @@
       this.machine = this.$route.query.machine || '';
       this.id = this.$route.query.id || '';
 
-      this.user = localStorage.getItem('user');
+      this.user = localStorage.getItem('email');
 
       this.fetchIncidents();
     }

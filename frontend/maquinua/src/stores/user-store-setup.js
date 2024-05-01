@@ -21,7 +21,21 @@ export const useUserStore = defineStore("user", () => {
       
       localStorage.setItem("user", res.data.name);
       setTime();
+      localStorage.setItem("email", email);
       return res.data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const isAdmin = async (email) => {
+    try {
+      const res = await api.get("/admin", {
+        email,
+      });
+
+      return res.data.admin;
     } catch (error) {
       console.log(error);
       return error;
@@ -53,6 +67,7 @@ export const useUserStore = defineStore("user", () => {
     } finally {
       resetStore();
       localStorage.removeItem("user");
+      localStorage.removeItem("email");
     }
   };
 
@@ -67,6 +82,7 @@ export const useUserStore = defineStore("user", () => {
     token,
     expiresIn,
     access,
+    isAdmin,
     refreshToken,
     logout,
   };
