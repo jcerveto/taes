@@ -10,15 +10,12 @@ import FilterPage from '@/views/FilterPage.vue';
 import SignIn from '@/views/SignInPage.vue';
 import Register from '@/views/RegisterPage.vue';
 import User from '@/views/UserPage.vue';
-import UserFavourites from '@/views/FavouritesPage.vue';
-import UserStatistics from '@/views/UserStatisticsPage.vue';
-import UserReviews from '@/views/UserReviewsPage.vue';
-import UserConsults from '@/views/UserConsultsPage.vue';
-import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
+import PrivatePage from './views/PrivatePage.vue';
+
 import { useUserStore } from './stores/user-store-setup';
 const routes = [
   {
@@ -33,8 +30,11 @@ const routes = [
     component: About,
     },
   {
-        path: '/incidents',
-        component: Incidents,
+    path: '/incidents',
+    component: Incidents,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/products',
@@ -79,26 +79,6 @@ const routes = [
     }
   },
   {
-    path: '/user/favourites',
-    component: UserFavourites
-  },
-  {
-    path: '/user/userstatistics',
-    component: UserStatistics
-  },
-  {
-    path: '/user/myreviews',
-    component: UserReviews
-  },
-  {
-    path: '/user/myconsults',
-    component: UserConsults
-  },
-  {
-    path: '/user/mylocations',
-    component: UserLocations
-  },
-  {
     path: '/user/mydata',
     component: UserData,
     meta: {
@@ -120,7 +100,14 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     component: Error404,
-  }
+  },
+  {
+    path: '/private',
+    component: PrivatePage,
+    meta: {
+      auth: true,
+    }
+  },
   
 ];
 
@@ -141,6 +128,7 @@ router.beforeEach(async (to, from, next) => {
       return next("/signin");
     }
   }
+  
   next();
 });
 
