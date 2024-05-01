@@ -1,5 +1,12 @@
 {
     "greeting": "Hola",
     "description-1": "maquinua es un sitio web que te explorar las máquinas expendedoras de la Universitat d'Alacant. Puedes filtrar por tu facultad, nombre del producto y muchos más. Encontrás la ubicación de la máquina en un mapa.",
-    "find-us": "Encuéntranos en nuestro repositorio de GitHub en "
+    "find-us": "Encuéntranos en nuestro repositorio de GitHub en ",
+    "button-filter": "Filtros",
+    "button-products": "Productos",
+    "button-about": "Acerca de",
+    "button-user": "Perfil",
+    "button-logout": "Cerrar sesión",
+    "button-reports": "Incidencias",
+    "button-support": "Soporte"
 }

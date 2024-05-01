@@ -1,5 +1,12 @@
 {
     "greeting": "Hello",
     "description-1": "maquinua is the website to find all the vending machines in the Universitat d'Alacant / Universidad de Alicante. Filter the maching by name, price or location. Find the localisation of the vending machine on the map. ",
-    "find-us": "Contact us using our GitHub repository at "
+    "find-us": "Contact us using our GitHub repository at ",
+    "button-filter": "Filters",
+    "button-products": "Products",
+    "button-about": "About us",
+    "button-user": "Profile",
+    "button-logout": "Logout",
+    "button-reports": "Reports",
+    "button-support": "Support"
 }

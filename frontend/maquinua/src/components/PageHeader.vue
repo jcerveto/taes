@@ -7,24 +7,27 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
               <li class="nav-item">
-                  <router-link class="nav-link" to="/" @click="toggleFiltros">Filter</router-link>
+                  <router-link class="nav-link" to="/" @click="toggleFiltros">{{ $t("button-filter") }}</router-link>
               </li>
               <li class="nav-item">
-                  <router-link class="nav-link" to="/products">View products</router-link>
+                  <router-link class="nav-link" to="/products">{{ $t("button-products") }}</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/user">{{  $t("button-user") }}</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/incidents">{{ $t("button-reports") }}</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/support">{{  $t("button-support") }}</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/about">{{ $t("button-about") }}</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/">{{ $t("button-logout") }}</router-link>
               </li>
 
-              <li class="nav-item">
-                  <router-link class="nav-link" to="/about">About</router-link>
-              </li>
-              <li class="nav-item">
-                  <router-link class="nav-link" to="/user">User</router-link>
-              </li>
-              <li class="nav-item">
-                  <router-link class="nav-link" to="/incidents">Incidents</router-link>
-              </li>
-              <li class="nav-item">
-                  <router-link class="nav-link" to="/support">Support</router-link>
-              </li>
           </ul>
       </div>
 
