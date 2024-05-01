@@ -524,19 +524,9 @@ th, td {
   display: inline-block;
   background: white;
   text-align: center;
-  transform: translateY(3px);
   border-radius: 25px;
+  padding: 5px 10px;
 }
-
-.circle-editable-b{
-  border: none;
-  display: inline-block;
-  background: white;
-  text-align: center;
-  transform: translateY(3px);
-  border-radius: 25px;
-}
-
 
 button:active, .button-edit-active {
   transform: translateY(2px); /* Slight push effect */
