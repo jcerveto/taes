@@ -29,7 +29,7 @@
 
     <!-- Add Product Section -->
     <div v-if="selectedMachineDetails" class="add-product-section">
-      <input v-model="newProductName" placeholder="Product Name" />
+      <input v-model="newProductName" placeholder="Product Name" style="width: 10%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
       <button @click="toggleEdit">{{ isEditing ? 'Cancel Edit' : 'Edit Product' }}</button>
@@ -473,13 +473,81 @@ h1 {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Styling for Add and Delete Product Sections */
-.add-product-section, .delete-product-section {
-  background-color: #f9f9f9;
-  padding: 15px;
+
+/* Targeting the product price input specifically */
+.add-product-section input[type="number"] {
+  width: 10%; /* Smaller width for price input, as it typically requires less space */
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 10px;
+  border: 2px solid #ccc;
+  background-color: #E0FFFF;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Styling for the 'Confirm' button */
+.add-product-section button:nth-child(3) { /* Assumes it's the third child in the section */
+  width: 10%; /* Moderate width for action buttons */
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  color: black;
+  background-color: #00FFFF; /* Green for confirm/add button */
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Styling for the 'Edit Product' or 'Cancel Edit' toggle button */
+.add-product-section button:nth-child(4) { /* Assumes it's the fourth child in the section */
+  width: 10%; /* Slightly larger width for clarity in function */
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  color: black;
+  background-color: #00FFFF; /* Red for cancel/edit toggle button */
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.add-product-section input[type="text"]:focus,
+.add-product-section input[type="number"]:focus {
+  border-color: #007bff; /* Bootstrap primary color for focus */
+}
+
+.add-product-section input[type="text"]:focus,
+.add-product-section input[type="number"]:focus {
+  border-color: #007bff; /* Bootstrap primary color for focus */
+}
+
+.add-product-section button {
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border: none; /* Ensures buttons do not have an additional border */
+}
+
+.add-product-section button:hover {
+  background-color: #0056b3;
+}
+
+.add-product-section button:nth-child(1) {
+  background-color: #28a745; /* Green for confirm/add button */
+}
+
+.add-product-section button:nth-child(2) {
+  background-color: #dc3545; /* Red for cancel/edit toggle button */
+}
+
+.add-product-container {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Detailed Machine View and Interaction */
@@ -532,6 +600,21 @@ tr:nth-child(even) {
     width: 100%;
     margin-top: 10px;
   }
+
+  .add-product-section {
+    flex-direction: column;
+  }
+
+  .add-product-section input,
+  .add-product-section button {
+    width: 100%; /* Ensures each element stretches to full width on mobile for better usability */
+    margin-top: 10px;
+  }
+
+  .add-product-section button {
+    margin-bottom: 10px;
+  }
+
 }
 
 .circle-editable{
