@@ -31,14 +31,24 @@
     </div>
     <div class="incident-list">
       <h3>Showing incidents for: {{ user }}</h3>
-      <ul>
-        <li v-for="incident in paginatedIncidents" :key="incident.id">
-          Building: {{ incident.machineBuilding }}<br>
-          Machine: {{ incident.machineName }}<br>
-          ID: {{ incident.machineId }}<br>
-          Text: {{ incident.text }}
-        </li>
-      </ul>
+      <div v-if="incidents.length > 0">
+        <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.id">
+          <div class="card-header">
+            <p>Building: {{ incident.machineBuilding }}</p>
+            <p>Machine: {{ incident.machineName }}</p>
+            <p>ID: {{ incident.machineId }}</p>
+          </div>
+          <div class="card-body">
+            <p>{{ incident.text }}</p>
+          </div>
+          <div class="card-footer center-button">
+            <div class="status-circle" :class="{ 'open': incident.status === 'open', 'close': incident.status === 'close' }"></div>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <p>No incidents to show.</p>
+      </div>
       <div class="pagination">
         <button @click="previousPage" :disabled="currentPage <= 0">Previous</button>
         <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
@@ -211,6 +221,11 @@ export default {
   width: calc(50% - 12px); /* Adjusts width taking into account margin-right */
 }
 
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
 .add-incident-btn {
   background-color: #4CAF50; /* Green */
 }
@@ -268,6 +283,67 @@ export default {
 .pagination span {
   margin: 0 10px;
   font-weight: bold;
+}
+
+.incident-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+  padding: 10px;
+}
+
+.card-header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.card-header p {
+  margin: 5px 0;
+}
+
+.card-body {
+  padding-top: 10px;
+}
+
+.green-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 16px;
+}
+
+.blue-btn {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 16px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.open {
+  background-color: red;
+}
+
+.close {
+  background-color: green;
 }
 </style>
 
