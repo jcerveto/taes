@@ -444,14 +444,14 @@ export async function readIncidentId( id ) {
     if (id === undefined) {
       throw new Error("Incident not read!");
     }
-    
+
     db = await connectToDatabase();
     const incidentsCollection = db.collection(COLLECTION_MAIN);
     const incidentObj = await incidentsCollection.findOne({
       id: id,
     });
-   
-
+    
+    console.log("id: ", id);
     if (incidentObj === null) {
       throw new Error("Incident not read! Incident not found in DB");
     }
