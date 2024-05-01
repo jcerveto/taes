@@ -53,14 +53,14 @@
       <table :class="getTableClass(selectedMachineDetails.type)">
         <thead>
           <tr>
-            <th class="productos-header">ID</th>
-            <th class="productos-header">Producto</th>
-            <th class="productos-header">Precio (€)</th>
+            <th class="productos-header" style="text-align: center;">ID</th>
+            <th class="productos-header" style="text-align: center;">Producto</th>
+            <th class="productos-header" style="text-align: center;">Precio (€)</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
-            <td>{{ computeProductId(index) }}</td>
+            <td style="text-align: center;">{{ computeProductId(index) }}</td>
             <td :contenteditable="isEditing" @blur="updateProductName(index, $event.target.innerText)" class="editable-cell">
               <span v-if="isEditing" class="circle-editable">{{ product }}</span>
               <template v-else>{{ product }}</template>
@@ -415,106 +415,123 @@ export default {
 
   
 <style scoped>
+/* General Page Layout Enhancements */
+body {
+  font-family: 'Arial', sans-serif; /* Cleaner font for better readability */
+}
+
+h1 {
+  text-align: center;
+  color: #333; /* Dark gray for better visibility and contrast */
+  margin-bottom: 20px;
+}
+
+/* Improved styling for navigation and positioning */
+.align-right-home {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  font-size: 1rem;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.align-right-home:hover {
+  background-color: #0056b3;
+}
+
+/* Enhanced Filter Container Styles */
+.filter-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.filter-container:hover {
+  background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
+}
+
+/* Styling for dropdowns and buttons within filters for a uniform appearance */
+.filter-container select, .filter-container input, .filter-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.filter-container select:hover, .filter-container input:hover, .filter-container button:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Styling for Add and Delete Product Sections */
+.add-product-section, .delete-product-section {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+
+/* Detailed Machine View and Interaction */
+.machine-details {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
 table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
   margin-bottom: 2em;
+  width: 40%;
+}
+
+.editable-cell {
+  text-align: center;
 }
 
 th, td {
-  padding: 0.5em;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.table-mixta tr:nth-child(odd), 
-.table-cafetera tr:nth-child(odd), 
-.table-bebidas-frias tr:nth-child(odd), 
-.table-comida-saludable tr:nth-child(odd) {
-  background-color: #CCCCCC;
-}
-
-.table-mixta tr:nth-child(even), .table-mixta .productos-header,
-.table-cafetera tr:nth-child(even), .table-cafetera .productos-header,
-.table-bebidas-frias tr:nth-child(even), .table-bebidas-frias .productos-header,
-.table-comida-saludable tr:nth-child(even), .table-comida-saludable .productos-header {
-  background-color: #E6E6E6;
-}
-
-.productos-header th {
-  text-align: center;
-  font-weight: bold;
-}
-
-.filter-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 24px;
-  justify-content: center;
   padding: 15px;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
-  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
-  transition: all 0.2s ease-in-out;
+  border: 1px solid #ccc;
+  text-align: left;
 }
 
-.filter-container:hover {
-  background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
-  box-shadow: 5px 5px 15px #adadad, -5px -5px 15px #ffffff;
+tr:nth-child(odd) {
+  background-color: #CCCCCC; /* Darker grey for odd rows */
 }
 
-.filter-container select, .filter-container input {
-  padding: 8px 16px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  background-color: white;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  font-size: 1em;
-  color: #444;
-  outline: none;
-  transition: border-color 0.3s ease;
+tr:nth-child(even) {
+  background-color: #E6E6E6; /* Lighter grey for even rows */
 }
 
-.filter-container select:focus, .filter-container select:hover, .filter-container input:focus {
-  border-color: #888888;
+.productos-header {
+  background-color: #007bff;
+  color: white;
 }
 
-.filter-dropdown {
-  padding: 10px 20px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: inset 2px 2px 5px #e6e6e6, inset -2px -2px 5px #ffffff;
-  cursor: pointer;
-  font-size: 1em;
-  color: #444;
-  outline: none;
-  transition: border 0.3s, box-shadow 0.3s;
-}
+/* Responsive Mobile-First Adjustments */
+@media (max-width: 768px) {
+  .filter-container, .add-product-section, .delete-product-section {
+    flex-direction: column;
+  }
 
-.filter-dropdown::-ms-expand {
-  display: none; /* Hide the default dropdown arrow in IE */
-}
-
-.filter-dropdown option:hover {
-  background-color: #f0f0f0;
-}
-
-.filter-dropdown:focus {
-  box-shadow: inset 1px 1px 2px #bfbfbf, inset -1px -1px 2px #ffffff;
-}
-
-.filter-dropdown:hover {
-  border-color: #b3b3b3;
-}
-
-.align-right-home {
-  position: absolute;
-  right: 0;
-  top: 7.5%;
+  .filter-container select, .filter-container input, .filter-container button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 
 .circle-editable{
@@ -524,17 +541,6 @@ th, td {
   text-align: center;
   border-radius: 25px;
   padding: 5px 10px;
-}
-
-button:active, .button-edit-active {
-  transform: translateY(2px); /* Slight push effect */
-  background-color: #ddd; /* Darker background to simulate being pressed */
-}
-
-/* Apply the active style dynamically based on isEditing */
-.button-edit-active {
-  background-color: #007bff; /* Bootstrap primary color for active state */
-  color: white;
 }
 
 </style>
