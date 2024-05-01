@@ -118,7 +118,7 @@ export class Incident {
 
     static async findByEmail(email) {
         try {
-            return await db.readIncidents({ email: email });
+            return await db.readIncidents(email );
         } catch (error) {
             console.error(error);
             throw new Error("Incidents not found!");

@@ -370,8 +370,9 @@ app.get('/incidents', async (req, res) => {
     }
 });
 
-app.get('incidents/:email', async (req, res) => {
+app.get('/incidents/:email', async (req, res) => {
     try {
+        
         const { email } = req.params;
         const incidents = await Incident.findByEmail(email);
         res.json(incidents.map(incident => incident.toJSON()));
