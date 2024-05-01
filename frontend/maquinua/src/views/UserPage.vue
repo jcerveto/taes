@@ -7,7 +7,7 @@
         <div class="user-actions" v-if="isLoggedIn">
             <h3> Hola, {{ usuario }}</h3>
             
-            <router-link class="router-button" to="incidences">Mis incidencias</router-link> <br>
+            <router-link class="router-button" to="incidents">Mis incidencias</router-link> <br>
             <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
             <router-link @click="logout()" to="/">Log out</router-link> <br>
         </div>
