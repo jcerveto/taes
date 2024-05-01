@@ -329,13 +329,13 @@ app.listen(PORT, () => {
 
 
 app.post('/incidents', async (req, res) => {
-    const { email, text } = req.body;
+    const { email, machineId, machineName, machineBuilding, text } = req.body;
     if (!email || !text) {
         return res.status(400).json({ error: "Email and text are required" });
     }
 
     try {
-        const newIncident = new Incident({ email, text });
+        const newIncident = new Incident({ email, text, machineId, machineName, machineBuilding, status: "open"});
         await newIncident.save();
         res.status(201).json(newIncident.toJSON());
     } catch (error) {
@@ -345,20 +345,19 @@ app.post('/incidents', async (req, res) => {
 });
 
 app.delete('/incidents/:id', async (req, res) => {
-        try {
-            const { id } = req.params;
-            const incident = await Incident.findById(id);
-            if (!incident) {
-                return res.status(404).json({ error: "Incident not found" });
-            }
-            await incident.delete();
-            res.sendStatus(204); // No Content
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: error.message });
+    try {
+        const { id } = req.params;
+        const incident = await Incident.findById(id);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
         }
-    });
-
+        await incident.delete();
+        res.sendStatus(204); // No Content
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 
 app.get('/incidents', async (req, res) => {
@@ -371,4 +370,31 @@ app.get('/incidents', async (req, res) => {
     }
 });
 
+app.get('incidents/:email', async (req, res) => {
+    try {
+        const { email } = req.params;
+        const incidents = await Incident.findByEmail(email);
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
+app.put('/incidents/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const incident = await Incident.findById(id);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
+        }
+        incident.status = status;
+        await incident.save();
+        res.json(incident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+
+});

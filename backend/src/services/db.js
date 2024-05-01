@@ -345,6 +345,16 @@ export async function deleteIncident(id) {
   }
 }
 
+// Delete all incidents
+export async function deleteAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteMany({});
+  if (result.deletedCount === 0) {
+    throw new Error("Incidents not deleted!");
+  }
+}
+
 export async function readAllIncidents() {
   const db = await connectToDatabase();
   const incidentsCollection = db.collection("incidents");
@@ -373,7 +383,11 @@ export async function createIncident(incident) {
     const result = await incidentsCollection.insertOne({
       email: incident.email,
       text: incident.text,
-      //createdAt: new Date() // Optionally add a timestamp
+      machineId: incident.machineId,
+      machineName: incident.machineName,
+      machineBuilding: incident.machineBuilding,
+      status: "open",
+      type: "incident"
     });
 
     /*if (result.insertedCount !== 1) {
@@ -388,3 +402,4 @@ export async function createIncident(incident) {
     //}
   }
 }
+
