@@ -61,8 +61,18 @@
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
             <td>{{ computeProductId(index) }}</td>
-            <td :contenteditable="isEditing" @blur="updateProductName(index, $event.target.innerText)" class="editable-cell">{{ product }}</td>
-            <td :contenteditable="isEditing" @blur="updateProductPrice(index, $event.target.innerText)" class="editable-cell">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
+            <td :contenteditable="isEditing" @blur="updateProductName(index, $event.target.innerText)" class="editable-cell">
+              <span class="circle-editable">
+                {{ product }}
+              </span>
+            </td>
+
+            <td :contenteditable="isEditing" @blur="updateProductPrice(index, $event.target.innerText)" class="editable-cell">
+              <span class="circle-editable">
+                {{ selectedMachineDetails.lista_precios[index].toFixed(2) }}
+              </span>
+            </td>
+            
           </tr>
         </tbody>
       </table>
@@ -509,13 +519,24 @@ th, td {
   top: 7.5%;
 }
 
-.editable-cell {
-  background-color: white; /* Or any other contrasting color for visibility */
-  border-radius: 5px; /* Rounded corners */
-  padding: 5px;
-  border: 1px solid #ccc; /* Subtle border to indicate editability */
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); /* Inner shadow for depth */
+.circle-editable{
+  border: none;
+  display: inline-block;
+  background: white;
+  text-align: center;
+  transform: translateY(3px);
+  border-radius: 25px;
 }
+
+.circle-editable-b{
+  border: none;
+  display: inline-block;
+  background: white;
+  text-align: center;
+  transform: translateY(3px);
+  border-radius: 25px;
+}
+
 
 button:active, .button-edit-active {
   transform: translateY(2px); /* Slight push effect */
