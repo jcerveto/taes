@@ -1,5 +1,6 @@
 <template>
-  <nav :class="{ 'navbar': true, 'navbar-expand-lg': true, 'navbar-light': !darkMode, 'navbar-dark': darkMode, 'bg-light': !darkMode, 'bg-dark': darkMode }">
+  <nav
+    :class="{ 'navbar': true, 'navbar-expand-lg': true, 'navbar-light': !darkMode, 'navbar-dark': darkMode, 'bg-light': !darkMode, 'bg-dark': darkMode }">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">Home</router-link>
 
@@ -11,7 +12,7 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/products">View products</router-link>
           </li>
-                  
+
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
@@ -21,25 +22,41 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/support">Support</router-link>
           </li>
+          <li class="nav-item">
+            <span :key="language">Current language: {{ language }} </span>
+          </li>
+
         </ul>
       </div>
 
+
+
       <div class="d-flex">
-        <button 
-          class="navbar-toggler ms-2"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="dark-mode-button" @click="toggleDarkMode" :style="{ color: darkMode ? '#fff' : '#000' }">
           <i id="toggleDarkMode" :class="darkMode ? 'bi-sun' : 'bi-moon'"></i>
         </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img :src="require(`@/assets/languages.svg`)" alt="Languages" />        
+          Language
+          {{ $t('greeting') }}
+        </button>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li v-for="(lang, index) in supportedLanguages" :key="index" @click="changeLanguage(lang)">
+            <a class="dropdown-item">{{ lang.code }} ({{ lang.region }})</a>
+          </li>
+        </ul>
+      </div>
+
       </div>
     </div>
   </nav>
@@ -52,6 +69,7 @@
 <script>
 import FiltrosMapa from './FiltrosMapa.vue';
 
+
 export default {
   name: 'PageHeader',
   components: {
@@ -60,8 +78,18 @@ export default {
   data() {
     return {
       darkMode: false,
-      filtros: false
-    };
+      filtros: false,
+
+      supportedLanguages: [
+        { code: 'EN', name: 'English', region: 'U.S.', subregion: null },
+        { code: 'VA', name: 'Català', region: 'País Valencià', subregion: null },
+        { code: 'ES', name: 'Español', region: 'España', subregion: null },
+        { code: 'FR', name: 'Erançaise', region: 'France', subregion: null },
+        { code: 'DE', name: 'Deutsch', region: 'Deutschland', subregion: null },
+        { code: 'IT', name: 'Italiano', region: 'Italia', subregion: null },
+        { code: 'PT', name: 'Português', region: 'Portugal', subregion: null }
+      ]
+      };
   },
   methods: {
     toggleDarkMode() {
@@ -72,10 +100,23 @@ export default {
         document.body.classList.remove('dark-mode');
       }
     },
+
     toggleFiltros() {
       this.filtros = !this.filtros;
+    },
+
+    changeLanguage(lang) {
+      console.log('Changing language from ', localStorage.getItem('language'), 'to', lang.code);
+      localStorage.setItem('language', lang.code);
+      this.$i18n.locale = lang.code;
     }
-  }
+  },
+  watch: {
+    language(newValue, oldValue) {
+      console.log('Language changed from', oldValue, 'to', newValue);
+      this.changeLanguage(newValue);
+    }
+  },
 };
 </script>
 
