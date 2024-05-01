@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Support Page</h1>
-    <router-link to="/" class="align-right-home">Go to Home</router-link>
+
 
     <!-- Filter container for the building selection -->
     <div class="filter-container">
@@ -21,7 +21,7 @@
      
     </div>
 
-    <div v-if="$route.path === '/support' && (Object.keys($route.query).length === 0 || (Object.keys($route.query).length === 1 && $route.query.building))">
+    <div class="add-machine" v-if="$route.path === '/support' && (Object.keys($route.query).length === 0 || (Object.keys($route.query).length === 1 && $route.query.building))">
       <button @click="redirectToCreateNewMachine">Create a New Machine</button>
     </div>
     
@@ -683,6 +683,29 @@ tr:nth-child(even) {
   text-align: center;
   border-radius: 25px;
   padding: 5px 10px;
+}
+
+.add-machine {
+  align-items: center;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.add-machine button {
+  width: 10%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  background-color: #32de84; /* Initial color set to a lighter red */
+  transition: background-color 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+
+.add-machine button:hover {
+  background-color: #006400; /* Dark red on hover */
+  transform: scale(1.1); /* Slight scale to indicate interactive element */
 }
 
 </style>
