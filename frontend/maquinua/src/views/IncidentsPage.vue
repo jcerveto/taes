@@ -102,7 +102,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('http://localhost:3000/incidents', {
+        const response = await axios.post('http://localhost:3000/incidents/', {
           email: this.user,
           machineId: this.id,
           machineName: this.machine,
@@ -121,11 +121,11 @@ export default {
     },
     async fetchIncidents() {
       try {
-        const response = await axios.get('http://localhost:3000/incidents');
+        const response = await axios.get(`http://localhost:3000/incidents/${this.user}`);
         this.incidents = response.data;
       } catch (error) {
         console.error('Error fetching incidents:', error);
-        alert('Error fetching incidents: ' + (error.response && error.response.data ? error.response.data.error : error.message));
+        alert('You do not have incidents yet.');
       }
     },
     nextPage() {
