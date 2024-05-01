@@ -2,8 +2,8 @@
     <div>
         <h1>Admin Login</h1>
         <form @submit.prevent="login">
-            <label for="username">Username:</label>
-            <input type="text" id="username" v-model="username" required>
+            <label for="email">Email:</label>
+            <input type="text" id="username" v-model="email" required>
             <br>
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" required>
@@ -25,18 +25,17 @@
     
     const email = ref("");
     const password = ref("");
-    const text = "";
+    let text = "";
 
     const login = async () => {
       try {
         await userStore.access(email.value, password.value);
+        const admin = await userStore.isAdmin(email.value, password.value);
 
         email.value = "";
         password.value = "";
 
-        const admin = await userStore.isAdmin(email.value);
-
-        if (admin) text.value = "ADMIN LOGEADO CORRECTAMENTE";
+        if (admin) text = "ADMIN LOGEADO CORRECTAMENTE";
       } catch (error) {
         console.error(error);
       }

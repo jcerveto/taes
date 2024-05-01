@@ -29,10 +29,11 @@ export const useUserStore = defineStore("user", () => {
     }
   };
 
-  const isAdmin = async (email) => {
+  const isAdmin = async (email, password) => {
     try {
-      const res = await api.get("/admin", {
-        email,
+      const res = await api.post("/admin", {
+        email: email,
+        password: password  
       });
 
       return res.data.admin;
