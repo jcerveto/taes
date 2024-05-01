@@ -45,49 +45,31 @@ router.post('/update-machine', async (req, res) => {
     }
 });
 
-router.put('/update-machine', async (req, res) => {
-    console.log("pene")
-    const { id, newProduct, newPrice } = req.body;
+// Add route for deleting a vending machine
+router.delete('/delete-machine/:id', async (req, res) => {
+    const machineId = parseInt(req.params.id, 10);
     const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
     try {
         const data = await fs.promises.readFile(filePath, 'utf8');
         let machines = JSON.parse(data);
-        const machine = machines.find(machine => machine.id === id);
 
-        if (!machine) {
+        const index = machines.findIndex(m => m.id === machineId);
+        if (index === -1) {
             return res.status(404).json({ message: 'Machine not found' });
         }
 
-        machine.lista_productos.push(newProduct);
-        machine.lista_precios.push(parseFloat(newPrice));
+        machines.splice(index, 1); // Remove the machine from the array
 
         await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
-        res.json({ message: 'Product added successfully', machine });
+        res.json({ message: 'Machine deleted successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
 });
 
-// Route to get a single machine's details by ID
-router.get('/machine/:id', async (req, res) => {
-    const { id } = req.params;
-    const filePath = path.join(path.resolve(), 'public/maquinas.json');
-    try {
-      const data = await fs.promises.readFile(filePath, 'utf8');
-      const machines = JSON.parse(data);
-      const machine = machines.find(m => m.id === parseInt(id, 10));
-      if (!machine) {
-        return res.status(404).json({ message: 'Machine not found' });
-      }
-      res.json(machine);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-  
+
 
 // Export the router
 export default router;

@@ -35,6 +35,7 @@
     <div v-if="selectedMachineDetails" class="delete-product-section">
       <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID to delete" />
       <button @click="confirmDeleteProduct">Delete</button>
+      <button @click="confirmDeleteMachine">Delete Table</button>
     </div>
     
 
@@ -342,6 +343,31 @@ export default {
           // This requires modifying your JSON structure or computing it on load
           this.productIDs = machine.productIDs || machine.lista_productos.map((item, index) => index + 1); // Fallback to index-based IDs if no specific IDs provided
       }
+    },
+
+    confirmDeleteMachine() {
+      if (confirm(`Are you sure that you want to delete the machine: ${this.selectedMachineDetails.popupContent.title} with id: ${this.selectedMachineDetails.id}?`)) {
+        this.deleteMachine();
+      }
+    },
+
+    deleteMachine() {
+      fetch(`http://localhost:3000/api/delete-machine/${this.selectedMachineDetails.id}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(() => {
+        alert('Machine deleted successfully');
+        this.$router.push('/taes/support');
+      })
+      .catch(error => {
+        console.error('Error deleting machine:', error);
+      });
     },
 
 
