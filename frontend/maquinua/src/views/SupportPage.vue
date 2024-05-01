@@ -32,6 +32,7 @@
       <input v-model="newProductName" placeholder="Product Name" style="width: 10%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button @click="toggleEdit">{{ isEditing ? 'Cancel Edit' : 'Edit Product' }}</button>
     </div>
 
@@ -509,7 +510,7 @@ h1 {
   border-radius: 8px;
   border: none;
   color: black;
-  background-color: #00FFFF; /* Red for cancel/edit toggle button */
+  background-color: #00BFFF; /* Red for cancel/edit toggle button */
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
 }
