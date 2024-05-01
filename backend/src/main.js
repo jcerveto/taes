@@ -85,6 +85,7 @@ app.get('/refresh', async (req, res) => {
 
 app.get('/logout', async (req, res) => {
     res.clearCookie("refreshToken");
+    res.clearCookie("adminToken");
     return res.json({ ok: true });
 });
 

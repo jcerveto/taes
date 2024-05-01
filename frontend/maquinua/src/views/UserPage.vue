@@ -39,7 +39,7 @@
             try {
                 if (userStore.token) {
                     this.isLoggedIn = true;
-                    this.usuario = sessionStorage.getItem('user');
+                    this.usuario = localStorage.getItem('user');
                 }
             } catch (error) {
                 console.error('Error al decodificar el token:', error);
