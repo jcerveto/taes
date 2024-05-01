@@ -32,6 +32,7 @@
       <input v-model="newProductName" placeholder="Product Name" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
+      <button @click="toggleEdit">{{ isEditing ? 'Cancel Edit' : 'Edit Product' }}</button>
     </div>
 
     <br>
@@ -60,8 +61,8 @@
         <tbody>
           <tr v-for="(product, index) in selectedMachineDetails.lista_productos" :key="index">
             <td>{{ computeProductId(index) }}</td>
-            <td contenteditable="true" @blur="updateProductName(index, $event.target.innerText)">{{ product }}</td>
-            <td contenteditable="true" @blur="updateProductPrice(index, $event.target.innerText)">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
+            <td :contenteditable="isEditing" @blur="updateProductName(index, $event.target.innerText)" class="editable-cell">{{ product }}</td>
+            <td :contenteditable="isEditing" @blur="updateProductPrice(index, $event.target.innerText)" class="editable-cell">{{ selectedMachineDetails.lista_precios[index].toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>
@@ -88,6 +89,7 @@ export default {
       lastProductId: 0,
       productIdToDelete: null,
       urlIsValid: false,
+      isEditing: false, // To track the edit state
     };
   },
 
@@ -381,7 +383,11 @@ export default {
 
     redirectToCreateNewMachine() {
       this.$router.push('/NewMachine');
-    }
+    },
+
+    toggleEdit() {
+      this.isEditing = !this.isEditing; // Toggle the editing state
+    },
 
 
   },
@@ -501,6 +507,25 @@ th, td {
   position: absolute;
   right: 0;
   top: 7.5%;
+}
+
+.editable-cell {
+  background-color: white; /* Or any other contrasting color for visibility */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px;
+  border: 1px solid #ccc; /* Subtle border to indicate editability */
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1); /* Inner shadow for depth */
+}
+
+button:active, .button-edit-active {
+  transform: translateY(2px); /* Slight push effect */
+  background-color: #ddd; /* Darker background to simulate being pressed */
+}
+
+/* Apply the active style dynamically based on isEditing */
+.button-edit-active {
+  background-color: #007bff; /* Bootstrap primary color for active state */
+  color: white;
 }
 
 </style>
