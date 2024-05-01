@@ -1,68 +1,77 @@
 <template>
   <div>
     <h1>New Machine Creation</h1>
-    <router-link to="/taes/support" class="align-right-home">Back to Support</router-link>
-
-    <form @submit.prevent="createMachine">
-      <input v-model="newMachine.edificio" placeholder="Building of the machine" required>
-      <input v-model="newMachine.popupContent.title" placeholder="Title of the machine" required>
-      <input v-model="newMachine.popupContent.description" placeholder="Description of the machine" required>
-      <input v-model.number="newMachine.lat" type="number" placeholder="Latitude" required :step="0.000001" min="-90" max="90">
-      <input v-model.number="newMachine.lon" type="number" placeholder="Longitude" required :step="0.000001" min="-180" max="180">
-      
-      <button type="submit">OK</button>
-      <button @click="cancel">Cancel</button>
+    <form @submit.prevent="submitForm">
+      <div>
+        <label for="edificio">Building:</label>
+        <input id="edificio" v-model="machine.edificio" required>
+      </div>
+      <div>
+        <label for="title">Title:</label>
+        <input id="title" v-model="machine.popupContent.title" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" v-model="machine.popupContent.description" required>
+      </div>
+      <div>
+        <label for="lat">Latitude:</label>
+        <input id="lat" type="number" step="0.000001" v-model.number="machine.lat" required>
+      </div>
+      <div>
+        <label for="lon">Longitude:</label>
+        <input id="lon" type="number" step="0.000001" v-model.number="machine.lon" required>
+      </div>
+      <button type="submit">Add Machine</button>
     </form>
+    <router-link to="/support" class="align-right-home">Back to Support</router-link>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   data() {
     return {
-      newMachine: {
-        lat: 0,
-        lon: 0,
+      machine: {
         edificio: '',
         popupContent: {
           title: '',
           description: ''
         },
-        type: '', // Initially empty, can be set later if necessary
+        lat: null,
+        lon: null,
+        type: '',
         lista_productos: [],
         lista_precios: []
       }
     };
   },
   methods: {
-    createMachine() {
-      if (!this.validateInputs()) {
-        alert("All fields must be filled with valid values.");
+    async submitForm() {
+      if (!this.machine.lat || !this.machine.lon || isNaN(this.machine.lat) || isNaN(this.machine.lon)) {
+        alert('Latitude and Longitude must be valid decimal numbers.');
         return;
       }
-
-      axios.post('http://localhost:8080/api/add-machine', this.newMachine)
-        .then(response => {
-          console.log("Response from server:", response.data);
-          this.$router.push('/taes/support');
-          alert("Machine successfully created!");
-        })
-        .catch(error => {
-          console.error("Failed to create machine:", error);
-          alert("Failed to create machine: " + error.message);
+      try {
+        const response = await fetch('http://localhost:3000/api/NewMachine', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.machine)
         });
-    },
-    cancel() {
-      this.$router.push('/taes/support');
-    },
-    validateInputs() {
-      // Ensure no empty fields and valid coordinates
-      return this.newMachine.edificio.trim() && this.newMachine.popupContent.title.trim() &&
-             this.newMachine.popupContent.description.trim() && !isNaN(this.newMachine.lat) &&
-             !isNaN(this.newMachine.lon) && this.newMachine.lat >= -90 && this.newMachine.lat <= 90 &&
-             this.newMachine.lon >= -180 && this.newMachine.lon <= 180;
+        if (!response.ok) throw new Error('Failed to add machine');
+        alert('Machine added successfully!');
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
     }
   }
-}
+};
 </script>
+
+<style scoped>
+.align-right-home {
+  float: right;
+}
+</style>

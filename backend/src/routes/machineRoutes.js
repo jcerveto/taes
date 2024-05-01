@@ -69,37 +69,39 @@ router.delete('/delete-machine/:id', async (req, res) => {
     }
 });
 
-router.post('/add-machine', async (req, res) => {
-    const newMachine = req.body;
-    const filePath = path.join(path.resolve(), 'public/maquinas.json');
-  
+// Route to add a new vending machine
+router.post('/NewMachine', async (req, res) => {
     try {
-      // Read the current machines data
-      const data = await fs.promises.readFile(filePath, 'utf8');
-      let machines = JSON.parse(data);
-  
-      // Assign a new ID; assumes IDs are unique and sequential
-      const newId = machines.length > 0 ? machines[machines.length - 1].id + 1 : 1;
-      newMachine.id = newId; // Set the new ID
-  
-      // Initialize other fields to default values
-      newMachine.type = "";
-      newMachine.lista_productos = [];
-      newMachine.lista_precios = [];
-  
-      // Add the new machine to the array
-      machines.push(newMachine);
-  
-      // Write the updated machines array back to the file
-      await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
-  
-      // Respond with success
-      res.status(201).json({ message: 'New machine added successfully', machine: newMachine });
+        const newMachine = {
+            ...req.body,
+            type: '',
+            lista_productos: [],
+            lista_precios: []
+        };
+        
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        const machines = JSON.parse(data);
+
+        let lastId = 0;
+        if (machines.length > 0) {
+            // Get the last ID from the last machine
+            lastId = machines[machines.length - 1].id;
+        }
+
+        // Set the new ID as the last ID + 1
+        newMachine.id = lastId + 1;
+
+        machines.push(newMachine); // Add new machine to the array
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Machine added successfully', newMachine });
     } catch (error) {
-      console.error("Failed to add new machine:", error);
-      res.status(500).json({ error: error.message });
+        console.error(error);
+        res.status(500).json({ error: error.message });
     }
-  });
+});
+
 
 
 // Export the router
