@@ -5,7 +5,6 @@ import { api } from "../boot/axios.js";
 export const useUserStore = defineStore("user", () => {
 
   const uid = ref(null);
-  const user = ref(null);
   const token = ref(null);
   const expiresIn = ref(null);
 
@@ -18,12 +17,25 @@ export const useUserStore = defineStore("user", () => {
       
       token.value = res.data.token;
       expiresIn.value = res.data.expiresIn;
-      user.value = res.data.name;
       uid.value = res.data.uid;
       
-      sessionStorage.setItem("user", "🔥🔥");
+      localStorage.setItem("user", res.data.name);
       setTime();
+      localStorage.setItem("email", email);
       return res.data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const isAdmin = async (email) => {
+    try {
+      const res = await api.get("/admin", {
+        email,
+      });
+
+      return res.data.admin;
     } catch (error) {
       console.log(error);
       return error;
@@ -55,22 +67,22 @@ export const useUserStore = defineStore("user", () => {
     } finally {
       resetStore();
       localStorage.removeItem("user");
+      localStorage.removeItem("email");
     }
   };
 
   const resetStore = () => {
     uid.value = null;
-    user.value = null;
     token.value = null;
     expiresIn.value = null;
   };
 
   return {
     uid,
-    user,
     token,
     expiresIn,
     access,
+    isAdmin,
     refreshToken,
     logout,
   };

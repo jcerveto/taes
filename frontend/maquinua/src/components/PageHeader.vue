@@ -5,24 +5,27 @@
       <router-link class="navbar-brand" to="/">maquinua</router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/" @click="toggleFiltros">Filter</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/products">View products</router-link>
-          </li>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/" @click="toggleFiltros">Filter</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/products">View products</router-link>
+              </li>
 
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/user">User</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/support">Support</router-link>
-          </li>
-        </ul>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/about">About</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/user">User</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/incidents">Incidents</router-link>
+              </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/support">Support</router-link>
+              </li>
+          </ul>
       </div>
 
 
