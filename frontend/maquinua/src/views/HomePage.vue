@@ -33,7 +33,7 @@
 
     <br>
     <!-- Details of the selected machine; appears when a machine title is selected -->
-    <div v-if="selectedMachineDetails" class="machine-details">
+    <main v-if="selectedMachineDetails" class="machine-details">
       <h2>{{ selectedMachineDetails.popupContent.title }}</h2>
       <p>{{ selectedMachineDetails.popupContent.description }}</p>
       <!-- Table containing the products and prices of the selected machine -->
@@ -51,7 +51,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </main>    
   </div>
 </template>
 
