@@ -1,6 +1,7 @@
-import {createUser, deleteAllUsers, readAllUsers, updateUser} from "./db.js";
+import {createUser, deleteAllIncidents, deleteAllUsers, readAllUsers, updateUser} from "./db.js";
 
 import { User } from "../model/User.js";
+import { Incident } from "../model/Incidents.js";
 
 async function main() {
     console.log("start");
@@ -103,6 +104,8 @@ async function main() {
     await user.delete();
     console.log("deleted: ", user);
     /// ********************************************************************************************************///
+
+    deleteAllIncidents().then(() => console.log("Deleted incidents")).catch((error) => console.error(error));
 
 
     console.log("finalfinalfinal");
