@@ -410,9 +410,9 @@ app.get('/incidents/:email', async (req, res) => {
 
 app.put('/incidents/:id', async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.params.id;
         console.log(id);
-        const { status } = req.body;
+        const { status } = req.body.status;
         const incident = await Incident.findById(id);
         if (!incident) {
             return res.status(404).json({ error: "Incident not found" });
