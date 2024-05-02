@@ -8471,107 +8471,16 @@
     ]
   },
   {
-    "edificio": "a",
+    "edificio": "furro",
     "popupContent": {
-      "title": "a",
-      "description": "a"
+      "title": "muy furro",
+      "description": "demasiado furro "
     },
-    "lat": 2,
-    "lon": 2,
+    "lat": 22,
+    "lon": 180,
     "type": "",
     "lista_productos": [],
     "lista_precios": [],
     "id": 135
-  },
-  {
-    "edificio": "a",
-    "popupContent": {
-      "title": "a",
-      "description": "a"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 136
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 137
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 22,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 138
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 139
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 140
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 141
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 142
   }
 ]

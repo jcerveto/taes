@@ -47,32 +47,25 @@ export default {
   },
   methods: {
     submitForm(event) {
-      // Prevent default form submission
-      event.preventDefault();
-
-      // Perform HTML5 validation check
+      // Prevent form submission if validation fails
       if (!event.target.checkValidity()) {
+        event.preventDefault();
         event.target.classList.add('was-validated');
         return;
       }
-
-      // Custom validation for latitude and longitude
-      if (this.validateLatLon()) {
-        this.postData();
-      }
-    },
-    validateLatLon() {
-      console.log(this.machine.lat);
-      console.log(this.machine.lon);
-      if (this.machine.lat == 2) {
+      // Additional validation for latitude and longitude
+      if (this.machine.lat < -90 || this.machine.lat > 90) {
         alert('Latitude must be between -90 and 90.');
-        return false;
+        event.preventDefault();
+        return;
       }
       if (this.machine.lon < -180 || this.machine.lon > 180) {
         alert('Longitude must be between -180 and 180.');
-        return false;
+        event.preventDefault();
+        return;
       }
-      return true;
+      // If all validations pass, proceed with data submission
+      this.postData();
     },
     async postData() {
       try {
@@ -92,6 +85,7 @@ export default {
   }
 };
 </script>
+
 
 
 <style scoped>
