@@ -8471,42 +8471,16 @@
     ]
   },
   {
-    "edificio": "furro",
+    "edificio": "wq",
     "popupContent": {
-      "title": "muy furro",
-      "description": "demasiado furro "
+      "title": "d",
+      "description": "d"
     },
-    "lat": 22,
-    "lon": 180,
+    "lat": 2,
+    "lon": 3,
     "type": "",
     "lista_productos": [],
     "lista_precios": [],
     "id": 135
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 2,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 136
-  },
-  {
-    "edificio": "2",
-    "popupContent": {
-      "title": "2",
-      "description": "2"
-    },
-    "lat": 22,
-    "lon": 2,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 137
   }
 ]

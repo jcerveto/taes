@@ -51,6 +51,7 @@ export default {
       this.clearCustomValidity(); // Clear previous custom validations.
 
       if (!event.target.checkValidity() || !this.validateLatLon()) {
+        event.target.reportValidity();
         event.target.classList.add('was-validated'); // This will trigger the HTML5 validation
         return;
       }
@@ -75,7 +76,8 @@ export default {
       } else {
         lonInput.setCustomValidity('');
       }
-
+      latInput.reportValidity();
+      lonInput.reportValidity();
       return valid;
     },
     clearCustomValidity() {

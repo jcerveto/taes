@@ -698,7 +698,7 @@ tr:nth-child(even) {
   border-radius: 8px;
   border: none;
   color: white;
-  background-color: #32de84; /* Initial color set to a lighter red */
+  background-color: #0056b3; /* Initial color set to a lighter red */
   transition: background-color 0.2s, transform 0.1s;
   cursor: pointer;
 }
