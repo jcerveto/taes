@@ -411,6 +411,7 @@ app.get('/incidents/:email', async (req, res) => {
 app.put('/incidents/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id);
         const { status } = req.body;
         const incident = await Incident.findById(id);
         if (!incident) {
