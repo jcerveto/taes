@@ -47,25 +47,40 @@ export default {
   },
   methods: {
     submitForm(event) {
-      // Prevent form submission if validation fails
-      if (!event.target.checkValidity()) {
-        event.preventDefault();
-        event.target.classList.add('was-validated');
+      event.preventDefault(); // Always prevent the default to manage submissions manually.
+      this.clearCustomValidity(); // Clear previous custom validations.
+
+      if (!event.target.checkValidity() || !this.validateLatLon()) {
+        event.target.classList.add('was-validated'); // This will trigger the HTML5 validation
         return;
       }
-      // Additional validation for latitude and longitude
-      if (this.machine.lat < -90 || this.machine.lat > 90) {
-        alert('Latitude must be between -90 and 90.');
-        event.preventDefault();
-        return;
-      }
-      if (this.machine.lon < -180 || this.machine.lon > 180) {
-        alert('Longitude must be between -180 and 180.');
-        event.preventDefault();
-        return;
-      }
-      // If all validations pass, proceed with data submission
+
       this.postData();
+    },
+    validateLatLon() {
+      let valid = true;
+      const latInput = document.getElementById('lat');
+      const lonInput = document.getElementById('lon');
+
+      if (this.machine.lat < -90 || this.machine.lat > 90) {
+        latInput.setCustomValidity('Latitude must be between -90 and 90.');
+        valid = false;
+      } else {
+        latInput.setCustomValidity('');
+      }
+
+      if (this.machine.lon < -180 || this.machine.lon > 180) {
+        lonInput.setCustomValidity('Longitude must be between -180 and 180.');
+        valid = false;
+      } else {
+        lonInput.setCustomValidity('');
+      }
+
+      return valid;
+    },
+    clearCustomValidity() {
+      document.getElementById('lat').setCustomValidity('');
+      document.getElementById('lon').setCustomValidity('');
     },
     async postData() {
       try {
