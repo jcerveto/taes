@@ -22,6 +22,9 @@
                   <router-link class="nav-link" to="/incidents">Incidents</router-link>
               </li>
               <li class="nav-item">
+                <router-link class="nav-link" to="/viewMachines">View Machines</router-link>
+              </li>
+              <li class="nav-item">
                   <router-link class="nav-link" to="/support">Support</router-link>
               </li>
           </ul>

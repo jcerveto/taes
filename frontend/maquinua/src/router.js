@@ -16,6 +16,7 @@ import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import PrivatePage from './views/PrivatePage.vue';
 import NewMachine from './views/NewMachine.vue';
+import ViewMachinesPage from './views/ViewMachinesPage'
 
 import { useUserStore } from './stores/user-store-setup';
 import DebugTest from './views/DebugTest.vue'
@@ -117,6 +118,10 @@ const routes = [
   {
     path: '/NewMachine',
     component: NewMachine,
+  },
+  {
+    path: '/viewMachines',
+    component: ViewMachinesPage
   }
   
 ];
