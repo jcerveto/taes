@@ -384,12 +384,15 @@ export default {
       })
       .then(() => {
         alert('Machine deleted successfully');
-        this.$router.push('/taes/support');
+        // Append the building query parameter to the route
+        const building = encodeURIComponent(this.selectedMachineDetails.edificio);
+        this.$router.push(`/support?building=${building}`);
       })
       .catch(error => {
         console.error('Error deleting machine:', error);
       });
     },
+
 
     redirectToCreateNewMachine() {
       this.$router.push('/NewMachine');
