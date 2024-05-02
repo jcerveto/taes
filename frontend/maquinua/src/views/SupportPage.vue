@@ -28,7 +28,7 @@
     <br>
     <!-- Add Product Section -->
     <div v-if="selectedMachineDetails" class="add-product-section">
-      <input v-model="newProductName" placeholder="Product Name" style="width: 10%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" onmouseover="this.style.borderColor='#007bff';" onmouseout="this.style.borderColor='#ccc';" />
+      <input v-model="newProductName" placeholder="Product Name" style="width: 13%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" onmouseover="this.style.borderColor='#007bff';" onmouseout="this.style.borderColor='#ccc';" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -486,7 +486,7 @@ h1 {
 
 /* Targeting the product price input specifically */
 .add-product-section input[type="number"] {
-  width: 10%; /* Smaller width for price input, as it typically requires less space */
+  width: 13%; /* Smaller width for price input, as it typically requires less space */
   padding: 10px 15px;
   margin: 5px;
   font-size: 1rem;
@@ -553,7 +553,7 @@ h1 {
 }
 
 .delete-product-section input[type="number"] {
-  width: 10%; /* Larger input for visibility */
+  width: 12%; /* Larger input for visibility */
   padding: 10px 15px;
   font-size: 1rem;
   border: 2px solid #ccc;
