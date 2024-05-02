@@ -698,14 +698,17 @@ tr:nth-child(even) {
   border-radius: 8px;
   border: none;
   color: white;
-  background-color: #0056b3; /* Initial color set to a lighter red */
-  transition: background-color 0.2s, transform 0.1s;
+  background-color: #007bff; /* Initial color set to a lighter red */
+  border-color: #007bff;
+  transition: background-color 0.3s, border-color 0.3s;
   cursor: pointer;
 }
 
 .add-machine button:hover {
-  background-color: #006400; /* Dark red on hover */
-  transform: scale(1.1); /* Slight scale to indicate interactive element */
+  background-color: #0056b3;
+  border-color: #004085;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
 </style>

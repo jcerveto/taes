@@ -8469,18 +8469,5 @@
       0.75,
       0.1
     ]
-  },
-  {
-    "edificio": "wq",
-    "popupContent": {
-      "title": "d",
-      "description": "d"
-    },
-    "lat": 2,
-    "lon": 3,
-    "type": "",
-    "lista_productos": [],
-    "lista_precios": [],
-    "id": 135
   }
 ]
