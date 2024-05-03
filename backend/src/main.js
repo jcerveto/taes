@@ -408,7 +408,7 @@ app.get('/incidents/:email', async (req, res) => {
     }
 });
 
-app.put('/incidents', async (req, res) => {
+/*app.put('/incidents', async (req, res) => {
     const { id, email, machineId, machineName, machineBuilding, text, status } = req.body;
 
     try {
@@ -429,6 +429,16 @@ app.put('/incidents', async (req, res) => {
         res.json(incident.toJSON());
     } catch (error) {
         console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});*/
+
+app.put('/incidents/close', async (req, res) => {
+    try {
+        const { id, status } = req.body;
+        const incident = await Incident.closeIncident(id, status);
+        res.status(200).json(incident);
+    } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });

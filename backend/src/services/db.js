@@ -512,3 +512,26 @@ export async function updateIncident(id, updatedIncidentData) {
     //}
   }
 }
+
+
+export async function updateIncidentStatus(id, newStatus) {
+  let db = null;
+  
+  try {
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    console.log("en el db.js id: ", id);
+    const result = await incidentsCollection.updateOne(
+          { _id: id },
+          { $set: { status: newStatus } }
+      );
+      console.log("result: ", result);
+      if (result.modifiedCount === 1) {
+          return { id, status: newStatus };
+      } else {
+          throw new Error("Incident update failed");
+      }
+  } finally {
+
+  }
+}

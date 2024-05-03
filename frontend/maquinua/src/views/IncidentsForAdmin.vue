@@ -152,13 +152,13 @@ export default {
     },
     async closeIncident(incident) {
       try {
-        const response = await axios.put(`http://localhost:3000/incidents`, {
+        const response = await axios.put(`http://localhost:3000/incidents/close`, {
           id: incident.id,
-          email: incident.email,
+          /*email: incident.email,
           machineId: incident.machineId,
           machineName: incident.machineName,
           machineBuilding: incident.machineBuilding,
-          text: incident.text,
+          text: incident.text,*/
           status: 'closed',
         }, {
           withCredentials: true

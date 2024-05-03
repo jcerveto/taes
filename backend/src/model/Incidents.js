@@ -150,4 +150,8 @@ export class Incident {
             throw new Error("Incidents not read!");
         }
     }
+    static async closeIncident(id, newStatus) {
+        console.log("id: ", id, "newStatus: ", newStatus);
+        return await db.updateIncidentStatus(id, newStatus);
+    }
 }
