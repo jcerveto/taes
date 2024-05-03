@@ -435,8 +435,8 @@ app.get('/incidents/:email', async (req, res) => {
 
 app.put('/incidents/close', async (req, res) => {
     try {
-        const { id, status } = req.body;
-        const incident = await Incident.closeIncident(id, status);
+        const { email,machineId, text, status } = req.body;
+        const incident = await Incident.closeIncident( email,machineId, text, status);
         res.status(200).json(incident);
     } catch (error) {
         res.status(500).json({ error: error.message });

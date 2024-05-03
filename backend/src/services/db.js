@@ -514,23 +514,23 @@ export async function updateIncident(id, updatedIncidentData) {
 }
 
 
-export async function updateIncidentStatus(id, newStatus) {
+export async function updateIncidentStatus( email,machineId, text, newStatus) {
   let db = null;
   
   try {
     db = await connectToDatabase();
     const incidentsCollection =  db.collection("incidents");
-    console.log("en el db.js id: ", id);
+    console.log("en el db.js id: ", email);
     const result = await incidentsCollection.updateOne(
-          { _id: id },
+        { email: email, machineId: machineId, text: text },
           { $set: { status: newStatus } }
       );
+      const updatedDocument = await incidentsCollection.findOne({ email: email, machineId: machineId, text: text });
+      console.log("Updated Document:", updatedDocument);
       console.log("result: ", result);
-      if (result.modifiedCount === 1) {
-          return { id, status: newStatus };
-      } else {
-          throw new Error("Incident update failed");
-      }
+      if (result.modifiedCount === 0) {
+        throw new Error("Incident update failed");
+      } 
   } finally {
 
   }

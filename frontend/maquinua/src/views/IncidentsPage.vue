@@ -42,7 +42,7 @@
             <p>{{ incident.text }}</p>
           </div>
           <div class="card-footer center-button">
-            <div class="status-circle" :class="{ 'open': incident.status === 'open', 'close': incident.status === 'close' }"></div>
+            <div class="status-circle" :class="{ 'open': incident.status === 'open', 'closed': incident.status === 'closed' }"></div>
           </div>
         </div>
       </div>
@@ -342,7 +342,7 @@ export default {
   background-color: red;
 }
 
-.close {
+.closed {
   background-color: green;
 }
 </style>
