@@ -578,7 +578,12 @@
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+    transition: all 0.3s ease-in-out;
   }
   
   table {
@@ -586,7 +591,9 @@
     margin-right: auto;
     border-collapse: collapse;
     margin-bottom: 2em;
-    width: 40%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .editable-cell {
