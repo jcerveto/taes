@@ -28,10 +28,10 @@
     <br>
     <!-- Add Product Section -->
     <div v-if="selectedMachineDetails" class="add-product-section">
-      <input v-model="newProductName" placeholder="Product Name" style="width: 13%; height: 100%; padding: 10px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out;" onmouseover="this.style.borderColor='#007bff';" onmouseout="this.style.borderColor='#ccc';" />
+      <input v-model="newProductName" placeholder="Product Name" style="width: 13%; height: 100%; padding: 12.70px 15px; margin: 5px; font-size: 1rem; border-radius: 8px; border: 2px solid #ccc; background-color: #E0FFFF; transition: border-color 0.3s ease-in-out; box-shadow: none;" onmouseover="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 8px rgba(0, 123, 255, 0.5)';" onmouseout="this.style.borderColor='#ccc'; this.style.boxShadow='none';" />
       <input v-model="newProductPrice" placeholder="Product Price" type="number" min="0.01" step="0.01" />
       <button @click="addProduct">Confirm</button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button @click="toggleEdit">{{ isEditing ? 'Cancel Edit' : 'Edit Product' }}</button>
     </div>
 
@@ -41,7 +41,7 @@
       <input v-model.number="productIdToDelete" type="number" min="1" step="1" placeholder="ID to delete" />
       &nbsp;
       <button @click="confirmDeleteProduct">Delete</button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button @click="confirmDeleteMachine">Delete Table</button>
     </div>
     
@@ -453,7 +453,7 @@ h1 {
   display: flex;
   gap: 20px;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
   box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
@@ -483,13 +483,19 @@ h1 {
   border-radius: 12px;
   background-color: #f2f2f2; /* Subtle background to distinguish section */
   margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-product-section:hover {
+  background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
 }
 
 
 /* Targeting the product price input specifically */
 .add-product-section input[type="number"] {
-  width: 13%; /* Smaller width for price input, as it typically requires less space */
+  width: 15%; /* Smaller width for price input, as it typically requires less space */
   padding: 10px 15px;
   margin: 5px;
   font-size: 1rem;
@@ -502,26 +508,26 @@ h1 {
 /* Styling for the 'Confirm' button */
 .add-product-section button:nth-child(3) { /* Assumes it's the third child in the section */
   width: 10%; /* Moderate width for action buttons */
-  padding: 10px 15px;
+  padding: 11.65px 15px;
   margin: 5px;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
-  color: black;
-  background-color: #00FFFF; /* Green for confirm/add button */
+  color: white;
+  background-color: #15f4ee; /* Green for confirm/add button */
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
 }
 
 /* Styling for the 'Edit Product' or 'Cancel Edit' toggle button */
 .add-product-section button:nth-child(4) { /* Assumes it's the fourth child in the section */
-  width: 10%; /* Slightly larger width for clarity in function */
-  padding: 10px 15px;
+  width: 15%; /* Slightly larger width for clarity in function */
+  padding: 11.65px 15px;
   margin: 5px;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
-  color: black;
+  color: white;
   background-color: #00BFFF; /* Red for cancel/edit toggle button */
   transition: background-color 0.2s, transform 0.1s;
   cursor: pointer;
@@ -552,11 +558,18 @@ h1 {
   border-radius: 12px;
   background-color: #f2f2f2; /* Subtle background to distinguish section */
   margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-product-section:hover {
+  background: linear-gradient(145deg, #e6e6e6, #c8c8c8);
 }
 
 .delete-product-section input[type="number"] {
-  width: 12%; /* Larger input for visibility */
+  width: 13%; /* Larger input for visibility */
   padding: 10px 15px;
   font-size: 1rem;
   border: 2px solid #ccc;
@@ -576,8 +589,8 @@ h1 {
 
 
 .delete-product-section button {
-  width: 10%;
-  padding: 10px 20px;
+  width: 15%;
+  padding: 11px 20px;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
@@ -607,7 +620,12 @@ h1 {
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  transition: all 0.3s ease-in-out;
 }
 
 table {
@@ -615,7 +633,9 @@ table {
   margin-right: auto;
   border-collapse: collapse;
   margin-bottom: 2em;
-  width: 40%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .editable-cell {
