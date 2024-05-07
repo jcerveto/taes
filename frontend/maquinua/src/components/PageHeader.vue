@@ -25,6 +25,9 @@
                   <router-link class="nav-link" to="/about">{{ $t("button-about") }}</router-link>
               </li>
               <li class="nav-item">
+                <router-link class="nav-link" to="/viewMachines">View Machines</router-link>
+              </li>
+              <li class="nav-item">
                   <router-link class="nav-link" to="/user">{{ $t("button-logout") }}</router-link>
               </li>
               <li class="nav-item" v-if="isAdmin">
