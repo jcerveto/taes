@@ -29,16 +29,14 @@ export const useUserStore = defineStore("user", () => {
     }
   };
 
-  const isAdmin = async (email) => {
+  const isAdmin = async () => {
     try {
-      const res = await api.get("/admin", {
-        email,
-      });
+      const res = await api.get("/admin");
 
       return res.data.admin;
     } catch (error) {
-      console.log(error);
-      return error;
+      //console.log(error);
+      return false;
     }
   };
 

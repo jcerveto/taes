@@ -7,7 +7,7 @@ import path from 'path';
 import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
-import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
+import { generateAdminToken, generateRefreshToken, generateToken } from './helpers/generateTokens.js';
 import { Incident } from './model/Incidents.js'
 
 const app = express();
@@ -89,6 +89,7 @@ app.get('/refresh', async (req, res) => {
 
 app.get('/logout', async (req, res) => {
     res.clearCookie("refreshToken");
+    res.clearCookie("adminToken");
     return res.json({ ok: true });
 });
 
@@ -108,10 +109,34 @@ app.post('/login', async (req, res) => {
         const { token, expiresIn } = generateToken(user.email);
         generateRefreshToken(user.email, res);
 
+        if (user.type === 'admin') {
+            generateAdminToken(user.email, res);
+        }
+
         res.json({ token, expiresIn, name: user.name, uid: email});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/admin', async (req, res) => {
+    try {
+        let adminTokenCookie = req.cookies?.adminToken;
+        if (!adminTokenCookie) throw new Error("No existe el adminToken");
+
+        const { uid } = jwt.verify(adminTokenCookie, 'codigo_secreto_a_poner_en_el_env');
+
+        const user = await User.read(uid);
+
+        if (user.type !== 'admin') {
+            throw new Error("User is not an admin");
+        }
+
+        return res.json({ admin: true });
+    } catch (error) {
+        console.log(error);
+        return res.status(401).json({ admin: false });
     }
 });
 

@@ -2,8 +2,8 @@
   <div :class="{ 'dark-mode': darkMode }">
     <div class="about-section">
       <h1>Sobre nosotros</h1>
-      <p>¡Hola! Nosotros somos MIUA y ofrecemos soluciones en forma de mapas interactivos para la Universidad de Alicante</p>
-      <p>Presentamos ahora MaquinUA, un mapa interactivo en el que se muestra la ubicación exacta de todas las maquinas expendedoras de la UA</p>
+      <p>Â¡Hola! Nosotros somos MIUA y ofrecemos soluciones en forma de mapas interactivos para la Universidad de Alicante</p>
+      <p>Presentamos ahora MaquinUA, un mapa interactivo en el que se muestra la ubicaciÃ³n exacta de todas las maquinas expendedoras de la UA</p>
     </div>
 
     <h2 style="text-align:center">Our Team</h2>
@@ -12,7 +12,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Jose Megia</h5>
-          <p class="card-text">Mi compromiso con el diseño web y mi destreza en el desarrollo frontend son contribuciones esenciales para el equipo.</p>
+          <p class="card-text">Mi compromiso con el diseÃ±o web y mi destreza en el desarrollo frontend son contribuciones esenciales para el equipo.</p>
         </div>
       </div>
       <div class="card">
@@ -39,7 +39,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Carlos Guirao</h5>
-          <p class="card-text">Me apasiona aprender cada vez más y poder aportar todo lo que puedo al equipo</p>
+          <p class="card-text">Me apasiona aprender cada vez mÃ¡s y poder aportar todo lo que puedo al equipo</p>
         </div>
       </div>
       <div class="card">
@@ -59,7 +59,7 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Cristian Córdoba</h5>
+          <h5 class="card-title">Cristian CÃ³rdoba</h5>
           <p class="card-text">Me apasiona ayudar a mi equipo y aportar todos mis conocimientos en desarrollo web</p>
         </div>
       </div>
@@ -105,13 +105,12 @@ export default {
   margin: 8px;
 }
 
-/* Estilos específicos del modo claro */
+
 .dark-mode .about-section {
   background-color: #474e5d;
   color: white;
 }
 
-/* Estilos específicos del modo oscuro */
 .dark-mode .card {
   background-color: #222;
   color: white;
