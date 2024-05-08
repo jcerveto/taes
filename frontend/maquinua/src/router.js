@@ -16,10 +16,18 @@ import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import PrivatePage from './views/PrivatePage.vue';
 import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
-
+import NewMachine from './views/NewMachine.vue';
+import ViewMachinesPage from './views/ViewMachinesPage'
+import LandingPage from '@/views/LandingPage.vue';
 import { useUserStore } from './stores/user-store-setup';
+import DebugTest from './views/DebugTest.vue'
 const routes = [
-  {
+    {
+        path: '/LandingPage',
+        component: LandingPage,
+    },
+
+    {
     path: '/',
     component: MachinesDistributionPage,
     meta: {
@@ -53,6 +61,16 @@ const routes = [
   {
     path: '/support',
     component: SupportPage,
+    beforeEnter: async (to, from, next) => {
+      try {
+        const userStore = useUserStore();
+        await userStore.isAdmin();
+        next();
+      } catch (error) {
+        console.error(error);
+        next('/signin'); // Redirigir a la página de inicio de sesión si hay un error
+      }
+    }
   },
   {
     path: '/incidentsAdmin',
@@ -113,9 +131,21 @@ const routes = [
     path: '/private',
     component: PrivatePage,
     meta: {
-      auth: true,
+      auth: false,
     }
   },
+  {
+    path: '/debug',
+    component: DebugTest
+  },
+  {
+    path: '/NewMachine',
+    component: NewMachine,
+  },
+  {
+    path: '/viewMachines',
+    component: ViewMachinesPage
+  }
   
 ];
 
