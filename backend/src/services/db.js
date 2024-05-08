@@ -87,7 +87,6 @@ export async function updateUser(email, updatedUserData) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.updateOne({
       email: email,
-      type: "user"
     }, { $set: updatedUserData.toJSON() });
 
     //if (result.modifiedCount !== 1) {
@@ -121,7 +120,6 @@ export async function deleteUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteOne({
       email: email,
-      type: "user"
     });
 
     if (result.deletedCount !== 1) {
@@ -156,7 +154,6 @@ export async function readUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const userObj = await usersCollection.findOne({
       email: email,
-      type: "user"
     });
    
 
@@ -172,6 +169,7 @@ export async function readUser(email) {
     user.email = userObj.email;
     user.password = userObj.password;
     user.bornDate = userObj.bornDate;
+    user.type = userObj.type;
 
     return user;
   } catch (error) {
@@ -196,7 +194,7 @@ export async function readAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const usersObj = await usersCollection.find({
-      type: "user"
+      
     }).toArray();
     const typeUsers = usersObj.map((u) => {
         const iterUser = new User();
@@ -207,6 +205,7 @@ export async function readAllUsers() {
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);
+        iterUser.type = u.type;
 
         return iterUser;
     });
@@ -235,7 +234,7 @@ export async function deleteAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteMany({
-      type: "user"
+      
     });
 
   } catch (error) {
@@ -345,6 +344,16 @@ export async function deleteIncident(id) {
   }
 }
 
+// Delete all incidents
+export async function deleteAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteMany({});
+  if (result.deletedCount === 0) {
+    throw new Error("Incidents not deleted!");
+  }
+}
+
 export async function readAllIncidents() {
   const db = await connectToDatabase();
   const incidentsCollection = db.collection("incidents");
@@ -373,7 +382,11 @@ export async function createIncident(incident) {
     const result = await incidentsCollection.insertOne({
       email: incident.email,
       text: incident.text,
-      //createdAt: new Date() // Optionally add a timestamp
+      machineId: incident.machineId,
+      machineName: incident.machineName,
+      machineBuilding: incident.machineBuilding,
+      status: "open",
+      type: "incident"
     });
 
     /*if (result.insertedCount !== 1) {
@@ -388,3 +401,40 @@ export async function createIncident(incident) {
     //}
   }
 }
+
+  /**
+ * Reads incidents from the database by email
+ * @param {Object} filter - This should contain the email to filter by.
+ * @returns {Promise<Array>}
+ * @throws {Error} If the incidents cannot be read
+ */
+export async function readIncidents( email ) {
+  let db = null;
+  try {
+    if (!email) {
+      throw new Error("Email parameter is required!");
+    }
+    console.log("email: ", email);
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    
+    // Query the database for incidents by email
+    const incidents = await incidentsCollection.find({ email: email }).toArray();
+    
+    if (!incidents.length) {
+      throw new Error("No incidents found for the provided email.");
+    }
+
+    return incidents.map(incident => new Incident(incident));
+
+  } catch (error) {
+    console.error("Failed to read incidents: ", error);
+    throw new Error("Failed to read incidents due to an error.");
+  } finally {
+    //if (db) {
+      //await db.close();
+    //}
+  }
+}
+
+

@@ -10,17 +10,17 @@ import FilterPage from '@/views/FilterPage.vue';
 import SignIn from '@/views/SignInPage.vue';
 import Register from '@/views/RegisterPage.vue';
 import User from '@/views/UserPage.vue';
-import UserFavourites from '@/views/FavouritesPage.vue';
-import UserStatistics from '@/views/UserStatisticsPage.vue';
-import UserReviews from '@/views/UserReviewsPage.vue';
-import UserConsults from '@/views/UserConsultsPage.vue';
-import UserLocations from '@/views/UserLocationsPage.vue';
 import UserData from '@/views/UserDataPage.vue';
 import UserEditInfo from '@/views/UserEditInfoPage.vue';
 import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
+import PrivatePage from './views/PrivatePage.vue';
+import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
+import NewMachine from './views/NewMachine.vue';
+import ViewMachinesPage from './views/ViewMachinesPage'
 import LandingPage from '@/views/LandingPage.vue';
 import { useUserStore } from './stores/user-store-setup';
+import DebugTest from './views/DebugTest.vue'
 const routes = [
     {
         path: '/LandingPage',
@@ -39,8 +39,11 @@ const routes = [
     component: About,
     },
   {
-        path: '/incidents',
-        component: Incidents,
+    path: '/incidents',
+    component: Incidents,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/products',
@@ -58,8 +61,24 @@ const routes = [
   {
     path: '/support',
     component: SupportPage,
-    },
-
+    beforeEnter: async (to, from, next) => {
+      try {
+        const userStore = useUserStore();
+        await userStore.isAdmin();
+        next();
+      } catch (error) {
+        console.error(error);
+        next('/signin'); // Redirigir a la página de inicio de sesión si hay un error
+      }
+    }
+  },
+  {
+    path: '/incidentsAdmin',
+    component: IncidentsForAdmin,
+    meta: {
+      auth: true,
+    }
+  },
   /*{
     path: '/',
     redirect: '/signin' // Redirigir a la página de inicio de sesión por defecto
@@ -86,26 +105,6 @@ const routes = [
     }
   },
   {
-    path: '/user/favourites',
-    component: UserFavourites
-  },
-  {
-    path: '/user/userstatistics',
-    component: UserStatistics
-  },
-  {
-    path: '/user/myreviews',
-    component: UserReviews
-  },
-  {
-    path: '/user/myconsults',
-    component: UserConsults
-  },
-  {
-    path: '/user/mylocations',
-    component: UserLocations
-  },
-  {
     path: '/user/mydata',
     component: UserData,
     meta: {
@@ -127,6 +126,25 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     component: Error404,
+  },
+  {
+    path: '/private',
+    component: PrivatePage,
+    meta: {
+      auth: false,
+    }
+  },
+  {
+    path: '/debug',
+    component: DebugTest
+  },
+  {
+    path: '/NewMachine',
+    component: NewMachine,
+  },
+  {
+    path: '/viewMachines',
+    component: ViewMachinesPage
   }
   
 ];
@@ -148,6 +166,7 @@ router.beforeEach(async (to, from, next) => {
       return next("/signin");
     }
   }
+  
   next();
 });
 
