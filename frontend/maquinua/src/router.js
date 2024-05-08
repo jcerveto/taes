@@ -18,11 +18,16 @@ import PrivatePage from './views/PrivatePage.vue';
 import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
 import NewMachine from './views/NewMachine.vue';
 import ViewMachinesPage from './views/ViewMachinesPage'
-
+import LandingPage from '@/views/LandingPage.vue';
 import { useUserStore } from './stores/user-store-setup';
 import DebugTest from './views/DebugTest.vue'
 const routes = [
-  {
+    {
+        path: '/LandingPage',
+        component: LandingPage,
+    },
+
+    {
     path: '/',
     component: MachinesDistributionPage,
     meta: {

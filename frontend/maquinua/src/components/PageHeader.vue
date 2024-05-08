@@ -33,7 +33,9 @@
               <li class="nav-item" v-if="isAdmin">
                   <router-link class="nav-link" to="/incidentsAdmin">{{ $t("button-incidentsAdmin") }}</router-link>
               </li>
-
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/LandingPage">Landing Page</router-link>
+              </li>
           </ul>
       </div>
 
