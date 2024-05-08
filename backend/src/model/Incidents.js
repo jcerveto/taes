@@ -1,21 +1,32 @@
 // models/Incidents.js
 import { ObjectId } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid';
 import * as db from "../services/db.js";
 
 export class Incident {
-    constructor({ email, machineId, machineName, machineBuilding,  text, status, id = new ObjectId() } = {}) {
+    constructor({ id = new ObjectId() } = {}) {
         this._id = new ObjectId(id);
-        this.email = email;  // Esto invocará el setter this.email(value)
-        this.machineId =  machineId;
-        this.machineName = machineName;
-        this.machineBuilding = machineBuilding;
-        this.status = "open";
-        this.text = text;    // Esto invocará el setter this.text(value)
+        this._uuid = "";
+        this._email = "";  // Esto invocará el setter this.email(value)
+        this._machineId =  "";
+        this._machineName = "";
+        this._machineBuilding = "";
+        this._status = "";
+        this._type = "incident";
+        this._text = "";    // Esto invocará el setter this.text(value)
     }    
 
     // Getters and Setters
     get id() {
         return this._id;
+    }
+
+    get uuid() {
+        return this._uuid;
+    }
+
+    set uuid(value) {
+        this._uuid = value;
     }
 
     get email() {
@@ -74,7 +85,7 @@ export class Incident {
     }
 
     get status() {
-        return "open";
+        return this._status;
     }
 
     set status(value) {
@@ -87,6 +98,7 @@ export class Incident {
     toJSON() {
         return {
             id: this._id,
+            uuid: this._uuid,
             email: this._email,
             machineId: this._machineId,
             machineName: this._machineName,
@@ -109,16 +121,33 @@ export class Incident {
 
     async delete() {
         try {
-            await db.deleteIncident(this._id);
+            await db.deleteIncident(this._uuid);
         } catch (error) {
             console.error(error);
             throw new Error("Incident not deleted!");
         }
     }
+    async update() {
+        try {
+            await db.updateIncident(this._uuid, this);
+        } catch (error) {
+            console.error(error);
+            throw new Error("User not updated!");
+        }
+    }
 
     static async findByEmail(email) {
         try {
-            return await db.readIncidents(email );
+            return await db.readIncidents(email);
+        } catch (error) {
+            console.error(error);
+            throw new Error("Incidents not found!");
+        }
+    }
+
+    static async findById(uuid) {
+        try {
+            return await db.readIncidentId(uuid);
         } catch (error) {
             console.error(error);
             throw new Error("Incidents not found!");
@@ -132,5 +161,9 @@ export class Incident {
             console.error(error);
             throw new Error("Incidents not read!");
         }
+    }
+    static async closeIncident( email,machineId, text, newIncident) {
+        console.log("EMAIL: ", email, "machineId: ", machineId, "text: ", text);
+        return await db.updateIncidentStatus(email,machineId, text, newIncident);
     }
 }

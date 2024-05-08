@@ -16,10 +16,6 @@ app.use(cookieParser());
 
 const PORT = 3000;
 
-
-
-
-
 app.use(cors({
     origin: 'http://localhost:8080', // Your Vue.js application's URL
     credentials: true,
@@ -149,6 +145,7 @@ app.post('/register', async (req, res) => {
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);
+        cleanUser.type = req.body.type;
 
         try{
             const user = await User.read(req.body.email);
@@ -273,8 +270,85 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+app.post('/update-machine', async (req, res) => {
+    try {
+        const updatedMachine = req.body;
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const index = machines.findIndex(m => m.id === updatedMachine.id);
+        
+        if (index === -1) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+        
+        machines[index] = updatedMachine;
 
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Machine updated successfully', updatedMachine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/update-machine', async (req, res) => {
+    const { id, newProduct, newPrice } = req.body;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+
+    try {
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const machine = machines.find(machine => machine.id === id);
+
+        if (!machine) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+
+        machine.lista_productos.push(newProduct);
+        machine.lista_precios.push(parseFloat(newPrice));
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Product added successfully', machine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+/*
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/incidents', async (req, res) => {
+    try {
+        const cleanIncident = new Incident();
+        cleanIncident.incidencia = req.body;
+        console.log("cleanIncidents: ", cleanIncident);
+        await cleanIncident.create();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        await Incidents.delete(req.params.id);
+        res.json({ message: 'Incident deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+**/
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
@@ -287,7 +361,15 @@ app.post('/incidents', async (req, res) => {
     }
 
     try {
-        const newIncident = new Incident({ email, text, machineId, machineName, machineBuilding, status: "open"});
+        const newIncident = new Incident();
+
+        newIncident.email = email;
+        newIncident.machineId = machineId;
+        newIncident.machineName = machineName;
+        newIncident.machineBuilding = machineBuilding;
+        newIncident.text = text;
+        newIncident.status = "open";
+
         await newIncident.save();
         res.status(201).json(newIncident.toJSON());
     } catch (error) {
@@ -334,20 +416,29 @@ app.get('/incidents/:email', async (req, res) => {
     }
 });
 
-app.put('/incidents/:id', async (req, res) => {
+app.put('/incidents', async (req, res) => {
+    const { uuid, email, machineId, machineName, machineBuilding, text, status } = req.body;
+
     try {
-        const { id } = req.params;
-        const { status } = req.body;
-        const incident = await Incident.findById(id);
+        const incident = await Incident.findById(uuid);
         if (!incident) {
             return res.status(404).json({ error: "Incident not found" });
         }
+
+        console.log("Hola soy el put: ", incident.toJSON());
+        // Actualización de los datos de la incidencia
+        incident.email = email;
+        incident.machineId = machineId;
+        incident.machineName = machineName;
+        incident.machineBuilding = machineBuilding;
+        incident.text = text;
         incident.status = status;
-        await incident.save();
+
+        await incident.update();  // Guarda los cambios en la base de datos
         res.json(incident.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
-
 });
+

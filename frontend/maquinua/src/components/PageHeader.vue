@@ -13,9 +13,6 @@
                   <router-link class="nav-link" to="/products">{{ $t("button-products") }}</router-link>
               </li>
               <li class="nav-item">
-                  <router-link class="nav-link" to="/user">{{  $t("button-user") }}</router-link>
-              </li>
-              <li class="nav-item">
                   <router-link class="nav-link" to="/incidents">{{ $t("button-reports") }}</router-link>
               </li>
               <li class="nav-item">
@@ -34,8 +31,12 @@
                   <router-link class="nav-link" to="/incidentsAdmin">{{ $t("button-incidentsAdmin") }}</router-link>
               </li>
               <li class="nav-item">
-                  <router-link class="nav-link" to="/LandingPage">Landing Page</router-link>
+                  <router-link class="nav-link" to="/user">{{  $t("button-user") }}</router-link>
               </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/user">{{ $t("button-logout") }}</router-link>
+              </li>
+
           </ul>
       </div>
 
