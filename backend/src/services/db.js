@@ -442,3 +442,41 @@ export async function readIncidents( email ) {
 }
 
 
+export async function readIncidentId( id ) {
+  let db = null;
+  try {
+    if (id === undefined) {
+      throw new Error("Incident not read!");
+    }
+
+    db = await connectToDatabase();
+    const incidentsCollection = db.collection(COLLECTION_MAIN);
+    const incidentObj = await incidentsCollection.findOne({
+      id: id,
+    });
+    
+    console.log("id: ", id);
+    if (incidentObj === null) {
+      throw new Error("Incident not read! Incident not found in DB");
+    }
+
+
+    const incident = new Incident();
+    incident.email = incidentObj.email;
+    incident.machineId = incidentObj.machineId;
+    incident.machineName = incidentObj.machineName; 
+    incident.machineBuilding = incidentObj.machineBuilding;
+    incident.text = incidentObj.text;
+    incident.status = incidentObj.status;
+    incident.type = incidentObj.type;
+    
+    return incident;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Incident not read!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
+}

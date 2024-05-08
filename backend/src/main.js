@@ -149,6 +149,7 @@ app.post('/register', async (req, res) => {
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);
+        cleanUser.type = req.body.type;
 
         try{
             const user = await User.read(req.body.email);
@@ -337,6 +338,7 @@ app.get('/incidents/:email', async (req, res) => {
 app.put('/incidents/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id);
         const { status } = req.body;
         const incident = await Incident.findById(id);
         if (!incident) {

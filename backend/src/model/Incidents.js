@@ -125,6 +125,15 @@ export class Incident {
         }
     }
 
+    static async findById(id) {
+        try {
+            return await db.readIncidentId(id );
+        } catch (error) {
+            console.error(error);
+            throw new Error("Incidents not found!");
+        }
+    }
+
     static async readAll() {
         try {
             return await db.readAllIncidents();

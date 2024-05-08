@@ -19,7 +19,7 @@
           </div>
 
           <div>
-            <button type="button" class="btn btn-danger">Cerrar incidencia</button>
+            <button type="button" class="btn btn-danger" @click="closeIncident(incident)">Cerrar incidencia</button>
           </div>
 
         </div>
@@ -67,9 +67,12 @@ export default {
     totalPages() {
       return Math.ceil(this.incidents.length / this.pageSize);
     },
+    activeIncidents() {
+      return this.incidents.filter(incident => incident.status !== 'closed');
+    },
     paginatedIncidents() {
       const start = this.currentPage * this.pageSize;
-      return this.incidents.slice(start, start + this.pageSize);
+      return this.activeIncidents.slice(start, start + this.pageSize);
     },
     buildingOptions() {
       return [...new Set(this.machines.map(machine => machine.edificio))];
@@ -147,6 +150,26 @@ export default {
       // Redirect to the support page with the incident details
       window.location.href = url;
     },
+    async closeIncident(incident) {
+      try {
+        const response = await axios.put(`http://localhost:3000/incidents/${incident.id}`, {
+          status: 'closed'
+        }, {
+          withCredentials: true
+        });
+        if (response.data && response.data.status === 'closed') {
+          incident.status = 'closed';  // Confirma que el backend realmente ha cerrado la incidencia
+          console.log('Incident closed:', response.data);
+        } else {
+          throw new Error('Backend did not confirm the incident closure.');
+        }
+      } catch (error) {
+        console.error('Error closing incident:', error);
+        alert('Failed to close incident: ' + (error.response && error.response.data ? error.response.data.error : error.message));
+      }
+    },
+
+
   },
   created() {
     this.user = localStorage.getItem('email') || 'guest';
