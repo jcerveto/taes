@@ -113,6 +113,9 @@ export default {
 .container {
   max-width: 400px; /* Adjust the width as necessary */
   margin: auto; /* Centers the container */
+  background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+  transition: all 0.3s ease-in-out;
 }
 
 input {
