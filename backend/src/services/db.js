@@ -3,7 +3,7 @@ import { Incident } from '../model/Incidents.js';
 
 import { User} from "../model/User.js";
 
-import { hashPassword } from "../controllers/security.js";
+//import { hashPassword } from "../controllers/security.js";
 
 
 // TODO: Estudiar si falta cerrar las conexiones a la base de datos
@@ -51,7 +51,7 @@ export async function createUser(user) {
     if (user === undefined) {
       throw new Error("User not created!");
     }
-    user.password = hashPassword(user.password);
+    //user.password = hashPassword(user.password);//TODO: Encriptar contraseña
 
     const db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
@@ -85,7 +85,7 @@ export async function updateUser(email, updatedUserData) {
     if (email === undefined || updatedUserData === undefined) {
       throw new Error("User not updated! email or updatedUserData is undefined!");
     }
-    updatedUserData.password = hashPassword(updatedUserData.password);
+    // updatedUserData.password = hashPassword(updatedUserData.password);
 
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
