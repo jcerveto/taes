@@ -7,14 +7,18 @@ import path from 'path';
 import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
-import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
-
+import { generateAdminToken, generateRefreshToken, generateToken } from './helpers/generateTokens.js';
+import { Incident } from './model/Incidents.js'
 
 const app = express();
 
 app.use(cookieParser());
 
 const PORT = 3000;
+
+
+
+
 
 app.use(cors({
     origin: 'http://localhost:8080', // Your Vue.js application's URL
@@ -85,6 +89,7 @@ app.get('/refresh', async (req, res) => {
 
 app.get('/logout', async (req, res) => {
     res.clearCookie("refreshToken");
+    res.clearCookie("adminToken");
     return res.json({ ok: true });
 });
 
@@ -104,10 +109,34 @@ app.post('/login', async (req, res) => {
         const { token, expiresIn } = generateToken(user.email);
         generateRefreshToken(user.email, res);
 
+        if (user.type === 'admin') {
+            generateAdminToken(user.email, res);
+        }
+
         res.json({ token, expiresIn, name: user.name, uid: email});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/admin', async (req, res) => {
+    try {
+        let adminTokenCookie = req.cookies?.adminToken;
+        if (!adminTokenCookie) throw new Error("No existe el adminToken");
+
+        const { uid } = jwt.verify(adminTokenCookie, 'codigo_secreto_a_poner_en_el_env');
+
+        const user = await User.read(uid);
+
+        if (user.type !== 'admin') {
+            throw new Error("User is not an admin");
+        }
+
+        return res.json({ admin: true });
+    } catch (error) {
+        console.log(error);
+        return res.status(401).json({ admin: false });
     }
 });
 
@@ -244,55 +273,81 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
-app.post('/update-machine', async (req, res) => {
-    try {
-        const updatedMachine = req.body;
-        const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
-        const data = await fs.promises.readFile(filePath, 'utf8');
-        let machines = JSON.parse(data);
-        const index = machines.findIndex(m => m.id === updatedMachine.id);
-        
-        if (index === -1) {
-            return res.status(404).json({ message: 'Machine not found' });
-        }
-        
-        machines[index] = updatedMachine;
-
-        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
-        res.json({ message: 'Machine updated successfully', updatedMachine });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.put('/update-machine', async (req, res) => {
-    const { id, newProduct, newPrice } = req.body;
-    const filePath = path.join(path.resolve(), 'public/maquinas.json');
-
-    try {
-        const data = await fs.promises.readFile(filePath, 'utf8');
-        let machines = JSON.parse(data);
-        const machine = machines.find(machine => machine.id === id);
-
-        if (!machine) {
-            return res.status(404).json({ message: 'Machine not found' });
-        }
-
-        machine.lista_productos.push(newProduct);
-        machine.lista_precios.push(parseFloat(newPrice));
-
-        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
-        res.json({ message: 'Product added successfully', machine });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-});
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
 
 
+app.post('/incidents', async (req, res) => {
+    const { email, machineId, machineName, machineBuilding, text } = req.body;
+    if (!email || !text) {
+        return res.status(400).json({ error: "Email and text are required" });
+    }
+
+    try {
+        const newIncident = new Incident({ email, text, machineId, machineName, machineBuilding, status: "open"});
+        await newIncident.save();
+        res.status(201).json(newIncident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const incident = await Incident.findById(id);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
+        }
+        await incident.delete();
+        res.sendStatus(204); // No Content
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) { 
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/incidents/:email', async (req, res) => {
+    try {
+        
+        const { email } = req.params;
+        const incidents = await Incident.findByEmail(email);
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/incidents/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const incident = await Incident.findById(id);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
+        }
+        incident.status = status;
+        await incident.save();
+        res.json(incident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+
+});

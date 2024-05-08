@@ -1,6 +1,7 @@
-import {createUser, deleteAllUsers, readAllUsers, updateUser} from "./db.js";
+import {createUser, deleteAllIncidents, deleteAllUsers, readAllUsers, updateUser} from "./db.js";
 
 import { User } from "../model/User.js";
+import { Incident } from "../model/Incidents.js";
 
 async function main() {
     console.log("start");
@@ -14,12 +15,14 @@ async function main() {
         {
             username: "joannnn",
             name: "joan",
-            surname: "hola"
+            surname: "hola",
+            type: "user"
         },
         {
             username: "adddd",
             name: "adri",
-            surname: "adios"
+            surname: "adios",
+            type: "user"
         }
     ]
     const usersTypes = users.map((u) => {
@@ -30,6 +33,7 @@ async function main() {
         iterUser.bornDate = new Date();
         iterUser.email = u.name + "@ua.es"
         iterUser.password = "1234";
+        iterUser.type = u.type;
 
         return iterUser;
     });
@@ -90,6 +94,7 @@ async function main() {
     user.email = user.name + "@ua.es";
     user.password = "0000";
     user.bornDate = new Date();
+    user.type = "user";
     await user.create();
     console.log("created: ", user);
 
@@ -100,10 +105,22 @@ async function main() {
     const readUser = await User.read(user.email);
     console.log("read: ", readUser);
 
-    await user.delete();
-    console.log("deleted: ", user);
+    //await user.delete();
+    //console.log("deleted: ", user);
     /// ********************************************************************************************************///
 
+    //deleteAllIncidents().then(() => console.log("Deleted incidents")).catch((error) => console.error(error));
+
+    const userAdmin = new User();
+    userAdmin.username = "admin";
+    userAdmin.name = "admin";
+    userAdmin.surname = "admin";
+    userAdmin.email = "admin@admin.es";
+    userAdmin.password = "admin";
+    userAdmin.bornDate = new Date();
+    userAdmin.type = "admin";
+    console.log("creating admin: ", userAdmin);
+    await userAdmin.create();
 
     console.log("finalfinalfinal");
 }

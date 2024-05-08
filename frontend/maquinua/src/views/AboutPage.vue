@@ -105,13 +105,12 @@ export default {
   margin: 8px;
 }
 
-/* Estilos específicos del modo claro */
+
 .dark-mode .about-section {
   background-color: #474e5d;
   color: white;
 }
 
-/* Estilos específicos del modo oscuro */
 .dark-mode .card {
   background-color: #222;
   color: white;
