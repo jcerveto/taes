@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import { Incident } from '../model/Incidents.js';
+import { v4 as uuidv4 } from 'uuid';
 
 
 import { User} from "../model/User.js";
@@ -362,17 +363,14 @@ export async function readAllIncidents() {
   return incidents.map((i) => {
     const iterIncident = new Incident();
 
-    console.log(JSON.stringify(iterIncident));
-
-    iterIncident.id = i._id;
-    iterIncident.uuid = i._uuid;
-    iterIncident.email = i._email;
-    iterIncident.machineId = i._machineId;
-    iterIncident.machineName = i._machineName;
-    iterIncident.machineBuilding = i._machineBuilding;
-    iterIncident.text = i._text;
-    iterIncident.status = i._status;
-    iterIncident.type = "incident";
+    iterIncident.uuid = i.uuid;
+    iterIncident.email = i.email;
+    iterIncident.machineId = i.machineId;
+    iterIncident.machineName = i.machineName;
+    iterIncident.machineBuilding = i.machineBuilding;
+    iterIncident.text = i.text;
+    iterIncident.status = i.status;
+    iterIncident._type = "incident";
 
     
 
@@ -399,6 +397,7 @@ export async function createIncident(incident) {
 
     // Insert the incident into the collection
     const result = await incidentsCollection.insertOne({
+      uuid: uuidv4(),
       email: incident.email,
       text: incident.text,
       machineId: incident.machineId,
@@ -460,7 +459,7 @@ export async function readIncidents( email ) {
 export async function readIncidentId(id) {
   let db = null;
   try {
-    if (!id || id.length !== 24) {
+    if (!id) {
       throw new Error("Invalid ID provided.");
     }
 
@@ -469,22 +468,23 @@ export async function readIncidentId(id) {
     const incidentsCollection = db.collection("incidents");
     
     console.log("Looking for incident with _id:", id);
-    const incidentObj = await incidentsCollection.findOne({_id: id});
+    const incidentObj = await incidentsCollection.findOne({uuid: id});
 
     console.log("Search result:", incidentObj);
     if (!incidentObj) {
       throw new Error("Incident not read! Incident not found in DB");
     }
-
+    console.log("incident email: ", incidentObj.email);
 
     const incident = new Incident();
+    incident.uuid = incidentObj.uuid;
     incident.email = incidentObj.email;
     incident.machineId = incidentObj.machineId;
     incident.machineName = incidentObj.machineName; 
     incident.machineBuilding = incidentObj.machineBuilding;
     incident.text = incidentObj.text;
     incident.status = incidentObj.status;
-    incident.type = incidentObj.type;
+    incident.type = "incident";
     
     return incident;
   } catch (error) {
@@ -515,7 +515,7 @@ export async function updateIncident(uuid, updatedIncidentData) {
     db = await connectToDatabase();
     const incindentsCollection = db.collection("incidents");
     const result = await incindentsCollection.updateOne({
-      _uuid: uuid,
+      uuid: uuid,
     }, { $set: updatedIncidentData.toJSON() });
 
     //if (result.modifiedCount !== 1) {

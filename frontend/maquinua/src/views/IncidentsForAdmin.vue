@@ -4,8 +4,8 @@
       <h3>Incidencias que deben ser atendidas</h3>
 
       <div v-if="incidents.length > 0">
-        <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.id">
-          {{ incident.id }}
+        <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.uuid">
+          {{ incident.uuid }}
           <div class="card-header">
             <p>Building: {{ incident.machineBuilding }}</p>
             <p>Machine: {{ incident.machineName }}</p>
@@ -155,7 +155,13 @@ export default {
       try {
         inc.status = 'closed'; // Optimistically update the status
         const response = await axios.put(`http://localhost:3000/incidents/`, {
-          id: inc.id
+          uuid: inc.uuid,
+          email: inc.email,
+          machineId: inc.machineId,
+          machineName: inc.machineName,
+          machineBuilding: inc.machineBuilding,
+          text: inc.text,
+          status: 'closed'
         }, {
           withCredentials: true
         });
