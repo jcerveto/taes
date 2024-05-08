@@ -16,8 +16,11 @@ import MaquinaFiltro from '@/views/MachinesFilter.vue';
 import SupportPage from './views/SupportPage.vue';
 import PrivatePage from './views/PrivatePage.vue';
 import IncidentsForAdmin from './views/IncidentsForAdmin.vue';
+import NewMachine from './views/NewMachine.vue';
+import ViewMachinesPage from './views/ViewMachinesPage'
 
 import { useUserStore } from './stores/user-store-setup';
+import DebugTest from './views/DebugTest.vue'
 const routes = [
   {
     path: '/',
@@ -126,6 +129,18 @@ const routes = [
       auth: false,
     }
   },
+  {
+    path: '/debug',
+    component: DebugTest
+  },
+  {
+    path: '/NewMachine',
+    component: NewMachine,
+  },
+  {
+    path: '/viewMachines',
+    component: ViewMachinesPage
+  }
   
 ];
 
