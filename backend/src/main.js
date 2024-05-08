@@ -360,7 +360,7 @@ app.get('/incidents/:email', async (req, res) => {
     }
 });*/
 
-app.put('/incidents/close', async (req, res) => {
+/*app.put('/incidents/close', async (req, res) => {
     try {
         const { email,machineId, text, newIncident } = req.body;
         console.log("email: ", email);
@@ -371,5 +371,26 @@ app.put('/incidents/close', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-});
+});*/
 
+app.put('/incidents', async (req, res) => {
+    try {
+        console.log("updating: ", req.body.id);
+
+        const incident = await Incident.findById(req.body.id);
+        const updatedIncident = new Incident();
+        console.log("Incident: ", updatedIncident);
+        updatedIncident.email = incident.email;
+        updatedIncident.machineId = incident.machineId;
+        updatedIncident.text = incident.text;
+        updatedIncident.machineName = incident.machineName;
+        updatedIncident.machineBuilding = incident.machineBuilding;
+        updatedIncident.status = 'closed';
+
+        await updatedIncident.update(); // Wait for the update to complete
+        res.json(incident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});

@@ -1,5 +1,6 @@
 // models/Incidents.js
 import { ObjectId } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid';
 import * as db from "../services/db.js";
 
 export class Incident {
@@ -109,7 +110,7 @@ export class Incident {
 
     async delete() {
         try {
-            await db.deleteIncident(this._id);
+            await db.deleteIncident(this._uuid);
         } catch (error) {
             console.error(error);
             throw new Error("Incident not deleted!");
@@ -117,7 +118,7 @@ export class Incident {
     }
     async update() {
         try {
-            await db.updateIncident(this.id, this);
+            await db.updateIncident(this.uuid, this);
         } catch (error) {
             console.error(error);
             throw new Error("User not updated!");
@@ -133,9 +134,9 @@ export class Incident {
         }
     }
 
-    static async findById(id) {
+    static async findById(uuid) {
         try {
-            return await db.readIncidentId(id);
+            return await db.readIncidentId(uuid);
         } catch (error) {
             console.error(error);
             throw new Error("Incidents not found!");

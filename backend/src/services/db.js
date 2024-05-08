@@ -359,7 +359,25 @@ export async function readAllIncidents() {
   const db = await connectToDatabase();
   const incidentsCollection = db.collection("incidents");
   const incidents = await incidentsCollection.find({}).toArray();
-  return incidents.map(incident => new Incident(incident));
+  return incidents.map((i) => {
+    const iterIncident = new Incident();
+
+    console.log(JSON.stringify(iterIncident));
+
+    iterIncident.id = i._id;
+    iterIncident.uuid = i._uuid;
+    iterIncident.email = i._email;
+    iterIncident.machineId = i._machineId;
+    iterIncident.machineName = i._machineName;
+    iterIncident.machineBuilding = i._machineBuilding;
+    iterIncident.text = i._text;
+    iterIncident.status = i._status;
+    iterIncident.type = "incident";
+
+    
+
+    return iterIncident;
+  });
 }
 
 
@@ -448,7 +466,7 @@ export async function readIncidentId(id) {
 
     db = await connectToDatabase();
     console.log("Database connected, accessing collection.");
-    const incidentsCollection = db.collection(COLLECTION_MAIN);
+    const incidentsCollection = db.collection("incidents");
     
     console.log("Looking for incident with _id:", id);
     const incidentObj = await incidentsCollection.findOne({_id: id});
@@ -487,17 +505,17 @@ export async function readIncidentId(id) {
  * @returns {Promise<void>}
  * @throws {Error}
  */
-export async function updateIncident(id, updatedIncidentData) {
+export async function updateIncident(uuid, updatedIncidentData) {
   let db = null;
   try {
-    if (id === undefined || updatedIncidentData === undefined) {
+    if (uuid === undefined || updatedIncidentData === undefined) {
       throw new Error("Incident not updated! id or updatedIncidentData is undefined!");
     }
 
     db = await connectToDatabase();
-    const incindentsCollection = db.collection(COLLECTION_MAIN);
+    const incindentsCollection = db.collection("incidents");
     const result = await incindentsCollection.updateOne({
-      _id: new Object(id),
+      _uuid: uuid,
     }, { $set: updatedIncidentData.toJSON() });
 
     //if (result.modifiedCount !== 1) {
