@@ -513,17 +513,26 @@ export async function updateIncident(id, updatedIncidentData) {
   }
 }
 
-
-export async function updateIncidentStatus( email,machineId, text, newStatus) {
+/**
+ * Updates a user in the database
+ * @param {any} email
+ * @param {any} machineId
+ * @param {any} text
+ * @param {Incident} newIncident
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateIncidentStatus( email,machineId, text, newIncident) {
   let db = null;
   
   try {
     db = await connectToDatabase();
     const incidentsCollection =  db.collection("incidents");
-    console.log("en el db.js id: ", email);
+    console.log("en el db.js email: ", email);
+    
     const result = await incidentsCollection.updateOne(
         { email: email, machineId: machineId, text: text },
-          { $set: { status: newStatus } }
+          { $set: newIncident }
       );
       const updatedDocument = await incidentsCollection.findOne({ email: email, machineId: machineId, text: text });
       console.log("Updated Document:", updatedDocument);
