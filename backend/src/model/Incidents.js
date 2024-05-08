@@ -115,10 +115,18 @@ export class Incident {
             throw new Error("Incident not deleted!");
         }
     }
+    async update() {
+        try {
+            await db.updateIncident(this.id, this);
+        } catch (error) {
+            console.error(error);
+            throw new Error("User not updated!");
+        }
+    }
 
     static async findByEmail(email) {
         try {
-            return await db.readIncidents(email );
+            return await db.readIncidents(email);
         } catch (error) {
             console.error(error);
             throw new Error("Incidents not found!");
@@ -127,7 +135,7 @@ export class Incident {
 
     static async findById(id) {
         try {
-            return await db.readIncidentId(id );
+            return await db.readIncidentId(id);
         } catch (error) {
             console.error(error);
             throw new Error("Incidents not found!");
@@ -141,5 +149,9 @@ export class Incident {
             console.error(error);
             throw new Error("Incidents not read!");
         }
+    }
+    static async closeIncident( email,machineId, text, newIncident) {
+        console.log("EMAIL: ", email, "machineId: ", machineId, "text: ", text);
+        return await db.updateIncidentStatus(email,machineId, text, newIncident);
     }
 }

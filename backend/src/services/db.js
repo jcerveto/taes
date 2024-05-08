@@ -1,6 +1,7 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import { Incident } from '../model/Incidents.js';
 
+
 import { User} from "../model/User.js";
 
 
@@ -438,21 +439,22 @@ export async function readIncidents( email ) {
 }
 
 
-export async function readIncidentId( id ) {
+export async function readIncidentId(id) {
   let db = null;
   try {
-    if (id === undefined) {
-      throw new Error("Incident not read!");
+    if (!id || id.length !== 24) {
+      throw new Error("Invalid ID provided.");
     }
 
     db = await connectToDatabase();
+    console.log("Database connected, accessing collection.");
     const incidentsCollection = db.collection(COLLECTION_MAIN);
-    const incidentObj = await incidentsCollection.findOne({
-      id: id,
-    });
     
-    console.log("id: ", id);
-    if (incidentObj === null) {
+    console.log("Looking for incident with _id:", id);
+    const incidentObj = await incidentsCollection.findOne({_id: id});
+
+    console.log("Search result:", incidentObj);
+    if (!incidentObj) {
       throw new Error("Incident not read! Incident not found in DB");
     }
 
@@ -474,5 +476,71 @@ export async function readIncidentId( id ) {
     //if (db != null) {
     //  await db.close();
     //}
+  }
+}
+
+
+/**
+ * Updates a user in the database
+ * @param {string} id
+ * @param {Incident} updatedIncidentData
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateIncident(id, updatedIncidentData) {
+  let db = null;
+  try {
+    if (id === undefined || updatedIncidentData === undefined) {
+      throw new Error("Incident not updated! id or updatedIncidentData is undefined!");
+    }
+
+    db = await connectToDatabase();
+    const incindentsCollection = db.collection(COLLECTION_MAIN);
+    const result = await incindentsCollection.updateOne({
+      _id: new Object(id),
+    }, { $set: updatedIncidentData.toJSON() });
+
+    //if (result.modifiedCount !== 1) {
+    //  throw new Error("User not updated!")
+    //}
+  } catch (error) {
+    console.error(error);
+    throw new Error("Incident not updated!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
+}
+
+/**
+ * Updates a user in the database
+ * @param {any} email
+ * @param {any} machineId
+ * @param {any} text
+ * @param {Incident} newIncident
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateIncidentStatus( email,machineId, text, newIncident) {
+  let db = null;
+  
+  try {
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    console.log("en el db.js email: ", email);
+    
+    const result = await incidentsCollection.updateOne(
+        { email: email, machineId: machineId, text: text },
+          { $set: newIncident }
+      );
+      const updatedDocument = await incidentsCollection.findOne({ email: email, machineId: machineId, text: text });
+      console.log("Updated Document:", updatedDocument);
+      console.log("result: ", result);
+      if (result.modifiedCount === 0) {
+        throw new Error("Incident update failed");
+      } 
+  } finally {
+
   }
 }

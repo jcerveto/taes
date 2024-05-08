@@ -335,21 +335,41 @@ app.get('/incidents/:email', async (req, res) => {
     }
 });
 
-app.put('/incidents/:id', async (req, res) => {
+/*app.put('/incidents', async (req, res) => {
+    const { id, email, machineId, machineName, machineBuilding, text, status } = req.body;
+
     try {
-        const { id } = req.params;
-        console.log(id);
-        const { status } = req.body;
         const incident = await Incident.findById(id);
         if (!incident) {
             return res.status(404).json({ error: "Incident not found" });
         }
+
+        // Actualización de los datos de la incidencia
+        incident.email = email;
+        incident.machineId = machineId;
+        incident.machineName = machineName;
+        incident.machineBuilding = machineBuilding;
+        incident.text = text;
         incident.status = status;
-        await incident.save();
+
+        await incident.update();  // Guarda los cambios en la base de datos
         res.json(incident.toJSON());
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
     }
+});*/
 
+app.put('/incidents/close', async (req, res) => {
+    try {
+        const { email,machineId, text, newIncident } = req.body;
+        console.log("email: ", email);
+        console.log("machineId: ", machineId);
+        console.log("text: ", text);
+        const incident = await Incident.closeIncident( email,machineId, text, newIncident);
+        res.status(200).json(incident);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
+
