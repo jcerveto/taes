@@ -163,7 +163,9 @@
 
           // Realizar la solicitud POST usando Axios
           try {
-            const response = await axios.post('http://localhost:3000/register', userData);
+            const response = await axios.post('http://localhost:3000/register', userData, {
+              withCredentials: true,
+            });
 
             console.log(response.data);
 

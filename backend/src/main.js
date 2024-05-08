@@ -16,10 +16,6 @@ app.use(cookieParser());
 
 const PORT = 3000;
 
-
-
-
-
 app.use(cors({
     origin: 'http://localhost:8080', // Your Vue.js application's URL
     credentials: true,
@@ -274,8 +270,85 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
+app.post('/update-machine', async (req, res) => {
+    try {
+        const updatedMachine = req.body;
+        const filePath = path.join(path.resolve(), 'public/maquinas.json');
 
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const index = machines.findIndex(m => m.id === updatedMachine.id);
+        
+        if (index === -1) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+        
+        machines[index] = updatedMachine;
 
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Machine updated successfully', updatedMachine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/update-machine', async (req, res) => {
+    const { id, newProduct, newPrice } = req.body;
+    const filePath = path.join(path.resolve(), 'public/maquinas.json');
+
+    try {
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        let machines = JSON.parse(data);
+        const machine = machines.find(machine => machine.id === id);
+
+        if (!machine) {
+            return res.status(404).json({ message: 'Machine not found' });
+        }
+
+        machine.lista_productos.push(newProduct);
+        machine.lista_precios.push(parseFloat(newPrice));
+
+        await fs.promises.writeFile(filePath, JSON.stringify(machines, null, 2), 'utf8');
+        res.json({ message: 'Product added successfully', machine });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+/*
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/incidents', async (req, res) => {
+    try {
+        const cleanIncident = new Incident();
+        cleanIncident.incidencia = req.body;
+        console.log("cleanIncidents: ", cleanIncident);
+        await cleanIncident.create();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        await Incidents.delete(req.params.id);
+        res.json({ message: 'Incident deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+**/
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
@@ -360,37 +433,13 @@ app.get('/incidents/:email', async (req, res) => {
     }
 });*/
 
-/*app.put('/incidents/close', async (req, res) => {
+app.put('/incidents/close', async (req, res) => {
     try {
-        const { email,machineId, text, newIncident } = req.body;
-        console.log("email: ", email);
-        console.log("machineId: ", machineId);
-        console.log("text: ", text);
-        const incident = await Incident.closeIncident( email,machineId, text, newIncident);
+        const { email,machineId, text, status } = req.body;
+        const incident = await Incident.closeIncident( email,machineId, text, status);
         res.status(200).json(incident);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-});*/
-
-app.put('/incidents', async (req, res) => {
-    try {
-        console.log("updating: ", req.body.id);
-
-        const incident = await Incident.findById(req.body.id);
-        const updatedIncident = new Incident();
-        console.log("Incident: ", updatedIncident);
-        updatedIncident.email = incident.email;
-        updatedIncident.machineId = incident.machineId;
-        updatedIncident.text = incident.text;
-        updatedIncident.machineName = incident.machineName;
-        updatedIncident.machineBuilding = incident.machineBuilding;
-        updatedIncident.status = 'closed';
-
-        await updatedIncident.update(); // Wait for the update to complete
-        res.json(incident.toJSON());
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
 });
+
