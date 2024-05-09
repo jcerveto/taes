@@ -442,3 +442,19 @@ app.put('/incidents', async (req, res) => {
     }
 });
 
+
+// This route needs to be updated to handle the machine ID filter.
+// This route needs to be updated to handle the machine ID filter.
+app.get('/incidents', async (req, res) => {
+    try {
+        const machineId = req.query.id; // Capture the 'id' query parameter
+        const incidents = await db.readIncidentsByMachineId(machineId);
+        res.json(incidents);
+    } catch (error) {
+        console.error('Error fetching incidents by machine ID:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+

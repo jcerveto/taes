@@ -129,6 +129,8 @@ export default {
     refreshPage() {
       window.location.reload(); // Reloads the current page
     },
+
+    /*
     async fetchIncidents() {
       try {
         const response = await axios.get(`http://localhost:3000/incidents/${this.user}`);
@@ -138,6 +140,21 @@ export default {
         console.error('Error fetching incidents:', error);
       }
     },
+    */
+
+    async fetchIncidents() {
+  if (!this.id) {
+    console.error('No machine ID specified');
+    return;
+  }
+  try {
+    const response = await axios.get(`http://localhost:3000/incidents`, { params: { id: this.id } });
+    this.incidents = response.data;
+  } catch (error) {
+    console.error('Error fetching incidents:', error);
+  }
+},
+
     nextPage() {
       if (this.currentPage < this.totalPages - 1) {
         this.currentPage++;

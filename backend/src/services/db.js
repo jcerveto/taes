@@ -443,20 +443,7 @@ export async function readIncidents( email ) {
       throw new Error("No incidents found for the provided email.");
     }
 
-    return incidents.map((i) => {
-      const iterIncident = new Incident();
-
-      iterIncident.uuid = i.uuid;
-      iterIncident.email = i.email;
-      iterIncident.machineId = i.machineId;
-      iterIncident.machineName = i.machineName;
-      iterIncident.machineBuilding = i.machineBuilding;
-      iterIncident.text = i.text;
-      iterIncident.status = i.status;
-      iterIncident.type = "incident";
-
-      return iterIncident;
-    });
+    return incidents.map(incident => new Incident(incident));
 
   } catch (error) {
     console.error("Failed to read incidents: ", error);
@@ -574,4 +561,15 @@ export async function updateIncidentStatus( email,machineId, text, newIncident) 
   } finally {
 
   }
+}
+
+// Add this new function in db.js to read incidents by machine ID
+export async function readIncidentsByMachineId(machineId) {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const incidents = await incidentsCollection.find({ machineId: machineId }).toArray();
+  return incidents.map((i) => {
+    const incident = new Incident(i);
+    return incident.toJSON();
+  });
 }
