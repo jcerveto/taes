@@ -4,7 +4,8 @@
       <h3>Incidencias que deben ser atendidas</h3>
 
       <div v-if="incidents.length > 0">
-        <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.id">
+        <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.uuid">
+          {{ incident.uuid }}
           <div class="card-header">
             <p>Building: {{ incident.machineBuilding }}</p>
             <p>Machine: {{ incident.machineName }}</p>
@@ -150,23 +151,22 @@ export default {
       // Redirect to the support page with the incident details
       window.location.href = url;
     },
-    async closeIncident(incident) {
+    async closeIncident(inc) {
       try {
-        incident.status = 'closed'; // Optimistically update the status
-        const response = await axios.put(`http://localhost:3000/incidents/close`, {
-          //id: incident.id,
-          email: incident.email,
-          machineId: incident.machineId,
-          //machineName: incident.machineName,
-          //machineBuilding: incident.machineBuilding,
-          text: incident.text,
-          status: 'closed',
-          incident: incident
+        inc.status = 'closed'; // Optimistically update the status
+        const response = await axios.put(`http://localhost:3000/incidents/`, {
+          uuid: inc.uuid,
+          email: inc.email,
+          machineId: inc.machineId,
+          machineName: inc.machineName,
+          machineBuilding: inc.machineBuilding,
+          text: inc.text,
+          status: 'closed'
         }, {
           withCredentials: true
         });
         if (response.data && response.data.status === 'closed') {
-          incident.status = 'closed';  // Confirma que el backend realmente ha cerrado la incidencia
+          inc.status = 'closed';  // Confirma que el backend realmente ha cerrado la incidencia
           console.log('Incident closed:', response.data);
         } else {
           throw new Error('Backend did not confirm the incident closure.');

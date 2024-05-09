@@ -12,4 +12,7 @@ export default defineConfig({
 export default defineConfig({
   transpileDependencies: true,
   publicPath: '/taes/',
+  configureWebpack: {
+    devtool: 'source-map'
+  }
 });
