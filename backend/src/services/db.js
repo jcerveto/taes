@@ -569,7 +569,19 @@ export async function readIncidentsByMachineId(machineId) {
   const incidentsCollection = db.collection("incidents");
   const incidents = await incidentsCollection.find({ machineId: machineId }).toArray();
   return incidents.map((i) => {
-    const incident = new Incident(i);
-    return incident.toJSON();
+    const iterIncident = new Incident();
+
+    iterIncident.uuid = i.uuid;
+    iterIncident.email = i.email;
+    iterIncident.machineId = i.machineId;
+    iterIncident.machineName = i.machineName;
+    iterIncident.machineBuilding = i.machineBuilding;
+    iterIncident.text = i.text;
+    iterIncident.status = i.status;
+    iterIncident._type = "incident";
+
+    
+
+    return iterIncident;
   });
 }
