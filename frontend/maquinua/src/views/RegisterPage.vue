@@ -68,6 +68,7 @@
         birthdate: '',
         password: '',
         repeatPassword: '',
+        type: '',
         days: Array.from({ length: 31 }, (_, index) => index + 1),
         months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         years: Array.from({ length: 100 }, (_, index) => new Date().getFullYear() - index),
@@ -157,11 +158,14 @@
             email: this.email,
             bornDate: this.birthdate,
             password: this.password,
+            type: 'user',
           };      
 
           // Realizar la solicitud POST usando Axios
           try {
-            const response = await axios.post('http://localhost:3000/register', userData);
+            const response = await axios.post('http://localhost:3000/register', userData, {
+              withCredentials: true,
+            });
 
             console.log(response.data);
 

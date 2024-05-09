@@ -122,6 +122,8 @@ async function main() {
     console.log("creating admin: ", userAdmin);
     await userAdmin.create();
 
+    deleteAllIncidents();
+
     console.log("finalfinalfinal");
 }
 

@@ -120,7 +120,8 @@ export default {
             email: this.email,
             name: this.name,
             surname: this.surname,
-            password: this.password 
+            password: this.password,
+            type: 'user',
           }, { withCredentials: true });
 
           this.$router.push('/user/mydata');
