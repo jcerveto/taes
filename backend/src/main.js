@@ -9,6 +9,8 @@ import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
 import { generateAdminToken, generateRefreshToken, generateToken } from './helpers/generateTokens.js';
 import { Incident } from './model/Incidents.js'
+import * as db from './services/db.js';
+
 
 const app = express();
 
@@ -396,11 +398,12 @@ app.delete('/incidents/:id', async (req, res) => {
 
 app.get('/incidents', async (req, res) => {
     try {
-        const incidents = await Incident.readAll();
-        res.json(incidents.map(incident => incident.toJSON()));
-    } catch (error) { 
-        console.error(error);
-        res.status(500).json({ error: error.message });
+        const machineId = req.query.id; // Capture the 'id' query parameter
+        const incidents = await db.readIncidentsByMachineId(machineId);
+        res.json(incidents);
+    } catch (error) {
+        console.error('Error fetching incidents by machine ID:', error);
+        res.status(500).send('Server error');
     }
 });
 
@@ -445,16 +448,7 @@ app.put('/incidents', async (req, res) => {
 
 // This route needs to be updated to handle the machine ID filter.
 // This route needs to be updated to handle the machine ID filter.
-app.get('/incidents', async (req, res) => {
-    try {
-        const machineId = req.query.id; // Capture the 'id' query parameter
-        const incidents = await db.readIncidentsByMachineId(machineId);
-        res.json(incidents);
-    } catch (error) {
-        console.error('Error fetching incidents by machine ID:', error);
-        res.status(500).send('Server error');
-    }
-});
+
 
 
 
