@@ -132,6 +132,7 @@ export default {
     async fetchIncidents() {
       try {
         const response = await axios.get(`http://localhost:3000/incidents/${this.user}`);
+        console.log(this.user);
         this.incidents = response.data;
       } catch (error) {
         console.error('Error fetching incidents:', error);
