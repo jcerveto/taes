@@ -1,49 +1,56 @@
  <template>
-  <div class="landing-page">
-    <div class="content">
-      <p class="textotop">Se uno mas de la familia <span class="maquinUA">Maquin</span>UA y disfruta de todo lo que te ofrecen las maquinas expededoras</p>
-      <button class="botontop" @click="redirigirregister">Unete</button>
-      
-        
+    <div class="landing-page">
+        <div class="content">
+            <p class="textotop"> Se uno mas de la familia <span class="maquinUA">MaquinUA</span> y disfruta de todo lo que te ofrecen las maquinas expededoras</p>
+            <button class="botontop" @click="redirigirregister">Unete</button>
 
+
+
+        </div>
+        <img class="imagen-desvanecida" src=..\assets\LogoMaquinUA.jpg alt="Mi imagen">
     </div>
-    <img class="imagen-desvanecida" src=..\assets\LogoMaquinUA.jpg alt="Mi imagen">
-  </div>
-   
-     <div class="container">
+    <div class="mapa">
+        <p  class="text2"> Usa nuestro mapa para encotrar maquinas expededoras</p>
+        <button2 @click="redirigirmap">
+            <img class="imagenmapa" src="..\assets\mapa.png" >
+        </button2>
+        <p class="text2"> Utiliza todas las opciones disponibles</p>
+    </div>
+    <div class="container">
         <div class="column">
-            <img class="img" src=..\assets\lupa.png >
+            <img class="img" src=..\assets\lupa.png>
             <p>Que maquina escojo?</p>
-         <p class="texto">Estás indeciso en que maquina expendedora elegir? Busca en nuestro mapa</p>
-         <button @click="redirigirmap">Mapa</button>
-             </div>
-        <div class="column">
-         <img class="img" src=..\assets\exclamacion.png >
-            <p>Error en la maquina?</p>
-         <p class="texto">Has visto algun error en nuestras maquinas expendedoras? Informanos del error </p>
-         <button @click="redirigirincid">Incidencia</button>
+            <p class="texto">Estás indeciso en que maquina expendedora elegir? Busca en nuestro mapa</p>
+            <button @click="redirigirmap">Mapa</button>
         </div>
         <div class="column">
-         <img class="img" src=..\assets\lupa.png >
+            <img class="img" src=..\assets\exclamacion.png>
+            <p>Error en la maquina?</p>
+            <p class="texto">Has visto algun error en nuestras maquinas expendedoras? Informanos del error </p>
+            <button @click="redirigirincid">Incidencia</button>
+        </div>
+        <div class="column">
+            <img class="img" src=..\assets\lupa.png>
             <p>Que prefieres?</p>
-         <p class="texto">Hay algun producto que te interese en especial? Aqui encontraras todos los que hay</p>
-         <button @click="redirigirprod">Productos</button>
-         </div>
-      </div>
-     
-      <div class="midpage">
-        <img src=..\assets\maquinaex.png >
+            <p class="texto">Hay algun producto que te interese en especial? Aqui encontraras todos los que hay</p>
+            <button @click="redirigirprod">Productos</button>
+        </div>
+    </div>
+
+    <div class="midpage">
+        <img src=..\assets\maquinaex.png>
         <div class="row">
             <p class="textend">Contamos con las mejores marcas de maquinas expendedoras<br><span class="textdown"></span> </p>
             <div class="marcas">
-                <img class="marca2" src=..\assets\marca2.png >
-                <img class="marca1" src=..\assets\marca1.png >
+                <img class="marca2" src=..\assets\marca2.png>
+                <img class="marca1" src=..\assets\marca1.png>
             </div>
-        </div>    
-      </div>
-        <div class="footer">
+        </div>
+    </div>
 
-        </div>  
+    <div class="footer">
+
+    </div>
 
 </template>
 <script>
@@ -93,12 +100,11 @@
   z-index: -1;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  
-}
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 button {
   margin-top: 15px;
   padding: 10px 20px;
@@ -110,36 +116,48 @@ button {
   cursor: pointer;
 }
     .botontop {
-     margin-left: 350px;
-     margin-top: 80px;
-    margin-right: 350px;
-    font-size: 20px;
-    padding: 15px 30px;
-    color:black;
-}
+        margin-left: 350px;
+        margin-top: 80px;
+        margin-right: 350px;
+        font-size: 20px;
+        padding: 15px 30px;
+        color: black;
+    }
     .maquinUA{
     color: #7fcaad
     }
     .textotop {
-    
-    margin-right: 100px;
-    margin-left: 15px;
-    text-align: left;
-    color: #000;
-  font-size: 30px; /* Tama�o del texto */
-  font-weight: bold; /* Texto en negrita */
-  
-}
+        border-radius: 10px;
+        background-color: #F2F4F4;
+        margin-right: 100px;
+        margin-left: 15px;
+        text-align: left;
+        color: #000;
+        font-size: 30px; /* Tama�o del texto */
+        font-weight: bold; /* Texto en negrita */
+    }
     .imagen-desvanecida {
     width: 300px; /* Ajusta el tama�o de la imagen */
     height: 300px;
     verflow: hidden;
-   
     display: inline-block;
     border-radius: 9999999999px;
     
     
 }
+    .mapa {
+        margin: 20px;
+        border-radius: 10px;
+        background-color: #F2F4F4;
+    }
+    .text2 {
+        text-align: mid;
+        color: #000;
+        margin-top: 10px;
+        margin-down: 10px;
+        font-size: 30px; /* Tama�o del texto */
+        font-weight: bold; /* Texto en negrita */
+    }
 
  
     .container {
@@ -213,19 +231,32 @@ button {
     .marca1, .marca2{
     width: 100px; /* Este ser� el ancho de tu div */
     height: 100px;
-     margin-left: 10%;
+    margin-left: 10%;
     
     }
+    
     .footer{
     padding:50px;
 }
     @media screen and (max-width: 1400px) {
     .imagen-desvanecida {
     display: none;
-  }
+    }
     }
     @media screen and (max-width: 600px) {
-    .imagen-desvanecida {
+        .mapa {
+            flex-direction: row;
+            
+        }
+        .imagenmapa{
+            width: 100%;
+        }
+        .text2 {
+            font-size: 18px;
+        }
+
+       
+            .imagen-desvanecida {
     display: none;
   }
   .landing-page {
