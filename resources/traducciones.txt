@@ -41,6 +41,25 @@
       "Contacto": "Contacto",
       "Ir al inicio": "Ir al inicio",
       "Página no encontrada": "Página no encontrada"
+      //User page
+      "Hola": "Hola"
+      "Mis incidencias": "Mis incidencias"
+      "Mis datos": "Mis datos"
+      "Pagina Usuario": "Pagina usuario"
+      "Cerrar Sesion": "Cerrar sesion"
+      "Ir a inicio": "Ir a inicio"
+      //Error 404
+      "Pagina no encontrada": "Pagina no encontrada"
+      //Incidenciasforadmin
+      "Incidencias que deben ser atendidas": "Incidencias que deben ser atendidas"
+      "Solucionar": "Solucionar"
+      "No hay incidencias que mostrar": "No hay incidencias que mostrar"
+      "Previa": "Previa"
+      "Pagina": "Pagina"
+      "de": "de"
+      
+      
+
     },
     "en": {
       "Inicio": "Home",
@@ -84,6 +103,18 @@
       "Contacto": "Contact",
       "Ir al inicio": "Go to home",
       "Página no encontrada": "Page not found"
+
+     
+      "Hola": "Hello"
+      "Mis incidencias": "My incidents"
+      "Mis datos": "My data"
+
+      
+      "Iniciar sesion": "Log in"
+       
+       "Incidencias que deben ser atendidas": "Incidents that must be attended to"
+
+
     },
     "cat": {
         "Inicio": "Inici",
