@@ -64,8 +64,10 @@ const routes = [
     beforeEnter: async (to, from, next) => {
       try {
         const userStore = useUserStore();
-        await userStore.isAdmin();
-        next();
+        const admin = await userStore.isAdmin();
+
+        if (admin) next();
+        else next('/signin');
       } catch (error) {
         console.error(error);
         next('/signin'); // Redirigir a la página de inicio de sesión si hay un error

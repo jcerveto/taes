@@ -33,9 +33,6 @@
               <li class="nav-item">
                   <router-link class="nav-link" to="/user">{{  $t("button-user") }}</router-link>
               </li>
-              <li class="nav-item">
-                  <router-link class="nav-link" to="/user">{{ $t("button-logout") }}</router-link>
-              </li>
 
           </ul>
       </div>
@@ -57,7 +54,7 @@
 
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li v-for="(lang, index) in supportedLanguages" :key="index" @click="changeLanguage(lang)">
-              <a class="dropdown-item">{{ lang.code }} ({{ lang.country }})</a>
+              <a class="dropdown-item">{{ lang.code }}</a>
             </li>
           </ul>
         </div>
