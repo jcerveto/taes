@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-docs:
+  deploy-frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,8 +30,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JOAN }}
-          publish_dir: ./dist
+          publish_dir: ./frontend/maquinua/dist
           user_name: GitHub Actions
           user_email: actions@github.com
           publish_branch: gh-pages
-          working-directory: ./frontend/maquinua
