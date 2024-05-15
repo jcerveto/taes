@@ -443,7 +443,20 @@ export async function readIncidents( email ) {
       throw new Error("No incidents found for the provided email.");
     }
 
-    return incidents.map(incident => new Incident(incident));
+    return incidents.map((i) => {
+      const iterIncident = new Incident();
+
+      iterIncident.uuid = i.uuid;
+      iterIncident.email = i.email;
+      iterIncident.machineId = i.machineId;
+      iterIncident.machineName = i.machineName;
+      iterIncident.machineBuilding = i.machineBuilding;
+      iterIncident.text = i.text;
+      iterIncident.status = i.status;
+      iterIncident.type = "incident";
+
+      return iterIncident;
+    });
 
   } catch (error) {
     console.error("Failed to read incidents: ", error);
