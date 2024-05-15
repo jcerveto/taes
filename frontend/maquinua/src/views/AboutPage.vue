@@ -74,23 +74,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      darkMode: false
-    };
-  },
-  mounted() {
-    // Check for dark mode preference
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    this.darkMode = darkModeMediaQuery.matches;
 
-    // Listen for changes in dark mode preference
-    darkModeMediaQuery.addListener((e) => {
-      this.darkMode = e.matches;
-    });
-  }
-};
 </script>
 
 <style scoped>
@@ -105,7 +89,7 @@ export default {
   margin: 8px;
 }
 
-
+/* Estilos para modo oscuro */
 .dark-mode .about-section {
   background-color: #474e5d;
   color: white;
