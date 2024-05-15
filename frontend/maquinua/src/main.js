@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap"
 
-localStorage.setItem('language', 'VA')
+localStorage.setItem('language', 'ES')
 
 const app = createApp(App)
 
