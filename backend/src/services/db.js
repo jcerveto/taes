@@ -1,4 +1,7 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
+import { Incident } from '../model/Incidents.js';
+import { v4 as uuidv4 } from 'uuid';
+
 
 import { User} from "../model/User.js";
 
@@ -86,7 +89,6 @@ export async function updateUser(email, updatedUserData) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.updateOne({
       email: email,
-      type: "user"
     }, { $set: updatedUserData.toJSON() });
 
     //if (result.modifiedCount !== 1) {
@@ -120,7 +122,6 @@ export async function deleteUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteOne({
       email: email,
-      type: "user"
     });
 
     if (result.deletedCount !== 1) {
@@ -155,7 +156,6 @@ export async function readUser(email) {
     const usersCollection = db.collection(COLLECTION_MAIN);
     const userObj = await usersCollection.findOne({
       email: email,
-      type: "user"
     });
    
 
@@ -171,6 +171,7 @@ export async function readUser(email) {
     user.email = userObj.email;
     user.password = userObj.password;
     user.bornDate = userObj.bornDate;
+    user.type = userObj.type;
 
     return user;
   } catch (error) {
@@ -195,7 +196,7 @@ export async function readAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const usersObj = await usersCollection.find({
-      type: "user"
+      
     }).toArray();
     const typeUsers = usersObj.map((u) => {
         const iterUser = new User();
@@ -206,6 +207,7 @@ export async function readAllUsers() {
         iterUser.email = u.email;
         iterUser.password = u.password;
         iterUser.bornDate = new Date(u.bornDate);
+        iterUser.type = u.type;
 
         return iterUser;
     });
@@ -234,7 +236,7 @@ export async function deleteAllUsers() {
     db = await connectToDatabase();
     const usersCollection = db.collection(COLLECTION_MAIN);
     const result = await usersCollection.deleteMany({
-      type: "user"
+      
     });
 
   } catch (error) {
@@ -247,7 +249,6 @@ export async function deleteAllUsers() {
     //}
   }
 }
-
 
 /**
  * Creates a machine view in the database
@@ -325,5 +326,239 @@ export async function deleteMachinesView(filter) {
     //  await db.close();
     //  console.log('Disconnected from MongoDB');
     //}
+  }
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+
+export async function deleteIncident(id) {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteOne({ _id: new ObjectId(id) });
+  if (result.deletedCount !== 1) {
+      throw new Error("Incident not deleted!");
+  }
+}
+
+// Delete all incidents
+export async function deleteAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const result = await incidentsCollection.deleteMany({});
+  if (result.deletedCount === 0) {
+    throw new Error("Incidents not deleted!");
+  }
+}
+
+export async function readAllIncidents() {
+  const db = await connectToDatabase();
+  const incidentsCollection = db.collection("incidents");
+  const incidents = await incidentsCollection.find({}).toArray();
+  return incidents.map((i) => {
+    const iterIncident = new Incident();
+
+    iterIncident.uuid = i.uuid;
+    iterIncident.email = i.email;
+    iterIncident.machineId = i.machineId;
+    iterIncident.machineName = i.machineName;
+    iterIncident.machineBuilding = i.machineBuilding;
+    iterIncident.text = i.text;
+    iterIncident.status = i.status;
+    iterIncident._type = "incident";
+
+    
+
+    return iterIncident;
+  });
+}
+
+
+/**
+ * Creates an incident in the database
+ * @param {Object} incident The incident object to be created. Expected to have 'email' and 'text' properties.
+ * @returns {Promise<void>} Promise indicating the success of the operation
+ * @throws {Error} If the incident object is not provided or creation fails
+ */
+export async function createIncident(incident) {
+  let db = null;
+  try {
+    if (!incident || !incident.email || !incident.text) {
+      throw new Error("Invalid incident data provided!");
+    }
+
+    db = await connectToDatabase();
+    const incidentsCollection = db.collection("incidents"); // Using a specific collection for incidents
+
+    // Insert the incident into the collection
+    const result = await incidentsCollection.insertOne({
+      uuid: uuidv4(),
+      email: incident.email,
+      text: incident.text,
+      machineId: incident.machineId,
+      machineName: incident.machineName,
+      machineBuilding: incident.machineBuilding,
+      status: "open",
+      type: "incident"
+    });
+
+    /*if (result.insertedCount !== 1) {
+      throw new Error("Incident not created! Rows affected: " + result.insertedCount);
+    }*/
+  } catch (error) {
+    console.error("Failed to create incident: ", error);
+    throw new Error("Failed to create incident due to an error.");
+  } finally {
+    //if (db) {
+     // await db.close();
+    //}
+  }
+}
+
+  /**
+ * Reads incidents from the database by email
+ * @param {Object} filter - This should contain the email to filter by.
+ * @returns {Promise<Array>}
+ * @throws {Error} If the incidents cannot be read
+ */
+export async function readIncidents( email ) {
+  let db = null;
+  try {
+    if (!email) {
+      throw new Error("Email parameter is required!");
+    }
+    console.log("email: ", email);
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    
+    // Query the database for incidents by email
+    const incidents = await incidentsCollection.find({ email: email }).toArray();
+    
+    if (!incidents.length) {
+      throw new Error("No incidents found for the provided email.");
+    }
+
+    return incidents.map(incident => new Incident(incident));
+
+  } catch (error) {
+    console.error("Failed to read incidents: ", error);
+    throw new Error("Failed to read incidents due to an error.");
+  } finally {
+    //if (db) {
+      //await db.close();
+    //}
+  }
+}
+
+
+export async function readIncidentId(id) {
+  let db = null;
+  try {
+    if (!id) {
+      throw new Error("Invalid ID provided.");
+    }
+
+    db = await connectToDatabase();
+    console.log("Database connected, accessing collection.");
+    const incidentsCollection = db.collection("incidents");
+    
+    console.log("Looking for incident with _id:", id);
+    const incidentObj = await incidentsCollection.findOne({uuid: id});
+
+    console.log("Search result:", incidentObj);
+    if (!incidentObj) {
+      throw new Error("Incident not read! Incident not found in DB");
+    }
+    console.log("incident email: ", incidentObj.email);
+
+    const incident = new Incident();
+    incident.uuid = incidentObj.uuid;
+    incident.email = incidentObj.email;
+    incident.machineId = incidentObj.machineId;
+    incident.machineName = incidentObj.machineName; 
+    incident.machineBuilding = incidentObj.machineBuilding;
+    incident.text = incidentObj.text;
+    incident.status = incidentObj.status;
+    incident.type = "incident";
+    
+    return incident;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Incident not read!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
+}
+
+
+/**
+ * Updates a user in the database
+ * @param {string} id
+ * @param {Incident} updatedIncidentData
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateIncident(uuid, updatedIncidentData) {
+  let db = null;
+  try {
+    if (uuid === undefined || updatedIncidentData === undefined) {
+      throw new Error("Incident not updated! id or updatedIncidentData is undefined!");
+    }
+
+    db = await connectToDatabase();
+    const incindentsCollection = db.collection("incidents");
+    const result = await incindentsCollection.updateOne({
+      uuid: uuid,
+    }, { $set: updatedIncidentData.toJSON() });
+
+    //if (result.modifiedCount !== 1) {
+    //  throw new Error("User not updated!")
+    //}
+  } catch (error) {
+    console.error(error);
+    throw new Error("Incident not updated!");
+  } finally {
+    //if (db != null) {
+    //  await db.close();
+    //}
+  }
+}
+
+/**
+ * Updates a user in the database
+ * @param {any} email
+ * @param {any} machineId
+ * @param {any} text
+ * @param {Incident} newIncident
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+export async function updateIncidentStatus( email,machineId, text, newIncident) {
+  let db = null;
+  
+  try {
+    db = await connectToDatabase();
+    const incidentsCollection =  db.collection("incidents");
+    console.log("en el db.js email: ", email);
+    
+    const result = await incidentsCollection.updateOne(
+        { email: email, machineId: machineId, text: text },
+          { $set: newIncident }
+      );
+      const updatedDocument = await incidentsCollection.findOne({ email: email, machineId: machineId, text: text });
+      console.log("Updated Document:", updatedDocument);
+      console.log("result: ", result);
+      if (result.modifiedCount === 0) {
+        throw new Error("Incident update failed");
+      } 
+  } finally {
+
   }
 }

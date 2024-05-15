@@ -23,6 +23,7 @@
           <label for="email">Email:</label><br>
           <input class="form-control" type="email" id="email" v-model="email" required>
           <br><span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
+          {{ emailExists }}
         </div>
   
         <div>
@@ -67,6 +68,7 @@
         birthdate: '',
         password: '',
         repeatPassword: '',
+        type: '',
         days: Array.from({ length: 31 }, (_, index) => index + 1),
         months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         years: Array.from({ length: 100 }, (_, index) => new Date().getFullYear() - index),
@@ -156,19 +158,25 @@
             email: this.email,
             bornDate: this.birthdate,
             password: this.password,
-          };
-
+            type: 'user',
+          };      
 
           // Realizar la solicitud POST usando Axios
-          const response = await axios.post('http://localhost:3000/register', userData);
-          
-          console.log(response.data);
+          try {
+            const response = await axios.post('http://localhost:3000/register', userData, {
+              withCredentials: true,
+            });
 
-          const userStore = useUserStore();
+            console.log(response.data);
 
-          userStore.access(this.email, this.password);
-          
-          this.$router.push('/');
+            const userStore = useUserStore();
+
+            userStore.access(this.email, this.password);
+            
+            this.$router.push('/');
+          } catch (error) {
+            alert("User already exists");
+          }
           
         } else {
           console.log('ERROR. Please, review the data.');

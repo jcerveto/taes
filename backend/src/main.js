@@ -7,8 +7,8 @@ import path from 'path';
 import machineRoutes from './routes/machineRoutes.js';
 import cookieParser from "cookie-parser";
 import { User } from './model/User.js';
-import { generateRefreshToken, generateToken } from './helpers/generateTokens.js';
-
+import { generateAdminToken, generateRefreshToken, generateToken } from './helpers/generateTokens.js';
+import { Incident } from './model/Incidents.js'
 
 const app = express();
 
@@ -85,6 +85,7 @@ app.get('/refresh', async (req, res) => {
 
 app.get('/logout', async (req, res) => {
     res.clearCookie("refreshToken");
+    res.clearCookie("adminToken");
     return res.json({ ok: true });
 });
 
@@ -104,10 +105,34 @@ app.post('/login', async (req, res) => {
         const { token, expiresIn } = generateToken(user.email);
         generateRefreshToken(user.email, res);
 
+        if (user.type === 'admin') {
+            generateAdminToken(user.email, res);
+        }
+
         res.json({ token, expiresIn, name: user.name, uid: email});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/admin', async (req, res) => {
+    try {
+        let adminTokenCookie = req.cookies?.adminToken;
+        if (!adminTokenCookie) throw new Error("No existe el adminToken");
+
+        const { uid } = jwt.verify(adminTokenCookie, 'codigo_secreto_a_poner_en_el_env');
+
+        const user = await User.read(uid);
+
+        if (user.type !== 'admin') {
+            throw new Error("User is not an admin");
+        }
+
+        return res.json({ admin: true });
+    } catch (error) {
+        console.log(error);
+        return res.status(401).json({ admin: false });
     }
 });
 
@@ -120,6 +145,7 @@ app.post('/register', async (req, res) => {
         cleanUser.email = req.body.email;
         cleanUser.password = req.body.password;
         cleanUser.bornDate = new Date(req.body.bornDate);
+        cleanUser.type = req.body.type;
 
         try{
             const user = await User.read(req.body.email);
@@ -290,9 +316,129 @@ app.put('/update-machine', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+/*
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
+app.post('/incidents', async (req, res) => {
+    try {
+        const cleanIncident = new Incident();
+        cleanIncident.incidencia = req.body;
+        console.log("cleanIncidents: ", cleanIncident);
+        await cleanIncident.create();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        await Incidents.delete(req.params.id);
+        res.json({ message: 'Incident deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+**/
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
 })
 
+
+app.post('/incidents', async (req, res) => {
+    const { email, machineId, machineName, machineBuilding, text } = req.body;
+    if (!email || !text) {
+        return res.status(400).json({ error: "Email and text are required" });
+    }
+
+    try {
+        const newIncident = new Incident();
+
+        newIncident.email = email;
+        newIncident.machineId = machineId;
+        newIncident.machineName = machineName;
+        newIncident.machineBuilding = machineBuilding;
+        newIncident.text = text;
+        newIncident.status = "open";
+
+        await newIncident.save();
+        res.status(201).json(newIncident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/incidents/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const incident = await Incident.findById(id);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
+        }
+        await incident.delete();
+        res.sendStatus(204); // No Content
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+app.get('/incidents', async (req, res) => {
+    try {
+        const incidents = await Incident.readAll();
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) { 
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/incidents/:email', async (req, res) => {
+    try {
+        
+        const { email } = req.params;
+        const incidents = await Incident.findByEmail(email);
+        res.json(incidents.map(incident => incident.toJSON()));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/incidents', async (req, res) => {
+    const { uuid, email, machineId, machineName, machineBuilding, text, status } = req.body;
+
+    try {
+        const incident = await Incident.findById(uuid);
+        if (!incident) {
+            return res.status(404).json({ error: "Incident not found" });
+        }
+
+        console.log("Hola soy el put: ", incident.toJSON());
+        // Actualización de los datos de la incidencia
+        incident.email = email;
+        incident.machineId = machineId;
+        incident.machineName = machineName;
+        incident.machineBuilding = machineBuilding;
+        incident.text = text;
+        incident.status = status;
+
+        await incident.update();  // Guarda los cambios en la base de datos
+        res.json(incident.toJSON());
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
