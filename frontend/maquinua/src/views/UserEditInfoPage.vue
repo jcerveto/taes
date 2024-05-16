@@ -1,33 +1,33 @@
 <template>
   <div class="register-container">
   <div class="form-container">
-    <h2>Modificar Mis Datos</h2>
+      <h2>{{  $t("mod_mdatos") }}</h2>
     <form @submit.prevent="submitForm">
       <!-- Mostrar email -->
       <div>
-        <label>Correo Electrónico:</label><br>
+          <label>{{  $t("correo_electronico") }}:</label><br>
         <p>{{ email }}</p>
       </div>
 
       <!-- Campos modificables -->
       <div>
-        <label for="username">Username:</label><br>
+          <label for="username">{{  $t("usuario") }}:</label><br>
         <input type="text" id="username" v-model="username" /><br>
-        <span v-if="username === ''" style="color: red;">El nombre de usuario es requerido</span><br><br>
+        <span v-if="username === ''" style="color: red;">{{  $t("requerido_usuario") }}</span><br><br>
 
-        <label for="name">Nombre:</label><br>
+        <label for="name">{{  $t("nombre") }}:</label><br>
         <input type="text" id="name" v-model="name" /><br>
-        <span v-if="name === ''" style="color: red;">El nombre es requerido</span><br><br>
+        <span v-if="name === ''" style="color: red;">{{  $t("requerido_nombre") }}</span><br><br>
 
-        <label for="surname">Apellido:</label><br>
+        <label for="surname">{{  $t("apellido") }}:</label><br>
         <input type="text" id="surname" v-model="surname" /><br>
-        <span v-if="surname === ''" style="color: red;">El apellido es requerido</span><br><br>
+        <span v-if="surname === ''" style="color: red;">{{  $t("requerido_apellido") }}</span><br><br>
 
         <label for="password">Contraseña:</label><br>
         <input type="password" id="password" v-model="password" @click="editPassword" /><br>
-        <span v-if="password.length < 6" style="color: red;">La contraseña debe tener al menos 6 caracteres</span><br><br>
+        <span v-if="password.length < 6" style="color: red;">{{  $t("requerido_apellido") }}</span><br><br>
 
-        <button type="submit">Guardar cambios</button><br><br>
+        <button type="submit">{{  $t("guardar_cambios") }}</button><br><br>
         
         <!-- Botón para eliminar usuario -->
         <button type="button" @click="confirmDelete" style="background-color: #dc3545; color: white;">Eliminar usuario</button>

@@ -7,10 +7,10 @@
         <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.uuid">
           {{ incident.uuid }}
           <div class="card-header">
-            <p>Building: {{ incident.machineBuilding }}</p>
-            <p>Machine: {{ incident.machineName }}</p>
+              <p>{{  $t("edificio") }}: {{ incident.machineBuilding }}</p>
+              <p>{{  $t("maquina") }}: {{ incident.machineName }}</p>
             <p>ID: {{ incident.machineId }}</p>
-            <button type="button" class="btn btn-warning" @click="solveIncident(incident)">Solucionar</button>
+            <button type="button" class="btn btn-warning" @click="solveIncident(incident)">{{  $t("solucionar") }}</button>
           </div>
           <div>
             
@@ -20,19 +20,19 @@
           </div>
 
           <div>
-            <button type="button" class="btn btn-danger" @click="closeIncident(incident)">Cerrar incidencia</button>
+              <button type="button" class="btn btn-danger" @click="closeIncident(incident)">{{  $t("cerrar_incidencia") }}</button>
           </div>
 
         </div>
       </div>
       <div v-else>
-        <p>No incidents to show.</p>
+          <p>{{  $t("no_mostrar") }}.</p>
       </div>
       
       <div class="pagination">
-        <button @click="previousPage" :disabled="currentPage <= 0">Previous</button>
-        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</button>
+          <button @click="previousPage" :disabled="currentPage <= 0">{{  $t("previa") }}</button>
+          <span>{{  $t("pagina") }} {{ currentPage + 1 }} {{  $t("de") }} {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage >= totalPages - 1">{{  $t("siguiente") }}</button>
       </div>
     </div>
   </div>
