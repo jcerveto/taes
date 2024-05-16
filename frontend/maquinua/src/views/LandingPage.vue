@@ -1,297 +1,330 @@
- <template>
-    <div class="landing-page">
-        <div class="content">
-            <p class="textotop"> Se uno mas de la familia <span class="maquinUA">MaquinUA</span> y disfruta de todo lo que te ofrecen las maquinas expededoras</p>
-            <button class="botontop" @click="redirigirregister">Unete</button>
-
-
-
-        </div>
-        <img class="imagen-desvanecida" src=..\assets\LogoMaquinUA.jpg alt="Mi imagen">
+<template>
+  <div class="landing-page">
+    <div class="content">
+      <p class="textotop">Únete a la familia <span class="maquinUA">MaquinUA</span> y disfruta de todo lo que te ofrecen nuestras máquinas expendedoras</p>
+      <button class="botontop" @click="redirigirregister">Únete</button>
     </div>
-    <div class="mapa">
-        <p  class="text2"> Usa nuestro mapa para encotrar maquinas expededoras</p>
-        <button2 @click="redirigirmap">
-            <img class="imagenmapa" src="..\assets\mapa.png" >
-        </button2>
-        <p class="text2"> Utiliza todas las opciones disponibles</p>
-    </div>
+    <img class="imagen-desvanecida" src="../assets/LogoMaquinUA.jpg" alt="Logo MaquinUA">
+  </div>
+
+  <div class="mapa">
+    <p class="text2">Usa nuestro mapa para encontrar máquinas expendedoras</p>
+    <button class="button-map">
+      <img class="imagenmapa" src="../assets/mapa.png" alt="Mapa">
+    </button>
+    <p class="text2">Utiliza todas las opciones disponibles</p>
+  </div>
+
+  <div class="center-container">
     <div class="container">
-        <div class="column">
-            <img class="img" src=..\assets\lupa.png>
-            <p>Que maquina escojo?</p>
-            <p class="texto">Estás indeciso en que maquina expendedora elegir? Busca en nuestro mapa</p>
-            <button @click="redirigirmap">Mapa</button>
-        </div>
-        <div class="column">
-            <img class="img" src=..\assets\exclamacion.png>
-            <p>Error en la maquina?</p>
-            <p class="texto">Has visto algun error en nuestras maquinas expendedoras? Informanos del error </p>
-            <button @click="redirigirincid">Incidencia</button>
-        </div>
-        <div class="column">
-            <img class="img" src=..\assets\lupa.png>
-            <p>Que prefieres?</p>
-            <p class="texto">Hay algun producto que te interese en especial? Aqui encontraras todos los que hay</p>
-            <button @click="redirigirprod">Productos</button>
-        </div>
+      <div class="column">
+        <img class="img" src="../assets/lupa.png" alt="Buscar">
+        <p>¿Qué máquina escojo?</p>
+        <p class="texto">¿Estás indeciso sobre qué máquina expendedora elegir? Busca en nuestro mapa.</p>
+        <button @click="redirigirmap">Ver Mapa</button>
+      </div>
+      <div class="column">
+        <img class="img" src="../assets/exclamacion.png" alt="Error">
+        <p>¿Error en la máquina?</p>
+        <p class="texto">¿Has visto algún error en nuestras máquinas expendedoras? Infórmanos del problema.</p>
+        <button @click="redirigirincid">Reportar Incidencia</button>
+      </div>
+      <div class="column">
+        <img class="img" src="../assets/productos.png" alt="Productos">
+        <p>¿Qué prefieres?</p>
+        <p class="texto">¿Hay algún producto que te interese especialmente? Aquí encontrarás todos los disponibles.</p>
+        <button @click="redirigirprod">Ver Productos</button>
+      </div>
     </div>
+  </div>
 
-    <div class="midpage">
-        <img src=..\assets\maquinaex.png>
-        <div class="row">
-            <p class="textend">Contamos con las mejores marcas de maquinas expendedoras<br><span class="textdown"></span> </p>
-            <div class="marcas">
-                <img class="marca2" src=..\assets\marca2.png>
-                <img class="marca1" src=..\assets\marca1.png>
-            </div>
-        </div>
+  <div class="midpage">
+    <img class="maquina-ex" src="../assets/maquinaex.png" alt="Máquina Expendedora">
+    <div class="row">
+      <p class="textend">Contamos con las mejores marcas de máquinas expendedoras</p>
+      <div class="marcas">
+        <img class="marca" src="../assets/marca2.png" alt="Marca 2">
+        <img class="marca" src="../assets/marca1.png" alt="Marca 1">
+      </div>
     </div>
-
-    <div class="footer">
-
-    </div>
+  </div>
 
 </template>
+
 <script>
-    
-   export default {
+export default {
   methods: {
     redirigirregister() {
       this.$router.push('/register');
     },
     redirigirmap() {
-      this.$router.push('/');
+      this.$router.push('/map');
     },
     redirigirincid() {
       this.$router.push('/incidents');
     },
-     redirigirprod() {
+    redirigirprod() {
       this.$router.push('/products');
     }
-}
+  }
 }
 </script>
 
-<style scoped>
-   
 
+<style scoped>
 
 .landing-page {
-  flex:1;
   display: flex;
   justify-content: space-between;
-  color: #fff; /* Color del texto */
-  position:relative;
+  align-items: center;
+  color: #fff;
   padding: 100px;
-    
-
+  background-image: url('../assets/universidad3.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
-.landing-page::before{
-    display: flex;
+
+.landing-page::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/universidad3.jpg');
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: black;
-  border-radius: 30px;
+.content {
+  z-index: 1;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textotop {
+  font-size: 36px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.maquinUA {
+  color: #7fcaad;
+}
+
+.botontop {
+  padding: 15px 30px;
+  font-size: 20px;
+  color: #000;
   background-color: #7fcaad;
-  color:white;
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
 }
-    .botontop {
-        margin-left: 350px;
-        margin-top: 80px;
-        margin-right: 350px;
-        font-size: 20px;
-        padding: 15px 30px;
-        color: black;
-    }
-    .maquinUA{
-    color: #7fcaad
-    }
-    .textotop {
-        border-radius: 10px;
-        background-color: #F2F4F4;
-        margin-right: 100px;
-        margin-left: 15px;
-        text-align: left;
-        color: #000;
-        font-size: 30px; /* Tama�o del texto */
-        font-weight: bold; /* Texto en negrita */
-    }
-    .imagen-desvanecida {
-    width: 300px; /* Ajusta el tama�o de la imagen */
-    height: 300px;
-    verflow: hidden;
-    display: inline-block;
-    border-radius: 9999999999px;
-    
-    
-}
-    .mapa {
-        margin: 20px;
-        border-radius: 10px;
-        background-color: #F2F4F4;
-    }
-    .text2 {
-        text-align: mid;
-        color: #000;
-        margin-top: 10px;
-        margin-down: 10px;
-        font-size: 30px; /* Tama�o del texto */
-        font-weight: bold; /* Texto en negrita */
-    }
 
- 
-    .container {
-   margin-top:10px;   
+.imagen-desvanecida {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.mapa {
+  text-align: center;
+  background-color: #f2f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 40px 0;
+}
+
+.text2 {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.button-map {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.imagenmapa {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.container {
   display: flex;
   justify-content: space-between;
-
+  margin: 40px 0;
 }
 
-    .column {
+.column {
+  background-color: #f2f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
   flex: 1;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 20px; /* Tama�o del texto */
-  font-weight: bold; /* Texto en negrita */
-  color: #000; /* Color del texto */
-}
-    .texto{
-   font-size: 16px;
-  font-weight: normal;
-  color: #000000; /* Este es el color negro, pero puedes cambiarlo a lo que prefieras */
-}
-    .img{
-    width: 40px; /* Ajusta el tama�o de la imagen */
-    height: 40px;
-    opacity: 0.3;
-}
-    .back{
-    
-    
-    }
-   .midpage{
-    overflow: hidden;
-   display:flex;
-   justify-content: space-between;
-   color: #fff; /* Color del texto */
-   background-color:#F5F5F5;
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-top:50px;
-    margin-down:50px;
-   text-align: right;
-}
-     .textend {
-    
-    margin-top: 100px;
-   
-    text-align: left;
-    color: #000;
-    font-size: 30px; /* Tama�o del texto */
-    font-weight: bold; /* Texto en negrita */
-  
-}
-     .textdown {
-    
-   
-    font-size: 20px; /* Tama�o del texto */
-    font-weight: normal; /* Texto en negrita */
-  
-}
-    .row {
-    display: flex;
-    flex-direction: row;
+  margin: 0 10px;
 }
 
-    .marcas {
-        display: flex;
-        margin-left: 15%;
-    }
-
-    .marca1, .marca2{
-    width: 100px; /* Este ser� el ancho de tu div */
-    height: 100px;
-    margin-left: 10%;
-    
-    }
-    
-    .footer{
-    padding:50px;
+.img {
+  width: 40px;
+  height: 40px;
+  opacity: 0.7;
+  margin-bottom: 10px;
 }
-    @media screen and (max-width: 1400px) {
-    .imagen-desvanecida {
-    display: none;
-    }
-    }
-    @media screen and (max-width: 600px) {
-        .mapa {
-            flex-direction: row;
-            
-        }
-        .imagenmapa{
-            width: 100%;
-        }
-        .text2 {
-            font-size: 18px;
-        }
 
-       
-            .imagen-desvanecida {
-    display: none;
+.texto {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #7fcaad;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.midpage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 50px;
+  background: linear-gradient(to right, #7fcaad, #4a90e2);
+  border-radius: 10px;
+  margin: 40px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.midpage::before, .midpage::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+  animation: rotation 10s infinite linear;
+  z-index: -1;
+}
+
+.midpage::after {
+  animation-delay: -5s;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.maquina-ex {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.maquina-ex:hover {
+  transform: scale(1.05);
+}
+
+.row {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.textend {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.marcas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.marca {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.marca:hover {
+  transform: translateY(-5px);
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
   .landing-page {
     flex-direction: column;
     padding: 50px;
   }
+
   .content {
-    align-items: center;
+    text-align: center;
   }
+
+  .imagen-desvanecida {
+    display: none;
+  }
+
   .container {
     flex-direction: column;
   }
+
   .column {
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
+
   .midpage {
     flex-direction: column;
-    align-items: center;
   }
-  .textend {
-    margin-right: 0;
-    text-align: center;
+
+  .maquina-ex {
+    margin-bottom: 20px;
   }
-     .marca1, .marca2 {
-    width: 50px; /* Reducimos el tama�o de las im�genes en pantallas peque�as */
-    height: 50px;
-   }
+
+  .midpage img {
+    margin-bottom: 20px;
+  }
 }
- 
 
 </style>
-
-
-
-
-
-
-
