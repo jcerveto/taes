@@ -2,40 +2,40 @@
   <div class="incident-app">
     <div class="incident-form">
       <div v-if="building && machine && id">
-        <p>Building: {{ building }}</p>
-        <p>Machine: {{ machine }}</p>
+          <p>{{  $t("edificio") }}: {{ building }}</p>
+          <p>{{  $t("maquina") }}: {{ machine }}</p>
         <p>ID: {{ id }}</p>
         <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
-        <button @click="addIncident" class="add-incident-btn">Add Incident</button>
+        <button @click="addIncident" class="add-incident-btn"> {{  $t("add_incidente") }}</button>
         <button @click="refreshPage" class="refresh-btn">Refresh</button>
       </div>
       <div v-else>
-        <p>SELECT THE MACHINE</p>
+          <p>{{  $t("seleccionar_maquina1") }}</p>
         <div class="filter-container">
           <select v-model="selectedBuilding" @change="buildingSelected" class="filter-dropdown">
-            <option value="">Select Building</option>
+              <option value="">{{  $t("seleccionar_edificio") }}</option>
             <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
           </select>
           <!-- Machine title filter; appears when a building is selected -->
           <select v-if="selectedBuilding" v-model="selectedMachineTitle" @change="machineSelected" class="filter-dropdown">
-            <option value="">Select Machine</option>
+              <option value="">{{  $t("seleccionar_maquina2") }}</option>
             <option v-for="machine in machinesInSelectedBuilding" :key="machine.id">
               {{ machine.popupContent.title }}
             </option>
           </select>
         </div>
         <textarea v-model="incidentDetails" placeholder="Enter incident details..."></textarea>
-        <button @click="addIncident" class="add-incident-btn">Add Incident</button>
-        <button @click="refreshPage" class="refresh-btn">Refresh</button>
+        <button @click="addIncident" class="add-incident-btn">{{  $t("add_incidente") }}</button>
+        <button @click="refreshPage" class="refresh-btn">{{  $t("refrecar") }}</button>
       </div>
     </div>
     <div class="incident-list">
-      <h3>Showing incidents for: {{ user }}</h3>
+        <h3>{{  $t("mostrar_incidentes") }}: {{ user }}</h3>
       <div v-if="incidents.length > 0">
         <div class="incident-card" v-for="incident in paginatedIncidents" :key="incident.id">
           <div class="card-header">
-            <p>Building: {{ incident.machineBuilding }}</p>
-            <p>Machine: {{ incident.machineName }}</p>
+              <p>{{  $t("edificio") }}: {{ incident.machineBuilding }}</p>
+              <p>{{  $t("maquina") }}: {{ incident.machineName }}</p>
             <p>ID: {{ incident.machineId }}</p>
           </div>
           <div class="card-body">
@@ -47,12 +47,12 @@
         </div>
       </div>
       <div v-else>
-        <p>No incidents to show.</p>
+          <p>{{  $t("no_mostrar") }}.</p>
       </div>
       <div class="pagination">
-        <button @click="previousPage" :disabled="currentPage <= 0">Previous</button>
-        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</button>
+          <button @click="previousPage" :disabled="currentPage <= 0">{{  $t("previa") }}</button>
+          <span>{{  $t("pagina") }} {{ currentPage + 1 }} {{  $t("de") }} {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage >= totalPages - 1">{{  $t("siguiente") }}</button>
       </div>
     </div>
   </div>

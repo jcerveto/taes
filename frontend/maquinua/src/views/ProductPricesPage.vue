@@ -1,15 +1,15 @@
 <template>
   <div :class="{ 'dark-mode': darkMode }">
     <br>
-    <h1 :style="{ color: darkMode ? 'white' : '' }">Product Prices</h1>
+    <h1 :style="{ color: darkMode ? 'white' : '' }">{{  $t("precio_producto") }}</h1>
     <br>
     <form class="form-inline">
       <div class="form-group">
-        <label for="nombre">Nombre del producto</label>
+          <label for="nombre">{{  $t("nombre_producto") }}</label>
         <input type="text" id="nombre" class="form-control" v-model="nombre">
       </div>
       <div class="form-group" >
-        <label for="edificio">Edificio</label>
+          <label for="edificio">{{  $t("edificio") }}</label>
         <multiselect
           v-model="selectedEdificio"
           :options="edificios"
@@ -20,16 +20,16 @@
         
       </div>
       <div class="form-group">
-        <label for="precio">Precio máximo</label>
+          <label for="precio">{{  $t("precio_maximo") }}</label>
         <input type="number" id="precio" class="form-control" v-model="precio">
       </div>
       <div class="form-group">
-        <label for="tipo">Tipo</label>
+          <label for="tipo">{{  $t("tipo") }}</label>
         <select id="tipo" class="form-select" v-model="tipo">
-          <option value="todos" selected>Todo</option>
-          <option value="CAFETERA">cafetera</option>
-          <option value="BEBIDAS FRIAS">bebidas frías</option>
-          <option value="MIXTA">mixta</option>
+            <option value="todos" selected>{{  $t("todo") }}</option>
+            <option value="CAFETERA">{{  $t("cafetera") }}</option>
+            <option value="BEBIDAS FRIAS">{{  $t("bebidas_frias") }}</option>
+            <option value="MIXTA">{{  $t("mixta") }}</option>
         </select>
       </div>
     </form>
@@ -43,7 +43,7 @@
         
         <div class="info">
           <div class="precios">{{ producto.precio }}€</div>
-          <button @click="buscar(producto.nombre)" class="btn custom-btn-color">buscar</button>
+          <button @click="buscar(producto.nombre)" class="btn custom-btn-color">{{  $t("buscar") }}</button>
         </div>
       </div>
     </div>

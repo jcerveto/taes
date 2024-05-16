@@ -2,14 +2,14 @@
   <div class="register-container">
   <div class="form-container">
     <div class="mis-datos">
-      <h2>Mis Datos</h2>
+        <h2>{{  $t("misdatos") }}</h2>
 
       <div class="propiedad" v-for="(prop, index) in propiedades" :key="index">
         <label>{{ prop.label }}</label>
         <p :style="{ color: prop.color }">{{ prop.value }}</p>
       </div>
 
-      <router-link to="/user/mydata/myinfo">Modificar Datos</router-link>
+      <router-link to="/user/mydata/myinfo">{{  $t("mod_datos") }}</router-link>
     </div>
   </div>
 

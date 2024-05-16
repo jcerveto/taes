@@ -1,55 +1,55 @@
 <template>
     <div class="register-container">
       <div class="form-container">
-      <h2>Register</h2>
+          <h2>{{  $t("registro") }}</h2>
       <br>
       <form @submit.prevent="register">
         <div class>
-          <label for="username">Username:</label><br>
+            <label for="username">{{  $t("usuario") }}:</label><br>
           <input class="form-control" type="text" id="username" v-model="username" required>
-          <br><span v-if="!usernameValid && usernameDirty" style="color: red;">Please enter a valid username</span>
+          <br><span v-if="!usernameValid && usernameDirty" style="color: red;">{{  $t("no_valida_usuario") }}</span>
         </div>
         <div>
           <label for="name">Name:</label><br>
           <input class="form-control" type="text" id="name" v-model="name" required>
-          <br><span v-if="!nameValid && nameDirty" style="color: red;">Please enter a valid name</span>
+          <br><span v-if="!nameValid && nameDirty" style="color: red;">{{  $t("no_valida_nombre") }}</span>
         </div>
         <div>
           <label for="surname">Surname:</label><br>
           <input class="form-control" type="text" id="surname" v-model="surname" required>
-          <br><span v-if="!surnameValid && surnameDirty" style="color: red;">Please enter a valid surname</span>
+          <br><span v-if="!surnameValid && surnameDirty" style="color: red;">{{  $t("no_valida_apellido") }}</span>
         </div>
         <div>
-          <label for="email">Email:</label><br>
+            <label for="email">{{  $t("correo_electronico") }}:</label><br>
           <input class="form-control" type="email" id="email" v-model="email" required>
-          <br><span v-if="!emailValid && emailDirty" style="color: red;">Please enter a valid email address</span>
+          <br><span v-if="!emailValid && emailDirty" style="color: red;">{{  $t("no_valida_email") }}</span>
           {{ emailExists }}
         </div>
   
         <div>
-          <label for="birthdate">Birthdate:</label><br>
+            <label for="birthdate">{{  $t("cumple") }}:</label><br>
           <input class="form-control" type="date" v-model="birthdate" id="birthdate" name="Birthdate" min="1924-01-01" :max="maxDate" />
 
-          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">Please select a valid birthdate (you must be 16 years)</span>
+          <span v-if="!birthdateValid && birthdateDirty" style="color: red;">{{  $t("no_valida_edad") }}</span>
         </div>
   
         <div><br>
-          <label for="password">Password:</label><br>
+             <label for="password">{{  $t("contrasenya") }}:</label><br>
           <input class="form-control" type="password" id="password" v-model="password" required>
-          <br><span v-if="!passwordValid && passwordDirty" style="color: red;">Please enter a valid password (min 6 characters)</span>
+          <br><span v-if="!passwordValid && passwordDirty" style="color: red;">{{  $t("no_valida_con") }}</span>
         </div>
         <div>
-          <label for="repeatPassword">Repeat Password:</label><br>
+            <label for="repeatPassword">{{  $t("rep_contrasenya") }}:</label><br>
           <input class="form-control" type="password" id="repeatPassword" v-model="repeatPassword" required>
-          <br><span v-if="!repeatPasswordValid && repeatPasswordDirty" style="color: red;">Passwords do not match</span>
+          <br><span v-if="!repeatPasswordValid && repeatPasswordDirty" style="color: red;">{{  $t("no_coinciden") }}</span>
         </div>
         <div>
-          <button class="custom-btn-color btn" type="submit" >Register</button>
+            <button class="custom-btn-color btn" type="submit">{{  $t("registrarse") }}</button>
         </div>
       </form><br>
       
-      <p>Do you have an account?</p>
-      <router-link to="/signin">Sign In</router-link>
+      <p>{{  $t("tienes_cuenta") }}</p>
+      <router-link to="/signin">{{  $t("inicio_sesion") }}</router-link>
     </div>
   </div>
 </template>
