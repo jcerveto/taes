@@ -33,6 +33,9 @@
               <li class="nav-item">
                   <router-link class="nav-link" to="/user">{{  $t("button-user") }}</router-link>
               </li>
+              <li class="nav-item">
+                  <router-link class="nav-link" to="/LandingPage">Landing Page</router-link>
+              </li>
 
           </ul>
       </div>
