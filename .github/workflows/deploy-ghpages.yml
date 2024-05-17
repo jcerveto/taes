@@ -3,7 +3,7 @@ name: Update Frontend using GithubPages
 on:
   push:
     branches:
-      - main
+      - develop-ok
 
 jobs:
   deploy-frontend:
