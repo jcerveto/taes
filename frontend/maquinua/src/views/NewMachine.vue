@@ -1,30 +1,30 @@
 <template>
   <div class="container mt-5">
-    <h1 class="mb-4">New Machine Creation</h1>
+      <h1 class="mb-4">{{  $t("nueva_maquina") }}</h1>
     <form @submit="submitForm" class="needs-validation" novalidate>
       <div class="mb-3">
-        <label for="edificio" class="form-label">Building:</label>
+          <label for="edificio" class="form-label">{{  $t("edificio") }}:</label>
         <input type="text" class="form-control" id="edificio" v-model="machine.edificio" required>
       </div>
       <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
+          <label for="title" class="form-label">{{  $t("titulo") }}:</label>
         <input type="text" class="form-control" id="title" v-model="machine.popupContent.title" required>
       </div>
       <div class="mb-3">
-        <label for="description" class="form-label">Description:</label>
+          <label for="description" class="form-label">{{  $t("descripcion") }}:</label>
         <input type="text" class="form-control" id="description" v-model="machine.popupContent.description" required>
       </div>
       <div class="mb-3">
-        <label for="lat" class="form-label">Latitude:</label>
+          <label for="lat" class="form-label">{{  $t("latitud") }}:</label>
         <input type="number" class="form-control" id="lat" step="0.000001" v-model.number="machine.lat" required>
       </div>
       <div class="mb-3">
-        <label for="lon" class="form-label">Longitude:</label>
+          <label for="lon" class="form-label">{{  $t("longitud") }}:</label>
         <input type="number" class="form-control" id="lon" step="0.000001" v-model.number="machine.lon" required>
       </div>
-      <button type="submit" class="btn btn-primary">Add Machine</button>
+      <button type="submit" class="btn btn-primary">{{  $t("add_maquina") }}</button>
     </form>
-    <router-link to="/support" class="btn btn-link align-right-home">Back to Support</router-link>
+    <router-link to="/support" class="btn btn-link align-right-home">{{  $t("volver_soporte") }}</router-link>
   </div>
 </template>
 <script>

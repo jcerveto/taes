@@ -6,13 +6,13 @@
     <!-- Filter container for the building selection -->
     <div class="filter-container">
       <select v-model="selectedBuilding" @change="buildingSelected" class="filter-dropdown">
-        <option value="">None</option>
+          <option value="">{{  $t("ninguno") }}</option>
         <option v-for="building in buildingOptions" :key="building" :value="building">{{ building }}</option>
       </select>
       
       <!-- Machine title filter; appears when a building is selected -->
       <select v-if="selectedBuilding" v-model="selectedMachineTitle" @change="machineSelected" class="filter-dropdown">
-        <option value="">None</option>
+          <option value="">{{  $t("ninguno") }}</option>
         <option v-for="machine in machinesInSelectedBuilding" :key="machine.id">
           {{ machine.popupContent.title }}
         </option>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="add-machine" v-if="$route.path === '/support' && (Object.keys($route.query).length === 0 || (Object.keys($route.query).length === 1 && $route.query.building))">
-      <button @click="redirectToCreateNewMachine">Create a New Machine</button>
+        <button @click="redirectToCreateNewMachine">{{  $t("nueva_maquina") }}</button>
     </div>
     
     <br>

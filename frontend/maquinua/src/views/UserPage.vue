@@ -2,22 +2,22 @@
     <div class="register-container">
     <div class="form-container">
     <div class="user-page">
-        <h1>User Page</h1>
+        <h1> {{  $t("user_page") }}</h1>
 
         <div class="user-actions" v-if="isLoggedIn">
-            <h3> Hola, {{ usuario }}</h3>
+            <h3> {{  $t("hola") }}, {{ usuario }}</h3>
             
-            <router-link class="router-button" to="incidents">Mis incidencias</router-link> <br>
-            <router-link class="router-button" to="user/mydata">Mis Datos</router-link> <br>
-            <router-link @click="logout()" to="/">Log out</router-link> <br>
+            <router-link class="router-button" to="incidents"> {{  $t("mis_incidencias") }}</router-link> <br>
+            <router-link class="router-button" to="user/mydata"> {{  $t("mis_datos") }}</router-link> <br>
+            <router-link @click="logout()" to="/"> {{  $t("cerrar_sesion") }}</router-link> <br>
         </div>
 
         <div v-else>
-            <router-link class="router-button" to="/register">REGISTER</router-link> <br>
-            <router-link class="router-button" to="/signin">SIGN IN</router-link> <br>
+            <router-link class="router-button" to="/register"> {{  $t("registrate") }}</router-link> <br>
+            <router-link class="router-button" to="/signin"> {{  $t("iniciar_sesion") }}</router-link> <br>
         </div>
         
-        <router-link class="router-button home" to="/">Go to Home</router-link>
+        <router-link class="router-button home" to="/"> {{  $t("inicio") }}</router-link>
     </div>
 </div>
 </div>

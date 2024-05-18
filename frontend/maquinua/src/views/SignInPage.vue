@@ -1,26 +1,27 @@
 <template>
   <div class="login-container">
     <div class="form-container">
-      <h2>Log In</h2>
+        <h2>{{  $t("inicio_sesion") }}</h2>
+
       <br>
       <form @submit.prevent="signIn" class="form">
         <div class="form-group">
-          <label for="email">Email:</label><br>
+            <label for="email">{{  $t("correo_electronico") }}:</label><br>
           <input class="form-control" type="email" id="email" v-model="email" required>
         </div>
         <br>
         <div>
-          <label for="password">Password:</label><br>
+            <label for="password">{{  $t("contrasenya") }}:</label><br>
           <input class="form-control" type="password" id="password" v-model="password" required>
         </div>
         <div>
           <br>
-          <button class="btn custom-btn-color" type="submit">Sign In</button>
+          <button class="btn custom-btn-color" type="submit">{{  $t("inicio_sesion") }}</button>
         </div>
       </form>
       <br>
-      <p>Do not have an account yet?</p>
-      <router-link to="/register">Register</router-link>
+      <p>{{  $t("no_cuenta") }}</p>
+      <router-link to="/register">{{  $t("registrate") }}</router-link>
     </div>
   </div>
 </template>

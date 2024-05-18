@@ -1,13 +1,128 @@
 {
-    "greeting": "Hola",
-    "description-1": "maquinua es un sitio web que te explorar las máquinas expendedoras de la Universitat d'Alacant. Puedes filtrar por tu facultad, nombre del producto y muchos más. Encontrás la ubicación de la máquina en un mapa.",
-    "find-us": "Encuéntranos en nuestro repositorio de GitHub en ",
-    "button-filter": "Filtros",
-    "button-products": "Productos",
-    "button-about": "Acerca de",
-    "button-user": "Perfil",
-    "button-logout": "Cerrar sesión",
-    "button-reports": "Incidencias",
-    "button-support": "Soporte",
-    "button-incidentsAdmin": "Resolver Incidencias"
+  "greeting": "Hola",
+  "description-1": "maquinua es un sitio web que te explorar las máquinas expendedoras de la Universitat d'Alacant. Puedes filtrar por tu facultad, nombre del producto y muchos más. Encontrás la ubicación de la máquina en un mapa.",
+  "find-us": "Encuéntranos en nuestro repositorio de GitHub en ",
+
+  "button-filter": "Filtros",
+  "button-products": "Productos",
+  "button-about": "Acerca de",
+  "button-user": "Perfil",
+  "button-logout": "Cerrar sesión",
+  "button-reports": "Incidencias",
+  "button-support": "Soporte",
+  "button-incidentsAdmin": "Resolver Incidencias",
+
+  
+  "filtro": "Filtro",
+  "tipo_máquina": "Tipo de máquina",
+  "producto_concreto": "Producto concreto",
+  "cancelar": "Cancelar",
+  "aplicar": "Aplicar",
+  "ver_productos": "Ver productos",
+
+
+
+  "sobre_nosotros": "Sobre nosotros",
+  "nosotros_miua": "¡Hola! Nosotros somos MIUA y ofrecemos soluciones en forma de mapas interactivos para la Universidad de Alicante",
+  "Presentamos ahora MaquinUA": "Presentamos ahora MaquinUA, un mapa interactivo en el que se muestra la ubicación exacta de todas las maquinas expendedoras de la UA",
+  "Nuestro Equipo": "Our Team",
+  "Mi compromiso con el diseño web": "Mi compromiso con el diseño web y mi destreza en el desarrollo frontend son contribuciones esenciales para el equipo.",
+  "Mi pasion por las redes": "Mi pasion por las redes y mis conocimientos en backend me convierten en una pieza fundamental",
+  "Tengo una amplia variedad": "Tengo una amplia variedad de conocimientos tanto en frontend como en backend. Puedo ayudar en todo tipo de tareas",
+  "Me apasionan las bases": "Me apasionan las bases de datos y las redes de intercomunicaciones. Mi pasion por el trabajo es inigualable.",
+  "Me apasiona aprender": "Me apasiona aprender cada vez más y poder aportar todo lo que puedo al equipo",
+  "Altos conocimientos": "Altos conocimientos en desarrollo backend y frontend. Me encanta aportar todo mi esfuerzo al equipo",
+  "Me apasiona ayudar": "Me apasiona ayudar a mi equipo y aportar todos mis conocimientos en desarrollo web",
+
+  "Contacto": "Contacto",
+  "Página no encontrada": "Página no encontrada",
+
+  "hola": "Hola",
+  "mis_incidencias": "Mis incidencias",
+  "mis_datos": "Mis datos",
+  "cerrar_sesion": "Cerrar sesion",
+  "inicio": "Ir a inicio",
+  "registrate": "REGISTRATE",
+
+  "pagina_error": "Pagina no encontrada",
+
+  "incidencias_atendidas": "Incidencias que deben ser atendidas",
+  "solucionar": "Solucionar",
+  "no_mostrar": "No hay incidencias que mostrar",
+  "cerrar_incidencia": "Cerrar incidencia",
+  "previa": "Previa",
+  "siguiente": "siguiente",
+  "pagina": "Pagina",
+  "de": "de",
+  "edificio": "Edificio",
+  "maquina": "Maquina",
+  "add_incidente": "añadir incidente",
+  "seleccionar_maquina1": "SELECCIONA LA MAQUINA",
+  "seleccionar_edificio": "Selecciona el edificio",
+  "seleccionar_maquina2": "Selecciona la maquina",
+  "refrescar": "refrescar",
+  "mostrar_incidentes": "Mostrar incidentes de ",
+
+  "nueva_maquina": "CREAR NUEVA MAQUINA",
+  "titulo": "Titulo",
+  "descripcion": "Descripcion",
+  "latitud": "Latitud",
+  "longitud": "Longitud",
+  "volver_soporte": "Volver a soporte",
+  "add_maquina": "Añadir Maquina",
+
+  "admin_log_ok": "Admin logeado correctamente",
+  "distribucion_maquinas": "Distribución de las Maquinas",
+  "admin_log": "Inicio sesion del Admin",
+  
+
+  "precio_producto": "Precios de los Productos",
+  "nombre_producto": "Nombre del producto",
+  "precio_maximo": "Precio máximo",
+  "tipo": "Tipo",
+  "todo": "Todo",
+  "cafetera": "cafetera",
+  "bebidas_frias": "bebidas frías",
+  "mixta": "mixta",
+  "buscar": "buscar",
+
+  "usuario": "Usuario",
+  "pagina_usuario": "Página del usuario",
+  "registrarse": "Registrarse",
+  "inicio_sesion": "Iniciar sesión",
+  "nombre_usuario": "Nombre de usuario",
+  "nombre": "Nombre",
+  "apellidos": "Apellidos",
+  "correo_electronico": "Correo electrónico",
+  "fecha_nacimiento": "Fecha de nacimiento",
+  "contrasenya": "Contraseña",
+  "rep_contrasenya": "Repetir contraseña",
+  "tienes_cuenta": "¿Tienes una cuenta?",
+  "no_cuenta": "¿Aún no tienes una cuenta?",
+  "no_coinciden": "Las contraseñas no coinciden",
+  "no_valida_con": "Porfavor introduzca una contraseña valida (minimo 6 caracteres)",
+  "no_valida_edad": "Porfavor selecciona un cumpleaños valido (debes tener 16 años)",
+  "no_valida_email": "Porfavor introduzca un email valido",
+  "no_valida nombre": "Porfavor introduzca un nombre valido",
+  "no_valida_apellido": "Porfavor introduzca un apellido valido",
+  "no_valida_usuario": "Porfavor introduzca un nombre de username valido",
+  "cumple": "Cumpleaños",
+  "registro": "Registro",
+
+
+  "ninguno": "ninguno",
+
+  "misdatos": "Mis Datos",
+  "mod_datos": "Modificar Datos",
+
+
+  "mod_mdatos": "Modificar Mis Datos",
+  "requerido_usuario": "El nombre de usuario es requerido",
+  "requerido_nombre": "El nombre es requerido",
+  "requerido_apellido": "El apellido es requerido",
+  "requerido_contrasenya": "La contraseña debe tener al menos 6 caracteres",
+  "guardar_cambios": "Guardar Cambios"
+
+
+
 }

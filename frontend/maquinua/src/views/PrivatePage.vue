@@ -1,19 +1,19 @@
 <template>
   <div>
     <div v-if="isAdmin">
-      <h2>Admin logeado correctamente</h2>
-      <router-link to="/">Machines Distribution</router-link>
+        <h2>{{  $t("admin_log_ok") }}e</h2>
+        <router-link to="/">{{  $t("distribucion_maquinas") }}</router-link>
     </div>
     <div v-else>
-      <h2>Admin Login</h2>
+        <h2>{{  $t("admin_log") }}</h2>
       <form @submit.prevent="login">
-        <label for="email">Email:</label>
+          <label for="email">{{  $t("correo_electronico") }}:</label>
         <input type="text" id="username" v-model="email" required>
         <br>
-        <label for="password">Password:</label>
+        <label for="password">{{  $t("contrasenya") }}:</label>
         <input type="password" id="password" v-model="password" required>
         <br>
-        <button type="submit">Login</button>
+        <button type="submit">{{  $t("inicio_sesion") }}</button>
       </form>
     </div>
   </div>
